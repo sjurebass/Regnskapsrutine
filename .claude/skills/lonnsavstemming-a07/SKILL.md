@@ -9,7 +9,7 @@ description: "Avstemmer lønnsområdet for en termin: A07 fra Skatteetaten mot T
 
 Input: A07-fil for én termin (XML primærkilde; ODS er samme data) + klientnavn. Mangler A07: be om filen (Altinn → Skatteetaten → «Avstemmingsinformasjon a-melding», velg termin, last ned XML). Ikke start uten den.
 Output: `Lønnsavstemming <Klient> termin <n> <år>.xlsx` + `.pdf` (Silfer). PDF = ark «Avstemming» (tre tabeller), én linje konklusjon, korte merknader (`merknader_kort`, maks én setning per punkt), a-meldingstabell – ingen annen tekst. Excel-ark: **Avstemming** (rent: post · A07/beregnet · regnskap · avvik · status, tre blokker forskuddstrekk/AGA/feriepenger + antall avvik) · Detaljer (kilde/bilag/merknad per kontroll, innsendingshistorikk, reverserte bilag, merknader) · Forskuddstrekk · Arbeidsgiveravgift (Sticos pkt. 1–5 + pensjon hittil i år + bevegelse 2770) · Per ansatt · Ytelser A07 · Posteringer. Leveres via SendUserFile (+ commit til tilkoblet mappe).
-Filer i skillen: `scripts/lonnsavstemming_a07.py` (Excel), `scripts/lag_pdf.py` (PDF fra Excel + ledger.json; reportlab, Poppins i `fonts/`, logo i `assets/`), `scripts/hent_tripletex.js` (datauttrekk), `scripts/ledger_eksempel_*.json` (EPS = enkel, Flip = reverseringer/tilbakebetaling), `references/kontrollogikk.md` (full kontrollogikk – kortversjon nederst her).
+Filer i skillen: `scripts/lonnsavstemming_a07.py` (Excel), `scripts/a07.py` (XML-parser), `scripts/kobling.py` (beløpsmatching mot person), `scripts/stil.py` (Silfer-formatering), `scripts/ledger_eksempel.json` (utfylt eksempel), `assets/silfer_logo.png`, `references/kontrollogikk.md` (full kontrollogikk, ledger.json-format og kjente avvik – kortversjon nederst her). PDF-generatoren (`lag_pdf.py`) og datauttrekket (`hent_tripletex.js`) er ennå ikke skrevet – bygg ledger.json manuelt fra Tripletex-connectoren inntil videre.
 
 ## Steg
 
@@ -44,8 +44,24 @@ Merknader = korte faktasetninger med bilagsnr., beløp, årsak, tiltak – ikke 
 ### 5. Lever
 Begge filer (xlsx + pdf) til `/mnt/user-data/outputs/`, SendUserFile, commit til tilkoblet mappe hvis mulig. Svar 3–6 linjer: stemmer/avvik, skyldig AGA + forfall + KID, hvert avvik med beløp og tiltak.
 
-## Skriptet mangler?
-Skriv det på nytt fra kontrollogikken under (openpyxl, Arial 9, Silfer-header/logo som i `bankavstemming-aapne-poster`; PDF med reportlab i samme stil som `aarsoppgjoer-kontroll`; statusformler OK/AVVIK/FORKLART med betinget formatering; reverserte bilagspar holdes utenfor; personkobling ved beløpsmatching per konto/måned; første ark kun post/A07/regnskap/avvik/status).
+## Skriptene
+
+Ligger i `scripts/` og er verifisert mot de ferdige avstemmingene i kundemappene:
+
+| Fil | Gjør |
+|---|---|
+| `a07.py` | parser A07-XML: innsendinger, grunnlag, ytelser per person, trekk |
+| `kobling.py` | kobler A07-beløp mot lønnsbilagslinjer ved beløpsmatching |
+| `stil.py` | Silfer-formatering (farger, fonter, statusregler) |
+| `lonnsavstemming_a07.py` | bygger de sju arkene |
+| `ledger_eksempel.json` | utfylt eksempel på regnskapssiden |
+
+`references/kontrollogikk.md` har full kontrollogikk, formatet på `ledger.json`,
+og **en liste over tre kjente avvik som gjenstår** – les den før første kjøring på
+en ny klient.
+
+Ikke skriv skriptet på nytt. Finner du en feil, rett den i `scripts/` og kjør
+verifiseringen mot en eksisterende rapport på nytt.
 
 ## Fallgruver
 - **Aldri Claude i Chrome / Tripletex-web.** Connector nede → si fra, vent, prøv igjen.
