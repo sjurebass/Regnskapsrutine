@@ -1,0 +1,34 @@
+# Kundedata skal ikke i repoet. Derfor er ALT utelatt som standard, og bare
+# verktøyfilene sluppet inn eksplisitt. Da havner en ny kundemappe utenfor
+# automatisk – ingen risiko for at den blir med fordi noen glemte å oppdatere
+# denne filen.
+
+/*
+
+!/.gitignore
+!/.env.example
+!/README.md
+!/SETUP.md
+!/RUTINE-FORSLAG.md
+!/pyproject.toml
+!/kjor.cmd
+!/klienter.eksempel.json
+
+!/maanedskontroll.py
+!/selvtest.py
+!/sjekk-tilgang.py
+!/hent-klienter.py
+!/lag-klientfiler.py
+!/synk-kunderegister.py
+
+!/tools/
+!/mal/
+
+# Aldri, uansett hvor de måtte ligge
+.env
+__pycache__/
+*.pyc
+.venv/
+uv.lock
+*.new
+klienter.json
