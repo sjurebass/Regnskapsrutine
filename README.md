@@ -36,11 +36,25 @@ uv run --system-certs python maanedskontroll.py --periode 2026-08
 | `kjente-avvik.md` | avvik som er vurdert og skal rapporteres som «kjent» |
 | `<år>/` | rapporter, A07-filer og dokumentasjon |
 
-## Skills som hører til
+## Skills – de andre rapportene
 
-- `lonnsavstemming-a07` – full terminavstemming av lønn mot A07 (leverer hit)
-- `bankavstemming-aapne-poster` – åpne bankposter som liste til kunden
-- `aarsoppgjoer-kontroll` – kvalitetssikring av årsregnskap og skattemelding
+Ligger i `.claude/skills/` og følger med repoet. Klon, åpne mappa i Claude Code,
+og skillene er tilgjengelige – be om «lønnsavstemming termin 3» eller «åpne
+bankposter», så kjøres de.
+
+| Skill | Gjør | Status |
+|---|---|---|
+| `lonnsavstemming-a07` | terminavstemming av lønn mot A07 fra Altinn → Excel + PDF | **kun instruksjoner** – se under |
+| `bankavstemming-aapne-poster` | åpne bankposter per konto → Excel til kunden | komplett |
+| `aarsoppgjoer-kontroll` | kvalitetssikring av årsregnskap og skattemelding → PDF | komplett |
+
+**Merk om `lonnsavstemming-a07`:** skillen beskriver syv Excel-ark, PDF-mal og full
+kontrollogikk, men skriptene den viser til (`scripts/lonnsavstemming_a07.py`,
+`lag_pdf.py`, `hent_tripletex.js`, `references/kontrollogikk.md`) finnes ikke.
+SKILL.md har derfor et avsnitt «Skriptet mangler?» som ber Claude bygge det på
+nytt hver gang. Det virker, men gir ikke nødvendigvis identisk resultat fra gang
+til gang – og det er nettopp det en kollega trenger. Skriptene bør skrives én gang
+og legges i skillen.
 
 Månedskontrollen erstatter ikke disse. Den fanger opp det løpende, og flagger når
 en A07-avstemming mangler for terminen.

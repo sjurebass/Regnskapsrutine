@@ -23,6 +23,7 @@
 
 !/tools/
 !/mal/
+!/.claude/
 
 # Aldri, uansett hvor de måtte ligge
 .env
