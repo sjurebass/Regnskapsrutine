@@ -226,7 +226,7 @@ def _kontrollrader(a07: A07, ledger: Ledger) -> list[tuple[str, list[Kontrollrad
         Kontrollrad("Grunnlag pensjon (termin)",
                     f"A07 tilskudd/premie pensjon = bevegelse {pensjonskonto}",
                     a07.grunnlag_pensjon, round(pensjon_termin, 2)),
-        Kontrollrad("Grunnlag pensjon hittil i år",
+        Kontrollrad(f"Grunnlag pensjon {ledger.d.get('pensjon_etikett', 'hittil i år')}",
                     f"Innrapportert (pensjonsbilag/sats) = {pensjonskonto} bokført, t.o.m. {a07.tom}",
                     round(pensjon_innrapportert_hittil, 2), round(pensjon_hittil, 2), toleranse=2),
     ]
@@ -367,13 +367,21 @@ def _avsetning_2940(ledger: Ledger) -> float:
 def _ytelser_per_ansatt_status(a07: A07, ledger: Ledger):
     override = ledger.d.get("ytelse_konto") or {}
     per_person = a07.ytelser_per_person(override)
-    ok = 0
-    for (navn, maaned, konto), beloep in per_person.items():
-        maal = maal_per_person(per_person, maaned, konto)
-        bokfort = _bokfort_person(ledger, navn, maaned, konto, maal)
-        if bokfort is not None and abs(bokfort - beloep) <= 0.02:
-            ok += 1
-    return ok, len(per_person)
+    kontoer = sorted({k for (_, _, k) in per_person})
+    ok = totalt = 0
+    for maaned in a07.maaneder:
+        for konto in kontoer:
+            maal = maal_per_person(per_person, maaned, konto)
+            for p in a07.personer:
+                totalt += 1
+                forventet = per_person.get((p.navn, maaned, konto), 0.0)
+                if abs(forventet) < 0.005:
+                    ok += 1          # ingen ytelse å gjenfinne
+                    continue
+                bokfort = _bokfort_person(ledger, p.navn, maaned, konto, maal)
+                if bokfort is not None and abs(bokfort - forventet) <= 0.02:
+                    ok += 1
+    return ok, totalt
 
 
 def _bokfort_person(ledger: Ledger, navn: str, maaned: str, konto: int,
@@ -402,8 +410,6 @@ def _aga_per_ansatt(a07: A07, ledger: Ledger):
                 maal[p.navn] = -round(grunnlag * sats / 100, 2)
         for p in a07.personer:
             grunnlag = p.aga_grunnlag(m)
-            if abs(grunnlag) < 0.005:
-                continue
             beregnet = round(grunnlag * sats / 100, 2)
             bokfort = _bokfort_person(ledger, p.navn, m, 2770, maal)
             bokfort = -bokfort if bokfort is not None else beregnet
@@ -502,8 +508,15 @@ def ark_avstemming(wb: Workbook, a07: A07, ledger: Ledger, undertittel: str) -> 
         betalt = sum(p["beloep"] for p in ledger.aktive
                      if p["konto"] == 2600 and ledger.er_betaling(p)
                      and "lønnsbilag" in p["tekst"].lower() and p["dato"][:10] == dato)
+        if abs(betalt) < 0.005 and beloep < 0:
+            # negativ lønnskjøring: trekket betales ikke ut, det motregnes.
+            # Da er bokført 2600 på lønnsdatoen det som gjelder.
+            betalt = -ledger.sum_konto(2600, ledger.er_lonnsbilag, dato=dato)
         celle(ws, rad, 4, round(betalt, 2), nf=KRONER)
-        celle(ws, rad, 7, "Betalt på lønnsdato" if abs(betalt - beloep) <= 1 else "")
+        kommentar = "Betalt på lønnsdato" if abs(betalt - beloep) <= 1 else ""
+        if beloep < 0:
+            kommentar = "Negativ kjøring – trekk til gode, motregnes"
+        celle(ws, rad, 7, kommentar)
         rad += 1
 
     merknader = ledger.d.get("merknader") or []
@@ -579,10 +592,16 @@ def ark_detaljer(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
     seksjon(ws, rad, "Reverserte bilag (holdt utenfor kontrollene)")
     rad += 1
     if ledger.reverserte:
-        for bilag in sorted(ledger.reverserte):
-            tekst = next((p["tekst"] for p in ledger.poster if p["bilag"] == bilag), "")
-            celle(ws, rad, 1, bilag)
-            celle(ws, rad, 2, tekst)
+        tabellhode(ws, rad, [("Dato", "l"), ("Bilag", "l"), ("Konto", "l"),
+                             ("Tekst", "l"), ("Beløp", "r")])
+        rad += 1
+        for p in sorted([p for p in ledger.poster if p["bilag"] in ledger.reverserte],
+                        key=lambda x: (x["dato"], x["bilag"], x["konto"])):
+            celle(ws, rad, 1, p["dato"][:10])
+            celle(ws, rad, 2, int(p["bilag"]) if p["bilag"].isdigit() else p["bilag"])
+            celle(ws, rad, 3, p["konto"])
+            celle(ws, rad, 4, p["tekst"])
+            celle(ws, rad, 5, round(p["beloep"], 2), nf=KRONER)
             rad += 1
     else:
         celle(ws, rad, 1, "Ingen")

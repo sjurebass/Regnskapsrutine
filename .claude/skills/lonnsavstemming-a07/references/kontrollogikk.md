@@ -13,27 +13,39 @@ kundemappene, og verifisert mot dem.
 
 | Klient / termin | Resultat |
 |---|---|
-| Enkel klient, termin 1 | **Alle tall på arket «Avstemming» er identiske med fasit.** Tabellene «AGA per ansatt» og «Sum per ansatt» stemmer rad for rad. |
-| Sammensatt klient, termin 4 – reverseringer, tilbakebetaling, tre lønnsdatoer | Innsendingslogikken, AGA per måned, feriepengeavsetning og kostnadsført AGA stemmer. **Tre kjente avvik gjenstår – se under.** |
+| Enkel klient, termin 1 | Arket «Avstemming» **identisk med fasit** – alle radetiketter og alle tall. Detaljer, Forskuddstrekk og Arbeidsgiveravgift har samme radeantall og samme tall. |
+| Sammensatt klient, termin 4 – reverseringer, tilbakebetaling, tre lønnsdatoer, negativ lønnskjøring | Arket «Avstemming» **identisk med fasit**. Detaljer 77 rader mot fasits 77. |
+| Tredje klient, termin 2 | «Avstemming» stemmer på alle rader unntatt tellingen «Ytelser per ansatt», som avhenger av `ytelse_konto` – se under. |
 
-### Kjente avvik som gjenstår
+### Verifiser selv etter endringer
 
-1. **Antall ytelseslinjer per ansatt.** Fasit teller 42 rader på den sammensatte terminen,
-   parseren finner 17 inntekt-elementer. Sannsynlig årsak: fasit lister én rad per
-   person/måned/konto også der beløpet er null, eller XML-en har inntekt-elementer
-   parseren ikke fanger. Må undersøkes mot XML-en før skriptet brukes på klienter
-   med mange ytelsestyper.
-2. **Innbetalt trekk på negative lønnskjøringer.** Tilbakebetalingen 20.07.2026 på
-   −15 354,60 plukkes ikke opp, fordi filteret krever teksten «Lønnsbilag» på
-   2600-betalingen. Tilbakebetalinger har annen tekst.
-3. **Detaljer-arket er tynnere enn fasit.** Fasit lister 77 rader mot 39: den tar
-   med flere føringer enn bare «Betaling:»-linjer på 2600/2770, og den lister
-   reverserte bilag som skriptet ikke gjenkjenner. Reverseringene der
-   har ikke teksten «Reversering av bilag», så mønsteret må utvides.
+```bash
+python scripts/ledger_fra_rapport.py "<godkjent rapport>.xlsx" ledger.json
+python scripts/lonnsavstemming_a07.py a07.xml ledger.json ny.xlsx
+python scripts/sammenlign.py "<godkjent rapport>.xlsx" ny.xlsx
+```
 
-Kontrollene som avgjør konklusjonen – forskuddstrekk, AGA, feriepenger – er
-verifisert. Avvikene over gjelder detaljvisning og telling, ikke selve
-avstemmingen. Kjør likevel en manuell gjennomlesing første gang på en ny klient.
+Regnskapssiden hentes ut av en rapport du allerede har godkjent, generatoren
+kjøres på nytt, og resultatet sammenlignes ark for ark. Endrer du kontrollogikken,
+kjør dette på minst to klienter før du bruker den på noe nytt.
+
+Formelceller i den nye filen har ingen bufret verdi før Excel har vært innom, så
+avvikskolonnene ser tomme ut i sammenligningen. Det er normalt.
+
+### Det som fortsatt avhenger av riktig oppsett
+
+**`ytelse_konto` må stemme.** Tellingen «Ytelser per ansatt» er antall
+kombinasjoner av person × måned × konto i bruk. Mapper to ytelser til hver sin
+konto der klienten bruker samme, blir tallet for høyt – og motsatt. Fri telefon
+er det vanlige tilfellet: naturalytelse føres på 5210, utgiftsgodtgjørelse på
+5390. Les `fordel` i A07 og sett `ytelse_konto` deretter.
+
+Går fordelingen ikke opp, står det «Koblingsproblemer» i kolonnen Regnskap på
+arket «Per ansatt». Det betyr nesten alltid feil `ytelse_konto`, eller at et
+tillegg er ført utenfor lønnsbilaget.
+
+**`pensjon_historikk` må dekke hele året.** Uten den regnes AGA per måned uten
+pensjonsgrunnlag, og ytelser uten opptjeningsperiode havner i feil måned.
 
 ---
 

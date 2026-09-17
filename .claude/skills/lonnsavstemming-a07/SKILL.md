@@ -9,12 +9,12 @@ description: "Avstemmer lønnsområdet for en termin: A07 fra Skatteetaten mot T
 
 Input: A07-fil for én termin (XML primærkilde; ODS er samme data) + klientnavn. Mangler A07: be om filen (Altinn → Skatteetaten → «Avstemmingsinformasjon a-melding», velg termin, last ned XML). Ikke start uten den.
 Output: `Lønnsavstemming <Klient> termin <n> <år>.xlsx` + `.pdf` (Silfer). PDF = ark «Avstemming» (tre tabeller), én linje konklusjon, korte merknader (`merknader_kort`, maks én setning per punkt), a-meldingstabell – ingen annen tekst. Excel-ark: **Avstemming** (rent: post · A07/beregnet · regnskap · avvik · status, tre blokker forskuddstrekk/AGA/feriepenger + antall avvik) · Detaljer (kilde/bilag/merknad per kontroll, innsendingshistorikk, reverserte bilag, merknader) · Forskuddstrekk · Arbeidsgiveravgift (Sticos pkt. 1–5 + pensjon hittil i år + bevegelse 2770) · Per ansatt · Ytelser A07 · Posteringer. Leveres via SendUserFile (+ commit til tilkoblet mappe).
-Filer i skillen: `scripts/lonnsavstemming_a07.py` (Excel), `scripts/a07.py` (XML-parser), `scripts/kobling.py` (beløpsmatching mot person), `scripts/stil.py` (Silfer-formatering), `scripts/ledger_eksempel.json` (utfylt eksempel), `assets/silfer_logo.png`, `references/kontrollogikk.md` (full kontrollogikk, ledger.json-format og kjente avvik – kortversjon nederst her). PDF-generatoren (`lag_pdf.py`) og datauttrekket (`hent_tripletex.js`) er ennå ikke skrevet – bygg ledger.json manuelt fra Tripletex-connectoren inntil videre.
+Filer i skillen: `scripts/lonnsavstemming_a07.py` (Excel), `scripts/a07.py` (XML-parser), `scripts/kobling.py` (beløpsmatching mot person), `scripts/stil.py` (Silfer-formatering), `scripts/ledger_eksempel.json` (utfylt eksempel), `assets/silfer_logo.png`, `references/kontrollogikk.md` (full kontrollogikk, ledger.json-format og kjente avvik – kortversjon nederst her). Verifiseringsverktøy: `scripts/ledger_fra_rapport.py` henter regnskapssiden ut av en godkjent rapport, `scripts/sammenlign.py` sammenligner ark for ark – kjør begge etter endringer i kontrollogikken. PDF-generatoren (`lag_pdf.py`) og datauttrekket (`hent_tripletex.js`) er ennå ikke skrevet; bygg ledger.json fra Tripletex-connectoren inntil videre.
 
 ## Steg
 
 ### 1. Les A07 (ikke skriv egen parser)
-`parse_a07()` i skriptet leser innsendinger per måned (status, erstatterMeldingsId, levert, AGA, trekk per lønnsdato, KID), AGA-grunnlag lønn/pensjon/fradrag/sats/sone, inntektsmottakere med ytelser per opptjeningsperiode og trekk, betalingsinformasjon. Gjeldende innsendinger per måned = alle GODKJENT som ikke er erstattet av en senere melding (`erstatterMeldingsId`); en tilleggsmelding uten `erstatterMeldingsId` (f.eks. NAV-refusjon/`fradragIGrunnlagetForSone` med negativ AGA) SUMMERES med den ordinære. Ytelser uten opptjeningsperiode (feriepenger til sluttede) legges i måneden som gir minst avvik mot innrapportert AGA.
+`parse_a07()` i skriptet leser innsendinger per måned (status, erstatterMeldingsId, levert, AGA, trekk per lønnsdato, KID), AGA-grunnlag lønn/pensjon/fradrag/sats/sone, inntektsmottakere med ytelser per opptjeningsperiode og trekk, betalingsinformasjon. Gjeldende innsendinger per måned = alle som IKKE er erstattet av en annen melding (`erstatterMeldingsId`), uansett status – også `MAA_KONTROLLERES`. De summeres. Statusfeltet avgjør altså ikke; dette er verifisert mot ferdige avstemminger. Ytelser uten opptjeningsperiode (feriepenger til sluttede) legges i måneden der grunnlaget mangler omtrent beløpet, pensjonsgrunnlaget medregnet.
 Sjekk selv før du går videre: flere innsendinger samme måned (= korrigeringer/tillegg → forløpet skal forklares), negative trekkbeløp (tilbakebetaling av lønn), personer uten ansattnummer/opptjeningsperiode, `fradragIGrunnlagetForSone` (refusjon fra NAV → reduserer AGA-grunnlag).
 
 ### 2. Hent regnskapet fra Tripletex (KUN MCP-connector)
@@ -23,7 +23,7 @@ Sjekk selv før du går videre: flere innsendinger samme måned (= korrigeringer
 3. `get_amelding_status` for siste måned i terminen: `accrued`/`notPaid` taxDeduction + payrollTax skal stemme med A07 (negativ notPaid taxDeduction = for mye innbetalt trekk).
 4. Hvis 2770 IB ≠ forrige termins a-meldte AGA: hent 2770 for forrige termin og forklar restsaldoen.
 
-### 3. Bygg `ledger.json` (kopier strukturen fra `ledger_eksempel_flip.json`)
+### 3. Bygg `ledger.json` (kopier strukturen fra `ledger_eksempel.json`)
 `selskap`, `orgnr`, `tripletex_id`, `periode{fra,til,termin,forfall}` (forfall = 15. i måneden etter terminslutt), `aga_sats`, `feriepenger_sats` (les 5020/5000 i et lønnsbilag: 0,12 / 0,125 / 0,143), `kid_aga`, `kid_trekk{}`, `ytelse_konto{}` (kun avvik fra standard, f.eks. `"elektroniskKommunikasjon": 5390` når EK er utgiftsgodtgjørelse), `konto{pensjon}` (autodetekt 5945/5950), `balanser[{a,n,ib,ch,ub}]`, `posteringer[[dato,bilag,konto,kontonavn,tekst,beløp]]`, `pensjon_historikk[[«YYYY-MM», tekst 594x, beløp, tekst pensjonsbilag, grunnlag]]` for hele året (grunnlag = AGA i pensjonsbilaget / sats), `forklart[]` (prefiks på kontrollrader som skal vises FORKLART i stedet for AVVIK – kun når merknaden forklarer avviket fullt ut), `merknader[]` (Excel, kan være utfyllende), `merknader_kort[]` (PDF: én setning per punkt med beløp + bilag + tiltak).
 
 ### 4. Kjør og verifiser
@@ -57,8 +57,8 @@ Ligger i `scripts/` og er verifisert mot de ferdige avstemmingene i kundemappene
 | `ledger_eksempel.json` | utfylt eksempel på regnskapssiden |
 
 `references/kontrollogikk.md` har full kontrollogikk, formatet på `ledger.json`,
-og **en liste over tre kjente avvik som gjenstår** – les den før første kjøring på
-en ny klient.
+verifiseringsstatus og hva som avhenger av riktig oppsett (særlig `ytelse_konto`
+og `pensjon_historikk`). Les den før første kjøring på en ny klient.
 
 Ikke skriv skriptet på nytt. Finner du en feil, rett den i `scripts/` og kjør
 verifiseringen mot en eksisterende rapport på nytt.
