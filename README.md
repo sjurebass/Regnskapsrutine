@@ -6,6 +6,7 @@ Tripletex) og én undermappe per år.
 ## Komme i gang
 
 Se [SETUP.md](SETUP.md) – tokens, klientliste, profiler og første kjøring.
+[MASKINPORTEN.md](MASKINPORTEN.md) vurderer automatisk henting av A07 og offentlige brev.
 Bakgrunnen og hele kontrollkatalogen står i [RUTINE-FORSLAG.md](RUTINE-FORSLAG.md).
 
 ```bash
