@@ -140,7 +140,7 @@ Rapporten får to faner, begge med Silfer-header (logo øverst):
 
 Filnavn-forslag: `Aapne_poster_bankavstemming_<Klient>_<år>.xlsx`.
 
-Legg filen i utdatamappen og del den med brukeren. Gi en kort oppsummering
+Legg filen i utdatamappen og del den med brukeren. Lokalt (avstemminger-mappa): `<Kundemappe>/<år>/Bankavstemminger/`. Gi en kort oppsummering
 (antall poster per konto, totalsum, og evt. kontoer uten poster). Ikke lim inn
 hele listen i chatten – Excel-arket er leveransen.
 

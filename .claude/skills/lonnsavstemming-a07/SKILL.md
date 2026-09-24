@@ -42,7 +42,8 @@ Dump alle ark (openpyxl data_only) og les dem. Krav før levering:
 Merknader = korte faktasetninger med bilagsnr., beløp, årsak, tiltak – ikke prosa.
 
 ### 5. Lever
-Begge filer (xlsx + pdf) til `/mnt/user-data/outputs/`, SendUserFile, commit til tilkoblet mappe hvis mulig. Svar 3–6 linjer: stemmer/avvik, skyldig AGA + forfall + KID, hvert avvik med beløp og tiltak.
+Begge filer (xlsx + pdf) til `/mnt/user-data/outputs/`, SendUserFile, commit til tilkoblet mappe hvis mulig.
+Lokalt (avstemminger-mappa): xlsx + pdf i `<Kundemappe>/<år>/Lønnsavstemminger/`, A07-XML i `<Kundemappe>/<år>/A07/`. Svar 3–6 linjer: stemmer/avvik, skyldig AGA + forfall + KID, hvert avvik med beløp og tiltak.
 
 ## Skriptene
 
