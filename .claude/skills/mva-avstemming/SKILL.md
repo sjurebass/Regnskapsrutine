@@ -75,7 +75,14 @@ description: "Lett mva-avstemming per termin for én eller flere navngitte Tripl
    - når Skatteetatens tall finnes (de kan komme timer etter kvitteringen og krever ny synk): `modul fullfor`, og oppdater 2740-notatet til «levert»
    - balanseavstemmingen for siste måned kan bli fullført samtidig (august T4 2026 var COMPLETED rett etterpå). Skal notatet byttes, kreves `laas-opp` (etter ja), `last-opp --erstatt` og `fullfor`.
    - be Sjur låse perioden
-10. **BALANCE `:complete`** krever status på alle linjene. Avklar med Sjur om Claude skal ta de andre kontoene.
+10. **Balanselinjer, avgrenset (Sjur 25.09.2026: «litt over the top» å avstemme hele balansen):**
+   - Bare linjene mva-flyten berører:
+     - 19xx med bevegelse eller avstemming
+     - 1500 og 2400 i siste måned
+     - 2740
+     - 27xx, som er 0 etter oppgjørsbilaget, i siste måned
+   - Ingen balansespesifikasjon for de andre kontoene, og BALANCE fullføres ikke (`:complete` krever status på alle linjene).
+   - Hele balansen tas bare når Sjur ber om det.
 
 **Svar fra Sjur lagres ett sted, så de ikke kommer igjen:**
 - Gjelder svaret klienten generelt, legg det i `klientprofil.md`.
