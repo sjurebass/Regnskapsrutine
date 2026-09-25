@@ -407,3 +407,5 @@ Tilleggstester i K0:
 | GET | /vatReturns/>vatTerm (etter Opprett) | K | testet | id ≠ 0, status NOT_STARTED, `closedDate` satt og `voucher` = oppgjørsbilaget. `structuredComment` på linjen viser Sjurs merknad (f.eks. «kreditnota»). |
 | PUT | /supplier/{id} | K | ikke utført | Stoppet av tillatelsesregelen i auto-modus (ikke API-et). Sjur gjør det selv eller gir en egen tillatelse. |
 | – | periodelås / «gjennomgått» på reskontro | – | ikke funnet | Ikke i den interne spec-en. Sjur gjør det i UI. |
+| PUT | /accountingOffice/reconciliations/{id}/:complete (VAT) | B | testet 25.09.2026 | Gikk etter at `taxAdminData` kom inn (ny synk timer etter kvitteringen). Balanseavstemmingen for siste måned i terminen var COMPLETED rett etterpå. |
+| PUT | /accountingOffice/reconciliations/{id}/:unlock (BALANCE) | B | testet 25.09.2026 | Setter DRAFT. Etterpå `:complete` på nytt (`modul fullfor` sjekker at alle linjene har status). |

@@ -35,7 +35,8 @@ description: "Lett mva-avstemming per termin for én eller flere navngitte Tripl
   - `last-opp --id --ref <konto-id> --fil <sti> --bekreft [--erstatt]`: vedlegg på en linje. `referenceId` for balanselinjer er konto-id-en.
   - `sett-status --id --konto <konto-id> --status RECONCILED [--dokumentert <beløp>] --bekreft`: nekter å sette avstemt når differansen ikke er 0
   - `utlign --konto 1500|2400 [--bekreft]` og `lukk --ids a,b --bekreft`: lukker bare grupper med én konto, én motpart og sum 0,00
-  - `mva-oversikt --id` og `fullfor --id [--bekreft]`: fullfører mva-avstemmingen bare når hovedbok, rapportert og Skatteetaten stemmer på hver linje
+  - `mva-oversikt --id` og `fullfor --id [--bekreft]`: fullfører en mva-avstemming bare når hovedbok, rapportert og Skatteetaten stemmer på hver linje. En balanseavstemming fullføres bare når alle linjene har status og avstemte linjer har 0 i differanse.
+  - `laas-opp --id --bekreft`: låser opp en fullført avstemming, for eksempel for å bytte et vedlegg. Krever ja fra Sjur, og avstemmingen fullføres igjen med `fullfor`.
   - `kontroll-utkast --aar --termin`: utkastet eller meldingen mot hovedboken per kode, fortegn og merknad, oppgjørsbilaget, 27xx, levering og betalingsinfo
   - `notat-2740 --aar --termin --forklaring-MM "beløp|tekst"`: Silfer-PDF med alt beregnet unntatt forklaringen per måned, som er en faglig vurdering og gis inn. Havner i `<Kunde>/<år>/Dokumentasjon/`.
   - `reskontro-vurdering --dato ÅÅÅÅ-MM-DD --vurderinger <fil.json>`: kategorier, Brreg og vedlegg beregnes. Vurdering og tiltak per motpart står i JSON-fila (`{konklusjon, kunder[], leverandorer[], tiltak[]}`). Uten fila markeres notatet «vurdering mangler».
@@ -71,7 +72,8 @@ description: "Lett mva-avstemming per termin for én eller flere navngitte Tripl
 9. **Etter «Send» og «Synk» (Sjur):**
    - `vatReturns/status`: WAITING_FOR_REPLY går over til RECEIPT_RECEIVED
    - `paymentInfo`: KID, beløp og forfall. Forfallet flyttes når fristen faller på en helg.
-   - når Skatteetatens tall finnes: `modul fullfor`, og oppdater 2740-notatet til «levert»
+   - når Skatteetatens tall finnes (de kan komme timer etter kvitteringen og krever ny synk): `modul fullfor`, og oppdater 2740-notatet til «levert»
+   - balanseavstemmingen for siste måned kan bli fullført samtidig (august T4 2026 var COMPLETED rett etterpå). Skal notatet byttes, kreves `laas-opp` (etter ja), `last-opp --erstatt` og `fullfor`.
    - be Sjur låse perioden
 10. **BALANCE `:complete`** krever status på alle linjene. Avklar med Sjur om Claude skal ta de andre kontoene.
 
