@@ -1,6 +1,6 @@
 ---
 name: mva-avstemming
-description: Lett mva-avstemming per termin for én eller flere navngitte Tripletex-klienter. Ett skript kjører maskinelt reskontro, bank, mva-koder, EHF, dubletter, ubehandlede bilag og skattekonto. En agent brukes bare på en kort unntaksliste. Resultatet er en kort beslutningsliste. Kontrollene som hører til årsoppgjøret, kjøres med --aarlig. Klienter som ikke er mva-registrert har egen modus. Trigger: «avstem mva», «mva-avstemming», «avstem mva-terminen», «klar til å sende mva», «sjekk mva-behandlingen», «mva termin <n> for <klient>».
+description: "Lett mva-avstemming per termin for én eller flere navngitte Tripletex-klienter. Ett skript kjører maskinelt reskontro, bank, mva-koder, EHF, dubletter, ubehandlede bilag og skattekonto. En agent brukes bare på en kort unntaksliste. Resultatet er en kort beslutningsliste. Kontrollene som hører til årsoppgjøret, kjøres med --aarlig. Klienter som ikke er mva-registrert har egen modus. Trigger: «avstem mva», «mva-avstemming», «avstem mva-terminen», «klar til å sende mva», «sjekk mva-behandlingen», «mva termin <n> for <klient>»."
 ---
 
 # Mva-avstemming (lett termin-flyt)
