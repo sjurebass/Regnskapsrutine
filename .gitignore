@@ -34,3 +34,6 @@ __pycache__/
 uv.lock
 *.new
 klienter.json
+
+# Personlige Claude-innstillinger (tillatelser) skal ikke i repoet
+/.claude/settings.local.json

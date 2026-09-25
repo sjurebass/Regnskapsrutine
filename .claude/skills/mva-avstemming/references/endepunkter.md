@@ -382,3 +382,28 @@ K0 ble kjørt 2026-09-24 på kalibreringsklienten, med bare GET-kall. Detaljene 
 Tilleggstester i K0:
 - `/ledger/accountingPeriod`: **BRUK**. isClosed, end er eksklusiv, låsing per år.
 - `/company/settings/altinn`: **BRUK**, med `fields=altInnId`.
+
+## Kalibrering 25.09.2026 (Flip Oppussing T4, registrert klient)
+
+**Går foran radene over der de er uenige.** B = byråkontekst (`authorization(0, konto)` i `src/modul.js`), K = klientkontekst.
+
+| Metode | Sti | Kontekst | Resultat | Merknad |
+|---|---|---|---|---|
+| GET | /accountingOffice/reconciliations/{id}/attachments | B | testet | `fields=id,reconciliationId,referenceId,uploadedAt,document(id,fileName)`. Uten `fields` kommer ikke filnavnet med (bare `document(id,url)`). |
+| POST | /accountingOffice/reconciliations/{id}/attachments?referenceId= | B | testet (22 opplastinger) | **referenceId for BALANCE-linjer = konto-id** (`line.accountId`). Multipart-feltet heter `file`. |
+| DELETE | /accountingOffice/reconciliations/{id}/attachments/{attachmentId} | B | testet | Brukes bare av `last-opp --erstatt`, etter at den nye versjonen er bekreftet lastet opp. |
+| PUT | /balance/reconciliation/{id}/table/{accountId} | B | testet | Body = hele linjen fra GET `fields=*,groups(*,lines(*))`, med `reconciledBy: null` og `controlledBy: null`, og endret `documentedBalance` og `status`. `availableStatuses` tar ikke med gjeldende status. Linjer for 2600/2610/2770 ble automatisk avstemt etter lønnsavstemmingen. |
+| GET | /vat/reconciliation/{id}/overview | B | testet | Må ha `fields=*,groups(*,lines(*))`. Svaret er `{period, groups[{lines[vatTypeId, basis, ledgerData, reportedData, taxAdminData, difference]}]}`. Etter Send, men før kvittering og synk, er `taxAdminData` null. |
+| PUT | /bank/reconciliation/internal/export/pdf | K | testet | Body `{actionType:"FileDownload", type:"APPROVED", transactionsType:"CURRENT_MONTH", pdfOrientation:"portrait", bankReconciliationId, accountId}`. Gir `application/pdf`. Bare lukkede avstemminger. |
+| POST | /bank/reconciliation (MANUAL) | K | testet | `{account:{id}, accountingPeriod:{id}, type:"MANUAL", bankAccountClosingBalanceCurrency}`. Gir **422 «Det finnes en nyere, godkjent bankavstemming»** når en senere måned er godkjent. |
+| PUT | /bank/reconciliation/internal/approve?accountId&startDate | K | testet | Godkjenner og lukker. Virker også når offentlig `approvable=false`, men state `isApprovableIncomplete=true` (ingen inngående saldo i banken). Svarer `null`. |
+| PUT | /bank/reconciliation/{id} {id, version, isClosed} | K | testet | Lukker (automatisk konto med differanse 0) og åpner igjen (isClosed=false). |
+| PUT | /ledger/voucher/{id} | K | **422** for OCR giro / INCOMING_PAYMENT | «Bilaget er av en type som ikke kan oppdateres via API-et». Bruk korrigeringsbilag. |
+| POST | /ledger/voucher?sendToLedger=true | K | testet | Postering med `row`, `date`, `account{id}`, `supplier{id}`, `amountGross` og `amountGrossCurrency`. Sjekk på forhånd om bilaget finnes fra før. |
+| PUT | /ledger/posting/:closePostings | K | testet | Body = array av posting-id-er (én konto, én motpart, sum 0). Etterpå har postene `closeGroup`. |
+| GET | /ledger/posting/openPost | K | testet | `count=10000` er nødvendig for store kontoer. En postering på 2400 kan ha både `customer` og `supplier` (OCR giro). Motparten velges etter konto. |
+| GET | /vatReturns/status | K | testet | Etter Send: `deliveryStatus.status = WAITING_FOR_REPLY` til kvitteringen kommer, `paymentStatus = NOT_PAID`. |
+| GET | /vatReturns/{id}/paymentInfo | K | testet | `kid, account, amount, dueDate`. dueDate flyttes ved helg (T4 2026: 12.10). |
+| GET | /vatReturns/>vatTerm (etter Opprett) | K | testet | id ≠ 0, status NOT_STARTED, `closedDate` satt og `voucher` = oppgjørsbilaget. `structuredComment` på linjen viser Sjurs merknad (f.eks. «kreditnota»). |
+| PUT | /supplier/{id} | K | ikke utført | Stoppet av tillatelsesregelen i auto-modus (ikke API-et). Sjur gjør det selv eller gir en egen tillatelse. |
+| – | periodelås / «gjennomgått» på reskontro | – | ikke funnet | Ikke i den interne spec-en. Sjur gjør det i UI. |

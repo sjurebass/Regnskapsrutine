@@ -18,6 +18,73 @@ Den fulle flyten ble for omfattende for en enkelt mva-termin (ca. 2 mill. tokens
 - **Årlig** (`--aarlig`, ved årsoppgjøret og første kjøring): kontoplanens standardkoder, reskontro med feil fortegn og gamle poster, bank hittil i år, samt § 3-26 og registreringsplikt når de er avklart. Svar lagres i klientprofilen eller `kjente-avvik.md` og gjentas ikke per termin.
 - **Beslutningslista** er kort: det som må rettes og spørsmål først, én linje per punkt for resten, og detaljene i `funn.json`.
 
+## 0a. Praksis og Sjurs presiseringer (første fulle kjøring, Flip Oppussing T4 2026, 25.09.2026)
+
+Dette går foran designet lenger ned der de er uenige. Den operative rekkefølgen står i SKILL.md («Per termin»).
+
+**Omfang og avgrensning**
+- «Termin n» betyr bare den terminen. BALANCE er månedlig, så én termin er to avstemminger (f.eks. juli og august). Tidligere terminer og måneder røres ikke. (Sjur spurte hvorfor det skulle bygges 14 kall. Det var 7 kontoer × 2 måneder, og det ble redusert til kontoene med avstemming eller bevegelse.)
+- Reskontrogjennomgang per termin tar bare poster datert i inneværende år. Eldre poster vises samlet og tas i årsoppgjøret.
+- Parallellitet: stegene for én klient er sekvensielle. Flere klienter kjøres parallelt.
+
+**Dokumentasjon i avstemmingsmodulen** (varig tillatelse til opplasting og status)
+- **Bank (19xx):**
+  - Kontoutskrift fra kunden, som Sjur laster ned (DNB «arkiv_dokument», Cardboard), og Tripletex' bankavstemmings-PDF per konto og måned.
+  - Utskriftene kobles ut fra kontonummer og utgående saldo, og kopieres til `<Kunde>/<år>/Bankavstemminger/Kontoutskrift <konto> <ÅÅÅÅ-MM> <Kunde>.pdf`.
+  - En utskrift som dekker flere måneder (f.eks. plasseringskonto mai–aug) lastes opp på begge månedene.
+- **Balanselinjer:** `documentedBalance` = saldo fra utskrift eller notat, og status RECONCILED. Sjur ba eksplisitt om at status settes («du må også endre avstemmingsstatus»).
+- **2740:**
+  - Silfer-notat med saldo per 31.xx mot dokumentert saldo, alle bevegelser i år, årets meldinger med status og skattekontoen.
+  - Kontrollen av meldingen mot hovedboken tas med.
+  - Etter «Opprett» endres saldoen i siste måned til −(beløp å betale), så notatet og den dokumenterte saldoen må oppdateres.
+- **1500/2400:** vurderingsnotat med kategori og tiltak per post (se under), lastet opp på siste måned. «For tynn» var Sjurs dom over et notat som bare viste sum mot hovedbok og aldersfordeling.
+- **Status «gjennomgått» på reskontrosiden** finnes ikke i API-et (søkt i intern spec 25.09.2026). Sjur setter den selv.
+
+**Reskontrovurdering (1500/2400)**
+- **Kunder:**
+  - betalt etter periodeslutt
+  - ikke forfalt
+  - forfalt (purring eller inkasso)
+  - over 90 dager (tapsvurdering, sjekk konkurs i Brreg, se avsetningen på 1580)
+  - ufordelte innbetalinger og kreditnotaer
+  - småbeløp
+  - poster som går i null
+- **Leverandører:**
+  - forfalt uten betaling
+  - betaling uten faktura (manglende kostnad og mva-fradrag)
+  - dobbeltbetaling
+  - refusjoner ført som gjeld (forsikring, pensjon, Skatteetaten)
+  - periodisering (kortbetalinger mot månedsfaktura)
+- **Konstatert tap** gir rett til å kreve tilbake utgående mva (mval. § 4-7). Konkurs alene er ikke konstatert tap.
+- **Navn:** Kundenavn skrives fullt ut. Sjur regner det ikke som sensitivt i reskontrodokumentasjon.
+- **Utligning:** Poster som går i null (hele motparten, eksakte par eller minste grupper) lukkes med `modul utlign`. Sjur ga generell tillatelse 25.09.2026.
+
+**Rettinger og skriving**
+- **Direkte retting på bilaget** er førstevalget. Bilag fra bank og OCR (INCOMING_PAYMENT) gir 422 på `PUT /ledger/voucher` («type som ikke kan oppdateres via API-et»). Da lages et korrigeringsbilag (`POST /ledger/voucher`) etter ja, og postene utlignes. Eksempel: tilbakebetalt forskuddstrekk som var ført mot Skatteetaten på 2400, ble flyttet til 2600 med bilag 633.
+- **Manuell bankavstemming:** `POST /bank/reconciliation` (MANUAL) gir 422 når en senere måned er godkjent.
+  1. Åpne den senere måneden etter ja (`PUT /bank/reconciliation/{id}` isClosed=false).
+  2. Opprett og godkjenn måneden som mangler (`PUT /bank/reconciliation/internal/approve`, «godkjent ufullstendig» når inngående saldo i banken mangler).
+  3. Lukk den senere måneden igjen.
+- **Konto uten kontoutskrift og med saldo 0** (Stripe 1931) avstemmes mot 0 etter Sjurs ja.
+- **Blokkert skriving** rapporteres som «ikke gjort». Sjur trodde leverandørpostene var lukket av Claude («som du sa du hadde gjort»). Det skal aldri kunne misforstås.
+- **Tillatelsesregler:** Auto-modus stoppet PUT på leverandør og lukking av poster. Varige tillatelser legges smalt i `.claude/settings.local.json` (gitignorert).
+
+**Kontroller før og etter innsending** (ikke i skriptet ennå)
+- **Før «Opprett»:**
+  - `>vatTerm`-utkastet per kode mot en egen summering av posteringene per `vatType.number` (feltet i `posteringer.json` har bare `number`, ikke `id`), `vatTermAmount` og `validateCreate`
+  - fortegn mot `expectedSign`: kode 1 ble netto tilbakeføring fordi ni fakturaer fra T2/T3 var reversert 01.07, og Sjur satte den strukturerte merknaden «kreditnota»
+  - lønn: A07 mot hovedbok (lønnsavstemmingen)
+- **Etter «Opprett»:**
+  - status NOT_STARTED og `closedDate` satt
+  - oppgjørsbilaget er datert siste dag i terminen og nullstiller 2700/2703/2710 mot 2740, med øreavrunding på 7740
+- **Etter «Send»:**
+  - WAITING_FOR_REPLY til kvitteringen kommer
+  - `paymentInfo.dueDate` flyttes ved helg (10.10.2026, en lørdag, ble 12.10)
+  - `vat/reconciliation/{id}/overview` har hovedbok og rapportert, men ikke Skatteetatens tall, før synk og kvittering
+  - `modul fullfor` venter til alle tre stemmer
+
+**Varige svar:** Sjurs svar om klienten (f.eks. «JM» = joint marketing hos eiendomsmegler, fullt fradrag) legges under Notater i `klientprofil.md`, fordi en ny kjøring uten `--gjenbruk` arkiverer `vurdering.json`.
+
 ## 1. Anbefaling i korte trekk
 
 - **Én tilstandsmaskin per klient, termin og reportType.** Den er skrevet som et Node-skript i `C:/Users/Sjur/Tripletex API` og gjenbruker `tripletex.js`, `privacy.js`, `bankavstemming.js` og `leverandor.js`. Forslag til kommando: `npm run mva -- "<klient>" --termin <n> [--fra <stadium>]`. Tilstanden lagres i `state.json`.
@@ -376,10 +443,11 @@ Sjur vil ha **så mye dokumentasjon som mulig lagret som vedlegg og kommentarer 
 | VAT termin n | kodelinjer (vatTypeId) | Forklaring på avvik, tolldeklarasjoner, eksportdokumentasjon | kommentarer + klientmappa | referenceId = vatTypeId (verifisert) |
 | BALANCE, siste måned i terminen | 2740 | Kvittering for terminen | som over | 403 |
 | **ANNUAL_BALANCE år** | **2740** | **Kvitteringer for alle årets mva-meldinger** (Sjurs krav) | som over, alle terminer | 403 |
-| BALANCE hver måned | 19xx | Tripletex' bankavstemmingsrapport og kontoutskrift | `PUT /bank/reconciliation/internal/export/pdf` (bare eksport, men PUT-verb: testes etter ja) + klientmappa | må testes |
-| BALANCE hver måned | 1500 / 2400 | Åpne poster per D | openPost + kunde- og leverandørkart (firmanavn, privatkunde n, ENK skjult) | lages av flyten (PDF-generator mangler) |
+| BALANCE hver måned | 19xx | Tripletex' bankavstemmingsrapport og kontoutskrift | `npm run modul -- bankpdf` (PUT export/pdf, FileDownload, bare lukkede måneder) + kontoutskrift fra Sjur | **i bruk 25.09.2026** (Flip T4) |
+| BALANCE siste måned | 1500 / 2400 | Vurdering av åpne poster med tiltaksliste (inneværende år, kundenavn tillatt) | `npm run modul -- reskontro-vurdering --dato --vurderinger <json>` | **i bruk 25.09.2026** |
+| BALANCE begge måneder | 2740 | Avstemmingsnotat (saldo mot dokumentert saldo, bevegelser, meldinger, skattekonto, kontroll av utkastet) | `npm run modul -- notat-2740 --forklaring-MM "beløp\|tekst"` | **i bruk 25.09.2026**. Oppdateres etter Opprett og etter Send |
 | BALANCE hver måned | 2500 / 2600 / 2770 | Skattekonto: krav og betalinger | `/claimsAndPayments` | lages av flyten |
-| BALANCE | kontoer med funn | Kommentar (én setning med årsak, Sjurs stil) | funn etter Sjurs beslutning | referenceId for BALANCE ikke verifisert (test 2 fant ingen «test»-kommentar) |
+| BALANCE | kontoer med funn | Kommentar (én setning med årsak, Sjurs stil) | funn etter Sjurs beslutning | **referenceId = konto-id** (vedlegg testet 25.09.2026. Kommentarer bruker trolig samme id, men det er ikke testet) |
 
 Andre kilder som kan brukes: `/ledger/balanceSheet/pdf`, `/ledger/internal/general/pdf` (hovedbok, f.eks. 27xx), `/ledger/balanceReport/pdf` og `PUT /accountingOffice/reconciliations/documentationFolderId` (dokumentasjonsmappe per klient).
 
