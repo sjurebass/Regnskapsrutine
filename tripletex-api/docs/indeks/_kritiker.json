@@ -1,0 +1,465 @@
+{
+  "tags": [],
+  "oppgaver": [
+    {
+      "oppgave": "Månedsavslutning – statussjekk for én klient (bank, bilagsmottak, attestering, mva, perioder, reiseregninger)",
+      "nokkelord": [
+        "månedsavslutning",
+        "manedsavslutning",
+        "månedsslutt",
+        "periodeavslutning",
+        "månedskontroll",
+        "manedskontroll",
+        "sjekkliste",
+        "status klient",
+        "hva mangler",
+        "hva gjenstår",
+        "month end",
+        "avslutte måned",
+        "klientstatus",
+        "restanser"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /bank/reconciliation",
+        "GET /bank/reconciliation/>last",
+        "GET /ledger/voucher/>voucherReception",
+        "GET /ledger/voucher/>nonPosted",
+        "GET /supplierInvoice/forApproval",
+        "GET /vatReturns/status",
+        "GET /ledger/accountingPeriod",
+        "GET /travelExpense",
+        "GET /balanceSheet"
+      ],
+      "fremgangsmate": "Krever navngitt klient. Kun lesing. 1) Bankkontoer: `GET /ledger/account`?isBankAccount=true&fields=id,number,name. 2) Per konto: `GET /bank/reconciliation/>last`?accountId=..&fields=id,accountingPeriod(start,end),isClosed – flagg kontoer der siste lukkede avstemming er eldre enn forrige måned (åpne poster: se bank-oppgavene). 3) Bilagsmottak: `GET /ledger/voucher/>voucherReception`?fields=id (antall) og `GET /ledger/voucher/>nonPosted`?dateFrom..&dateTo..&fields=id,date,description (kladder). 4) Leverandørfakturaer til attestering: `GET /supplierInvoice/forApproval`?fields=id,invoiceDate,amount. 5) MVA: `GET /vatReturns/status` for inneværende/forrige termin. 6) Perioder: `GET /ledger/accountingPeriod`?startFrom..&fields=number,start,end,isClosed. 7) Reiseregninger ikke bokført: `GET /travelExpense`?state=..&fields=id,state,amount (ingen navn). 8) Saldo-sanity: `GET /balanceSheet` for måneden (dateTo eksklusiv). Lønn: se «Full lønnsavstemming / A07» (lonn). Rapporter som sjekkliste med tall, uten personopplysninger.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Årsoppgjørskontroll – full sjekkliste for et regnskapsår",
+      "nokkelord": [
+        "årsoppgjørskontroll",
+        "arsoppgjorskontroll",
+        "årsoppgjør",
+        "arsoppgjor",
+        "årsavslutning",
+        "arsavslutning",
+        "kontroll før årsoppgjør",
+        "year end",
+        "31.12",
+        "balansekontroll",
+        "avstemme balanse",
+        "årsavstemming",
+        "arsavstemming",
+        "kontrolliste årsoppgjør"
+      ],
+      "kall": [
+        "GET /balanceSheet",
+        "GET /ledger/posting/openPost",
+        "GET /asset/balanceAccountsSum",
+        "GET /asset",
+        "GET /vatReturns/status/list",
+        "POST /balance/reconciliation/annual/context",
+        "GET /balance/reconciliation/{reconciliationId}/account/{accountId}/vouchers",
+        "GET /ledger/annualAccount",
+        "GET /ledger/accountingPeriod",
+        "GET /ledger/voucher/>nonPosted",
+        "GET /yearEnd/penneo/signingStatus"
+      ],
+      "fremgangsmate": "Krever navngitt klient; bruk gjerne skillen aarsoppgjoer-kontroll. 1) Saldobalanse år og fjorår: `GET /balanceSheet`?dateFrom=ÅÅÅÅ-01-01&dateTo=(ÅÅÅÅ+1)-01-01&includeActiveAccountsWithoutMovements=true. 2) Reskontro per 31.12: `GET /ledger/posting/openPost`?date=(ÅÅÅÅ+1)-01-01 (eksklusiv) for kunder/leverandører, summer og avstem mot 1500/2400. 3) Anlegg: `GET /asset/balanceAccountsSum` mot 11xx–12xx i saldobalansen. 4) MVA: `GET /vatReturns/status/list` for året (alle terminer levert/betalt) og avstem 27xx. 5) Lønn: se lønnsavstemming (lonn). 6) Bank: siste avstemming per 31.12 lukket (bank). 7) Balanseavstemming i byråmodulen: `POST /balance/reconciliation/annual/context` → GET .../account/{accountId}/vouchers; markér via accountingOffice/reconciliations (hovedbok). 8) Ikke-bokførte bilag: `GET /ledger/voucher/>nonPosted`. 9) Regnskapsår/perioder: `GET /ledger/annualAccount`, `GET /ledger/accountingPeriod`. 10) Signering: `GET /yearEnd/penneo/signingStatus`. POST-en i punkt 7 lager kun avstemmingskontekst (ikke bilag).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Resultatregnskap og balanse for en periode med sammenligning mot fjoråret og budsjett (månedsrapport/nøkkeltall)",
+      "nokkelord": [
+        "resultatregnskap",
+        "balanseregnskap",
+        "resultat og balanse",
+        "månedsrapport",
+        "manedsrapport",
+        "regnskapsrapport",
+        "rapport til kunde",
+        "sammenligning i fjor",
+        "fjorårstall",
+        "hittil i år",
+        "driftsresultat",
+        "nøkkeltall",
+        "nokkeltall",
+        "likviditetsgrad",
+        "egenkapitalandel",
+        "dekningsgrad",
+        "kontantstrøm",
+        "likviditet",
+        "p&l",
+        "income statement"
+      ],
+      "kall": [
+        "GET /balanceSheet",
+        "GET /ledger/account",
+        "GET /resultbudget/company"
+      ],
+      "fremgangsmate": "Krever navngitt klient. 1) Inneværende periode: `GET /balanceSheet`?dateFrom=..&dateTo=..(eksklusiv)&fields=account(number,name),balanceIn,balanceChange,balanceOut. 2) Samme periode i fjor: nytt kall med datoer −1 år. 3) Budsjett: `GET /resultbudget/company` (kun lesing i v2). 4) Grupper lokalt: 3xxx driftsinntekter, 4xxx varekost, 5xxx lønn, 6–7xxx andre driftskostnader, 8xxx finans/skatt; balanse 1xxx eiendeler, 2xxx EK/gjeld (inntekter og gjeld har negativt fortegn i Tripletex). 5) Nøkkeltall lokalt: likviditetsgrad 1, egenkapitalandel, bruttofortjeneste; kontantstrøm kun indirekte (endring i balanseposter). Tripletex sine ferdige rapport-PDF-er finnes ikke i v2 (se ikkeIApi).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne kunder/leverandører med kreditsaldo, uidentifiserte innbetalinger eller poster med feil fortegn i reskontro",
+      "nokkelord": [
+        "kreditsaldo",
+        "negativ saldo",
+        "feil fortegn",
+        "debetsaldo leverandør",
+        "kreditsaldo kunde",
+        "overbetaling",
+        "overbetalt",
+        "tilgodehavende",
+        "forskuddsbetaling kunde",
+        "uidentifisert innbetaling",
+        "ukjent innbetaling",
+        "innbetaling uten faktura",
+        "ikke utlignet",
+        "reskontrokontroll"
+      ],
+      "kall": [
+        "GET /ledger/posting/openPost",
+        "GET /customer",
+        "GET /supplier",
+        "GET /ledger/account"
+      ],
+      "fremgangsmate": "Krever navngitt klient. Kun lesing. 1) `GET /ledger/posting/openPost`?date=<dag etter skjæringsdato>&accountNumberFrom=1500&accountNumberTo=1599&sorted=false&fields=customer(id),amount,date,voucher(number),description; tilsvarende 2400–2499 med supplier(id). 2) Summer per kunde/leverandør lokalt; flagg kunder med sum < 0 og leverandører med sum > 0, samt innbetalinger som ikke er utlignet mot faktura. 3) Navn: `GET /customer`?id=..&fields=id,name,customerNumber / `GET /supplier` (firmanavn ok; privatpersoner → initialer). 4) Foreslå utligning (hovedbok: «Lukke/utlikne åpne poster») eller tilbakebetaling (egen oppgave) – ikke utfør uten bekreftelse.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Tilbakebetale kreditnota/overbetaling til kunde (refusjon av tilgodehavende)",
+      "nokkelord": [
+        "tilbakebetale",
+        "tilbakebetaling",
+        "refusjon kunde",
+        "refundere",
+        "utbetale kreditnota",
+        "betale tilbake",
+        "tilgodehavende",
+        "overbetaling",
+        "kreditnota utbetaling",
+        "refund"
+      ],
+      "kall": [
+        "GET /invoice",
+        "GET /invoice/paymentType",
+        "PUT /invoice/{id}/:payment",
+        "POST /ledger/voucher",
+        "PUT /ledger/posting/:closePostings"
+      ],
+      "fremgangsmate": "Skrivende – krever navngitt klient og bekreftelse. 1) Finn kreditnotaen/fakturaen: `GET /invoice`?invoiceDateFrom..&invoiceDateTo..&customerId=..&fields=id,invoiceNumber,amount,amountOutstanding,isCreditNote. 2) Betalingstype for bankkonto: `GET /invoice/paymentType`?fields=id,description,debitAccount(number). 3a) Kreditnota med negativt utestående: `PUT /invoice/{id}/:payment`?paymentDate=..&paymentTypeId=..&paidAmount=<negativt beløp> – verifiser etterpå med `GET /invoice/{id}` at amountOutstanding = 0. 3b) Overbetaling uten kreditnota: `POST /ledger/voucher` debet 1500 (customer satt) / kredit bankkonto, deretter `PUT /ledger/posting/:closePostings` for å lukke innbetalingen mot tilbakebetalingen. Selve bankoverføringen gjøres i nettbanken – API-et sender ikke penger. Ikke vis kundens kontonummer.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Avstemme mellomregning, aksjonærlån eller konsernmellomværende",
+      "nokkelord": [
+        "mellomregning",
+        "mellomværende",
+        "mellomvaerende",
+        "aksjonærlån",
+        "aksjonaerlan",
+        "lån til aksjonær",
+        "lån fra aksjonær",
+        "konsernmellomværende",
+        "konsern",
+        "nærstående",
+        "lån daglig leder",
+        "fordring nærstående",
+        "avstemme lån"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /balanceSheet",
+        "GET /ledger/posting",
+        "GET /ledger/posting/openPost",
+        "POST /balance/reconciliation/annual/context"
+      ],
+      "fremgangsmate": "Krever navngitt klient. 1) Finn kontoene: `GET /ledger/account`?fields=id,number,name og filtrer lokalt på navn (mellomregning/aksjonær/konsern/lån) – typisk 13xx, 15xx, 22xx, 29xx. 2) IB/UB: `GET /balanceSheet`?dateFrom..&dateTo..&accountNumberFrom=..&accountNumberTo=... 3) Bevegelser: `GET /ledger/posting`?accountId=..&dateFrom..&dateTo..&fields=date,amount,description,voucher(number). 4) Konto med reskontro/dimensjon: `GET /ledger/posting/openPost`. 5) Sammenlign mot motpartens saldo (annen klient i byrået – brukeren må navngi den) eller låneavtale. 6) Dokumenter i balanseavstemmingen (hovedbok: accountingOffice/reconciliations). Personlig aksjonær: ikke vis navn – bruk «aksjonær 1».",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Føre avsetninger og påløpte/forskuddsbetalte poster ved periodeslutt, med reversering neste periode",
+      "nokkelord": [
+        "påløpt",
+        "palopt",
+        "påløpte kostnader",
+        "avsetning",
+        "avsetninger",
+        "forskuddsbetalt",
+        "forskuddsbetalte kostnader",
+        "opptjent inntekt",
+        "ikke fakturert inntekt",
+        "2960",
+        "2990",
+        "1700",
+        "1750",
+        "reversere neste måned",
+        "periodeslutt",
+        "accrual"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /ledger/vatType",
+        "POST /ledger/voucher",
+        "PUT /ledger/voucher/{id}/:reverse",
+        "POST /ledger/voucher/{voucherId}/attachment",
+        "GET /ledger/accountingPeriod"
+      ],
+      "fremgangsmate": "Skrivende – krever navngitt klient og bekreftelse. 1) Kontoer og mva-kode 0: `GET /ledger/account`?number=..&fields=id,number,vatType(id), `GET /ledger/vatType`?number=0. 2) `POST /ledger/voucher` med date=siste dag i perioden, description «Avsetning/påløpt <tekst> <mnd>», f.eks. debet kostnadskonto / kredit 2960, uten mva. 3) Legg ved grunnlag: `POST /ledger/voucher/{voucherId}/attachment`. 4) Reversering: `PUT /ledger/voucher/{id}/:reverse`?date=<første dag neste periode> (egen bekreftelse). For kostnad fordelt over mange måneder: se «Periodisere en kostnad eller inntekt» (hovedbok). Sjekk først at perioden ikke er låst (`GET /ledger/accountingPeriod`).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Kontrollere og bokføre månedlige/årlige avskrivninger for alle anleggsmidler",
+      "nokkelord": [
+        "kjøre avskrivninger",
+        "kjore avskrivninger",
+        "månedlige avskrivninger",
+        "avskrivning alle anlegg",
+        "avskrivningskjøring",
+        "bokføre avskrivninger",
+        "6000",
+        "6010",
+        "6015",
+        "ordinære avskrivninger",
+        "saldoavskrivning",
+        "lineær avskrivning",
+        "avskrivning mangler",
+        "depreciation run"
+      ],
+      "kall": [
+        "GET /asset",
+        "GET /asset/{id}/postings",
+        "GET /asset/balanceAccountsSum",
+        "GET /balanceSheet",
+        "POST /ledger/voucher"
+      ],
+      "fremgangsmate": "Krever navngitt klient. 1) `GET /asset`?fields=id,name,account(number),depreciationAccount(number),acquisitionCost,lifetime,depreciationMethod,dateOfAcquisition (verifiser feltnavn med lookup). 2) Per anlegg: `GET /asset/{id}/postings` for perioden – finnes avskrivningspostering hver måned? 3) `GET /balanceSheet` på 60xx for perioden mot forventet sum (kost/levetid per måned for lineære). 4) `GET /asset/balanceAccountsSum` mot 11xx–12xx. v2 har ikke endepunkt for å «kjøre» avskrivninger fra anleggsregisteret – gjøres i Tripletex-UI. Hvis brukeren ber om det og bekrefter: `POST /ledger/voucher` debet 60xx / kredit 11xx–12xx uten mva, og koble til anlegget som i «Bokføre avskrivning manuelt» (arsoppgjor).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Bokføre refusjon av sykepenger/foreldrepenger fra NAV",
+      "nokkelord": [
+        "sykepengerefusjon",
+        "refusjon sykepenger",
+        "refusjon nav",
+        "nav refusjon",
+        "sykepenger",
+        "foreldrepenger refusjon",
+        "5800",
+        "innbetaling fra nav",
+        "nav-innbetaling"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /ledger/posting",
+        "POST /ledger/voucher",
+        "POST /ledger/voucher/{voucherId}/attachment"
+      ],
+      "fremgangsmate": "Skrivende – krever navngitt klient og bekreftelse. Sykefravær per ansatt er særlig sensitive personopplysninger: vis bare aggregerte beløp, aldri navn/perioder per person. 1) Konto: `GET /ledger/account`?number=5800&fields=id,number,name (evt. 157x hvis selskapet fører refusjonskrav som fordring). 2) Sjekk om innbetalingen allerede er ført: `GET /ledger/posting`?accountNumberFrom=5800&accountNumberTo=5800&dateFrom..&dateTo... 3) `POST /ledger/voucher`: debet bank / kredit 5800 (eller kredit 157x), ingen mva. 4) Vedlegg (utbetalingsmelding): `POST /ledger/voucher/{voucherId}/attachment`. Refusjonskravet til NAV sendes utenfor v2.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se endringslogg / revisjonsspor – hvem opprettet eller endret et objekt og når",
+      "nokkelord": [
+        "endringslogg",
+        "endringshistorikk",
+        "revisjonsspor",
+        "audit trail",
+        "hvem endret",
+        "hvem førte",
+        "change log",
+        "historikk bilag",
+        "historikk",
+        "changes",
+        "sist endret",
+        "opprettet av"
+      ],
+      "kall": [
+        "GET /ledger/voucher/{id}",
+        "GET /customer/{id}",
+        "GET /supplier/{id}",
+        "GET /invoice/{id}",
+        "GET /order/{id}",
+        "GET /product/{id}",
+        "GET /ledger/account/{id}"
+      ],
+      "fremgangsmate": "Nesten alle objekter i v2 (344 skjemaer) har det skrivebeskyttede feltet changes: legg til fields=id,changes(employeeId,timestamp,changeType) på GET-kallet, f.eks. GET /ledger/voucher/{id}?fields=id,number,changes(employeeId,timestamp,changeType). changeType: CREATE, UPDATE, DELETE, LOCKED, REOPENED. Du får hvem (employeeId) og når, men ikke hvilke felt som ble endret – for det: connector-verktøyet get_change_log eller Tripletex-UI. employeeId er en person – oppgi som «ansatt 1/2» eller initialer, aldri navn.",
+      "skrivende": false
+    }
+  ],
+  "fallgruver": [
+    "Datoparametere: /balanceSheet dateTo og /ledger/posting/openPost date er EKSKLUSIVE – bruk dagen etter skjæringsdato (f.eks. 2026-01-01 for 31.12.2025).",
+    "Ingen v2-endepunkter for å SENDE noe til Altinn/NAV/Brreg (a-melding, MVA-melding, årsregnskap, skattemelding, aksjonærregister, refusjonskrav). v2 leser kun status (MVA: /vatReturns/status).",
+    "Regnskapsperioder kan bare leses i v2 (`GET /ledger/accountingPeriod`) – låsing/åpning av periode gjøres i UI.",
+    "Resultatbudsjett er kun lesing i v2 (`GET /resultbudget/company` m.fl.). Endring krever connector update_result_budget eller UI.",
+    "Anleggsregisterets automatiske avskrivningskjøring finnes ikke i v2 – kontroller via /asset/{id}/postings og før evt. manuelt bilag.",
+    "Registrering av betaling (`PUT /invoice/{id}/:payment`, `POST /supplierInvoice/{invoiceId}/:addPayment`) sender IKKE penger – overføringen skjer i nettbank/autopay i UI.",
+    "Utstedte kundefakturaer kan ikke endres i v2 (ingen endepunkt for å endre en utstedt faktura); feil forfallsdato/beløp rettes med kreditnota + ny faktura eller i UI.",
+    "Sammensatte sjekklister (månedsavslutning, årsoppgjørskontroll) er kun lesing – ikke lukk avstemminger, godkjenn eller bokfør som del av sjekken uten egen bekreftelse."
+  ],
+  "ikkeIApi": [
+    {
+      "oppgave": "Hente, bestille eller sjekke status på skattekort",
+      "nokkelord": [
+        "skattekort",
+        "skattetrekkskort",
+        "hente skattekort",
+        "bestille skattekort",
+        "tabelltrekk",
+        "prosenttrekk",
+        "frikort",
+        "taxcard"
+      ],
+      "merknad": "Ikke i v2. Connector: fetch_taxcards, get_taxcard_status, order_taxcards (order er skrivende – krever bekreftelse). Skattekort er personopplysninger – vis kun status/antall."
+    },
+    {
+      "oppgave": "Slå opp selskap i Brønnøysundregistrene (org.nr., roller, konkurs, næringskode)",
+      "nokkelord": [
+        "brreg",
+        "brønnøysund",
+        "bronnoysund",
+        "enhetsregisteret",
+        "slå opp org.nr",
+        "organisasjonsnummer oppslag",
+        "konkurs",
+        "næringskode"
+      ],
+      "merknad": "Ikke i v2. Connector: lookup_company_in_brreg (eller Brregs åpne API). Konkurs/avviklet blant kundene: `GET /supportDashboard/bankruptAndExcludedCustomers` (system)."
+    },
+    {
+      "oppgave": "Lage og sende tilbud til kunde",
+      "nokkelord": [
+        "tilbud",
+        "pristilbud",
+        "offer",
+        "quote",
+        "sende tilbud",
+        "tilbudsbrev"
+      ],
+      "merknad": "Ingen tilbuds-endepunkter i v2 eller Tripletex-connector. Alternativ: opprett ordre (`POST /order`) og send ordrebekreftelse, eller lag tilbud i UI."
+    },
+    {
+      "oppgave": "Sende inn MVA-meldingen til Skatteetaten",
+      "nokkelord": [
+        "sende mva-melding",
+        "levere mva-melding",
+        "innsending mva",
+        "altinn mva",
+        "sende inn mva",
+        "mva innsending"
+      ],
+      "merknad": "Ikke i v2 eller Tripletex-connector. v2 dekker status (`GET /vatReturns/status`), grunnlag og avstemming (mva). Innsending gjøres av brukeren i Tripletex/Altinn."
+    },
+    {
+      "oppgave": "Levere årsregnskap, skattemelding/næringsspesifikasjon eller aksjonærregisteroppgave",
+      "nokkelord": [
+        "skattemelding",
+        "næringsspesifikasjon",
+        "naeringsspesifikasjon",
+        "aksjonærregister",
+        "aksjonaerregister",
+        "rf-1086",
+        "levere årsregnskap",
+        "årsregnskap brønnøysund",
+        "innsending årsregnskap"
+      ],
+      "merknad": "Ikke i v2 eller Tripletex-connector. v2 dekker signering i Penneo (/yearEnd/penneo/*), saldobalanse og SAF-T; innsending gjøres i Tripletex årsoppgjørsmodul eller Altinn."
+    },
+    {
+      "oppgave": "Registrere eller endre resultatbudsjett",
+      "nokkelord": [
+        "endre budsjett",
+        "legge inn budsjett",
+        "registrere budsjett",
+        "oppdatere budsjett",
+        "budsjett import"
+      ],
+      "merknad": "v2 er kun lesing (`GET /resultbudget/company` m.fl.). Connector: update_result_budget (skrivende – krever bekreftelse); ellers UI."
+    },
+    {
+      "oppgave": "Hente Tripletex sine ferdige standardrapporter (rapport-PDF/rapportbygger)",
+      "nokkelord": [
+        "standardrapport",
+        "rapportbygger",
+        "tripletex rapport",
+        "rapport pdf",
+        "hente rapport",
+        "egendefinert rapport"
+      ],
+      "merknad": "Ikke i v2. Connector: fetch_report, get_report_details, get_balance_sheet. Alternativt bygg selv fra `GET /balanceSheet` (se «Resultatregnskap og balanse …»)."
+    },
+    {
+      "oppgave": "Låse eller gjenåpne en regnskapsperiode",
+      "nokkelord": [
+        "låse periode",
+        "lase periode",
+        "lukke periode",
+        "periodelås",
+        "åpne periode",
+        "gjenåpne periode",
+        "sperre periode"
+      ],
+      "merknad": "Ikke i v2 (kun `GET /ledger/accountingPeriod`). Gjøres i Tripletex-UI."
+    },
+    {
+      "oppgave": "Endre forfallsdato eller beløp på en utstedt kundefaktura",
+      "nokkelord": [
+        "endre forfallsdato",
+        "forfallsdato faktura",
+        "utsette forfall",
+        "endre faktura",
+        "rette faktura"
+      ],
+      "merknad": "Ingen endepunkt for å endre utstedt faktura i v2. Krediter (`PUT /invoice/{id}/:createCreditNote`) og fakturer på nytt, eller endre i UI. Avtalt betalingsutsettelse kan leses via invoiceRemark (salg)."
+    },
+    {
+      "oppgave": "Sende betalinger til banken (remittering/autopay) eller utbetale nettolønn",
+      "nokkelord": [
+        "remittering",
+        "sende betaling",
+        "betale leverandør i bank",
+        "autopay",
+        "utbetale lønn",
+        "nettolønn",
+        "nettolonn",
+        "lønnsutbetaling",
+        "betalingsfil",
+        "godkjenne betaling i bank"
+      ],
+      "merknad": "Delvis. POST /supplierInvoice/{invoiceId}/:addPayment registrerer betaling av leverandørfaktura; med betalingstype for Autopay/Nets (useDefaultPaymentType eller riktig paymentType) kan den gå til banken, men det krever oppsett gjort av Tripletex, og betalingen må normalt godkjennes i Tripletex/nettbank. Ingen v2-endepunkter for å sende utbetaling av nettolønn. Lønn godkjennes aldri av Claude. Skrivende – krever alltid bekreftelse."
+    },
+    {
+      "oppgave": "Opprette ny klientkonto / etablere tilgang til ny klient i regnskapsbyrået",
+      "nokkelord": [
+        "ny klient",
+        "opprette klient",
+        "ny klientkonto",
+        "etablere klient",
+        "klientavtale",
+        "pris klientkonto"
+      ],
+      "merknad": "Å opprette en ny klientkonto finnes ikke i v2 (connector: check_client_account_status, estimate_client_account_price, establish_client_access). Eksisterende klienter: GET /company/>withLoginAccess. Tilgang for ansatte til klienter: GET /employee/entitlement/client og PUT /employee/entitlement/:grantClientEntitlementsByTemplate (skrivende – krever bekreftelse)."
+    },
+    {
+      "oppgave": "Sende refusjonskrav for sykepenger/foreldrepenger til NAV",
+      "nokkelord": [
+        "refusjonskrav nav",
+        "søke refusjon",
+        "sykepengekrav",
+        "inntektsmelding"
+      ],
+      "merknad": "Ikke i v2 eller connector – NAV-portal/Altinn. Bokføring av innbetalt refusjon: se «Bokføre refusjon av sykepenger/foreldrepenger fra NAV»."
+    },
+    {
+      "oppgave": "Sette oppdragsansvarlig/saksbehandler per klient i byrået",
+      "nokkelord": [
+        "oppdragsansvarlig",
+        "saksbehandler klient",
+        "ansvarlig regnskapsfører",
+        "klientansvarlig"
+      ],
+      "merknad": "Ikke i v2 eller Tripletex-connector. Gjøres i Tripletex byråoversikt (UI)."
+    }
+  ]
+}

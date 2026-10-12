@@ -1,0 +1,1663 @@
+{
+  "group": "hovedbok",
+  "tags": [
+    {
+      "tag": "balance/reconciliation",
+      "beskrivelse": "Avstemming av balansekontoer i regnskapsbyrå-modulen: opprette en årsavstemmingskontekst for en klient og år, og hente bilagene som ligger bak saldoen på en konto i avstemmingsperioden.",
+      "nokkelord": [
+        "avstemming",
+        "balanseavstemming",
+        "årsavstemming",
+        "arsavstemming",
+        "avstemme balansekonto",
+        "kontoavstemming",
+        "saldokontroll",
+        "spesifikasjon balanse",
+        "årsoppgjør",
+        "arsoppgjor",
+        "reconciliation",
+        "balance reconciliation",
+        "annual context",
+        "reconciliationid",
+        "regnskapsbyrå",
+        "regnskapsbyra",
+        "saldospesifikasjon",
+        "spesifisere saldo",
+        "kontrollere saldo",
+        "avstemmingsmodul",
+        "bilag bak saldo",
+        "balance reconciliation vouchers"
+      ]
+    },
+    {
+      "tag": "accountingOffice/reconciliations/{reconciliationId}/control/:controlReconciliation",
+      "beskrivelse": "Markerer en avstemming som kontrollert (fire-øyne-kontroll/godkjenning av avstemmingen) i regnskapsbyrå-modulen.",
+      "nokkelord": [
+        "kontrollert",
+        "kontrollere avstemming",
+        "godkjenne avstemming",
+        "fire øyne",
+        "fire oyne",
+        "reviewer",
+        "kvalitetskontroll",
+        "control reconciliation",
+        "controlled",
+        "signere avstemming",
+        "attestere avstemming",
+        "kontrollør",
+        "kontrollor"
+      ]
+    },
+    {
+      "tag": "accountingOffice/reconciliations/{reconciliationId}/control",
+      "beskrivelse": "Lister kontrollhistorikken for en avstemming (hvem som avstemte, ba om kontroll og kontrollerte, og når).",
+      "nokkelord": [
+        "kontrollhistorikk",
+        "avstemmingslogg",
+        "hvem avstemte",
+        "status avstemming",
+        "reconciled",
+        "control requested",
+        "controlled",
+        "reconciliation control",
+        "revisjonsspor",
+        "sporbarhet"
+      ]
+    },
+    {
+      "tag": "accountingOffice/reconciliations/{reconciliationId}/control/:reconcile",
+      "beskrivelse": "Markerer en avstemming som avstemt (ferdig avstemt av saksbehandler) i regnskapsbyrå-modulen.",
+      "nokkelord": [
+        "avstemt",
+        "marker avstemt",
+        "ferdig avstemt",
+        "reconcile",
+        "reconciled",
+        "avstemme konto",
+        "lukke avstemming",
+        "kontoavstemming ferdig"
+      ]
+    },
+    {
+      "tag": "accountingOffice/reconciliations/{reconciliationId}/control/:requestControl",
+      "beskrivelse": "Ber én eller flere ansatte (oppdragsansvarlig/kontrollør) om å kontrollere en avstemming.",
+      "nokkelord": [
+        "be om kontroll",
+        "send til kontroll",
+        "request control",
+        "oppdragsansvarlig",
+        "kontrollør",
+        "kontrollor",
+        "godkjenner",
+        "fire øyne",
+        "reviewer",
+        "attestasjon avstemming"
+      ]
+    },
+    {
+      "tag": "balanceSheet",
+      "beskrivelse": "Saldobalanse: inngående saldo, bevegelse og utgående saldo per konto for en periode, med filter på avdeling, prosjekt, kunde, ansatt og frie dimensjoner.",
+      "nokkelord": [
+        "saldobalanse",
+        "saldo",
+        "råbalanse",
+        "rabalanse",
+        "trial balance",
+        "balance sheet",
+        "inngående balanse",
+        "ib",
+        "ub",
+        "utgående balanse",
+        "bevegelse",
+        "resultat",
+        "balanse",
+        "kontosaldo",
+        "resultatregnskap",
+        "balanseregnskap",
+        "hittil i år",
+        "saldoliste",
+        "resultatrapport",
+        "balanserapport",
+        "hovedbokssaldo",
+        "profit and loss",
+        "p&l",
+        "periodeoversikt",
+        "fri dimensjon"
+      ]
+    },
+    {
+      "tag": "currency",
+      "beskrivelse": "Valutaer og valutakurser (Norges Bank-kurser) samt omregning av beløp mellom valutaer og til selskapets valuta på en gitt dato.",
+      "nokkelord": [
+        "valuta",
+        "valutakurs",
+        "kurs",
+        "eur",
+        "usd",
+        "sek",
+        "omregning",
+        "agio",
+        "disagio",
+        "valutadifferanse",
+        "currency",
+        "exchange rate",
+        "rate",
+        "nok",
+        "norges bank",
+        "utenlandsk valuta",
+        "valutakurser",
+        "dagskurs",
+        "gbp",
+        "dkk",
+        "valutaomregning",
+        "fx"
+      ]
+    },
+    {
+      "tag": "ledger",
+      "beskrivelse": "Hovedbok per konto (inngående saldo, bevegelse, utgående saldo og posteringer) og åpne poster summert per konto per dato (LedgerAccount).",
+      "nokkelord": [
+        "hovedbok",
+        "hovedbokskonto",
+        "kontoutskrift",
+        "kontospesifikasjon",
+        "general ledger",
+        "ledger",
+        "åpne poster",
+        "apne poster",
+        "open post",
+        "reskontro",
+        "kundereskontro",
+        "leverandørreskontro",
+        "leverandorreskontro",
+        "saldo per konto",
+        "inngående saldo",
+        "utgående saldo",
+        "kontokort",
+        "hovedboksutskrift",
+        "kontoutdrag",
+        "saldo på konto",
+        "saldo pa konto",
+        "inngaende saldo",
+        "utgaende saldo"
+      ]
+    },
+    {
+      "tag": "ledger/account",
+      "beskrivelse": "Kontoplanen: søke opp, opprette, endre, deaktivere og slette kontoer, inkl. MVA-kode, bankkontoinfo, SAF-T-kode og krav om avdeling/prosjekt/dimensjon.",
+      "nokkelord": [
+        "kontoplan",
+        "konto",
+        "kontonummer",
+        "hovedbokskonto",
+        "ns 4102",
+        "ns4102",
+        "standard kontoplan",
+        "chart of accounts",
+        "account",
+        "saft",
+        "saf-t",
+        "grupperingskode",
+        "mva-kode på konto",
+        "bankkonto",
+        "deaktivere konto",
+        "ny konto",
+        "opprette konto",
+        "balansekonto",
+        "resultatkonto",
+        "reskontrotype",
+        "kontotype",
+        "avstemmingspliktig konto",
+        "lovlige mva-koder",
+        "ledger type",
+        "flere reskontroer"
+      ]
+    },
+    {
+      "tag": "ledger/accountingDimensionName",
+      "beskrivelse": "Frie (egendefinerte) regnskapsdimensjoner – opprette, navngi, aktivere/deaktivere og slette inntil tre ekstra dimensjoner.",
+      "nokkelord": [
+        "fri dimensjon",
+        "frie dimensjoner",
+        "egendefinert dimensjon",
+        "dimensjon",
+        "analysedimensjon",
+        "kostnadssted",
+        "kostnadsbærer",
+        "kostnadsbaerer",
+        "segment",
+        "accounting dimension",
+        "free dimension",
+        "user defined dimension",
+        "dimensionindex",
+        "dimensjonsnavn",
+        "egne dimensjoner",
+        "egendefinerte felt"
+      ]
+    },
+    {
+      "tag": "ledger/accountingDimensionValue",
+      "beskrivelse": "Verdier for de frie regnskapsdimensjonene (f.eks. filial, bil, kampanje) – opprette, oppdatere, søke og slette.",
+      "nokkelord": [
+        "dimensjonsverdi",
+        "dimensjonsverdier",
+        "verdi fri dimensjon",
+        "kostnadssted",
+        "segmentverdi",
+        "accounting dimension value",
+        "free dimension value",
+        "dimension value",
+        "vis i bilagsregistrering",
+        "showinvoucherregistration"
+      ]
+    },
+    {
+      "tag": "ledger/accountingPeriod",
+      "beskrivelse": "Regnskapsperioder (måneder) med start, slutt og om perioden er lukket, samt når hovedbok og lønn sist ble kontrollert – kun lesing.",
+      "nokkelord": [
+        "regnskapsperiode",
+        "periode",
+        "periodelåsing",
+        "periodelasing",
+        "låst periode",
+        "last periode",
+        "lukket periode",
+        "månedsavslutning",
+        "manedsavslutning",
+        "accounting period",
+        "isclosed",
+        "periodeavslutning",
+        "regnskapsmåned",
+        "regnskapsmaned",
+        "kontrollert periode",
+        "periodekontroll",
+        "lukket måned"
+      ]
+    },
+    {
+      "tag": "ledger/annualAccount",
+      "beskrivelse": "Regnskapsår (årsregnskapsperioder) med start- og sluttdato.",
+      "nokkelord": [
+        "regnskapsår",
+        "regnskapsar",
+        "årsregnskap",
+        "arsregnskap",
+        "annual account",
+        "fiscal year",
+        "avvikende regnskapsår",
+        "årsoppgjør",
+        "arsoppgjor",
+        "regnskapsåret",
+        "regnskapsaret",
+        "årsperiode",
+        "arsperiode"
+      ]
+    },
+    {
+      "tag": "ledger/closeGroup",
+      "beskrivelse": "Lukkegrupper: grupper av posteringer som er lukket/utliknet mot hverandre (f.eks. faktura mot innbetaling).",
+      "nokkelord": [
+        "lukkegruppe",
+        "lukket post",
+        "utlikning",
+        "utlignet",
+        "motpostert",
+        "avstemt post",
+        "close group",
+        "matched",
+        "matching",
+        "reskontroavstemming",
+        "åpne poster",
+        "apne poster"
+      ]
+    },
+    {
+      "tag": "ledger/posting",
+      "beskrivelse": "Posteringer (transaksjonslinjer) i hovedboken – søke med filtre på konto, kunde, leverandør, prosjekt, avdeling, dimensjon og type, finne åpne poster og lukke poster mot hverandre.",
+      "nokkelord": [
+        "postering",
+        "posteringer",
+        "transaksjon",
+        "transaksjoner",
+        "føring",
+        "foring",
+        "posting",
+        "postings",
+        "åpne poster",
+        "apne poster",
+        "open post",
+        "lukke poster",
+        "utlikne",
+        "utligne",
+        "kundereskontro",
+        "leverandørreskontro",
+        "leverandorreskontro",
+        "ansattreskontro",
+        "kontoutskrift",
+        "kontospesifikasjon",
+        "reskontropost",
+        "kid",
+        "externalref",
+        "fakturanummer",
+        "matching"
+      ]
+    },
+    {
+      "tag": "ledger/postingByDate",
+      "beskrivelse": "Rask, paginert uthenting av alle posteringer i et datointervall (for eksport, dataanalyse og synkronisering).",
+      "nokkelord": [
+        "eksport posteringer",
+        "datauttrekk",
+        "alle transaksjoner",
+        "bulk",
+        "synkronisering",
+        "dataanalyse",
+        "postingbydate",
+        "posting export",
+        "hovedbok eksport",
+        "transaksjonsliste",
+        "rask uthenting",
+        "alle posteringer",
+        "full eksport",
+        "revisjonsuttrekk",
+        "revisoruttrekk"
+      ]
+    },
+    {
+      "tag": "ledger/voucher/openingBalance",
+      "beskrivelse": "Åpningsbalanse (IB) ved oppstart i Tripletex: registrere, hente og slette åpningsbalansebilaget med tilhørende korreksjonsbilag, inkl. reskontrosaldoer.",
+      "nokkelord": [
+        "åpningsbalanse",
+        "apningsbalanse",
+        "inngående balanse",
+        "inngaende balanse",
+        "ib",
+        "opening balance",
+        "oppstart",
+        "konvertering",
+        "overgang fra annet system",
+        "startsaldo",
+        "korreksjonsbilag",
+        "correction voucher",
+        "reskontro ib",
+        "kundereskontro ib",
+        "leverandørreskontro ib",
+        "åpningsbalansebilag",
+        "apningsbalansebilag",
+        "ib-bilag",
+        "hjelpekonto"
+      ]
+    },
+    {
+      "tag": "ledger/voucher",
+      "beskrivelse": "Bilag: søke, opprette (manuelle bilag/journalposter), endre, reversere, slette, bokføre fra kladd, sende til bilagsmottak, laste opp og hente vedlegg/PDF og importere dokumenter og GBAT10.",
+      "nokkelord": [
+        "bilag",
+        "bilagsnummer",
+        "føre bilag",
+        "fore bilag",
+        "bokføre",
+        "bokfore",
+        "manuelt bilag",
+        "memorialbilag",
+        "journalpost",
+        "voucher",
+        "journal entry",
+        "reversere",
+        "tilbakeføre",
+        "slette bilag",
+        "vedlegg",
+        "kladd",
+        "ikke bokført",
+        "gbat10",
+        "periodisering",
+        "bilagsføring",
+        "bilagsforing",
+        "ompostering",
+        "korreksjonsbilag",
+        "bilagsjournal",
+        "føring"
+      ]
+    },
+    {
+      "tag": "ledger/voucher/historical",
+      "beskrivelse": "Import av historiske bilag fra tidligere regnskapssystem (lukkede år) med vedlegg, lukking av historiske poster og opprettelse av ansatte fra import.",
+      "nokkelord": [
+        "historiske bilag",
+        "historikk",
+        "konvertering",
+        "migrering",
+        "import fra annet system",
+        "tidligere regnskapssystem",
+        "historical voucher",
+        "historical import",
+        "lukkede år",
+        "lukkede ar",
+        "overgang",
+        "visma",
+        "poweroffice",
+        "fiken",
+        "uni"
+      ]
+    },
+    {
+      "tag": "ledger/voucherType",
+      "beskrivelse": "Bilagstyper (f.eks. Leverandørfaktura, Utgående faktura, Bankinnbetaling, Memorialpostering) brukt ved registrering og filtrering av bilag.",
+      "nokkelord": [
+        "bilagstype",
+        "bilagsart",
+        "voucher type",
+        "memorial",
+        "memorialpostering",
+        "leverandørfaktura",
+        "typeid",
+        "utgående faktura",
+        "utgaende faktura",
+        "bankbilag",
+        "leverandorfaktura",
+        "bilagskategori"
+      ]
+    },
+    {
+      "tag": "ledger/postingRules",
+      "beskrivelse": "Selskapets posteringsregler: hvilke standardkontoer systemet bruker automatisk (kundefordringer, leverandørgjeld, ansattgjeld, øreavrunding m.m.).",
+      "nokkelord": [
+        "posteringsregler",
+        "standardkontoer",
+        "systemkontoer",
+        "kundefordringer",
+        "1500",
+        "leverandørgjeld",
+        "leverandorgjeld",
+        "2400",
+        "øreavrunding",
+        "oreavrunding",
+        "posting rules",
+        "mva per avdeling",
+        "default accounts",
+        "avrundingskonto",
+        "ansattgjeld",
+        "abonnementsperiodisering",
+        "systemkonto"
+      ]
+    },
+    {
+      "tag": "resultbudget",
+      "beskrivelse": "Resultatbudsjett (kun lesing) for selskapet, avdelinger, prosjekter, produkter og ansatte per konto og periode, til budsjettoppfølging.",
+      "nokkelord": [
+        "budsjett",
+        "resultatbudsjett",
+        "budsjettavvik",
+        "avvik",
+        "budsjett mot regnskap",
+        "result budget",
+        "budget",
+        "avdelingsbudsjett",
+        "prosjektbudsjett",
+        "periodisert budsjett",
+        "måltall",
+        "maltall",
+        "budsjettall",
+        "budsjettoppfølging",
+        "budsjettoppfolging",
+        "budget vs actual",
+        "årsbudsjett",
+        "arsbudsjett"
+      ]
+    },
+    {
+      "tag": "voucherApprovalListElement",
+      "beskrivelse": "Enkeltlinjer i attestasjons-/godkjenningsflyten for bilag (hvem som skal eller har godkjent, status og kommentarer).",
+      "nokkelord": [
+        "attestasjon",
+        "attestere",
+        "godkjenning",
+        "godkjenne bilag",
+        "attestant",
+        "approval",
+        "voucher approval",
+        "godkjenningsflyt",
+        "anvisning",
+        "attestasjonsliste"
+      ]
+    },
+    {
+      "tag": "voucherInbox",
+      "beskrivelse": "Bilagsmottaket (innboksen): e-postadressen for å sende inn fakturaer og bilag, og antall dokumenter som venter på behandling.",
+      "nokkelord": [
+        "bilagsmottak",
+        "innboks",
+        "inbox",
+        "voucher inbox",
+        "e-postadresse bilag",
+        "epost bilag",
+        "skanning",
+        "ubehandlede bilag",
+        "antall bilag",
+        "ehf",
+        "dokumentmottak",
+        "inngående faktura",
+        "bilagsmottaket",
+        "innboks antall",
+        "e-post til bilagsmottak"
+      ]
+    },
+    {
+      "tag": "voucherMessage",
+      "beskrivelse": "Kommentarer/meldinger knyttet til bilag (BETA) – lese og legge til kommentarer på ett eller flere bilag.",
+      "nokkelord": [
+        "kommentar",
+        "bilagskommentar",
+        "melding",
+        "notat på bilag",
+        "voucher message",
+        "comment",
+        "spørsmål til kunde",
+        "sporsmal til kunde",
+        "dokumentasjonsbehov",
+        "kommentarer på bilag",
+        "kommentarer pa bilag"
+      ]
+    },
+    {
+      "tag": "voucherStatus",
+      "beskrivelse": "Prosess-/integrasjonsstatus for bilag (f.eks. inkasso og ekstern leverandørfakturabehandling), som krever oppsett fra Tripletex.",
+      "nokkelord": [
+        "bilagsstatus",
+        "status",
+        "inkasso",
+        "debt collection",
+        "integrasjon",
+        "voucher status",
+        "prosessstatus",
+        "oversendt inkasso",
+        "ekstern behandling",
+        "referansenummer",
+        "inkassobyrå",
+        "inkassobyra",
+        "integrasjonspartner"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Hente saldobalanse for en periode",
+      "nokkelord": [
+        "saldobalanse",
+        "råbalanse",
+        "rabalanse",
+        "trial balance",
+        "saldo",
+        "ib",
+        "ub",
+        "bevegelse",
+        "periodetall",
+        "hittil i år",
+        "balanse",
+        "resultat",
+        "kontosaldo",
+        "saldoliste",
+        "resultatrapport",
+        "balanserapport",
+        "p&l"
+      ],
+      "kall": [
+        "GET /balanceSheet"
+      ],
+      "fremgangsmate": "GET /balanceSheet med dateFrom (inkl.) og dateTo (EKSKL.) – f.eks. hele 2025: dateFrom=2025-01-01&dateTo=2026-01-01. Avgrens med accountNumberFrom/accountNumberTo (inkl., kontonummer – ikke id), f.eks. 1000–2999 for balanse og 3000–8999 for resultat. Bruk fields=account(number,name),balanceIn,balanceChange,balanceOut. includeActiveAccountsWithoutMovements=true tar med kontoer uten bevegelse. Bla med from/count ved mange kontoer. Standard count er 1000 rader – bla med from ved større kontoplaner. /balanceSheet har ikke supplierId-filter (bruk GET /ledger?supplierId=... for leverandør).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Lage resultat/saldobalanse per avdeling, prosjekt eller fri dimensjon",
+      "nokkelord": [
+        "resultat per avdeling",
+        "avdelingsregnskap",
+        "prosjektregnskap",
+        "resultat per prosjekt",
+        "dimensjonsrapport",
+        "kostnadssted",
+        "segmentrapport",
+        "department",
+        "project",
+        "fri dimensjon"
+      ],
+      "kall": [
+        "GET /balanceSheet",
+        "GET /department",
+        "GET /project",
+        "GET /ledger/accountingDimensionValue/search",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "1) Finn id: GET /department?fields=id,name,departmentNumber, GET /project?fields=id,number,name eller GET /ledger/accountingDimensionValue/search?dimensionIndex=1. 2) GET /balanceSheet med dateFrom/dateTo (dateTo ekskl.) og departmentId/departmentIds, projectId/projectIds (+ includeSubProjects=true) eller freeDimension1/2/3 (kommaseparerte id-er), accountNumberFrom=3000&accountNumberTo=8999 for resultat. 3) For transaksjonsnivå: GET /ledger/posting med samme filtre (departmentId, projectId, accountingDimensionValue1Id osv.).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente hovedbok/kontospesifikasjon for en konto i en periode",
+      "nokkelord": [
+        "hovedbok",
+        "kontoutskrift",
+        "kontospesifikasjon",
+        "general ledger",
+        "kontoutdrag",
+        "posteringer på konto",
+        "saldo konto",
+        "ib ub konto",
+        "kontokort",
+        "hovedboksutskrift"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /ledger"
+      ],
+      "fremgangsmate": "1) Slå opp konto-id: GET /ledger/account?number=1920&fields=id,number,name. 2) GET /ledger?dateFrom=...&dateTo=...(ekskl.)&accountId=<id> gir per konto openingBalance, sumAmount, closingBalance og lenker til postings. Bruk fields=account(number,name),openingBalance,sumAmount,closingBalance,postings(date,description,amount,voucher(number,year)). Kan også filtreres på customerId/supplierId/projectId/departmentId/dimensjon. openPostings-parameteren er utgått – bruk /ledger/posting/openPost for åpne poster. Standard count=1000 kontoer; postings-listen kan bli stor – begrens med fields og kortere periode.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Søke opp posteringer på konto, kunde, leverandør, prosjekt eller avdeling",
+      "nokkelord": [
+        "posteringer",
+        "transaksjoner",
+        "føringer",
+        "foringer",
+        "søk postering",
+        "finn transaksjon",
+        "hvilke bilag",
+        "leverandørposteringer",
+        "kundeposteringer",
+        "posting search",
+        "debet",
+        "kredit",
+        "kid",
+        "fakturanummer",
+        "mva-kode"
+      ],
+      "kall": [
+        "GET /ledger/posting",
+        "GET /ledger/posting/{id}",
+        "GET /customer",
+        "GET /supplier",
+        "GET /ledger/account"
+      ],
+      "fremgangsmate": "GET /ledger/posting krever dateFrom og dateTo (ekskl.). Filtrer med accountId (intern id) eller accountNumberFrom/accountNumberTo (kontonummer), customerId, supplierId, projectId, departmentId, productId, accountingDimensionValue1-3Id, og type (INCOMING_PAYMENT, OUTGOING_INVOICE_CUSTOMER_POSTING, INVOICE_EXPENSE, WAGE m.fl.). Slå opp kunde/leverandør-id via GET /customer?name=... / GET /supplier?name=... (fields=id,name). Minimal fields: id,date,description,amount,amountCurrency,account(number),voucher(id,number,year),customer(name),supplier(name),vatType(number). Unngå employee-felt (GDPR). Bla med from/count; GET /ledger/posting/{id} for én postering. Filtre som ikke finnes: beskrivelse/fritekst, beløp og vatType – filtrer lokalt. Nyttige felt: invoiceNumber, termOfPayment, externalRef (KID), matched, closeGroup(id), freeAccountingDimension1-3(displayName).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne åpne poster i kundereskontro/leverandørreskontro per dato",
+      "nokkelord": [
+        "åpne poster",
+        "apne poster",
+        "reskontro",
+        "kundereskontro",
+        "leverandørreskontro",
+        "leverandorreskontro",
+        "utestående",
+        "utestaende",
+        "ubetalt",
+        "aldersfordeling",
+        "open items",
+        "open post",
+        "skyldig",
+        "reskontrospesifikasjon",
+        "reskontroliste",
+        "forfalte poster",
+        "kid"
+      ],
+      "kall": [
+        "GET /ledger/posting/openPost",
+        "GET /ledger/openPost",
+        "GET /customer",
+        "GET /supplier"
+      ],
+      "fremgangsmate": "GET /ledger/posting/openPost?date=<dagen etter skjæringsdato> (date er ekskl.) gir åpne posteringer. Avgrens med accountNumberFrom/accountNumberTo (f.eks. 1500–1599 kunder, 2400–2499 leverandører), customerId, supplierId eller employeeId. Sett sorted=false for mye raskere svar på store kontoer. fields=id,date,amount,amountCurrency,invoiceNumber,termOfPayment,customer(name),supplier(name),voucher(number,year). GET /ledger/openPost returnerer i stedet LedgerAccount (sum åpne poster per konto: openingBalance/sumAmount/closingBalance + postings) – nyttig for saldo per reskontrokonto, men har ikke accountNumberFrom/To eller sorted. Summer per kunde/leverandør lokalt for reskontrosaldo og aldersfordeling (termOfPayment = forfall). Bare kontoer med isCloseable=true (reskontro-/avstemmingskontoer) har åpne poster. externalRef gir KID.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Lukke/utlikne åpne poster mot hverandre (f.eks. faktura mot innbetaling)",
+      "nokkelord": [
+        "lukke poster",
+        "utlikne",
+        "utligne",
+        "motpostere",
+        "avstemme reskontro",
+        "matche",
+        "close postings",
+        "åpne poster",
+        "apne poster",
+        "nullstille reskontro",
+        "lukkegruppe"
+      ],
+      "kall": [
+        "GET /ledger/posting/openPost",
+        "PUT /ledger/posting/:closePostings"
+      ],
+      "fremgangsmate": "1) Finn postene med GET /ledger/posting/openPost (date, customerId/supplierId/employeeId, fields=id,amount,invoiceNumber,date). 2) Kontroller at de gjelder samme kunde/leverandør/ansatt og summerer til 0. 3) Kontoen må ha isCloseable=true. 4) PUT /ledger/posting/:closePostings med JSON-body som array av posting-id-er, f.eks. [123,456]. Skrivende – krever bekreftelse. Resultatet kan sees som closeGroup på postene.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se hvilke poster som er lukket mot hverandre (lukkegrupper)",
+      "nokkelord": [
+        "lukkegruppe",
+        "lukket post",
+        "utlignet",
+        "utliknet",
+        "hva er faktura lukket mot",
+        "close group",
+        "matched",
+        "sporing betaling"
+      ],
+      "kall": [
+        "GET /ledger/closeGroup",
+        "GET /ledger/closeGroup/{id}",
+        "GET /ledger/posting/{id}"
+      ],
+      "fremgangsmate": "GET /ledger/closeGroup krever dateFrom og dateTo (ekskl.); fields=id,date,postings(id,date,amount,description,voucher(number,year)). For én postering: GET /ledger/posting/{id}?fields=closeGroup(id) og deretter GET /ledger/closeGroup/{id} for å se alle poster i samme lukking.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Søke opp bilag etter periode, bilagsnummer eller bilagstype",
+      "nokkelord": [
+        "finn bilag",
+        "søk bilag",
+        "sok bilag",
+        "bilagsnummer",
+        "bilagsliste",
+        "bilagsjournal",
+        "journal",
+        "voucher search",
+        "bilag nr",
+        "bilagstype",
+        "memorial"
+      ],
+      "kall": [
+        "GET /ledger/voucher",
+        "GET /ledger/voucher/{id}",
+        "GET /ledger/voucherType"
+      ],
+      "fremgangsmate": "GET /ledger/voucher krever dateFrom og dateTo (ekskl.). Filtrer med number (liste), numberFrom (inkl.)/numberTo (ekskl.) og typeId (id fra GET /ledger/voucherType?name=...). Bilagsnummer er per år – kombiner med dato for riktig år. fields=id,number,year,date,description,voucherType(name),postings(row,account(number),amountGross,vatType(number),description). Hent ett bilag med GET /ledger/voucher/{id} (inkl. version før endring). Det finnes ikke fritekst-/beskrivelsesfilter på GET /ledger/voucher – filtrer lokalt. Kladd uten bilagsnummer har tempNumber; bruk />nonPosted for dem.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne bilag via eksternt bilagsnummer (fra import eller integrasjon)",
+      "nokkelord": [
+        "eksternt bilagsnummer",
+        "external voucher number",
+        "referanse",
+        "import-id",
+        "integrasjon",
+        "duplikatsjekk",
+        "finnes bilaget"
+      ],
+      "kall": [
+        "GET /ledger/voucher/>externalVoucherNumber"
+      ],
+      "fremgangsmate": "GET /ledger/voucher/>externalVoucherNumber?externalVoucherNumber=<nr> (merk '>' i stien). Nyttig for å sjekke duplikater før man oppretter bilag med externalVoucherNumber (maks 70 tegn). fields=id,number,year,date,description.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente bilaget som PDF eller se bilagsbildet/vedlegget",
+      "nokkelord": [
+        "bilag pdf",
+        "bilagsbilde",
+        "vedlegg",
+        "kvittering",
+        "dokumentasjon",
+        "last ned bilag",
+        "voucher pdf",
+        "attachment",
+        "se bilag"
+      ],
+      "kall": [
+        "GET /ledger/voucher/{voucherId}/pdf",
+        "GET /ledger/voucher/{id}",
+        "GET /document/{id}/content"
+      ],
+      "fremgangsmate": "GET /ledger/voucher/{voucherId}/pdf gir PDF av bilaget (binært svar – lagre til fil). For originalvedlegget: GET /ledger/voucher/{id}?fields=attachment(id,fileName) og deretter GET /document/{id}/content (BETA, download=true) med attachment-id (eller document-id for hoveddokumentet).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne bilag som mangler vedlegg/dokumentasjon",
+      "nokkelord": [
+        "mangler vedlegg",
+        "mangler bilag",
+        "mangler dokumentasjon",
+        "uten vedlegg",
+        "bilag uten dokumentasjon",
+        "kontroll dokumentasjon",
+        "bokføringsforskriften",
+        "bokforingsforskriften"
+      ],
+      "kall": [
+        "GET /ledger/voucher"
+      ],
+      "fremgangsmate": "GET /ledger/voucher med dateFrom/dateTo (ekskl.) og fields=id,number,year,date,description,voucherType(name),attachment(id),document(id). Filtrer lokalt på bilag der både attachment og document er null. Systemgenererte bilag (utgående faktura, lønn) har ofte ikke eget vedlegg – filtrer bort via voucherType. Bla med from/count.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Føre et manuelt bilag (memorialbilag/journalpost)",
+      "nokkelord": [
+        "føre bilag",
+        "fore bilag",
+        "bokføre",
+        "bokfore",
+        "manuelt bilag",
+        "memorial",
+        "journalpost",
+        "ompostering",
+        "korreksjonspostering",
+        "journal entry",
+        "create voucher",
+        "postere",
+        "mva-kode",
+        "bilagsføring",
+        "bilagsforing",
+        "journalføring",
+        "omkontering"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /ledger/vatType",
+        "GET /ledger/voucherType",
+        "POST /ledger/voucher",
+        "GET /ledger/postingRules"
+      ],
+      "fremgangsmate": "1) Slå opp konto-id-er: GET /ledger/account?number=6300,1920&fields=id,number,name,vatType(id),vatLocked,requiresDepartment,requiresProject. 2) MVA-kode: GET /ledger/vatType?number=1&fields=id,number,name (eller typeOfVat). 3) Evt. bilagstype: GET /ledger/voucherType?name=... 4) POST /ledger/voucher med {date, description, voucherType?, postings:[{row:1, date, account:{id}, amountGross, amountGrossCurrency, currency?, vatType:{id}, description, department/project/customer/supplier ved behov}, {row:2, ...motpost}]}. Bruttobeløp (inkl. MVA) med 2 desimaler, debet positivt/kredit negativt, summen av amountGross skal være 0. row starter på 1 (row 0 er systemgenerert – MVA-linjene lages automatisk fra vatType). Poster mot reskontrokonto (1500/2400 o.l.) må ha customer/supplier/employee. sendToLedger har default true = bokføres direkte (krever 'Advanced Voucher'-rettighet); sett sendToLedger=false for å lage et ikke-bokført bilag (kladd) som kan kontrolleres og bokføres senere med :sendToLedger. Fri dimensjon på linjen: freeAccountingDimension1-3:{id}. Skrivende – krever bekreftelse. Sjekk evt. account.legalVatTypes for lovlige MVA-koder på kontoen, og GET /ledger/postingRules for hvilke reskontrokontoer systemet bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Føre bilag i utenlandsk valuta",
+      "nokkelord": [
+        "valuta",
+        "valutabilag",
+        "eur",
+        "usd",
+        "utenlandsk faktura",
+        "valutakurs",
+        "omregning",
+        "currency voucher",
+        "agio",
+        "disagio"
+      ],
+      "kall": [
+        "GET /currency",
+        "GET /currency/{id}/rate",
+        "POST /ledger/voucher"
+      ],
+      "fremgangsmate": "1) GET /currency?code=EUR&fields=id,code for valuta-id. 2) Evt. sjekk kurs: GET /currency/{id}/rate?date=yyyy-MM-dd. 3) POST /ledger/voucher?convertFromAmountGrossCurrency=true med postings som har currency:{id} og amountGrossCurrency – Tripletex regner da ut amountGross (NOK) med nyeste kurs for posteringsdatoen. Alternativt oppgi både amountGross og amountGrossCurrency selv. Summen i NOK må gå i null. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Periodisere en kostnad eller inntekt over flere måneder",
+      "nokkelord": [
+        "periodisering",
+        "periodisere",
+        "forskuddsbetalt kostnad",
+        "forskuddsbetalt",
+        "påløpt",
+        "palopt",
+        "1700",
+        "2900",
+        "amortisering",
+        "fordele kostnad",
+        "accrual",
+        "amortization",
+        "periodiseringskonto"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "POST /ledger/voucher"
+      ],
+      "fremgangsmate": "POST /ledger/voucher der kostnadsposteringen har amortizationAccount:{id} (periodiseringskonto, f.eks. 1700 forskuddsbetalt kostnad – id fra GET /ledger/account?number=1700), amortizationStartDate og amortizationEndDate (alle tre må oppgis). Tripletex fordeler da beløpet månedlig over perioden. Alternativt manuelle periodiseringsbilag per måned med vanlige postinger. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre/korrigere et eksisterende bilag",
+      "nokkelord": [
+        "endre bilag",
+        "korrigere bilag",
+        "rette bilag",
+        "feilføring",
+        "feilforing",
+        "omkontering",
+        "endre konto",
+        "endre mva-kode",
+        "update voucher",
+        "oppdatere bilag"
+      ],
+      "kall": [
+        "GET /ledger/voucher/{id}",
+        "PUT /ledger/voucher/{id}",
+        "PUT /ledger/voucher/list"
+      ],
+      "fremgangsmate": "1) GET /ledger/voucher/{id}?fields=id,version,date,description,postings(id,row,account(id,number),amountGross,amountGrossCurrency,vatType(id),department(id),project(id),customer(id),supplier(id)). 2) PUT /ledger/voucher/{id} (NB: sendToLedger har default true – et ikke-bokført bilag blir bokført ved PUT med mindre du sender sendToLedger=false) med hele bilaget inkl. version og alle manuelle postinger (row>=1). Postinger med row/guiRow 0 slettes og regenereres (MVA/system). 3) Flere bilag samtidig: PUT /ledger/voucher/list. Bilag i lukket periode eller systemgenererte bilag (faktura, lønn) kan ikke endres – bruk reversering + nytt bilag. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Reversere/tilbakeføre et bilag",
+      "nokkelord": [
+        "reversere",
+        "reversering",
+        "tilbakeføre",
+        "tilbakefore",
+        "tilbakeføring",
+        "kreditere bilag",
+        "motbilag",
+        "annullere",
+        "reverse voucher",
+        "angre bilag"
+      ],
+      "kall": [
+        "GET /ledger/voucher",
+        "PUT /ledger/voucher/{id}/:reverse"
+      ],
+      "fremgangsmate": "Finn bilags-id (GET /ledger/voucher med number og dateFrom/dateTo). PUT /ledger/voucher/{id}/:reverse?date=yyyy-MM-dd (date påkrevd – reverseringsdato, må ligge i åpen periode). Returnerer det nye reverseringsbilaget. Støtter ikke lønnsbilag (salary transactions). Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slette et bilag",
+      "nokkelord": [
+        "slette bilag",
+        "fjerne bilag",
+        "delete voucher",
+        "kan bilaget slettes",
+        "slett kladd",
+        "feilregistrert bilag"
+      ],
+      "kall": [
+        "GET /ledger/voucher/{id}/options",
+        "DELETE /ledger/voucher/{id}"
+      ],
+      "fremgangsmate": "1) GET /ledger/voucher/{id}/options?fields=delete(available,reasons) – available=false gir årsakene i reasons. 2) DELETE /ledger/voucher/{id}. Bokførte bilag i lukket periode og systemgenererte bilag kan normalt ikke slettes – reverser i stedet (PUT /ledger/voucher/{id}/:reverse). Sletting er irreversibel – krever eksplisitt bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne ikke-bokførte bilag (kladd) og bokføre dem, eller sende tilbake til bilagsmottak",
+      "nokkelord": [
+        "ikke bokført",
+        "ikke bokfort",
+        "kladd",
+        "ubokførte bilag",
+        "bokføre kladd",
+        "send til hovedbok",
+        "send to ledger",
+        "avvise bilag",
+        "send til innboks",
+        "send to inbox",
+        "non posted",
+        "ikke godkjent"
+      ],
+      "kall": [
+        "GET /ledger/voucher/>nonPosted",
+        "PUT /ledger/voucher/{id}/:sendToLedger",
+        "PUT /ledger/voucher/{id}/:sendToInbox"
+      ],
+      "fremgangsmate": "1) GET /ledger/voucher/>nonPosted?includeNonApproved=true (påkrevd) med evt. dateFrom/dateTo, fields=id,version,number,tempNumber,date,description. 2) Bokfør: PUT /ledger/voucher/{id}/:sendToLedger?version=<v> (number kan utelates – systemet tildeler bilagsnummer). 3) Avvis/send tilbake: PUT /ledger/voucher/{id}/:sendToInbox?version=<v>&comment=<årsak> (comment brukes bare når attestasjon/godkjenning er aktivert). Krever 'Advanced Voucher'-rettighet. Skrivende – krever bekreftelse. version er valgfri men anbefalt (hindrer at en versjon som er endret i mellomtiden bokføres).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Laste opp vedlegg (kvittering/bilagsbilde) til et bilag eller fjerne vedlegg",
+      "nokkelord": [
+        "last opp vedlegg",
+        "legge ved kvittering",
+        "bilagsbilde",
+        "vedlegg",
+        "dokumentasjon",
+        "attachment",
+        "upload",
+        "fjerne vedlegg",
+        "flytte vedlegg til innboks"
+      ],
+      "kall": [
+        "POST /ledger/voucher/{voucherId}/attachment",
+        "DELETE /ledger/voucher/{voucherId}/attachment"
+      ],
+      "fremgangsmate": "POST /ledger/voucher/{voucherId}/attachment som multipart/form-data med felt 'file' (PDF, PNG, JPEG, TIFF – ikke-PDF konverteres). Har bilaget vedlegg fra før, legges nye sider til på slutten. Fjerne: DELETE /ledger/voucher/{voucherId}/attachment (version; sendToInbox=true flytter vedlegget til bilagsmottak i stedet for å slette, split=true deler per side). Ikke bruk utgått POST /ledger/voucher/{voucherId}/pdf/{fileName}. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sjekke bilagsmottaket (antall ubehandlede, liste og e-postadresse)",
+      "nokkelord": [
+        "bilagsmottak",
+        "innboks",
+        "inbox",
+        "ubehandlede bilag",
+        "hvor mange bilag",
+        "epostadresse bilag",
+        "e-post til bilagsmottak",
+        "skannede bilag",
+        "ehf",
+        "voucher reception"
+      ],
+      "kall": [
+        "GET /voucherInbox/inboxCount",
+        "GET /ledger/voucher/>voucherReception",
+        "GET /voucherInbox/emailAddress"
+      ],
+      "fremgangsmate": "GET /voucherInbox/inboxCount gir antall dokumenter i innboksen. GET /ledger/voucher/>voucherReception (dateFrom/dateTo valgfrie, searchText for fritekst) lister bilagene i bilagsmottaket; fields=id,date,description,attachment(id). GET /voucherInbox/emailAddress gir klientens e-postadresse for innsending av fakturaer/kvitteringer.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Laste opp dokumenter til bilagsmottak for å opprette nye bilag",
+      "nokkelord": [
+        "last opp bilag",
+        "skanne bilag",
+        "importere dokument",
+        "sende bilag til tripletex",
+        "import document",
+        "kvitteringer",
+        "fakturaer pdf",
+        "dele pdf",
+        "bilagsmottak"
+      ],
+      "kall": [
+        "POST /ledger/voucher/importDocument"
+      ],
+      "fremgangsmate": "POST /ledger/voucher/importDocument som multipart/form-data med 'file' (PDF/PNG/JPEG/TIFF; EHF/XML kun etter avtale med Tripletex) og valgfri 'description'. split=true (query-parameter, default false) lager ett bilag per side. Bilagene havner i bilagsmottaket for videre behandling/tolking. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Importere bilag fra GBAT10-fil",
+      "nokkelord": [
+        "gbat10",
+        "gbat",
+        "import bilag",
+        "filimport",
+        "lønnsfil",
+        "lonnsfil",
+        "eksternt lønnssystem",
+        "import av posteringer",
+        "gbat10-fil",
+        "lønnsbilag import",
+        "lonnsbilag import"
+      ],
+      "kall": [
+        "POST /ledger/voucher/importGbat10"
+      ],
+      "fremgangsmate": "POST /ledger/voucher/importGbat10 som multipart/form-data med 'file', påkrevd form-felt generateVatPostings og valgfritt encoding (filens tegnsett) (true = Tripletex genererer MVA-posteringer ut fra MVA-kodene). Vanlig for import fra eksterne lønns-/fagsystemer. Kontroller importerte bilag med GET /ledger/voucher etterpå. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere åpningsbalanse (IB) ved oppstart i Tripletex",
+      "nokkelord": [
+        "åpningsbalanse",
+        "apningsbalanse",
+        "inngående balanse",
+        "ib",
+        "oppstart",
+        "overgang til tripletex",
+        "startbalanse",
+        "opening balance",
+        "korreksjonsbilag",
+        "reskontro ib",
+        "konvertering"
+      ],
+      "kall": [
+        "GET /ledger/voucher/openingBalance",
+        "POST /ledger/voucher/openingBalance",
+        "GET /ledger/voucher/openingBalance/>correctionVoucher",
+        "DELETE /ledger/voucher/openingBalance",
+        "GET /ledger/account"
+      ],
+      "fremgangsmate": "1) Sjekk om det finnes IB: GET /ledger/voucher/openingBalance. 2) POST /ledger/voucher/openingBalance med {voucherDate (1. i en måned, helst 1. januar), balancePostings:[{account:{id}, amount, amountCurrency?, department/project/freeDimension?}], customerPostings:[{customer:{id}, amount, description}], supplierPostings:[...], employeePostings:[...]}. Alle bevegelser før datoen nulles ut i et eget korreksjonsbilag (GET /ledger/voucher/openingBalance/>correctionVoucher). Ubalanse føres automatisk mot en hjelpekonto – kontroller den etterpå med GET /balanceSheet. 3) Feil IB: DELETE /ledger/voucher/openingBalance sletter både IB og korreksjonsbilag. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Importere historiske bilag fra tidligere regnskapssystem",
+      "nokkelord": [
+        "historiske bilag",
+        "konvertering",
+        "migrering",
+        "import fra visma",
+        "import fra poweroffice",
+        "tidligere år",
+        "lukkede år",
+        "historical",
+        "overføre historikk",
+        "systembytte"
+      ],
+      "kall": [
+        "POST /ledger/voucher/historical/historical",
+        "POST /ledger/voucher/historical/{voucherId}/attachment",
+        "PUT /ledger/voucher/historical/:closePostings",
+        "POST /ledger/voucher/historical/employee",
+        "PUT /ledger/voucher/historical/:reverseHistoricalVouchers"
+      ],
+      "fremgangsmate": "1) POST /ledger/voucher/historical/historical?comment=<kildesystem og versjon>&useCustomNumberSeries=... med {date, externalVoucherNumber, description, voucherType?, postings:[{date, account:{id}, currency:{id}, amount, amountCurrency, amountGross, amountGrossCurrency, amountVat, vatType, customer/supplier/employee, invoiceNumber, termOfPayment, closeGroup?}]}. Alle beløpsfelt brukes – MVA-linjer må tas med selv, og amount må summere til 0 på hver enkelt dato. NB: spec-teksten krever amountBasis/amountBasisCurrency, men de feltene finnes ikke i HistoricalPosting-skjemaet – bruk amountGross/amountGrossCurrency/amountVat. closeGroup på posteringen er en fri tekstnøkkel som lukker poster med samme verdi mot hverandre. Kun for lukkede regnskapsår. Krever 'All vouchers' + 'Advanced Voucher'. 2) Vedlegg: POST /ledger/voucher/historical/{voucherId}/attachment (multipart). 3) Lukk historiske åpne poster: PUT /ledger/voucher/historical/:closePostings (BETA, body er en tekststreng med kommaseparerte posting-id-er – query postingIds er utgått; postene må ha samme kunde/leverandør/ansatt og summere til 0). 4) Ansatte fra import: POST /ledger/voucher/historical/employee (BETA – personopplysninger, minimer felt). 5) Angre ALT: PUT /ledger/voucher/historical/:reverseHistoricalVouchers (BETA, sletter alle historiske bilag). Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente kontoplanen eller slå opp en konto",
+      "nokkelord": [
+        "kontoplan",
+        "konto",
+        "kontonummer",
+        "finn konto",
+        "kontoliste",
+        "chart of accounts",
+        "bankkontoer",
+        "balansekontoer",
+        "saf-t kode",
+        "inaktive kontoer",
+        "reskontrokonto",
+        "kontotype",
+        "kontonavn",
+        "lovlige mva-koder"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /ledger/account/{id}"
+      ],
+      "fremgangsmate": "GET /ledger/account med number (liste, f.eks. number=1920,2400), isBankAccount, isInactive, isBalanceAccount, isApplicableForSupplierInvoice, ledgerType (GENERAL|CUSTOMER|VENDOR|EMPLOYEE|ASSET) eller saftCode. fields=id,number,name,type,vatType(number),vatLocked,isInactive,requireReconciliation,requiresDepartment,requiresProject. Id-en herfra brukes som accountId i alle andre kall. GET /ledger/account/{id} for én konto. GET /ledger/account har ikke navnefilter – hent listen (count default 1000) og filtrer på name lokalt. type (ASSETS, LIABILITIES, OPERATING_REVENUES, OPERATING_EXPENSES m.fl.) og legalVatTypes er skrivebeskyttede, nyttige felt.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette eller endre kontoer i kontoplanen",
+      "nokkelord": [
+        "ny konto",
+        "opprette konto",
+        "endre konto",
+        "kontonavn",
+        "deaktivere konto",
+        "låse mva-kode",
+        "lase mva-kode",
+        "krev avdeling",
+        "krev prosjekt",
+        "avstemmingspliktig",
+        "update account",
+        "create account",
+        "underkonto"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "POST /ledger/account",
+        "POST /ledger/account/list",
+        "PUT /ledger/account/{id}",
+        "PUT /ledger/account/list"
+      ],
+      "fremgangsmate": "Sjekk først at nummeret er ledig: GET /ledger/account?number=... Opprett: POST /ledger/account med {number, name, description?, vatType:{id}?, vatLocked?, isCloseable?, requireReconciliation?, requiresDepartment?, requiresProject?, requiresFreeDimension1-3?, isInactive?, saftCode?, groupingCode?}; flere samtidig med POST /ledger/account/list. Endre: GET for version, deretter PUT /ledger/account/{id} (eller PUT /ledger/account/list). Deaktiver med isInactive=true. ledgerType (GENERAL|CUSTOMER|VENDOR|EMPLOYEE|ASSET) kun med modulen for flere reskontroer. isCloseable=true gjør at poster kan lukkes og åpne poster filtreres på kontoen. saftCode/groupingCode får standardverdi ut fra kontonummer hvis tomme. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slette kontoer fra kontoplanen",
+      "nokkelord": [
+        "slette konto",
+        "fjerne konto",
+        "rydde kontoplan",
+        "delete account",
+        "ubrukte kontoer"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "DELETE /ledger/account/{id}",
+        "DELETE /ledger/account/list"
+      ],
+      "fremgangsmate": "Finn id med GET /ledger/account?number=...&fields=id,number,name,isPostingsExist. Kontoer med posteringer (isPostingsExist=true) kan ikke slettes – sett isInactive=true via PUT i stedet. DELETE /ledger/account/{id} eller DELETE /ledger/account/list?ids=1,2,3. Irreversibelt – krever eksplisitt bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Opprette og vedlikeholde frie dimensjoner (egendefinerte dimensjoner)",
+      "nokkelord": [
+        "fri dimensjon",
+        "egendefinert dimensjon",
+        "ny dimensjon",
+        "kostnadssted",
+        "segment",
+        "analysedimensjon",
+        "deaktivere dimensjon",
+        "accounting dimension"
+      ],
+      "kall": [
+        "GET /ledger/accountingDimensionName",
+        "GET /ledger/accountingDimensionName/search",
+        "GET /ledger/accountingDimensionName/{id}",
+        "POST /ledger/accountingDimensionName",
+        "PUT /ledger/accountingDimensionName/{id}",
+        "DELETE /ledger/accountingDimensionName/{id}"
+      ],
+      "fremgangsmate": "List: GET /ledger/accountingDimensionName?activeOnly=true eller /search (dimensionIndex 1-3, onlyDimensionsWithActiveValues). Opprett: POST /ledger/accountingDimensionName med {dimensionName, description, active:true} – får neste ledige indeks (maks 3 frie dimensjoner). Endre navn/aktiv: PUT /ledger/accountingDimensionName/{id} med version. DELETE /ledger/accountingDimensionName/{id} går bare hvis verdiene ikke er brukt i posteringer – ellers deaktiver/gi nytt navn. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Opprette og vedlikeholde verdier i frie dimensjoner",
+      "nokkelord": [
+        "dimensjonsverdi",
+        "ny verdi",
+        "legge til kostnadssted",
+        "verdi fri dimensjon",
+        "dimension value",
+        "vis i bilagsregistrering",
+        "deaktivere verdi"
+      ],
+      "kall": [
+        "GET /ledger/accountingDimensionValue/search",
+        "GET /ledger/accountingDimensionValue/{id}",
+        "POST /ledger/accountingDimensionValue",
+        "PUT /ledger/accountingDimensionValue/list",
+        "DELETE /ledger/accountingDimensionValue/{id}"
+      ],
+      "fremgangsmate": "Søk: GET /ledger/accountingDimensionValue/search?dimensionIndex=1&activeOnly=true (fields=id,number,displayName,active,showInVoucherRegistration). Opprett: POST /ledger/accountingDimensionValue med {dimensionIndex, displayName, number, active:true, showInVoucherRegistration:true, position?}. Oppdater (flere): PUT /ledger/accountingDimensionValue/list med id+version. DELETE /ledger/accountingDimensionValue/{id} kun for verdier som ikke er brukt i posteringer. Verdi-id brukes som freeAccountingDimension1-3 på postinger og som accountingDimensionValue1-3Id/freeDimension1-3 i rapporter. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sjekke regnskapsperioder og om en periode er lukket/låst",
+      "nokkelord": [
+        "regnskapsperiode",
+        "låst periode",
+        "last periode",
+        "lukket periode",
+        "periodelås",
+        "periodelas",
+        "månedsavslutning",
+        "manedsavslutning",
+        "regnskapsår",
+        "accounting period",
+        "kan jeg føre i perioden"
+      ],
+      "kall": [
+        "GET /ledger/accountingPeriod",
+        "GET /ledger/accountingPeriod/{id}",
+        "GET /ledger/annualAccount",
+        "GET /ledger/annualAccount/{id}"
+      ],
+      "fremgangsmate": "GET /ledger/accountingPeriod med startFrom/startTo, endFrom/endTo (til-verdier ekskl.) eller numberFrom/numberTo (numberTo ekskl.); count default 1400; fields=id,name,number,start,end,isClosed,checkLedgerLogTime,checkWageLogTime (unngå *EmployeeName-feltene – personopplysning). GET /ledger/annualAccount?yearFrom=2025&yearTo=2026 for regnskapsår (start/end, avvikende regnskapsår). API-et kan bare lese perioder – lukking/låsing gjøres i Tripletex-GUI.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente resultatbudsjett og sammenligne mot regnskap (budsjettavvik)",
+      "nokkelord": [
+        "budsjett",
+        "resultatbudsjett",
+        "budsjettavvik",
+        "budsjett mot regnskap",
+        "avvik",
+        "avdelingsbudsjett",
+        "prosjektbudsjett",
+        "result budget",
+        "budget vs actual",
+        "budsjettoppfølging",
+        "budsjettoppfolging",
+        "årsbudsjett"
+      ],
+      "kall": [
+        "GET /resultbudget/company",
+        "GET /resultbudget",
+        "GET /resultbudget/department/{id}",
+        "GET /resultbudget/project/{id}",
+        "GET /resultbudget/product/{id}",
+        "GET /resultbudget/employee/{id}",
+        "GET /balanceSheet"
+      ],
+      "fremgangsmate": "1) Budsjett: GET /resultbudget/company?year=2025 (year 1900–2100, default inneværende år) (fields=account(number,name),accountingPeriod(number,start),amount), eller per avdeling/prosjekt/produkt/ansatt via /resultbudget/{type}/{id}?year=. GET /resultbudget med departmentIds/projectIds/... eller includeAll*ResultBudgets=true for mange samtidig. 2) Faktisk: GET /balanceSheet med samme periode (dateTo ekskl.) og samme departmentId/projectId. 3) Beregn avvik per konto/periode lokalt. Ansattbudsjett er personrelatert – vis aggregert. Budsjett kan kun leses via API (ingen POST/PUT).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Slå opp valutakurs og regne om beløp mellom valutaer",
+      "nokkelord": [
+        "valutakurs",
+        "kurs",
+        "omregning",
+        "eur til nok",
+        "usd",
+        "exchange rate",
+        "dagskurs",
+        "norges bank kurs",
+        "valuta"
+      ],
+      "kall": [
+        "GET /currency",
+        "GET /currency/{id}",
+        "GET /currency/{id}/rate",
+        "GET /currency/{fromCurrencyID}/exchangeRate",
+        "GET /currency/{fromCurrencyID}/{toCurrencyID}/exchangeRate"
+      ],
+      "fremgangsmate": "Finn valuta-id: GET /currency?code=EUR&fields=id,code,description. Kurs: GET /currency/{id}/rate?date=yyyy-MM-dd. Omregn til selskapsvaluta: GET /currency/{fromCurrencyID}/exchangeRate?amount=1000&date=... Mellom to valutaer: GET /currency/{fromCurrencyID}/{toCurrencyID}/exchangeRate?amount=&date= (nyeste kurs tilgjengelig på datoen).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Avstemme balansekontoer (årsavstemming) i regnskapsbyrå-modulen",
+      "nokkelord": [
+        "avstemming",
+        "årsavstemming",
+        "arsavstemming",
+        "balanseavstemming",
+        "avstemme konto",
+        "spesifisere saldo",
+        "avstemmingsdokumentasjon",
+        "reconciliation",
+        "årsoppgjør",
+        "arsoppgjor",
+        "kontrollere saldo"
+      ],
+      "kall": [
+        "POST /balance/reconciliation/annual/context",
+        "GET /balance/reconciliation/{reconciliationId}/account/{accountId}/vouchers",
+        "GET /ledger/account",
+        "GET /balanceSheet"
+      ],
+      "fremgangsmate": "1) POST /balance/reconciliation/annual/context med {customerId (klienten/kunden avstemmingen gjelder), year} → returnerer reconciliationId. 2) Finn konto-id: GET /ledger/account?number=... og saldo: GET /balanceSheet. 3) GET /balance/reconciliation/{reconciliationId}/account/{accountId}/vouchers (fromDate, toDateExclusive, query for fritekst) lister bilagene bak saldoen i avstemmingsperioden (fields=originalId,date,voucherNumber,description,amount,closed,comments,attachments; count default 1000). Opprettelse av kontekst er skrivende (lager avstemmingsobjekt) – bekreft først. Krever regnskapsbyrå-/avstemmingsmodul. Lønnsavstemminger (AGA, forskuddstrekk, feriepenger m.fl.) har egne POST /salary/*/reconciliation/context i lønn-gruppen som også gir reconciliationId. Bankavstemming er noe annet: /bank/reconciliation (bank-gruppen).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Markere avstemming som avstemt, be om kontroll og kontrollere (fire-øyne)",
+      "nokkelord": [
+        "marker avstemt",
+        "be om kontroll",
+        "kontrollere avstemming",
+        "godkjenne avstemming",
+        "fire øyne",
+        "fire oyne",
+        "oppdragsansvarlig",
+        "kontrollhistorikk",
+        "reconcile",
+        "request control",
+        "controlled"
+      ],
+      "kall": [
+        "PUT /accountingOffice/reconciliations/{reconciliationId}/control/:reconcile",
+        "PUT /accountingOffice/reconciliations/{reconciliationId}/control/:requestControl",
+        "PUT /accountingOffice/reconciliations/{reconciliationId}/control/:controlReconciliation",
+        "GET /accountingOffice/reconciliations/{reconciliationId}/control"
+      ],
+      "fremgangsmate": "reconciliationId fra POST /balance/reconciliation/annual/context (eller lønnsavstemmingskontekster i lønn-gruppen). 1) Avstemt: PUT .../control/:reconcile (ingen body eller parametre utover reconciliationId). 2) Be om kontroll: PUT .../control/:requestControl med JSON-body = array av ansatt-id-er som skal kontrollere, f.eks. [101]. 3) Kontrollør markerer: PUT .../control/:controlReconciliation. 4) Historikk: GET .../control (fields=type,timestamp – type RECONCILED|CONTROL_REQUESTED|CONTROLLED; unngå å vise ansattnavn, bruk initialer). Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Legge ved avstemmingsdokumentasjon på en balansekonto",
+      "nokkelord": [
+        "dokumentasjon konto",
+        "avstemmingsdokumentasjon",
+        "legge ved spesifikasjon",
+        "dokumentarkiv konto",
+        "kontodokumentasjon",
+        "document archive",
+        "saldospesifikasjon"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /documentArchive/account/{id}",
+        "POST /documentArchive/account/{id}"
+      ],
+      "fremgangsmate": "Finn konto-id med GET /ledger/account?number=... . Se eksisterende dokumenter: GET /documentArchive/account/{id}?periodDateFrom=...&periodDateTo=...(ekskl.) (BETA). Last opp: POST /documentArchive/account/{id} som multipart/form-data med 'file' (BETA). Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente posteringsregler og standardkontoer (kundefordringer, leverandørgjeld, øreavrunding)",
+      "nokkelord": [
+        "posteringsregler",
+        "standardkontoer",
+        "systemkontoer",
+        "hvilken konto kundefordringer",
+        "leverandørgjeld konto",
+        "øreavrunding",
+        "oreavrunding",
+        "mva per avdeling",
+        "posting rules"
+      ],
+      "kall": [
+        "GET /ledger/postingRules"
+      ],
+      "fremgangsmate": "GET /ledger/postingRules?fields=accountReceivableCustomersId(number,name),accountDebtVendorsId(number,name),accountDebtEmployeesAndOwnersId(number,name),accountRoundDiffId(number,name),accountSubscriptionAccrual(number,name),accountProductSaleNoVat(number,name),vatPerDepartment,multipleIndustries. Feltene heter *Id men er Account-objekter. Kun lesing. Nyttig før manuelle føringer mot reskontro og for å vite hvilke kontoer systemet bruker automatisk.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne bilagstyper (typeId) for filtrering eller registrering",
+      "nokkelord": [
+        "bilagstype",
+        "bilagsart",
+        "voucher type",
+        "typeid",
+        "memorial",
+        "leverandørfaktura",
+        "bankbilag"
+      ],
+      "kall": [
+        "GET /ledger/voucherType",
+        "GET /ledger/voucherType/{id}"
+      ],
+      "fremgangsmate": "GET /ledger/voucherType?name=...&fields=id,name,displayName (uten name gir alle). Id-en brukes som typeId i GET /ledger/voucher og som voucherType:{id} ved POST /ledger/voucher.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Lese eller legge til kommentarer på bilag",
+      "nokkelord": [
+        "kommentar",
+        "kommentere bilag",
+        "bilagskommentar",
+        "notat",
+        "melding på bilag",
+        "spørsmål om bilag",
+        "sporsmal om bilag",
+        "voucher message"
+      ],
+      "kall": [
+        "GET /voucherMessage",
+        "POST /voucherMessage"
+      ],
+      "fremgangsmate": "GET /voucherMessage?voucherIds=1,2,3 (fields=voucherId,content,sendTime – dropp sender/avsendernavn av personvernhensyn). POST /voucherMessage med {voucherId, content}. BETA-endepunkter. Skrivende (POST) – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Følge opp status på bilag i integrasjoner (f.eks. inkasso)",
+      "nokkelord": [
+        "bilagsstatus",
+        "inkassostatus",
+        "oversendt inkasso",
+        "debt collection",
+        "integrasjonsstatus",
+        "voucher status",
+        "status inkassosak"
+      ],
+      "kall": [
+        "GET /voucherStatus",
+        "GET /voucherStatus/{id}",
+        "POST /voucherStatus"
+      ],
+      "fremgangsmate": "GET /voucherStatus med voucherIds, status (WAITING|DONE|SKIPPED|ERROR|NONE|PROCESSING|RECLAIMED) og type (TRIPLETEX|SUPPLIERINVOICE_EXTERNAL|DEBT_COLLECTION); fields=id,voucher(id,number),type,status,message,timestamp,referenceNumber,externalObjectUrl. POST /voucherStatus med {voucher:{id}, status, message (NONE|ONGOING|NEEDS_APPROVAL|WITHDRAWN|SETTLED), comment, referenceNumber, externalObjectUrl} brukes av integrasjonspartnere. Krever oppsett fra Tripletex (støtter i dag inkasso). Skrivende (POST) – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se attestasjons-/godkjenningsstatus på bilag",
+      "nokkelord": [
+        "attestasjon",
+        "attestere",
+        "godkjenning",
+        "til godkjenning",
+        "venter på godkjenning",
+        "attestant",
+        "approval",
+        "anvisning",
+        "leverandørfaktura til godkjenning"
+      ],
+      "kall": [
+        "GET /supplierInvoice/forApproval",
+        "GET /voucherApprovalListElement/{id}"
+      ],
+      "fremgangsmate": "Oversikt over leverandørfakturaer som venter: GET /supplierInvoice/forApproval (innkjøp-gruppen). Detaljer for én godkjenningslinje: GET /voucherApprovalListElement/{id}?fields=voucher(number),status,organisationLevel,actionDate,comment (dropp employee/actionEmployeeName – personopplysninger; bruk initialer ved behov). Godkjenning gjøres via innkjøp-gruppens :approve-endepunkter.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Eksportere alle posteringer/hovedbok for en periode (dataanalyse, SAF-T)",
+      "nokkelord": [
+        "eksport hovedbok",
+        "datauttrekk",
+        "alle posteringer",
+        "saf-t",
+        "saft",
+        "revisjon",
+        "dataanalyse",
+        "excel-uttrekk",
+        "transaksjonsliste",
+        "export"
+      ],
+      "kall": [
+        "GET /ledger/postingByDate",
+        "GET /ledger/posting",
+        "GET /saft/exportSAFT"
+      ],
+      "fremgangsmate": "Raskest: GET /ledger/postingByDate?dateFrom=...&dateTo=...(ekskl.) med from/count-paging (støtter IKKE fields – svaret er fullt PostingDTO; krever tilgang til alle bilag, og lønnstilgang hvis lønnstilgangskontroll er på, ellers valideringsfeil). Trenger du felter/filtre: GET /ledger/posting med fields=. Formell SAF-T-fil: GET /saft/exportSAFT?year=2025&version=1.3 (year påkrevd; version 1.2 er default, ellers 1.3/1.4; BETA, årsoppgjør-gruppen). Fjern/masker employee-data før lagring (GDPR).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Avstemme reskontro mot hovedbok (kundefordringer/leverandørgjeld mot sum åpne poster)",
+      "nokkelord": [
+        "avstemme reskontro",
+        "reskontroavstemming",
+        "kundereskontro mot hovedbok",
+        "leverandørreskontro mot hovedbok",
+        "leverandorreskontro mot hovedbok",
+        "1500",
+        "2400",
+        "differanse reskontro",
+        "saldo kundefordringer",
+        "saldo leverandørgjeld",
+        "subledger reconciliation",
+        "årsoppgjør",
+        "arsoppgjor"
+      ],
+      "kall": [
+        "GET /ledger/postingRules",
+        "GET /balanceSheet",
+        "GET /ledger/posting/openPost",
+        "GET /ledger/openPost"
+      ],
+      "fremgangsmate": "1) Finn reskontrokontoene: GET /ledger/postingRules?fields=accountReceivableCustomersId(id,number),accountDebtVendorsId(id,number),accountDebtEmployeesAndOwnersId(id,number). 2) Hovedbokssaldo per skjæringsdato: GET /balanceSheet?dateFrom=<årets start>&dateTo=<dagen etter skjæringsdato>&accountNumberFrom=1500&accountNumberTo=1599 (tilsvarende 2400–2499) → balanceOut. 3) Åpne poster samme dato: GET /ledger/posting/openPost?date=<dagen etter>&accountNumberFrom=1500&accountNumberTo=1599&sorted=false&fields=amount,customer(id,name),supplier(id,name) – summer lokalt per kunde/leverandør (eller GET /ledger/openPost?accountId=<id> for sum per konto). Bla med from (count default 1000). 4) Differanse skyldes typisk poster ført på reskontrokonto uten kunde/leverandør, eller feil lukking. Ansattreskontro inneholder personopplysninger – vis kun aggregert.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Kontrollere at bilagsnummerserien er sammenhengende (hull i bilagsjournalen)",
+      "nokkelord": [
+        "hull i nummerserie",
+        "bilagsnummerserie",
+        "sammenhengende bilagsnummer",
+        "manglende bilagsnummer",
+        "bilagsjournal",
+        "kontroll bilagsnummer",
+        "bokføringsforskriften",
+        "bokforingsforskriften",
+        "revisjon",
+        "voucher number gap"
+      ],
+      "kall": [
+        "GET /ledger/voucher",
+        "GET /ledger/voucherType"
+      ],
+      "fremgangsmate": "GET /ledger/voucher?dateFrom=2025-01-01&dateTo=2026-01-01&fields=id,number,year,date,voucherType(name)&count=1000 og bla med from til fullResultSize er nådd. Sorter lokalt på number per year og finn hull. Merk: slettede bilag, historiske bilag med egen nummerserie og bilag som ennå ikke er bokført (har bare tempNumber) kan gi naturlige hull – grupper evt. per voucherType.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Oversikt over avstemmingsmodulen i regnskapsbyrået – alle avstemminger per kunde, termin, type og status",
+      "nokkelord": [
+        "avstemmingsmodul",
+        "avstemmingsmodulen",
+        "avstemmingsoversikt",
+        "avstemmingsstatus",
+        "status avstemming",
+        "avstemminger",
+        "hvilke avstemminger",
+        "byråavstemming",
+        "regnskapsbyrå avstemming",
+        "accounting office",
+        "accountingoffice",
+        "reconciliations",
+        "balanseavstemming status",
+        "mva-avstemming status",
+        "lønnsavstemming status",
+        "utkast",
+        "fullført",
+        "draft",
+        "completed",
+        "avstemmingsrapport",
+        "avstemmingsdokument",
+        "reconciliationid",
+        "finne reconciliationid",
+        "dashbord avstemming"
+      ],
+      "kall": [
+        "GET /accountingOffice/reconciliations/{reconciliationId}/control",
+        "GET /document/{id}",
+        "GET /document/{id}/content",
+        "GET /customer"
+      ],
+      "fremgangsmate": "Modulen ligger i BYRÅETS EGEN konto (companyId 0 = Silfer AS via silfer-tokenet), ikke i klientregnskapet. Klientene er kunder der (customer.id i byråkontoen ≠ klientens company-id). 1) UDOKUMENTERT, men virker: GET /accountingOffice/reconciliations?count=1000&fields=id,year,term,type,status,startDate,endDate,modifiable,requiresControl,customer(id,name,organizationNumber),document(id) – lister alle avstemminger. type: BALANCE (per termin), ANNUAL_BALANCE, VAT_GENERAL_INDUSTRY, VAT_PRIMARY_INDUSTRY, PAYROLL_TAX, TAX_DEDUCTION, MANDATORY_DEDUCTION, HOLIDAY_ALLOWANCE, FINANCE_TAX, SALARY. status: DRAFT|COMPLETED|CONTROLLED|ERROR|WARNING. 2) Én: GET /accountingOffice/reconciliations/{id} (også udokumentert). 3) Historikk: GET /accountingOffice/reconciliations/{reconciliationId}/control (type RECONCILED|CONTROL_REQUESTED|CONTROLLED – ikke vis ansattnavn). 4) Ferdig rapport: document.id → GET /document/{id}?fields=id,fileName,mimeType,size og GET /document/{id}/content (PDF, octet-stream). Kan inneholde personopplysninger (lønn) – ikke del ukritisk. 5) GET /accountingOffice/reconciliations/blocklist finnes også (udokumentert). Lokalt: src/tripletex.js blokkerer companyId 0 med vilje – bruk et eget skript med authorization(0,'silfer') og kun GET. Matche mot klient: customer.organizationNumber = klientens org.nr. (npm run connect). Detaljbildene krever i tillegg delegert klienttilgang til kunden (ellers 403) – se fallgruver. Kun lesing.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Kommentere eller legge ved dokumentasjon på en avstemming i avstemmingsmodulen",
+      "nokkelord": [
+        "kommentar avstemming",
+        "kommentere avstemming",
+        "avstemmingskommentar",
+        "merknad avstemming",
+        "forklare avvik",
+        "dokumentasjon avstemming",
+        "vedlegg avstemming",
+        "laste opp dokumentasjon",
+        "reconciliation comment",
+        "reconciliation attachment",
+        "aoreconciliationcomment",
+        "referenceid"
+      ],
+      "kall": [
+        "GET /accountingOffice/reconciliations/{reconciliationId}/control"
+      ],
+      "fremgangsmate": "FINN referenceId FØRST med GET /accountingOffice/reconciliations/{id}/validations → [{referenceId, message}] (linjene som må forklares). UDOKUMENTERT, testet 2026-09-23 i byråkontoen (companyId 0, silfer): GET /accountingOffice/reconciliations/{id}/comments?fields=id,createdAt,referenceId,comment og GET .../{id}/attachments?fields=id,referenceId,document(id,fileName,mimeType). Ny kommentar: POST .../{id}/comments med {referenceId, comment (maks 1024 tegn)} → 201. referenceId er PÅKREVD (positivt heltall) og peker på raden kommentaren gjelder: lønnsavstemminger med månedsrader (TAX_DEDUCTION, MANDATORY_DEDUCTION) bruker epochDays for måneden (dager siden 1970-01-01, f.eks. 20635 = 2026-07-01, samme som registeredPayments/periodOverviews.epochDays); balanse/årsbalanse og trolig finansskatt bruker konto-id i klientens kontoplan; HOLIDAY_ALLOWANCE bruker KONTONUMMERET (2940 skyldig feriepenger og 2785 AGA av feriepenger, verifisert mot kommentar skrevet i UI 2026-09-23) – konto-id gir en kommentar som lagres, men ikke vises i UI. Er du i tvil: be brukeren skrive «test» på riktig linje i UI og les referenceId med GET .../comments. Vedlegg: POST /accountingOffice/reconciliations/{id}/attachments?referenceId=<ref> som multipart/form-data med feltet file → 201 (testet med PDF). PAYROLL_TAX bruker konto-id (2770) som referanse. Ikke skriv personopplysninger i kommentaren. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Fullføre en avstemming i avstemmingsmodulen (status COMPLETED + PDF-rapport)",
+      "nokkelord": [
+        "fullføre avstemming",
+        "fullfør",
+        "ferdigstille avstemming",
+        "complete reconciliation",
+        "avslutte avstemming",
+        "låse avstemming",
+        "avstemmingsrapport pdf",
+        "completed"
+      ],
+      "kall": [
+        "GET /accountingOffice/reconciliations/{reconciliationId}/control",
+        "GET /document/{id}"
+      ],
+      "fremgangsmate": "UDOKUMENTERT, testet 2026-09-23 (feriepenger klient A T4): PUT /accountingOffice/reconciliations/{id}/:complete (ingen body) i byråkontoen. Ved avvik svarer den 422 med validationMessages[].message = JSON {referenceId, message, severity:ERROR} – f.eks. referenceId 2785 «Vennligst forklar avviket i en kommentar». Legg da kommentar på hver referenceId som nevnes (POST .../{id}/comments {referenceId, comment}) og kjør :complete på nytt. OK → 200, status COMPLETED, modifiable=false (låst) og document = PDF-rapport (GET /document/{id}, fileName «Lønn_<klient>_Term<n>_<år>_<tidsstempel>.pdf»). PUT .../control/:reconcile alene endrer ikke status. Ikke-synlige/feilplasserte kommentarer bør slettes før fullføring. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    }
+  ],
+  "fallgruver": [
+    "dateTo er EKSKLUSIV i nesten alle søk (/balanceSheet, /ledger, /ledger/posting, /ledger/voucher, /ledger/closeGroup, /ledger/postingByDate): hele 2025 = dateFrom=2025-01-01&dateTo=2026-01-01. date på /ledger/posting/openPost og /ledger/openPost er også 'til og ekskl.'.",
+    "Påkrevde parametre: dateFrom+dateTo på /ledger, /ledger/posting, /ledger/voucher, /balanceSheet, /ledger/closeGroup og /ledger/postingByDate; date på openPost-endepunktene; includeNonApproved på /ledger/voucher/>nonPosted; date på /:reverse.",
+    "accountId/customerId/supplierId osv. er interne id-er, ikke kontonummer/kundenummer. Slå opp med GET /ledger/account?number=... (eller bruk accountNumberFrom/accountNumberTo der det finnes).",
+    "POST /ledger/voucher: kun amountGross/amountGrossCurrency brukes (inkl. MVA), 2 desimaler, summen må bli 0; row starter på 1 (row 0 = systemgenererte linjer som MVA); vatType på linjen gir automatisk MVA-postering; reskontrokontoer (1500/2400 o.l.) krever customer/supplier/employee; kontoer med requiresDepartment/requiresProject/requiresFreeDimension krever dette på linjen.",
+    "POST/PUT /ledger/voucher og PUT /ledger/voucher/list har sendToLedger=true som DEFAULT – bilaget bokføres med en gang (krever 'Advanced Voucher'-rettighet). Send sendToLedger=false for å lage/endre et ikke-bokført bilag; en PUT uten parameteren bokfører en kladd.",
+    "PUT /ledger/voucher/{id}: send med version (optimistisk låsing, ellers 409) og alle manuelle postinger; postinger med guiRow 0 slettes og regenereres. Bilag i lukket periode eller systemgenererte bilag (faktura, lønn) kan ikke endres/slettes – reverser i stedet.",
+    ":reverse støtter ikke lønnsbilag (salary transactions) – de må korrigeres via lønn.",
+    "Action-endepunkter med kolon (/:reverse, /:sendToLedger, /:sendToInbox, /:closePostings, /:reconcile, /:requestControl, /:controlReconciliation, /:reverseHistoricalVouchers) er PUT og tar parametre i query – unntak: /ledger/posting/:closePostings (JSON-array av posting-id-er) og /:requestControl (JSON-array av ansatt-id-er) tar body; /ledger/voucher/historical/:closePostings tar en tekststreng med kommaseparerte id-er i body.",
+    "Stier med '>' er literal del av URL-en: /ledger/voucher/>nonPosted, />externalVoucherNumber, />voucherReception, /ledger/voucher/openingBalance/>correctionVoucher (URL-enkod som %3E om klienten krever det).",
+    "BETA (kan endres uten varsel): /voucherMessage, /ledger/voucher/historical/:closePostings, /ledger/voucher/historical/employee, /ledger/voucher/historical/:reverseHistoricalVouchers, samt /documentArchive/*, /document/{id}/content og /saft/exportSAFT.",
+    "Utgått: POST /ledger/voucher/{voucherId}/pdf/{fileName} (bruk /attachment) og parameteren openPostings på /ledger og /ledger/posting (bruk /ledger/posting/openPost).",
+    "/ledger/postingByDate støtter ikke fields= eller changes, og krever at tokenet har tilgang til alle bilag (og lønn hvis tilgangsstyring for lønn er aktivert) – ellers valideringsfeil.",
+    "/ledger/posting/openPost: sett sorted=false for mye raskere svar på store kontoer (samme poster, bare usortert).",
+    "Filopplasting (/attachment, /importDocument, /importGbat10, historisk attachment, /documentArchive) må sendes som multipart/form-data med feltet 'file'; importGbat10 krever også generateVatPostings.",
+    "Åpningsbalanse: voucherDate må være 1. i en måned (anbefalt 1. januar); alle bevegelser før datoen nulles i et korreksjonsbilag; ubalanse havner på en hjelpekonto; DELETE sletter både IB og korreksjonsbilag.",
+    "Historiske bilag: kun for lukkede år, MVA-linjer må inkluderes manuelt, amount må summere til 0 per dato, krever 'All vouchers' + 'Advanced Voucher'. :reverseHistoricalVouchers sletter ALLE historiske bilag – ekstremt destruktivt.",
+    "Resultatbudsjett, regnskapsperioder og regnskapsår er skrivebeskyttet i API-et – budsjett kan ikke legges inn og perioder kan ikke lukkes/låses via API.",
+    "Kontoer og dimensjonsnavn/-verdier som er brukt i posteringer kan ikke slettes – sett isInactive/active=false i stedet. Maks 3 frie dimensjoner. ledgerType på konto krever modulen for flere reskontroer.",
+    "/voucherStatus krever oppsett fra Tripletex (i dag inkasso). /accountingOffice/reconciliations/* og /balance/reconciliation/* krever regnskapsbyrå-/avstemmingsmodul og kalles i byråets egen konto (companyId 0). Eksisterende reconciliationId finnes med den udokumenterte GET /accountingOffice/reconciliations (se «Oversikt over avstemmingsmodulen») – POST .../context trengs bare for å opprette en ny.",
+    "403 betyr manglende rettighet for token/bruker (f.eks. 'Advanced Voucher', 'All vouchers', lønnstilgang) eller at modulen ikke er aktiv hos klienten; 422/valideringsfeil betyr brudd på forretningsregel (lukket periode, ubalanse, manglende påkrevd dimensjon/reskontro); 409 betyr utdatert version.",
+    "Bruk alltid fields= og from/count-paging (fullResultSize i svaret) – store klienter har hundretusener av posteringer.",
+    "GDPR: posteringer, lønnsbilag, attestasjonslinjer, kontrollhistorikk og kommentarer kan inneholde ansattdata (employee, sender, actionEmployeeName). Ikke be om disse feltene, og vis kun aggregater/initialer.",
+    "Alle skrivende kall (føre, endre, reversere, slette bilag, lukke poster, IB, import, kontoplanendringer, avstemmingsstatus) krever brukerens bekreftelse og at klienten er eksplisitt valgt.",
+    "count har default 1000 på nesten alle listekall i gruppen (/ledger/accountingPeriod: 1400). Sjekk fullResultSize og bla med from – ellers mister du stille rader ut over 1000.",
+    "GET /ledger/account har ikke navnefilter (bare id, number, isBankAccount, isInactive, isBalanceAccount, isApplicableForSupplierInvoice, ledgerType, saftCode) – filtrer på navn lokalt. GET /ledger/voucher og /ledger/posting har heller ikke fritekst- eller beløpsfilter.",
+    "GET /ledger/openPost returnerer LedgerAccount (summer per konto), mens GET /ledger/posting/openPost returnerer enkeltposteringer. Kun kontoer med isCloseable=true har åpne poster og kan lukkes med :closePostings.",
+    "Historiske bilag: beskrivelsen krever amountBasis/amountBasisCurrency, men feltene finnes ikke i HistoricalPosting-skjemaet – bruk amount, amountCurrency, amountGross, amountGrossCurrency og amountVat.",
+    "/ledger/voucher/{id}/options returnerer bare delete.available + delete.reasons – bruk den før DELETE for å få årsaken i stedet for en feilmelding.",
+    "Avgrensning mot andre grupper: bankavstemming = /bank/reconciliation (bank), lønnsavstemming = /salary/*/reconciliation (lønn), MVA-koder = /ledger/vatType, godkjenning av leverandørfaktura = /supplierInvoice (innkjøp). Denne gruppen dekker balanseavstemming i regnskapsbyrå-modulen.",
+    "I avstemmingsmodulen er customerId/customer.id kundens id i BYRÅETS konto. For klient A var den lik klientens company-id fra /company/>withLoginAccess (<kunde-id>), men match likevel på organisasjonsnummer. Modulen kan ha mange flere kunder enn tokenet har delegert klienttilgang til.",
+    "Avstemmingsmodulen, tilgang (testet 2026-09-23 med silfer-tokenet): liste, /{id}, /{id}/control, /blocklist og dokumentet = 200 for alle kunder. Detaljkallene (GET /balance/reconciliation/{id}/account/{accountId}/vouchers, /salary/*/reconciliation/{id}/*, udokumentert /vat/reconciliation/{id}/overview) = 200 for kunder tokenet OGSÅ har delegert klienttilgang til, men 403 for kunder uten klienttilgang. accountId er kontoens id i KLIENTENS kontoplan (GET /ledger/account hos klienten). Lønnskall med en BALANCE-id gir 500 – bruk en lønns-id (taxDeduction-overview svarte også med en PAYROLL_TAX-id for samme termin). Skrivekallene (context-POST, :reconcile, :requestControl, :controlReconciliation) er ikke testet.",
+    "PUT /accountingOffice/reconciliations/{id}/control/:reconcile (200) logger bare RECONCILED i kontrollhistorikken og endrer ikke status. For COMPLETED: udokumentert PUT .../{id}/:complete (se oppgaven «Fullføre en avstemming»).",
+    "Kommentar med feil referenceId på en avstemming blir lagret (201), men vises ikke i Tripletex-UI. Sjekk referansetypen før POST .../comments (se oppgaven «Kommentere eller legge ved dokumentasjon»). Status kan gå fra DRAFT til ERROR når brukeren åpner avstemmingen i UI og den regnes på nytt med avvik.",
+    "Kart over avstemmingsmodulen: alle interne kall (felles, lønn, A07, mva, balanse, bank) står i docs/avstemmingsmodul.md – hentet fra UI-koden 2026-09-23. Bl.a. GET /accountingOffice/reconciliations/{id}/validations (hva som blokkerer fullføring), periodsOverview, permissions/{kunde-id}, clientOverview/context/{kunde-id}, PUT :complete/:control/:setRequiresControl, og for balanse /balance/reconciliation/{id}/table + :complete/:reopen/:control/:uncontrol.",
+    "contextId fra byråkontoen blir IGNORERT av API-tokenet for klientdata: /ledger/account?contextId=<klient> ga byråets egen konto, og A07-bestilling ga byråets egen A07. Kall klientdata fra klientens kontekst (Basic-auth companyId = kunde-id).",
+    "PUT /ledger/voucher/{id} på bilag med banklinje i en periode med avstemt kontoutskrift gir 422 «Posteringer kan ikke gjøres i en periode der det finnes en avstemt kontoutskrift» – også når bare en annen linje endres (hele bilaget sendes på nytt). Be brukeren endre linjen i UI, eller før et korreksjonsbilag uten banklinje."
+  ]
+}

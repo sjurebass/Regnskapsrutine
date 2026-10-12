@@ -1,0 +1,1093 @@
+{
+  "group": "salg",
+  "tags": [
+    {
+      "tag": "customer",
+      "beskrivelse": "Kunderegisteret: søke, opprette, oppdatere, masseimportere, deaktivere og slette kunder, inkl. fakturainnstillinger (sendemåte, betalingsfrist, purreinnstillinger, reskontrokonto).",
+      "nokkelord": [
+        "kunde",
+        "kunderegister",
+        "kundekort",
+        "kundenummer",
+        "kundenr",
+        "kundeliste",
+        "organisasjonsnummer",
+        "orgnr",
+        "org.nr",
+        "customer",
+        "debitor",
+        "fakturaepost",
+        "betalingsfrist",
+        "betalingsbetingelser",
+        "sendemåte",
+        "sendemate",
+        "ehf",
+        "efaktura",
+        "privatkunde",
+        "bedriftskunde",
+        "ny kunde",
+        "inaktiv kunde",
+        "kundeimport",
+        "purreinnstillinger",
+        "faktoring"
+      ]
+    },
+    {
+      "tag": "customer/category",
+      "beskrivelse": "Kategorier (1–3) som brukes til å gruppere og filtrere kunder og leverandører, f.eks. bransje, region eller kundetype.",
+      "nokkelord": [
+        "kundekategori",
+        "kategori",
+        "leverandorkategori",
+        "leverandørkategori",
+        "kundegruppe",
+        "segment",
+        "gruppering",
+        "customer category",
+        "kategori1",
+        "kategori2",
+        "kategori3",
+        "kundetype"
+      ]
+    },
+    {
+      "tag": "deliveryAddress",
+      "beskrivelse": "Leveringsadresser knyttet til kunder og ordre – søke opp, hente og endre (inkl. matrikkel knr/gnr/bnr); ikke kundens post-/fakturaadresse, som endres på kunden.",
+      "nokkelord": [
+        "leveringsadresse",
+        "leveranseadresse",
+        "delivery address",
+        "deliveryaddress",
+        "levering",
+        "postnummer",
+        "poststed",
+        "matrikkel",
+        "gnr",
+        "bnr",
+        "leveringssted",
+        "fraktadresse",
+        "byggeplass",
+        "anleggsadresse"
+      ]
+    },
+    {
+      "tag": "order",
+      "beskrivelse": "Ordre (salgsordre) med ordrelinjer som grunnlag for faktura: opprette, endre, fakturere, samlefakturere, abonnement, ordrebekreftelse, pakkseddel og vedlegg.",
+      "nokkelord": [
+        "ordre",
+        "salgsordre",
+        "order",
+        "ordrebekreftelse",
+        "pakkseddel",
+        "følgeseddel",
+        "folgeseddel",
+        "fakturagrunnlag",
+        "fakturere ordre",
+        "fakturering",
+        "utfakturering",
+        "samlefaktura",
+        "abonnement",
+        "repeterende faktura",
+        "gjentakende faktura",
+        "a konto",
+        "akonto",
+        "forskuddsfaktura",
+        "fakturautkast",
+        "forhåndsvisning",
+        "forhandsvisning",
+        "vedlegg",
+        "restordre",
+        "backorder",
+        "subscription"
+      ]
+    },
+    {
+      "tag": "order/orderline",
+      "beskrivelse": "Ordrelinjer (varelinjer) på en ordre: produkt, antall, pris, rabatt, MVA-kode, samt plukking for lagerkunder.",
+      "nokkelord": [
+        "ordrelinje",
+        "ordrelinjer",
+        "varelinje",
+        "fakturalinje",
+        "orderline",
+        "antall",
+        "enhetspris",
+        "pris",
+        "rabatt",
+        "påslag",
+        "paslag",
+        "mva-kode",
+        "mvakode",
+        "produkt",
+        "vare",
+        "plukk",
+        "plukke",
+        "plukkliste",
+        "linjetemplate",
+        "orderlinetemplate"
+      ]
+    },
+    {
+      "tag": "order/orderGroup",
+      "beskrivelse": "Ordregrupper for å gruppere ordrelinjer med overskrift, kommentar og delsum på ordre/faktura.",
+      "nokkelord": [
+        "ordregruppe",
+        "gruppe",
+        "delsum",
+        "subtotal",
+        "overskrift",
+        "seksjon",
+        "ordergroup",
+        "linjegruppe",
+        "gruppering av linjer"
+      ]
+    },
+    {
+      "tag": "invoice",
+      "beskrivelse": "Utgående kundefakturaer: søke/fakturajournal, hente, opprette, sende (e-post/EHF/eFaktura/papir), laste ned PDF, kreditere (kreditnota), registrere innbetaling og opprette purring/inkassovarsel.",
+      "nokkelord": [
+        "faktura",
+        "utgående faktura",
+        "utgaende faktura",
+        "salgsfaktura",
+        "kundefaktura",
+        "invoice",
+        "fakturanummer",
+        "kid",
+        "kreditnota",
+        "kreditnote",
+        "kreditere",
+        "credit note",
+        "innbetaling",
+        "registrere betaling",
+        "purring",
+        "inkassovarsel",
+        "ehf",
+        "efaktura",
+        "fakturajournal",
+        "utestående",
+        "utestaende",
+        "forfalt",
+        "ubetalt",
+        "kundefordring",
+        "faktura pdf"
+      ]
+    },
+    {
+      "tag": "invoice/paymentType",
+      "beskrivelse": "Betalingstyper for innbetalinger på kundefaktura (bank, kontant, kort, Vipps osv.) – trengs som paymentTypeId ved registrering av betaling.",
+      "nokkelord": [
+        "betalingstype",
+        "innbetalingstype",
+        "paymenttype",
+        "paymenttypeid",
+        "betalingsmåte",
+        "betalingsmate",
+        "bank",
+        "kontant",
+        "kort",
+        "vipps",
+        "innbetaling",
+        "innbetalingskonto",
+        "bankkonto 1920"
+      ]
+    },
+    {
+      "tag": "invoiceRemark",
+      "beskrivelse": "Fakturamerknader (intern merknad på faktura, f.eks. avtalt betalingsutsettelse og dato purring er utsatt til).",
+      "nokkelord": [
+        "fakturamerknad",
+        "merknad",
+        "notat på faktura",
+        "invoice remark",
+        "invoiceremark",
+        "betalingsutsettelse",
+        "utsatt purring",
+        "purrestopp",
+        "purrepause",
+        "betalingsavtale",
+        "avtale om betaling",
+        "postponereminders"
+      ]
+    },
+    {
+      "tag": "invoice/details",
+      "beskrivelse": "Prosjektfakturadetaljer (ProjectInvoiceDetails): honorar, påslag, timer, utlegg og a konto-saldo per prosjekt på en faktura.",
+      "nokkelord": [
+        "prosjektfaktura",
+        "prosjektfakturadetaljer",
+        "fakturadetaljer",
+        "honorar",
+        "timer fakturert",
+        "påslag",
+        "paslag",
+        "utlegg",
+        "viderefakturering",
+        "a konto saldo",
+        "akonto saldo",
+        "project invoice details",
+        "projectinvoicedetails"
+      ]
+    },
+    {
+      "tag": "reminder",
+      "beskrivelse": "Purringer som er opprettet på kundefakturaer: søke opp, hente detaljer (gebyr, renter, type) og laste ned purre-PDF.",
+      "nokkelord": [
+        "purring",
+        "purringer",
+        "purrehistorikk",
+        "betalingspåminnelse",
+        "betalingspaminnelse",
+        "påminnelse",
+        "inkassovarsel",
+        "varsel om inkasso",
+        "inkasso",
+        "purregebyr",
+        "forsinkelsesrente",
+        "morarente",
+        "reminder",
+        "soft reminder",
+        "purre pdf",
+        "innfordring",
+        "dunning"
+      ]
+    },
+    {
+      "tag": "discountPolicy",
+      "beskrivelse": "Rabattavtaler per kunde, produkt eller varegruppe (kun Logistikk Basis / grossistintegrasjon, BETA).",
+      "nokkelord": [
+        "rabatt",
+        "kunderabatt",
+        "rabattavtale",
+        "prisavtale",
+        "varegrupperabatt",
+        "produktrabatt",
+        "discount",
+        "discountpolicy",
+        "nettopris",
+        "grossist"
+      ]
+    },
+    {
+      "tag": "crm/prospect",
+      "beskrivelse": "CRM-prospekter/salgsmuligheter (leads) knyttet til kunde, selger og prosjekt/tilbud – kun lesing, og endepunktene er DEPRECATED.",
+      "nokkelord": [
+        "prospekt",
+        "prospect",
+        "salgsmulighet",
+        "lead",
+        "crm",
+        "pipeline",
+        "konkurrent",
+        "potensiell kunde",
+        "tapt salg",
+        "salgsoppfølging"
+      ]
+    },
+    {
+      "tag": "supplierCustomer",
+      "beskrivelse": "Felles søk i aktive kunder og leverandører (kontakter/motparter) med fritekst.",
+      "nokkelord": [
+        "kunde eller leverandør",
+        "kunde eller leverandor",
+        "motpart",
+        "motpartssøk",
+        "fritekst",
+        "suppliercustomer",
+        "finne firma",
+        "firmasøk",
+        "firmasok",
+        "kunde og leverandør",
+        "aktør"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Finne en kunde (på navn, org.nr. eller kundenummer)",
+      "nokkelord": [
+        "finn kunde",
+        "søk kunde",
+        "sok kunde",
+        "kundeoppslag",
+        "kundenummer",
+        "org.nr",
+        "organisasjonsnummer",
+        "kundekort",
+        "kunde id",
+        "kundeliste",
+        "hent kunde",
+        "kunder endret siden",
+        "inaktive kunder",
+        "changedsince",
+        "kunde nr"
+      ],
+      "kall": [
+        "GET /customer",
+        "GET /customer/{id}",
+        "GET /supplierCustomer/search"
+      ],
+      "fremgangsmate": "GET /customer med customerName, organizationNumber (eksakt, 9 siffer uten mellomrom), customerAccountNumber (kundenummer, kommaseparert liste), email/invoiceEmail (eksakt) eller category1Id-3Id. NB: isInactive har default=false, så deaktiverte kunder vises ikke uten isInactive=true. changedSince gir kunder endret etter et tidspunkt (synk/eksport). Bruk fields=id,name,customerNumber,organizationNumber,isInactive,isPrivateIndividual for små svar; count er 1000 som standard – page med from/count. Deretter GET /customer/{id} for detaljer. Usikker på om motparten er kunde eller leverandør: GET /supplierCustomer/search?query=... (kun aktive). GDPR: ikke hent e-post/telefon/adresse for privatpersoner (isPrivateIndividual=true) med mindre oppgaven krever det.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette ny kunde",
+      "nokkelord": [
+        "ny kunde",
+        "opprette kunde",
+        "registrere kunde",
+        "legge inn kunde",
+        "create customer",
+        "kundeoppretting",
+        "privatkunde",
+        "bedriftskunde"
+      ],
+      "kall": [
+        "GET /customer",
+        "POST /customer",
+        "GET /customer/category",
+        "GET /country",
+        "GET /currency"
+      ],
+      "fremgangsmate": "1) Sjekk duplikat: GET /customer?organizationNumber=... (og isInactive=true for å fange deaktiverte). 2) POST /customer med minst name; typisk også organizationNumber, isPrivateIndividual, invoiceEmail/email, invoiceSendMethod (EMAIL|EHF|EFAKTURA|AVTALEGIRO|VIPPS|PAPER|MANUAL), emailAttachmentType (LINK|ATTACHMENT), invoicesDueIn + invoicesDueInType (DAYS|MONTHS|RECURRING_DAY_OF_MONTH), language (NO|EN), postalAddress/physicalAddress {addressLine1, postalCode, city, country:{id}} (land-id fra GET /country), category1-3 {id} (GET /customer/category), currency {id} (GET /currency). customerNumber tildeles automatisk hvis utelatt. isSupplier=true gjør den også til leverandør. Skrivende – krever bekreftelse og angitt klient.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre kundeopplysninger (e-post, adresse, betalingsfrist, sendemåte/EHF, purreinnstillinger)",
+      "nokkelord": [
+        "endre kunde",
+        "oppdatere kunde",
+        "ny fakturaadresse",
+        "endre e-post",
+        "endre betalingsfrist",
+        "bytte til ehf",
+        "sendemåte",
+        "automatisk purring",
+        "kundeinnstillinger",
+        "update customer"
+      ],
+      "kall": [
+        "GET /customer/{id}",
+        "PUT /customer/{id}"
+      ],
+      "fremgangsmate": "Hent kunden med GET /customer/{id}?fields=id,version,<feltene som endres> og send PUT /customer/{id} med id, version og feltene som skal endres (f.eks. invoiceEmail, overdueNoticeEmail, invoiceSendMethod, emailAttachmentType, invoicesDueIn/invoicesDueInType, postalAddress, discountPercentage, singleCustomerInvoice, isAutomaticSoftReminderEnabled / isAutomaticReminderEnabled / isAutomaticNoticeOfDebtCollectionEnabled, isFactoring, accountManager {id}, ledgerAccount {id}). Utdatert version gir konflikt – hent på nytt. EHF krever at kunden har organizationNumber og er registrert som mottaker i Peppol (ELMA).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Importere eller masseoppdatere mange kunder",
+      "nokkelord": [
+        "importere kunder",
+        "kundeimport",
+        "masseoppdatering",
+        "bulk",
+        "mange kunder",
+        "kundeliste excel",
+        "oppdatere flere kunder",
+        "customer list"
+      ],
+      "kall": [
+        "POST /customer/list",
+        "PUT /customer/list",
+        "GET /customer"
+      ],
+      "fremgangsmate": "POST /customer/list med en JSON-liste av Customer-objekter (samme felter som POST /customer). For oppdatering: hent id+version med GET /customer?fields=id,version,organizationNumber, og send PUT /customer/list med listen. Begge er BETA. Del opp store importer i mindre bolker og valider org.nr. først for å unngå duplikater.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Deaktivere eller slette kunde",
+      "nokkelord": [
+        "slette kunde",
+        "deaktivere kunde",
+        "inaktiv kunde",
+        "arkivere kunde",
+        "fjerne kunde",
+        "delete customer",
+        "sperre kunde"
+      ],
+      "kall": [
+        "PUT /customer/{id}",
+        "DELETE /customer/{id}"
+      ],
+      "fremgangsmate": "Foretrekk deaktivering: PUT /customer/{id} med id, version og isInactive=true. DELETE /customer/{id} (BETA) fungerer normalt bare for kunder uten ordre, fakturaer eller posteringer – ellers feil. Sletting er irreversibel; krever tydelig bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Administrere kunde-/leverandørkategorier",
+      "nokkelord": [
+        "kundekategori",
+        "opprette kategori",
+        "endre kategori",
+        "kategorisere kunder",
+        "kundegruppe",
+        "segmentere",
+        "kategori1"
+      ],
+      "kall": [
+        "GET /customer/category",
+        "GET /customer/category/{id}",
+        "POST /customer/category",
+        "PUT /customer/category/{id}",
+        "GET /customer"
+      ],
+      "fremgangsmate": "List eksisterende med GET /customer/category (filtrer name, number, type). Opprett med POST /customer/category {name, number, description, type}. Endre med PUT /customer/category/{id}. Knytt kategori til kunde via PUT /customer/{id} med category1/category2/category3 {id}. Filtrer kunder per kategori med GET /customer?category1Id=...",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Kontaktpersoner hos kunde (finne, opprette, endre)",
+      "nokkelord": [
+        "kontaktperson",
+        "kontakt",
+        "kundekontakt",
+        "deres referanse",
+        "attn",
+        "mottaker",
+        "contact"
+      ],
+      "kall": [
+        "GET /contact",
+        "POST /contact",
+        "PUT /contact/{id}",
+        "GET /contact/{id}"
+      ],
+      "fremgangsmate": "GET /contact?customerId=...&fields=id,firstName,lastName (minimalt – personopplysninger/GDPR, vis initialer i svar). Opprett med POST /contact {firstName, lastName, email, customer:{id}}. Brukes som order.contact eller order.attn på ordre/faktura. Endre med PUT /contact/{id}.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne og endre leveringsadresse",
+      "nokkelord": [
+        "leveringsadresse",
+        "endre leveringsadresse",
+        "fraktadresse",
+        "adresse på ordre",
+        "leveringssted",
+        "delivery address"
+      ],
+      "kall": [
+        "GET /deliveryAddress",
+        "GET /deliveryAddress/{id}",
+        "PUT /deliveryAddress/{id}",
+        "GET /customer/{id}"
+      ],
+      "fremgangsmate": "Søk med GET /deliveryAddress (addressLine1, postalCode, city, name) eller hent kundens deliveryAddress via GET /customer/{id}?fields=deliveryAddress(*). Endre med PUT /deliveryAddress/{id} (id, version, addressLine1, postalCode, city, country). Det finnes ingen POST – nye leveringsadresser opprettes som del av kunde (POST/PUT /customer) eller ordre (deliveryAddress i POST /order).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Opprette salgsordre med ordrelinjer",
+      "nokkelord": [
+        "ny ordre",
+        "opprette ordre",
+        "salgsordre",
+        "ordrelinjer",
+        "fakturagrunnlag",
+        "legge inn varelinjer",
+        "create order",
+        "ordre med produkter",
+        "mange ordre",
+        "ordreimport"
+      ],
+      "kall": [
+        "GET /customer",
+        "GET /product",
+        "GET /ledger/vatType",
+        "POST /order",
+        "POST /order/orderline",
+        "POST /order/orderline/list",
+        "GET /order/orderline/orderLineTemplate",
+        "POST /order/list"
+      ],
+      "fremgangsmate": "1) Finn customer id (GET /customer) og evt. product id (GET /product?productNumber=...). 2) POST /order med customer {id}, orderDate og deliveryDate (yyyy-MM-dd, påkrevd i praksis), gjerne orderLines inline: [{product:{id}, description, count, unitPriceExcludingVatCurrency, discount, vatType:{id}}]. Ellers legg til linjer etterpå med POST /order/orderline/list (bedre ytelse enn enkeltvis POST /order/orderline) med order {id}. 3) GET /order/orderline/orderLineTemplate?orderId&productId gir forslag til linje (pris/MVA) fra produktet. Valgfritt: invoiceComment, reference, ourContactEmployee, department, project, currency, invoicesDueIn. MVA-kode fra GET /ledger/vatType (f.eks. utgående 25 %). Mange ordre samtidig: POST /order/list (BETA, maks 100 ordre med orderLines per kall).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Søke opp ordre og se status",
+      "nokkelord": [
+        "finn ordre",
+        "ordreliste",
+        "åpne ordre",
+        "ikke fakturerte ordre",
+        "ufakturert",
+        "ordrestatus",
+        "ordrereferanse",
+        "ordrenummer"
+      ],
+      "kall": [
+        "GET /order",
+        "GET /order/{id}",
+        "GET /order/orderline/{id}"
+      ],
+      "fremgangsmate": "GET /order krever orderDateFrom og orderDateTo (To er eksklusiv). Filtrer med customerId (liste), number, deliveryComment, isClosed=false (ordre som fortsatt kan faktureres), isSubscription. fields=id,number,orderDate,deliveryDate,customer(name),isClosed,orderLines(description,count,amountExcludingVatCurrency). Feltet status finnes bare for Logistikk-kunder. Detaljer: GET /order/{id}; enkeltlinje: GET /order/orderline/{id}.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Endre eller slette ordre og ordrelinjer",
+      "nokkelord": [
+        "endre ordre",
+        "oppdatere ordre",
+        "endre ordrelinje",
+        "slette ordrelinje",
+        "slette ordre",
+        "endre antall",
+        "endre pris",
+        "rabatt på linje"
+      ],
+      "kall": [
+        "GET /order/{id}",
+        "PUT /order/{id}",
+        "PUT /order/orderline/{id}",
+        "DELETE /order/orderline/{id}",
+        "DELETE /order/{id}"
+      ],
+      "fremgangsmate": "Hent ordren med GET /order/{id}?fields=*,orderLines(*). Enkeltlinje: PUT /order/orderline/{id} (BETA) med id, version, count, unitPriceExcludingVatCurrency, discount. Slett linje: DELETE /order/orderline/{id} (BETA). Hele ordren: PUT /order/{id}; med updateLinesAndGroups=true fjernes linjer/grupper som ikke er med i listen – vær forsiktig. DELETE /order/{id} sletter ordre som ikke er fakturert. Fakturerte ordrelinjer kan ikke endres (krediter fakturaen i stedet).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Gruppere ordrelinjer med overskrift og delsum (ordregrupper)",
+      "nokkelord": [
+        "ordregruppe",
+        "delsum",
+        "overskrift på faktura",
+        "gruppere linjer",
+        "seksjon",
+        "subtotal"
+      ],
+      "kall": [
+        "GET /order/orderGroup",
+        "GET /order/orderGroup/{id}",
+        "POST /order/orderGroup",
+        "PUT /order/orderGroup",
+        "DELETE /order/orderGroup/{id}"
+      ],
+      "fremgangsmate": "Opprett med POST /order/orderGroup {order:{id}, title, comment, sortIndex, orderLines:[{id}]} (BETA; bruk orderLines i body, ikke det utgåtte query-parametret orderLineIds). List med GET /order/orderGroup?orderIds=... Endre med PUT /order/orderGroup (id+version i body). Slett med DELETE /order/orderGroup/{id}.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Fakturere en ordre (lage faktura fra ordre)",
+      "nokkelord": [
+        "fakturere",
+        "fakturere ordre",
+        "lage faktura",
+        "opprette faktura fra ordre",
+        "ordre til faktura",
+        "invoice order",
+        "fakturakjøring"
+      ],
+      "kall": [
+        "PUT /order/{id}/:invoice",
+        "GET /invoice/{id}"
+      ],
+      "fremgangsmate": "PUT /order/{id}/:invoice?invoiceDate=yyyy-MM-dd (påkrevd, query-parameter). VIKTIG: sendToCustomer er default true – sett sendToCustomer=false hvis fakturaen ikke skal sendes ennå, eller angi sendType (EMAIL|EHF|AVTALEGIRO|EFAKTURA|VIPPS|PAPER|MANUAL) og evt. overrideEmailAddress. createBackorder er kun for pilotkunder. Svaret er Invoice – hent invoiceNumber, kid, amount via GET /invoice/{id}. Selskapet må ha registrert bankkontonummer før faktura kan opprettes. Bokføres automatisk (kundereskontro 1500 / salgsinntekt 3xxx). Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Faktura som allerede er betalt (kontantsalg/Vipps/kort) eller a konto-/forskuddsfaktura",
+      "nokkelord": [
+        "kontantsalg",
+        "forhåndsbetalt",
+        "forhandsbetalt",
+        "betalt ved bestilling",
+        "a konto",
+        "akonto",
+        "forskuddsfaktura",
+        "delfaktura",
+        "on account",
+        "vipps betalt",
+        "kortbetaling"
+      ],
+      "kall": [
+        "GET /invoice/paymentType",
+        "PUT /order/{id}/:invoice",
+        "POST /invoice"
+      ],
+      "fremgangsmate": "Forhåndsbetalt: finn paymentTypeId med GET /invoice/paymentType, og send både paymentTypeId og paidAmount (i fakturavaluta) på PUT /order/{id}/:invoice eller POST /invoice – begge må angis. Betalingstypens konto må ha samme valuta som fakturaen. To betalinger mulig: paymentTypeIdRestAmount (+ paidAmountAccountCurrencyRest) – restbeløpet beregnes som fakturabeløp minus paidAmount. A konto: PUT /order/{id}/:invoice med createOnAccount=WITH_VAT|WITHOUT_VAT (default NONE), amountOnAccount og onAccountComment. A konto-saldo vises senere i projectInvoiceDetails.onAccountBalanceAmount / order.totalInvoicedOnAccountAmountAbsoluteCurrency. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Samlefaktura – fakturere flere ordre på én faktura",
+      "nokkelord": [
+        "samlefaktura",
+        "flere ordre",
+        "slå sammen ordre",
+        "sla sammen",
+        "én faktura",
+        "månedsfaktura",
+        "invoice multiple orders"
+      ],
+      "kall": [
+        "GET /order",
+        "PUT /order/:invoiceMultipleOrders"
+      ],
+      "fremgangsmate": "Finn ordrene med GET /order (customerId, isClosed=false, orderDateFrom/To). PUT /order/:invoiceMultipleOrders?id=1,2,3&invoiceDate=yyyy-MM-dd (BETA; id er kommaseparert liste). Ordrene må ha samme kunde, valuta, forfall, mottaker-e-post, attn og SMS-nummer. sendToCustomer default true – sett false om den ikke skal sendes. Kunden kan også ha singleCustomerInvoice=true.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Opprette faktura direkte (med ordre inline) eller mange fakturaer på en gang",
+      "nokkelord": [
+        "opprette faktura",
+        "ny faktura",
+        "lage faktura",
+        "create invoice",
+        "masseutfakturering",
+        "fakturaimport",
+        "mange fakturaer"
+      ],
+      "kall": [
+        "POST /invoice",
+        "POST /invoice/list",
+        "POST /order"
+      ],
+      "fremgangsmate": "POST /invoice med invoiceDate, invoiceDueDate, customer {id} og orders: [ {id} ] (eksisterende ordre) eller et nytt Order-objekt inline med orderLines. Kun én ordre per faktura. sendToCustomer er default true – sett sendToCustomer=false for å bare opprette. comment = fakturatekst for denne fakturaen. POST /invoice/list (BETA) for inntil 100 fakturaer per kall. Returnerer 201 med Invoice.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sende eller sende på nytt en faktura (e-post, EHF, eFaktura, papir)",
+      "nokkelord": [
+        "sende faktura",
+        "send faktura",
+        "sende på nytt",
+        "ehf",
+        "efaktura",
+        "e-post faktura",
+        "papirfaktura",
+        "resend invoice",
+        "elektronisk faktura",
+        "peppol"
+      ],
+      "kall": [
+        "PUT /invoice/{id}/:send",
+        "GET /invoice"
+      ],
+      "fremgangsmate": "Finn faktura-id med GET /invoice (invoiceDateFrom/To + invoiceNumber). PUT /invoice/{id}/:send?sendType=EMAIL|EHF|AVTALEGIRO|EFAKTURA|VIPPS|PAPER|MANUAL; overrideEmailAddress overstyrer mottaker ved EMAIL. EHF krever org.nr. og Peppol-registrert mottaker; eFaktura/AvtaleGiro/Vipps krever avtaler. Handlingen sender eksternt – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Søke fakturaer / fakturajournal for en periode",
+      "nokkelord": [
+        "fakturaliste",
+        "fakturajournal",
+        "utgående fakturaer",
+        "salgsfakturaer",
+        "fakturaer i perioden",
+        "finn faktura",
+        "fakturanummer",
+        "kid",
+        "faktura på kunde",
+        "salgsjournal"
+      ],
+      "kall": [
+        "GET /invoice",
+        "GET /invoice/{id}"
+      ],
+      "fremgangsmate": "GET /invoice krever invoiceDateFrom og invoiceDateTo (To eksklusiv, f.eks. 2026-01-01 til 2026-02-01 for januar). Filtrer med customerId, invoiceNumber, kid, voucherId, status (ALL|OUTSTANDING|CLOSED). fields=id,invoiceNumber,invoiceDate,invoiceDueDate,customer(name),amount,amountExcludingVat,amountOutstanding,isCreditNote,kid. Bare fakturerte (charged) utgående fakturaer returneres – ikke ordre/utkast. Bruk from/count for paging.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Liste ubetalte og forfalte kundefakturaer (utestående kundefordringer)",
+      "nokkelord": [
+        "ubetalte fakturaer",
+        "forfalte fakturaer",
+        "utestående",
+        "utestaende",
+        "kundefordringer",
+        "åpne poster",
+        "apne poster",
+        "kundereskontro",
+        "aldersfordeling",
+        "aging",
+        "hvem skylder",
+        "restanse",
+        "innfordring"
+      ],
+      "kall": [
+        "GET /invoice",
+        "GET /ledger/posting/openPost",
+        "GET /customer"
+      ],
+      "fremgangsmate": "Alternativ A (fakturanivå): GET /invoice?invoiceDateFrom=<langt tilbake>&invoiceDateTo=<i morgen>&status=OUTSTANDING&fields=id,invoiceNumber,customer(name),invoiceDueDate,amount,amountOutstanding,amountOutstandingTotal,isCreditNote og filtrer lokalt på amountOutstanding>0 og invoiceDueDate<i dag. OUTSTANDING er ikke det samme som ubetalt (kreditnotaer er med). amountOutstanding er uten purregebyr; amountOutstandingTotal inkluderer siste purring. Alternativ B (reskontro): GET /ledger/posting/openPost?date=<dato, eksklusiv>&accountNumberFrom=1500&accountNumberTo=1599 (evt. customerId, sorted=false for fart) for åpne poster per kunde på en gitt dato. Aldersfordel (0–30, 31–60, 61–90, >90 dager) på forfallsdato.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Kontoutskrift/reskontro for én kunde",
+      "nokkelord": [
+        "kundereskontro",
+        "kontoutskrift",
+        "saldo kunde",
+        "kundesaldo",
+        "kundehistorikk",
+        "posteringer kunde",
+        "reskontroutskrift",
+        "statement"
+      ],
+      "kall": [
+        "GET /customer",
+        "GET /ledger/posting",
+        "GET /ledger/posting/openPost"
+      ],
+      "fremgangsmate": "Finn customerId. Alle bevegelser: GET /ledger/posting?dateFrom&dateTo (begge påkrevd, To eksklusiv)&customerId=...&accountNumberFrom=1500&accountNumberTo=1599&fields=date,voucher(number),description,amount,invoiceNumber,termOfPayment. Kun åpne poster: GET /ledger/posting/openPost?date=<dato, eksklusiv>&customerId=... (parameteren openPostings på /ledger/posting er utgått – ikke bruk den). Summer amount for saldo; inngående saldo = sum av posteringer før dateFrom.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke om en faktura er betalt (betalingsstatus og innbetalinger)",
+      "nokkelord": [
+        "er faktura betalt",
+        "betalingsstatus",
+        "betalt",
+        "delbetalt",
+        "innbetalt",
+        "restbeløp",
+        "restbelop",
+        "gjenstående",
+        "utestående på faktura",
+        "innbetalinger på faktura",
+        "payment status"
+      ],
+      "kall": [
+        "GET /invoice",
+        "GET /invoice/{id}",
+        "GET /reminder"
+      ],
+      "fremgangsmate": "Finn fakturaen med GET /invoice?invoiceDateFrom&invoiceDateTo&invoiceNumber=... (eller kid=...). Hent GET /invoice/{id}?fields=invoiceNumber,invoiceDueDate,amount,amountCurrency,amountOutstanding,amountOutstandingTotal,sumRemits,isCredited,postings(date,amount,description). amountOutstanding=0 betyr betalt/utlignet (ekskl. purregebyr); amountOutstandingTotal tar med siste purring. isCredited=true betyr at den er kreditert. Purringer: GET /reminder?dateFrom&dateTo&invoiceId=...",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Laste ned faktura som PDF",
+      "nokkelord": [
+        "faktura pdf",
+        "last ned faktura",
+        "fakturakopi",
+        "kopi av faktura",
+        "skrive ut faktura",
+        "invoice pdf"
+      ],
+      "kall": [
+        "GET /invoice/{invoiceId}/pdf",
+        "GET /invoice"
+      ],
+      "fremgangsmate": "Finn id via GET /invoice (invoiceNumber + datoperiode). GET /invoice/{invoiceId}/pdf returnerer binær PDF (application/pdf/octet-stream) – lagre til fil, ikke skriv ut som tekst. download=true (default) gir vedlegg.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Kreditere en faktura (lage kreditnota)",
+      "nokkelord": [
+        "kreditnota",
+        "kreditere",
+        "kreditere faktura",
+        "annullere faktura",
+        "tilbakeføre faktura",
+        "credit note",
+        "feil faktura",
+        "reversere faktura"
+      ],
+      "kall": [
+        "GET /invoice",
+        "PUT /invoice/{id}/:createCreditNote",
+        "PUT /order/{id}/:invoice"
+      ],
+      "fremgangsmate": "Full kreditering: PUT /invoice/{id}/:createCreditNote?date=yyyy-MM-dd (påkrevd), comment, sendToCustomer (default true – sett false for ikke å sende), sendType, creditNoteEmail (hvis kundens sendemåte er e-post og feltet er tomt, sendes ikke kreditnotaen). Hele fakturaen nulles ut. Delkreditering: lag ny ordre med negative linjer og fakturer med PUT /order/{id}/:invoice?invoiceIdIfIsCreditNote=<opprinnelig faktura-id>. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere innbetaling på kundefaktura",
+      "nokkelord": [
+        "registrere betaling",
+        "innbetaling",
+        "betalt faktura",
+        "merke som betalt",
+        "delbetaling",
+        "innbetaling kunde",
+        "payment",
+        "avstemme innbetaling",
+        "kid-innbetaling"
+      ],
+      "kall": [
+        "GET /invoice",
+        "GET /invoice/paymentType",
+        "GET /invoice/paymentType/{id}",
+        "PUT /invoice/{id}/:payment"
+      ],
+      "fremgangsmate": "1) Finn fakturaen: GET /invoice med kid eller invoiceNumber (+ invoiceDateFrom/To). 2) Finn betalingstype: GET /invoice/paymentType?fields=id,description,debitAccount(number) (f.eks. bankkonto 1920). 3) PUT /invoice/{id}/:payment?paymentDate=yyyy-MM-dd&paymentTypeId=..&paidAmount=.. (alle påkrevd). paidAmount er i valutaen til betalingstypens konto; for fakturaer i fremmed valuta må paidAmountCurrency (fakturavaluta) også angis. Delbetaling = lavere beløp. Bokfører innbetalingsbilag automatisk – krever bekreftelse. NB: dersom banktransaksjonen også avstemmes i bankavstemming, unngå dobbel føring.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sende purring, betalingspåminnelse eller inkassovarsel",
+      "nokkelord": [
+        "purring",
+        "purre",
+        "sende purring",
+        "betalingspåminnelse",
+        "påminnelse",
+        "inkassovarsel",
+        "varsel om inkasso",
+        "inkasso",
+        "purregebyr",
+        "forsinkelsesrente",
+        "soft reminder",
+        "dunning"
+      ],
+      "kall": [
+        "GET /invoice",
+        "PUT /invoice/{id}/:createReminder",
+        "GET /reminder"
+      ],
+      "fremgangsmate": "Finn forfalte fakturaer (se oppgave om ubetalte fakturaer) og sjekk tidligere purringer med GET /reminder?dateFrom&dateTo&invoiceId=... PUT /invoice/{id}/:createReminder?type=SOFT_REMINDER|REMINDER|NOTICE_OF_DEBT_COLLECTION&date=yyyy-MM-dd (begge påkrevd; enum inneholder også DEBT_COLLECTION, men endepunktet oppgir kun de tre første som støttet). includeCharge=true (purregebyr) og includeInterest=true (forsinkelsesrente) må settes eksplisitt. dispatchType (EMAIL|OWN_PRINTER|SMS|NETS_PRINT|SFTP|API) eller dispatchTypes (kommaseparert); NETS_PRINT kun med NOTICE_OF_DEBT_COLLECTION, SMS/NETS_PRINT må være aktivert; smsNumber må være norsk nummer. email/address/postalCode/city overstyrer mottaker. Sender eksternt – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se hvilke purringer som er sendt og laste ned purre-PDF",
+      "nokkelord": [
+        "purringer sendt",
+        "purrehistorikk",
+        "purreliste",
+        "purre pdf",
+        "inkassovarsel sendt",
+        "reminder list",
+        "purregebyr oversikt"
+      ],
+      "kall": [
+        "GET /reminder",
+        "GET /reminder/{id}",
+        "GET /reminder/{reminderId}/pdf"
+      ],
+      "fremgangsmate": "GET /reminder krever dateFrom og dateTo (To eksklusiv); filtrer med invoiceId, customerId, termOfPaymentFrom/To. fields=id,invoiceId,reminderDate,type,charge,interests,totalAmountCurrency,termOfPayment. GET /reminder/{id} for detaljer og GET /reminder/{reminderId}/pdf for PDF (binær).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Lese fakturamerknad / avtalt betalingsutsettelse på faktura",
+      "nokkelord": [
+        "fakturamerknad",
+        "merknad på faktura",
+        "betalingsutsettelse",
+        "utsatt purring",
+        "purrestopp",
+        "betalingsavtale",
+        "notat faktura",
+        "purrepause"
+      ],
+      "kall": [
+        "GET /invoice/{id}",
+        "GET /invoiceRemark/{id}"
+      ],
+      "fremgangsmate": "GET /invoice/{id}?fields=id,invoiceNumber,invoiceRemark(id,description,postponeRemindersTo) og evt. GET /invoiceRemark/{id}. Ny merknad kan kun settes via invoiceRemark {description, postponeRemindersTo} i body ved POST /invoice – det finnes ikke eget skrive-endepunkt for invoiceRemark. invoiceRemarks (streng) er utgått.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sette opp abonnement / repeterende fakturering",
+      "nokkelord": [
+        "abonnement",
+        "repeterende faktura",
+        "gjentakende faktura",
+        "fast månedlig faktura",
+        "periodisk fakturering",
+        "abonnementsfakturering",
+        "subscription",
+        "løpende avtale",
+        "husleiefaktura",
+        "serviceavtale"
+      ],
+      "kall": [
+        "POST /order",
+        "PUT /order/{id}/:approveSubscriptionInvoice",
+        "PUT /order/{id}/:unApproveSubscriptionInvoice",
+        "GET /order",
+        "PUT /order/{id}"
+      ],
+      "fremgangsmate": "1) POST /order med isSubscription=true, subscriptionDuration + subscriptionDurationType (MONTHS|YEAR), subscriptionPeriodsOnInvoice, subscriptionInvoicingTimeInAdvanceOrArrears (ADVANCE|ARREARS), subscriptionInvoicingTime + subscriptionInvoicingTimeType (DAYS|MONTHS), isSubscriptionAutoInvoicing=true for automatisk fakturering, samt orderLines. 2) Godkjenn: PUT /order/{id}/:approveSubscriptionInvoice?invoiceDate=yyyy-MM-dd (påkrevd). 3) Stopp/endre: PUT /order/{id}/:unApproveSubscriptionInvoice, deretter PUT /order/{id}. List abonnement med GET /order?isSubscription=true (orderDateFrom/To påkrevd).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Ordrebekreftelse, pakkseddel og forhåndsvisning av faktura (PDF/e-post)",
+      "nokkelord": [
+        "ordrebekreftelse",
+        "pakkseddel",
+        "følgeseddel",
+        "folgeseddel",
+        "forhåndsvisning faktura",
+        "fakturautkast",
+        "sende ordrebekreftelse",
+        "proforma",
+        "order confirmation",
+        "packing note"
+      ],
+      "kall": [
+        "GET /order/orderConfirmation/{orderId}/pdf",
+        "PUT /order/sendOrderConfirmation/{orderId}",
+        "GET /order/packingNote/{orderId}/pdf",
+        "PUT /order/sendPackingNote/{orderId}",
+        "PUT /order/sendInvoicePreview/{orderId}"
+      ],
+      "fremgangsmate": "PDF: GET /order/orderConfirmation/{orderId}/pdf (includeAttachments) og GET /order/packingNote/{orderId}/pdf (type=ALL_ORDER_LINES|STOCK_ITEMS_ONLY). Sende på e-post: PUT /order/sendOrderConfirmation/{orderId}, PUT /order/sendPackingNote/{orderId} eller PUT /order/sendInvoicePreview/{orderId} med email, message, saveAsDefault (lagrer e-posten som standard på kunden). Sending går til kunden – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Legge ved dokument på ordre/faktura",
+      "nokkelord": [
+        "vedlegg",
+        "legge ved",
+        "vedlegg faktura",
+        "vedlegg ordre",
+        "timeliste vedlegg",
+        "attach",
+        "dokument til kunde",
+        "kundearkiv"
+      ],
+      "kall": [
+        "PUT /order/{id}/:attach",
+        "POST /documentArchive/customer/{id}",
+        "GET /documentArchive/customer/{id}"
+      ],
+      "fremgangsmate": "PUT /order/{id}/:attach som multipart/form-data med feltet file. addToInvoiceMode=NONE|NEXT|ALL (default NEXT = kun neste faktura; ALL for abonnement) og addToOrderMode=NONE|NEXT|ALL (default NONE) styrer om vedlegget følger faktura/ordrebekreftelse. Dokumenter som bare skal arkiveres på kunden: POST /documentArchive/customer/{id} (BETA), list med GET /documentArchive/customer/{id}.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Plukke/avplukke ordrelinjer (lager/logistikk)",
+      "nokkelord": [
+        "plukke",
+        "plukk",
+        "plukkliste",
+        "avplukke",
+        "lagerplukk",
+        "levere vare",
+        "pick",
+        "unpick",
+        "lagerlokasjon"
+      ],
+      "kall": [
+        "PUT /order/orderline/{id}/:pickLine",
+        "PUT /order/orderline/{id}/:unpickLine",
+        "GET /order/orderline/{id}"
+      ],
+      "fremgangsmate": "PUT /order/orderline/{id}/:pickLine (valgfritt inventoryId, inventoryLocationId, pickDate – standardlager og dagens dato brukes ellers). Angre med PUT /order/orderline/{id}/:unpickLine. BETA og kun for kunder med Logistikk og aktivert disponibel beholdning – ellers feil/403.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se rabattavtaler for kunde eller produkt",
+      "nokkelord": [
+        "rabatt",
+        "kunderabatt",
+        "rabattavtale",
+        "prisavtale",
+        "nettopris",
+        "varegrupperabatt",
+        "discount"
+      ],
+      "kall": [
+        "GET /discountPolicy",
+        "GET /discountPolicy/{id}",
+        "GET /customer/{id}"
+      ],
+      "fremgangsmate": "GET /discountPolicy?customerId=...(evt. productId, productGroupId, query, activeProducts) – BETA og kun Logistikk Basis/grossistintegrasjon. Felter: discountType (CUSTOMER_DISCOUNT|PRODUCT_DISCOUNT|PRODUCT_GROUP_DISCOUNT), percentage, fixedAmount, salesPriceWithDiscount. Generell kunderabatt ligger ellers i customer.discountPercentage (GET /customer/{id}?fields=discountPercentage) og rabatt per linje i orderLine.discount.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente prosjektfakturadetaljer (honorar, timer, utlegg, a konto)",
+      "nokkelord": [
+        "prosjektfaktura",
+        "fakturadetaljer prosjekt",
+        "honorar",
+        "fakturerte timer",
+        "viderefakturering",
+        "utlegg",
+        "fakturert på prosjekt",
+        "a konto saldo"
+      ],
+      "kall": [
+        "GET /invoice/details",
+        "GET /invoice/details/{id}",
+        "GET /project/{id}/period/invoiced",
+        "GET /invoice/{id}"
+      ],
+      "fremgangsmate": "GET /invoice/details krever invoiceDateFrom og invoiceDateTo (To eksklusiv); gir ProjectInvoiceDetails per prosjekt/faktura med feeAmount, markupAmount, amountOrderLinesAndReinvoicing, amountTravelReportsAndExpenses, onAccountBalanceAmount. Per faktura: GET /invoice/{id}?fields=projectInvoiceDetails(*). Fakturert per prosjekt og periode: GET /project/{id}/period/invoiced?dateFrom&dateTo.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Omsetning/salg per kunde i en periode",
+      "nokkelord": [
+        "omsetning per kunde",
+        "salg per kunde",
+        "kundeomsetning",
+        "salgsrapport",
+        "topp kunder",
+        "største kunder",
+        "fakturert beløp",
+        "salgsstatistikk"
+      ],
+      "kall": [
+        "GET /invoice",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "Enklest: GET /invoice?invoiceDateFrom&invoiceDateTo&fields=customer(id,name),amountExcludingVat,isCreditNote og summer amountExcludingVat per kunde lokalt (kreditnotaer har negative beløp). Reskontrobasert (inkl. MVA): GET /ledger/posting?dateFrom&dateTo&type=OUTGOING_INVOICE_CUSTOMER_POSTING&fields=amount,customer(id,name). Regnskapsmessig inntekt totalt: GET /ledger/posting?dateFrom&dateTo&accountNumberFrom=3000&accountNumberTo=3999&fields=amount (inntekt er negativ/kredit; kunde er ikke alltid satt på inntektsposteringene). Page med from/count (default 1000).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Se CRM-prospekter / salgsmuligheter",
+      "nokkelord": [
+        "prospekt",
+        "salgsmulighet",
+        "lead",
+        "crm",
+        "pipeline",
+        "potensielle kunder",
+        "tapt salg",
+        "konkurrent"
+      ],
+      "kall": [
+        "GET /crm/prospect",
+        "GET /crm/prospect/{id}"
+      ],
+      "fremgangsmate": "GET /crm/prospect med filtre name, description, customerId, salesEmployeeId, isClosed, closedReason, createdDateFrom/To, closedDateFrom/To, competitor, prospectType, projectId, projectOfferId. Detaljer: GET /crm/prospect/{id}. Endepunktene er DEPRECATED og kun lesing – ingen oppretting via API. GDPR: vis ikke navn på selgere (bruk initialer/«ansatt 1»).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Avskrive tap på kundefordring (konstatert tap)",
+      "nokkelord": [
+        "tap på fordringer",
+        "tap pa fordringer",
+        "konstatert tap",
+        "avskrive faktura",
+        "avskrive kundefordring",
+        "nedskrivning kundefordring",
+        "uerholdelig",
+        "7830",
+        "bad debt",
+        "write off"
+      ],
+      "kall": [
+        "GET /invoice",
+        "GET /invoice/paymentType",
+        "PUT /invoice/{id}/:payment",
+        "GET /ledger/account",
+        "POST /ledger/voucher",
+        "GET /ledger/posting/openPost"
+      ],
+      "fremgangsmate": "Ingen eget avskrivningsendepunkt. 1) Finn fakturaen og amountOutstanding (GET /invoice). 2a) Finnes det en betalingstype mot tapskonto (GET /invoice/paymentType?fields=id,description,debitAccount(number)), kan restbeløpet registreres med PUT /invoice/{id}/:payment (paymentDate, paymentTypeId, paidAmount) – fakturaen blir da utlignet. 2b) Ellers manuelt bilag: POST /ledger/voucher med postering debet tapskonto (f.eks. 7830, finn id via GET /ledger/account?number=7830) og kredit kundefordring 1500 med customer {id} (og evt. MVA-korreksjon for konstatert tap). Kontroller etterpå med GET /ledger/posting/openPost?customerId=...; manuelt bilag utligner ikke nødvendigvis fakturaen i fakturaoversikten. Skrivende – krever bekreftelse; vurder regnskapsmessig/MVA-behandling med ansvarlig regnskapsfører.",
+      "skrivende": true
+    }
+  ],
+  "fallgruver": [
+    "Påkrevde datoperioder: GET /invoice og GET /invoice/details (invoiceDateFrom/invoiceDateTo), GET /order (orderDateFrom/orderDateTo), GET /reminder (dateFrom/dateTo), GET /ledger/posting (dateFrom/dateTo), GET /ledger/posting/openPost (date), GET /project/{id}/period/invoiced (dateFrom/dateTo). Til-datoen er EKSKLUSIV (januar = 2026-01-01 til 2026-02-01); format yyyy-MM-dd.",
+    "sendToCustomer er default TRUE på POST /invoice, POST /invoice/list, PUT /order/{id}/:invoice, PUT /order/:invoiceMultipleOrders og PUT /invoice/{id}/:createCreditNote – sett sendToCustomer=false hvis fakturaen/kreditnotaen ikke skal sendes til kunden med en gang.",
+    "Handlingsendepunkter med kolon (PUT /invoice/{id}/:send, :payment, :createCreditNote, :createReminder, PUT /order/{id}/:invoice, :approveSubscriptionInvoice, :attach, PUT /order/:invoiceMultipleOrders) tar parametere som query-parametere, ikke JSON-body (unntak: :attach er multipart med file).",
+    "GET /invoice returnerer bare fakturerte (charged) utgående fakturaer – ikke ordre/fakturautkast. status=OUTSTANDING er ikke det samme som ubetalt (inkluderer kreditnotaer); bruk amountOutstanding > 0.",
+    "Innbetaling: paymentTypeId må komme fra GET /invoice/paymentType (ikke /ledger/paymentTypeOut eller /travelExpense/paymentType). paidAmount er i valutaen til betalingstypens konto; paidAmountCurrency kreves for fakturaer i fremmed valuta. Ved forhåndsbetaling må både paymentTypeId og paidAmount angis.",
+    "Kun én ordre per faktura via POST /invoice; flere ordre krever PUT /order/:invoiceMultipleOrders (BETA) og at ordrene har samme kunde, valuta, forfall, mottaker-e-post, attn og SMS-nummer.",
+    "Faktura kan ikke opprettes før selskapet har registrert bankkontonummer (feilmelding om bankkonto) – sjekk i selskapsoppsettet.",
+    "Purring: type og date er påkrevd; NETS_PRINT kun sammen med NOTICE_OF_DEBT_COLLECTION; SMS og NETS_PRINT må aktiveres i Tripletex først. includeCharge/includeInterest er default false (ingen gebyr/rente).",
+    "Kreditnota via :createCreditNote nuller hele fakturaen. Hvis kundens sendemåte er e-post og creditNoteEmail er tom, blir kreditnotaen ikke sendt. Delkreditering gjøres med ny ordre (negative linjer) + PUT /order/{id}/:invoice?invoiceIdIfIsCreditNote=<id>.",
+    "PUT /order/{id} med updateLinesAndGroups=true sletter ordrelinjer/grupper som ikke er med i listen. Fakturerte ordrelinjer kan ikke endres – krediter i stedet.",
+    "PUT-endepunkter krever id og version i body; utdatert version gir konflikt (409) – hent objektet på nytt først.",
+    "DELETE /customer/{id} er BETA og feiler normalt for kunder med transaksjoner – sett isInactive=true i stedet.",
+    "BETA-endepunkter (customer/list, invoice/list, order/list, invoiceMultipleOrders, orderGroup POST/PUT, orderline PUT/DELETE, pickLine/unpickLine, orderLineTemplate, discountPolicy) kan endre seg. /crm/prospect er DEPRECATED og kun lesing.",
+    "Moduler: discountPolicy krever Logistikk Basis/grossistintegrasjon; pickLine/unpickLine krever Logistikk med disponibel beholdning; eFaktura/AvtaleGiro/Vipps/SMS/Nets-print krever egne avtaler; EHF krever at mottaker har org.nr. og er i Peppol-registeret. 403 betyr som regel manglende modul/tilgang for brukeren/tokenet, ikke feil i kallet.",
+    "Ingen POST for leveringsadresse eller fakturamerknad: deliveryAddress opprettes via kunde/ordre, invoiceRemark settes i body ved POST /invoice. invoiceRemarks (streng) og ehfSendStatus er utgått.",
+    "PDF-endepunkter (/invoice/{invoiceId}/pdf, /reminder/{reminderId}/pdf, /order/orderConfirmation/{orderId}/pdf, /order/packingNote/{orderId}/pdf) returnerer binærdata – lagre som fil.",
+    "Kundefordringer ligger på reskontrokonto 1500 (customer.ledgerAccount kan overstyre); bruk accountNumberFrom/To=1500–1599 med /ledger/posting og /ledger/posting/openPost for kundereskontro.",
+    "GDPR: kunder med isPrivateIndividual=true og kontaktpersoner (/contact) er personopplysninger – bruk fields= minimalt (id,name) og vis ikke e-post, telefon eller adresse i svar.",
+    "Alle skrivende kall (opprette/endre kunde, ordre, faktura, sende, kreditere, registrere betaling, purre) krever eksplisitt bekreftelse fra brukeren og angitt klient før de kjøres.",
+    "Listeendepunkter har count=1000 som standard – page med from/count og sjekk fullResultSize i svaret ved store kunderegistre/fakturavolum.",
+    "GET /customer har isInactive=false som standard: deaktiverte kunder skjules. Send isInactive=true for å finne dem (f.eks. ved duplikatsjekk før ny kunde).",
+    "Invoice.amountOutstanding er utestående uten purregebyr; amountOutstandingTotal inkluderer siste purring og remitteringer. status=OUTSTANDING speiler «utestående»-gruppen i fakturaoversikten og tar med kreditnotaer.",
+    "PUT /invoice/{id}/:payment: paidAmount er i valutaen til betalingstypens konto, mens paidAmount ved forhåndsbetaling på PUT /order/{id}/:invoice og POST /invoice er i fakturavaluta. Ikke bland de to.",
+    "sendType-enum varierer: :send og PUT /order/{id}/:invoice tar EMAIL|EHF|AVTALEGIRO|EFAKTURA|VIPPS|PAPER|MANUAL; :createCreditNote har i tillegg DIRECT og AUTOINVOICE_*/PEPPOL_*-verdier. createReminder bruker dispatchType, ikke sendType.",
+    "Order.status (NEW, PICKED, INVOICED …) brukes bare for Logistikk-kunder; bruk isClosed og om faktura finnes for å vurdere om en ordre er fakturert. createBackorder/createBackorders er pilot-/logistikkfunksjonalitet.",
+    "GET /ledger/posting-parameteren openPostings er utgått – bruk GET /ledger/posting/openPost for åpne poster. orderLineIds/OrderLineIds som query-parameter på /order/orderGroup er også utgått – legg orderLines i body."
+  ]
+}

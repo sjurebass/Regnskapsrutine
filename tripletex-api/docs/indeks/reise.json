@@ -1,0 +1,1053 @@
+{
+  "group": "reise",
+  "tags": [
+    {
+      "tag": "travelExpense",
+      "beskrivelse": "Hovedobjektet for reiseregninger og ansattutlegg: søke, opprette, endre, slette, levere, godkjenne, kopiere, konvertere, bokføre (lage bilag) og håndtere vedlegg/kvitteringer.",
+      "nokkelord": [
+        "reiseregning",
+        "reiseregninger",
+        "ansattutlegg",
+        "utlegg",
+        "reiserefusjon",
+        "levere reiseregning",
+        "godkjenne reiseregning",
+        "attestere",
+        "attestasjon",
+        "bokføre reiseregning",
+        "bokfore",
+        "kvittering",
+        "vedlegg",
+        "reiseforskudd",
+        "viderefakturering",
+        "travel expense",
+        "employee expense",
+        "skyldig reiseregning",
+        "ansattreskontro",
+        "reiserekning",
+        "reisebilag",
+        "refusjon ansatt",
+        "utleggsrefusjon",
+        "reiseutlegg",
+        "expense report"
+      ]
+    },
+    {
+      "tag": "travelExpense/cost",
+      "beskrivelse": "Kostnadslinjer (utgifter med kvittering) på en reiseregning eller et utlegg, f.eks. hotell, fly, tog, taxi, parkering, bompenger og representasjon.",
+      "nokkelord": [
+        "kostnad",
+        "kostnader",
+        "utgift",
+        "utgifter",
+        "utleggslinje",
+        "hotell",
+        "fly",
+        "flybillett",
+        "tog",
+        "taxi",
+        "drosje",
+        "parkering",
+        "bompenger",
+        "representasjon",
+        "mva på utlegg",
+        "reisekostnad",
+        "legitimerte utgifter",
+        "cost",
+        "expense line",
+        "viderefakturer kostnad",
+        "valuta kvittering",
+        "bomring",
+        "utleggskvittering"
+      ]
+    },
+    {
+      "tag": "travelExpense/costParticipant",
+      "beskrivelse": "Deltakere knyttet til en kostnadslinje, typisk for representasjon og bevertning der det kreves oversikt over hvem som deltok.",
+      "nokkelord": [
+        "deltaker",
+        "deltakere",
+        "deltagere",
+        "representasjon",
+        "bevertning",
+        "kundemiddag",
+        "forretningsmiddag",
+        "middag",
+        "gjester",
+        "internt arrangement",
+        "participant",
+        "cost participant",
+        "representasjonsutgifter"
+      ]
+    },
+    {
+      "tag": "travelExpense/drivingStop",
+      "beskrivelse": "Stopp og delstrekninger (rute med koordinater) på en kjøregodtgjørelse, for dokumentasjon av kjøreruten.",
+      "nokkelord": [
+        "kjørerute",
+        "kjorerute",
+        "rute",
+        "stopp",
+        "delstrekning",
+        "via",
+        "mellomstopp",
+        "kjørebok",
+        "kjorebok",
+        "strekning",
+        "driving stop",
+        "waypoint",
+        "koordinater"
+      ]
+    },
+    {
+      "tag": "travelExpense/mileageAllowance",
+      "beskrivelse": "Kjøregodtgjørelse (kilometergodtgjørelse/bilgodtgjørelse) på reiseregning med km, strekning, sats, firmabil, passasjer-/tilhengertillegg og bompenger.",
+      "nokkelord": [
+        "kjøregodtgjørelse",
+        "kjoregodtgjorelse",
+        "kilometergodtgjørelse",
+        "kilometergodtgjorelse",
+        "km-godtgjørelse",
+        "km godtgjørelse",
+        "bilgodtgjørelse",
+        "bilgodtgjorelse",
+        "kjøring",
+        "egen bil",
+        "privatbil",
+        "firmabil",
+        "elbil",
+        "kjørebok",
+        "statens sats",
+        "trekkfri bilgodtgjørelse",
+        "tilhengertillegg",
+        "bompenger",
+        "mileage",
+        "mileage allowance",
+        "km godtgjorelse",
+        "km-godtgjorelse",
+        "kjørte kilometer"
+      ]
+    },
+    {
+      "tag": "travelExpense/passenger",
+      "beskrivelse": "Passasjerer på en kjøregodtgjørelse, som gir grunnlag for passasjertillegg.",
+      "nokkelord": [
+        "passasjer",
+        "passasjerer",
+        "passasjertillegg",
+        "samkjøring",
+        "samkjoring",
+        "medpassasjer",
+        "kollega i bilen",
+        "passenger",
+        "passenger supplement"
+      ]
+    },
+    {
+      "tag": "travelExpense/perDiemCompensation",
+      "beskrivelse": "Diett/kostgodtgjørelse på reiseregning, innland og utland, med antall døgn, overnattingstype, land/sone og måltidstrekk.",
+      "nokkelord": [
+        "diett",
+        "diett innland",
+        "utenlandsdiett",
+        "kostgodtgjørelse",
+        "kostgodtgjorelse",
+        "per diem",
+        "døgndiett",
+        "dagsdiett",
+        "dagsreise",
+        "overnattingsreise",
+        "måltidstrekk",
+        "maltidstrekk",
+        "frokosttrekk",
+        "lunsjtrekk",
+        "middagstrekk",
+        "statens satser",
+        "særavtalen",
+        "saeravtalen",
+        "trekkfri diett",
+        "trekkpliktig diett",
+        "reisedøgn",
+        "dietter",
+        "diettgodtgjørelse",
+        "diettgodtgjorelse",
+        "reisediett"
+      ]
+    },
+    {
+      "tag": "travelExpense/accommodationAllowance",
+      "beskrivelse": "Nattillegg/overnattingsgodtgjørelse for ulegitimert overnatting (uten hotellkvittering) på reiseregning.",
+      "nokkelord": [
+        "nattillegg",
+        "natt tillegg",
+        "ulegitimert overnatting",
+        "overnattingsgodtgjørelse",
+        "overnattingsgodtgjorelse",
+        "privat overnatting",
+        "overnatting uten kvittering",
+        "overnatting",
+        "brakke",
+        "pendlerbolig",
+        "accommodation allowance",
+        "trekkfritt nattillegg",
+        "nattilegg",
+        "nattillegg utland",
+        "overnatting privat"
+      ]
+    },
+    {
+      "tag": "travelExpense/rate",
+      "beskrivelse": "Konkrete satser (beløp per døgn/km/natt og måltidstrekksatser) knyttet til en satskategori og sone, gyldige i en periode.",
+      "nokkelord": [
+        "sats",
+        "satser",
+        "statens satser",
+        "diettsats",
+        "kilometersats",
+        "km-sats",
+        "nattilleggssats",
+        "måltidstrekk sats",
+        "frokosttrekk",
+        "skattefri sats",
+        "rate",
+        "travel rate",
+        "årets satser",
+        "arets satser",
+        "diettsats 2026",
+        "kilometersats elbil",
+        "satser utland"
+      ]
+    },
+    {
+      "tag": "travelExpense/rateCategory",
+      "beskrivelse": "Satskategorier for diett, nattillegg og kjøregodtgjørelse, med gyldighetsperiode, krav (sone/overnatting) og kobling til lønnsart og a-meldingskode.",
+      "nokkelord": [
+        "satskategori",
+        "satstype",
+        "diettkategori",
+        "a-meldingskode",
+        "trekkfri",
+        "trekkpliktig",
+        "dagsreise",
+        "rate category",
+        "wage code",
+        "per diem category",
+        "mileage category",
+        "a-melding reise",
+        "amelding reise",
+        "lønnsart reise",
+        "lonnsart reise",
+        "lønnsart diett",
+        "innberetning diett",
+        "lønnskode reise"
+      ]
+    },
+    {
+      "tag": "travelExpense/rateCategoryGroup",
+      "beskrivelse": "Grupper av satskategorier (f.eks. innenlands/utenlands for et gitt år/periode) som brukes for å finne riktige satser for reisen.",
+      "nokkelord": [
+        "satsgruppe",
+        "satsgrupper",
+        "innenlands",
+        "utenlands",
+        "innland",
+        "utland",
+        "satsår",
+        "særavtale",
+        "statens reiseregulativ",
+        "rate category group",
+        "foreign travel"
+      ]
+    },
+    {
+      "tag": "travelExpense/costCategory",
+      "beskrivelse": "Kostnadskategorier (utgiftstyper) for kostnadslinjer, med tilknyttet konto og mva-kode som styrer konteringen.",
+      "nokkelord": [
+        "kostnadskategori",
+        "utgiftstype",
+        "utgiftskategori",
+        "kontering",
+        "kostnadskonto",
+        "bevertning",
+        "cost category",
+        "expense category",
+        "konto for utlegg",
+        "mva-kode utlegg",
+        "kostnadstype reise"
+      ]
+    },
+    {
+      "tag": "travelExpense/paymentType",
+      "beskrivelse": "Betalingstyper for kostnadslinjer (f.eks. betalt privat av ansatt eller med firmakort), med motkonto som styrer om beløpet skal refunderes.",
+      "nokkelord": [
+        "betalingstype",
+        "betalingsmåte",
+        "betalingsmate",
+        "betalt privat",
+        "privat utlegg",
+        "firmakort",
+        "kredittkort",
+        "firmakredittkort",
+        "bedriftskort",
+        "motkonto",
+        "payment type",
+        "company card",
+        "refusjon til ansatt",
+        "skyldig ansatt",
+        "betalt med firmakort"
+      ]
+    },
+    {
+      "tag": "travelExpense/settings",
+      "beskrivelse": "Selskapets oppsett for reiseregninger: bruk av satser, godkjenningskrav, skattefrie satser og om diett/nattillegg/km skal kompenseres.",
+      "nokkelord": [
+        "reiseregning oppsett",
+        "godkjenningsflyt",
+        "godkjenning påkrevd",
+        "godkjenne egne",
+        "skattefrie satser",
+        "skattefri",
+        "bruk satser",
+        "travel settings",
+        "innstillinger reiseregning",
+        "reiseregningsinnstillinger",
+        "travel expense settings",
+        "kan godkjenne egne utlegg"
+      ]
+    },
+    {
+      "tag": "travelExpense/zone",
+      "beskrivelse": "Soner/land for utenlandsreiser (landkode, sonenavn, valuta, gyldighet) som styrer hvilke utenlandssatser som gjelder.",
+      "nokkelord": [
+        "sone",
+        "soner",
+        "landkode",
+        "utenlandsreise",
+        "utland",
+        "utenlands",
+        "utenlandssats",
+        "reisemål",
+        "reisemal",
+        "statens satser utland",
+        "zone",
+        "country code",
+        "land diett",
+        "landsats",
+        "utenlandssone"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Liste reiseregninger og utlegg for en periode, ansatt, prosjekt eller avdeling (inkl. sum reisekostnader)",
+      "nokkelord": [
+        "liste reiseregninger",
+        "søk reiseregning",
+        "sok reiseregning",
+        "oversikt reiseregninger",
+        "utlegg i perioden",
+        "reiseregninger per ansatt",
+        "reiseregninger på prosjekt",
+        "reiseregninger avdeling",
+        "travel expenses list",
+        "reisekostnader prosjekt",
+        "reisekostnader avdeling",
+        "sum reiseregninger",
+        "reiseutgifter i år",
+        "kostnader per prosjekt",
+        "rapport reise",
+        "fakturerbare reisekostnader"
+      ],
+      "kall": [
+        "GET /travelExpense",
+        "GET /project",
+        "GET /department",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "GET /travelExpense med filtre employeeId, departmentId, projectId, projectManagerId, departureDateFrom (fra og med) og returnDateTo (til og UTEN), og evt. state (ALL|OPEN|DELIVERED|APPROVED|REJECTED|SALARY_PAID). Ingen påkrevde parametere, men avgrens alltid. Bruk minimal fields=, f.eks. fields=id,number,title,state,amount,paymentAmount,date,travelDetails(departureDate,returnDate,destination,isForeignTravel),project(id,number),department(id). Utlegg har ikke travelDetails. Unngå employee(*) – bruk employee(id) og vis 'ansatt 1/2' i svar (GDPR). Paginer med from/count. Rapport per prosjekt/avdeling: finn id med GET /project?number=.. / GET /department?name=.., hent med projectId/departmentId og state=ALL, legg til fields amount,chargeableAmount,paymentAmount,isChargeable og summer i koden. For bokførte tall: GET /ledger/posting med dateFrom/dateTo (begge påkrevd) + projectId/departmentId. NB: GET /travelExpense har ikke filter på id-liste, nummer eller bilagsdato – søk på nummer må filtreres i koden. departureDateFrom/returnDateTo gjelder reisedatoene; ansattutlegg har ingen travelDetails og kan falle utenfor datofilteret – hent utlegg uten datofilter og filtrer på feltet date i koden.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente én reiseregning med alle linjer (diett, km, nattillegg, kostnader)",
+      "nokkelord": [
+        "vis reiseregning",
+        "detaljer reiseregning",
+        "hent reiseregning",
+        "innhold reiseregning",
+        "linjer reiseregning",
+        "travel expense details"
+      ],
+      "kall": [
+        "GET /travelExpense/{id}",
+        "GET /travelExpense/cost",
+        "GET /travelExpense/perDiemCompensation",
+        "GET /travelExpense/mileageAllowance",
+        "GET /travelExpense/accommodationAllowance"
+      ],
+      "fremgangsmate": "GET /travelExpense/{id}?fields=id,number,title,state,amount,paymentAmount,travelAdvance,travelDetails(*),perDiemCompensations(*),mileageAllowances(*),accommodationAllowances(*),costs(*),voucher(id,number),project(id,number) henter alt i ett kall. Alternativt søk linjer per type med travelExpenseId=<id> på /cost, /perDiemCompensation, /mileageAllowance og /accommodationAllowance. Begrens persondata med fields= (GDPR).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne reiseregninger som venter på godkjenning eller bokføring",
+      "nokkelord": [
+        "til godkjenning",
+        "venter godkjenning",
+        "levert ikke godkjent",
+        "ikke bokført",
+        "ubehandlede reiseregninger",
+        "attestere",
+        "pending approval",
+        "godkjenningskø"
+      ],
+      "kall": [
+        "GET /travelExpense"
+      ],
+      "fremgangsmate": "Levert, ikke godkjent: GET /travelExpense?state=DELIVERED. Godkjent, men ikke bokført: GET /travelExpense?state=APPROVED&fields=id,number,state,amount,voucher(id),approvedDate og filtrer på voucher tom. Avvist: state=REJECTED (rejectedComment er med i objektet). Kombiner med departureDateFrom/returnDateTo for perioden. Vis kun aggregater/initialer (GDPR).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette ny reiseregning for en ansatt",
+      "nokkelord": [
+        "ny reiseregning",
+        "opprett reiseregning",
+        "registrer reise",
+        "lag reiseregning",
+        "tjenestereise",
+        "reise med overnatting",
+        "dagsreise",
+        "create travel expense"
+      ],
+      "kall": [
+        "GET /employee",
+        "GET /project",
+        "GET /department",
+        "POST /travelExpense"
+      ],
+      "fremgangsmate": "1) Finn ansatt-id: GET /employee?employeeNumber=<nr>&fields=id,employeeNumber (unngå å hente navn/persondata unødig). 2) Evt. GET /project?fields=id,number,name og GET /department?fields=id,name. 3) POST /travelExpense med body {employee:{id}, title, project:{id}, department:{id}, travelDetails:{departureDate:'yyyy-MM-dd', returnDate, departureTime:'HH:mm', returnTime, departureFrom, destination, purpose, isForeignTravel, isDayTrip, isCompensationFromRates:true}, travelAdvance}. Diett/kostnader kan legges inn i samme kall (perDiemCompensations, costs) eller etterpå via egne endepunkter. Kjøregodtgjørelse og nattillegg MÅ legges inn via egne endepunkter (read-only på hovedobjektet). Skrivende – krever brukerens bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere ansattutlegg (utlegg uten reise) med kvittering",
+      "nokkelord": [
+        "ansattutlegg",
+        "utlegg",
+        "registrer utlegg",
+        "refusjon utlegg",
+        "privat betalt",
+        "kjøpt privat",
+        "kjopt privat",
+        "kvittering utlegg",
+        "employee expense",
+        "refundere ansatt"
+      ],
+      "kall": [
+        "GET /travelExpense/costCategory",
+        "GET /travelExpense/paymentType",
+        "POST /travelExpense",
+        "POST /travelExpense/cost",
+        "POST /travelExpense/{travelExpenseId}/attachment"
+      ],
+      "fremgangsmate": "Utlegg er en TravelExpense UTEN travelDetails. 1) GET /travelExpense/costCategory?showOnEmployeeExpenses=true&isInactive=false&fields=id,description,account(number),vatType(id,number) for utgiftstype. 2) GET /travelExpense/paymentType?showOnEmployeeExpenses=true&fields=id,description,account(number) (f.eks. 'betalt privat'). 3) POST /travelExpense {employee:{id}, title} uten travelDetails. 4) POST /travelExpense/cost {travelExpense:{id}, costCategory:{id}, paymentType:{id}, date, amountCurrencyIncVat, currency:{id}, vatType:{id}, comments}. 5) Last opp kvittering: POST /travelExpense/{travelExpenseId}/attachment (multipart, felt 'file'). Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Legge til kostnad (hotell, fly, taxi, parkering) på en reiseregning",
+      "nokkelord": [
+        "legg til kostnad",
+        "hotellkostnad",
+        "flybillett",
+        "taxi",
+        "parkering",
+        "bompenger",
+        "legitimert overnatting",
+        "utgift på reise",
+        "utenlandsk valuta kvittering",
+        "add cost"
+      ],
+      "kall": [
+        "GET /travelExpense/costCategory",
+        "GET /travelExpense/paymentType",
+        "GET /ledger/vatType",
+        "GET /currency",
+        "POST /travelExpense/cost"
+      ],
+      "fremgangsmate": "Finn costCategory (GET /travelExpense/costCategory?description=<tekst>&isInactive=false (description = inneholder; query= er eksakt treff)), paymentType (GET /travelExpense/paymentType) og evt. mva-type (GET /ledger/vatType?number=...) og valuta (GET /currency?code=EUR). POST /travelExpense/cost med {travelExpense:{id}, costCategory:{id}, paymentType:{id}, date, amountCurrencyIncVat (beløp i valuta inkl. mva), currency:{id}, rate (kurs ved valuta), amountNOKInclVAT, vatType:{id}, comments, isChargeable}. Mva-kode styres ofte av kategorien (isVatLocked). Reiseregningen må være OPEN. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre, flytte eller slette kostnadslinjer på reiseregning/utlegg",
+      "nokkelord": [
+        "endre kostnad",
+        "rett beløp",
+        "korriger utgift",
+        "slett kostnad",
+        "fjern kvitteringslinje",
+        "masseoppdater kostnader",
+        "update cost",
+        "delete cost"
+      ],
+      "kall": [
+        "GET /travelExpense/cost",
+        "GET /travelExpense/cost/{id}",
+        "PUT /travelExpense/cost/{id}",
+        "PUT /travelExpense/cost/list",
+        "DELETE /travelExpense/cost/{id}"
+      ],
+      "fremgangsmate": "Finn linjene: GET /travelExpense/cost?travelExpenseId=<id>&fields=id,version,date,amountCurrencyIncVat,amountNOKInclVAT,costCategory(id,description),paymentType(id),vatType(id,number). Filtre: vatTypeId, currencyId, amountFrom/amountTo, rateFrom/rateTo. Oppdater én: PUT /travelExpense/cost/{id} med id+version og endrede felt. Flere samtidig: PUT /travelExpense/cost/list (array av Cost). Slett: DELETE /travelExpense/cost/{id}. Kun mulig mens reiseregningen er OPEN (bruk :undeliver/:unapprove først). Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere deltakere på representasjon/bevertning",
+      "nokkelord": [
+        "deltakere representasjon",
+        "hvem deltok",
+        "kundemiddag deltakere",
+        "bevertning deltakere",
+        "legg til gjester",
+        "participants",
+        "representasjon dokumentasjon"
+      ],
+      "kall": [
+        "POST /travelExpense/costParticipant",
+        "POST /travelExpense/costParticipant/list",
+        "POST /travelExpense/costParticipant/createCostParticipantAdvanced",
+        "GET /travelExpense/costParticipant/{costId}/costParticipants",
+        "GET /travelExpense/costParticipant/{id}",
+        "DELETE /travelExpense/costParticipant/{id}",
+        "DELETE /travelExpense/costParticipant/list"
+      ],
+      "fremgangsmate": "Kostnaden må finnes først (POST /travelExpense/cost). Enkeltdeltaker: POST /travelExpense/costParticipant {cost:{id}, displayName, employeeId (valgfritt)}. Flere: POST /travelExpense/costParticipant/list. Med query-parametere: POST /travelExpense/costParticipant/createCostParticipantAdvanced?costId=..&employeeId=..&displayName=.. (employeeId påkrevd – bruk 0 for eksterne). Les: GET /travelExpense/costParticipant/{costId}/costParticipants. Slett: DELETE /{id} eller DELETE /list (body med objekter). Deltakernavn er persondata – vis ikke fulle navn i svar. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere kjøregodtgjørelse (kilometergodtgjørelse) med egen bil",
+      "nokkelord": [
+        "kjøregodtgjørelse",
+        "kilometergodtgjørelse",
+        "km-godtgjørelse",
+        "bilgodtgjørelse",
+        "kjørte km",
+        "kjøring egen bil",
+        "elbil sats",
+        "firmabil",
+        "bompenger kjøring",
+        "mileage allowance"
+      ],
+      "kall": [
+        "GET /travelExpense/rateCategory",
+        "GET /travelExpense/rate",
+        "POST /travelExpense/mileageAllowance"
+      ],
+      "fremgangsmate": "1) Finn gyldig satskategori for kjøredatoen: GET /travelExpense/rateCategory?type=MILEAGE_ALLOWANCE&dateFrom=<dato>&dateTo=<dato+1>&fields=id,name,fromDate,toDate,ameldingWageCode,wageCodeNumber (velg f.eks. bil/elbil). 2) Evt. GET /travelExpense/rate?rateCategoryId=..&type=MILEAGE_ALLOWANCE&fields=id,rate for sats. 3) POST /travelExpense/mileageAllowance {travelExpense:{id}, rateCategory:{id}, rateType:{id}, date, departureLocation, destination, km, isCompanyCar, vehicleType (default 0), tollCost (Cost for bompenger), autoPass, rushHour}. Rate/amount beregnes normalt fra sats når isCompensationFromRates=true. Kjøregodtgjørelse kan IKKE sendes inn via POST /travelExpense (read-only der). Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente, endre eller slette kjøregodtgjørelse",
+      "nokkelord": [
+        "endre km",
+        "rett kilometer",
+        "slett kjøregodtgjørelse",
+        "søk kjøregodtgjørelse",
+        "km per ansatt",
+        "kjørte kilometer i år",
+        "update mileage"
+      ],
+      "kall": [
+        "GET /travelExpense/mileageAllowance",
+        "GET /travelExpense/mileageAllowance/{id}",
+        "PUT /travelExpense/mileageAllowance/{id}",
+        "DELETE /travelExpense/mileageAllowance/{id}"
+      ],
+      "fremgangsmate": "Søk: GET /travelExpense/mileageAllowance med travelExpenseId, dateFrom/dateTo, kmFrom/kmTo, rateFrom/rateTo, amountFrom/amountTo, departureLocation, destination, isCompanyCar, rateCategoryId; fields=id,version,date,km,rate,amount,departureLocation,destination,travelExpense(id). Summer km/beløp for rapport (aggreger per ansatt-id, ikke navn). Endre: PUT /travelExpense/mileageAllowance/{id} med id+version. Slett: DELETE /{id}. Endring krever at reiseregningen er OPEN. PUT/DELETE er skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Legge til passasjerer (passasjertillegg) og kjørerute/mellomstopp på kjøregodtgjørelse",
+      "nokkelord": [
+        "passasjertillegg",
+        "passasjer",
+        "samkjøring",
+        "kollega med i bilen",
+        "flere i bilen",
+        "passenger supplement",
+        "kjørerute",
+        "mellomstopp",
+        "stopp underveis",
+        "rute",
+        "via",
+        "kjørebok detaljer",
+        "driving stops"
+      ],
+      "kall": [
+        "POST /travelExpense/passenger",
+        "POST /travelExpense/passenger/list",
+        "GET /travelExpense/passenger",
+        "GET /travelExpense/passenger/{id}",
+        "PUT /travelExpense/passenger/{id}",
+        "DELETE /travelExpense/passenger/{id}",
+        "DELETE /travelExpense/passenger/list",
+        "POST /travelExpense/drivingStop",
+        "GET /travelExpense/drivingStop/{id}",
+        "DELETE /travelExpense/drivingStop/{id}"
+      ],
+      "fremgangsmate": "Kjøregodtgjørelsen må finnes (POST /travelExpense/mileageAllowance). POST /travelExpense/passenger {name, mileageAllowance:{id}} (eller /passenger/list for flere). Selve passasjertillegget (og tilhengertillegg) er egne MileageAllowance-linjer koblet i feltene passengerSupplement/trailerSupplement på hovedlinjen; Passenger-objektet dokumenterer hvem som satt på. Søk: GET /travelExpense/passenger?mileageAllowance=<id>. Endre: PUT /{id}. Slett: DELETE /{id} eller DELETE /list. Passasjernavn er persondata – ikke vis i svar. Kjørerute: POST /travelExpense/drivingStop {mileageAllowance:{id}, locationName, latitude, longitude, sortIndex, type}; hent med GET /travelExpense/drivingStop/{id} eller mileageAllowance.drivingStops; ingen søk/PUT – slett (DELETE /{id}) og opprett på nytt. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere diett (kostgodtgjørelse) på innenlandsreise",
+      "nokkelord": [
+        "diett",
+        "kostgodtgjørelse",
+        "diett innland",
+        "døgndiett",
+        "dagsdiett",
+        "reise med overnatting",
+        "hotell diett",
+        "per diem",
+        "diett etter statens satser"
+      ],
+      "kall": [
+        "GET /travelExpense/rateCategoryGroup",
+        "GET /travelExpense/rateCategory",
+        "GET /travelExpense/rate",
+        "POST /travelExpense/perDiemCompensation"
+      ],
+      "fremgangsmate": "1) Satsgruppe for året: GET /travelExpense/rateCategoryGroup?isForeignTravel=false&dateFrom=<avreise>&dateTo=<retur+1>. 2) Satskategori: GET /travelExpense/rateCategory?type=PER_DIEM&isValidDomestic=true&isValidDayTrip=<true/false>&isRequiresOvernightAccommodation=..&dateFrom..&dateTo..&fields=id,name,fromDate,toDate. 3) Evt. sats: GET /travelExpense/rate?rateCategoryId=..&fields=id,rate,breakfastDeductionRate,lunchDeductionRate,dinnerDeductionRate. 4) POST /travelExpense/perDiemCompensation {travelExpense:{id}, rateCategory:{id}, rateType:{id}, overnightAccommodation (NONE|HOTEL|BOARDING_HOUSE_WITHOUT_COOKING|BOARDING_HOUSE_WITH_COOKING), location, count (antall døgn/dager), isDeductionForBreakfast, isDeductionForLunch, isDeductionForDinner}. Reisen må ha travelDetails med avreise/retur-tid. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere utenlandsdiett (diett i utlandet) og finne riktig land/sone",
+      "nokkelord": [
+        "utenlandsdiett",
+        "diett utland",
+        "utenlandsreise",
+        "reise til utlandet",
+        "landkode",
+        "sone",
+        "utenlandssats",
+        "foreign per diem",
+        "hvilken sone",
+        "land reise",
+        "utenlands sone",
+        "soner statens satser",
+        "zone lookup"
+      ],
+      "kall": [
+        "GET /travelExpense/zone",
+        "GET /travelExpense/rateCategoryGroup",
+        "GET /travelExpense/rateCategory",
+        "GET /travelExpense/rate",
+        "POST /travelExpense/perDiemCompensation",
+        "GET /travelExpense/zone/{id}"
+      ],
+      "fremgangsmate": "1) Reisen må ha travelDetails.isForeignTravel=true. 2) Finn sone/land: GET /travelExpense/zone?query=<land> eller code=<ISO-kode>&date=<reisedato>&fields=id,countryCode,zoneName,currencyId. 3) GET /travelExpense/rateCategoryGroup?isForeignTravel=true&dateFrom..&dateTo.. og GET /travelExpense/rateCategory?type=PER_DIEM&requiresZone=true&dateFrom..&dateTo... 4) POST /travelExpense/perDiemCompensation {travelExpense:{id}, rateCategory:{id}, countryCode:'SE', travelExpenseZoneId:<id>, overnightAccommodation, count, location, måltidstrekk-felt}. Sats avhenger av sone og dato. Skrivende – bekreft først. Kun oppslag av sone: GET /travelExpense/zone?query=<land/by>&date=<reisedato>&isDisabled=false&fields=id,countryCode,zoneName,governmentName,continent,currencyId,fromDate,toDate (code= filtrerer på landkode), evt. GET /travelExpense/zone/{id}. Soner er versjonert på dato.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente, endre eller slette diett og måltidstrekk",
+      "nokkelord": [
+        "endre diett",
+        "måltidstrekk",
+        "frokosttrekk",
+        "trekk for frokost",
+        "lunsj dekket",
+        "middag dekket",
+        "slett diett",
+        "søk diett",
+        "diett i perioden"
+      ],
+      "kall": [
+        "GET /travelExpense/perDiemCompensation",
+        "GET /travelExpense/perDiemCompensation/{id}",
+        "PUT /travelExpense/perDiemCompensation/{id}",
+        "DELETE /travelExpense/perDiemCompensation/{id}"
+      ],
+      "fremgangsmate": "Søk: GET /travelExpense/perDiemCompensation med travelExpenseId, rateCategoryId, rateTypeId, overnightAccommodation, countFrom/countTo, amountFrom/amountTo, location, isDeductionForBreakfast, isLunchDeduction, isDinnerDeduction (NB: søkeparameterne heter isLunchDeduction/isDinnerDeduction, mens body-feltene heter isDeductionForLunch/isDeductionForDinner). Endre: PUT /travelExpense/perDiemCompensation/{id} med id+version (f.eks. sette isDeductionForBreakfast=true når hotellfrokost var inkludert). Slett: DELETE /{id}. Kun når reiseregningen er OPEN. PUT/DELETE er skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere, endre eller slette nattillegg for ulegitimert overnatting",
+      "nokkelord": [
+        "nattillegg",
+        "ulegitimert overnatting",
+        "overnatting uten kvittering",
+        "privat overnatting",
+        "overnattet hos venner",
+        "overnattingsgodtgjørelse",
+        "accommodation allowance",
+        "endre nattillegg",
+        "slett nattillegg",
+        "søk nattillegg",
+        "antall netter",
+        "update accommodation allowance"
+      ],
+      "kall": [
+        "GET /travelExpense/rateCategory",
+        "GET /travelExpense/rate",
+        "POST /travelExpense/accommodationAllowance",
+        "GET /travelExpense/accommodationAllowance",
+        "GET /travelExpense/accommodationAllowance/{id}",
+        "PUT /travelExpense/accommodationAllowance/{id}",
+        "DELETE /travelExpense/accommodationAllowance/{id}"
+      ],
+      "fremgangsmate": "1) GET /travelExpense/rateCategory?type=ACCOMMODATION_ALLOWANCE&isValidAccommodation=true&dateFrom..&dateTo..&fields=id,name,fromDate,toDate. 2) Evt. GET /travelExpense/rate?rateCategoryId=..&type=ACCOMMODATION_ALLOWANCE. 3) POST /travelExpense/accommodationAllowance {travelExpense:{id}, rateCategory:{id}, rateType:{id}, zone, location, address, count (antall netter)}. Nattillegg kan IKKE sendes via POST /travelExpense (read-only der). Hotell med kvittering føres som kostnad (/travelExpense/cost), ikke nattillegg. Søk/endre/slette: GET /travelExpense/accommodationAllowance (travelExpenseId, rateCategoryId, rateTypeId, countFrom/countTo, amountFrom/amountTo, location, address), GET /{id}, PUT /{id} med id+version, DELETE /{id} – kun når reiseregningen er OPEN. Adresse kan være persondata – vis ikke. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slå opp gjeldende satser for diett, kjøregodtgjørelse og nattillegg (statens satser)",
+      "nokkelord": [
+        "statens satser",
+        "hva er diettsatsen",
+        "kilometersats i år",
+        "km-sats 2026",
+        "nattilleggssats",
+        "måltidstrekk sats",
+        "satser utland",
+        "satsoversikt",
+        "rates"
+      ],
+      "kall": [
+        "GET /travelExpense/rateCategoryGroup",
+        "GET /travelExpense/rateCategoryGroup/{id}",
+        "GET /travelExpense/rateCategory",
+        "GET /travelExpense/rateCategory/{id}",
+        "GET /travelExpense/rate",
+        "GET /travelExpense/rate/{id}"
+      ],
+      "fremgangsmate": "1) GET /travelExpense/rateCategoryGroup?dateFrom=<åååå-01-01>&dateTo=<åååå+1-01-01>&isForeignTravel=false|true for årets grupper. 2) GET /travelExpense/rateCategory?travelReportRateCategoryGroupId=<id>&type=PER_DIEM|ACCOMMODATION_ALLOWANCE|MILEAGE_ALLOWANCE&fields=id,name,type,fromDate,toDate,isValidDayTrip,isValidDomestic,isValidForeignTravel,isRequiresZone. 3) GET /travelExpense/rate?rateCategoryId=<id>&dateFrom..&dateTo..&fields=id,zone,rate,breakfastDeductionRate,lunchDeductionRate,dinnerDeductionRate. dateTo er alltid 'til og uten'. Satser er versjonert per periode – velg alltid kategori gyldig på reisedatoen.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne lønnsart og a-meldingskode for reisegodtgjørelser (trekkfri/trekkpliktig)",
+      "nokkelord": [
+        "a-melding reise",
+        "lønnsart diett",
+        "trekkpliktig diett",
+        "trekkfri bilgodtgjørelse",
+        "innberetningspliktig",
+        "a-meldingskode",
+        "lønnskode reise",
+        "overskytende diett",
+        "wage code"
+      ],
+      "kall": [
+        "GET /travelExpense/rateCategory",
+        "GET /travelExpense/settings"
+      ],
+      "fremgangsmate": "GET /travelExpense/rateCategory?fields=id,name,type,ameldingWageCode,wageCodeNumber,fromDate,toDate, filtrer evt. med ameldingWageCode (inneholder) eller wageCodeNumber (lik), type og dateFrom/dateTo. Sjekk GET /travelExpense/settings (taxFreePerDiemRates, taxFreeMileageRates) for om selskapet bruker skattefrie satser. Beløp over statens satser blir trekkpliktig og innberettes via lønn/a-melding – se lønnsgruppen for utbetaling.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Laste opp kvitteringer/vedlegg til reiseregning eller utlegg",
+      "nokkelord": [
+        "last opp kvittering",
+        "legg ved kvittering",
+        "vedlegg reiseregning",
+        "bilde av kvittering",
+        "pdf kvittering",
+        "flere kvitteringer",
+        "upload receipt",
+        "attachment"
+      ],
+      "kall": [
+        "POST /travelExpense/{travelExpenseId}/attachment",
+        "POST /travelExpense/{travelExpenseId}/attachment/list"
+      ],
+      "fremgangsmate": "Én fil: POST /travelExpense/{travelExpenseId}/attachment som multipart/form-data med feltet 'file' (PDF/PNG/JPEG). Flere filer: POST /travelExpense/{travelExpenseId}/attachment/list med 'file' som array. createNewCost=true oppretter en ny kostnadslinje per vedlegg (nyttig for utlegg); ellers legges filen til eksisterende vedlegg. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Laste ned eller fjerne vedlegg (evt. sende til bilagsmottak)",
+      "nokkelord": [
+        "last ned kvittering",
+        "hent vedlegg",
+        "pdf reiseregning",
+        "slett vedlegg",
+        "flytt til bilagsmottak",
+        "send til innboks",
+        "del opp vedlegg",
+        "download attachment"
+      ],
+      "kall": [
+        "GET /travelExpense/{travelExpenseId}/attachment",
+        "DELETE /travelExpense/{travelExpenseId}/attachment"
+      ],
+      "fremgangsmate": "Last ned: GET /travelExpense/{travelExpenseId}/attachment (returnerer PDF/binær). Fjern: DELETE /travelExpense/{travelExpenseId}/attachment med version, og sendToInbox=true for å flytte vedlegget til bilagsmottaket i stedet for å slette (split=true deler i ett bilag per side). Vedlegg kan inneholde persondata – ikke del filene. DELETE er skrivende og bør som regel gjøres med sendToInbox=true – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Levere (sende inn) reiseregninger til godkjenning",
+      "nokkelord": [
+        "levere reiseregning",
+        "send inn reiseregning",
+        "lever utlegg",
+        "fullfør reiseregning",
+        "deliver",
+        "submit travel expense"
+      ],
+      "kall": [
+        "PUT /travelExpense/:deliver"
+      ],
+      "fremgangsmate": "PUT /travelExpense/:deliver?id=<id1,id2,...> (kommaseparert liste, ingen body). Status går fra OPEN til DELIVERED. Reiseregningen må være komplett (travelDetails, linjer, evt. vedlegg) ellers 422. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Angre levering eller oppheve godkjenning av reiseregning (for å rette den)",
+      "nokkelord": [
+        "angre levering",
+        "trekk tilbake",
+        "åpne reiseregning igjen",
+        "gjenåpne",
+        "rette levert reiseregning",
+        "undeliver",
+        "angre godkjenning",
+        "fjern godkjenning",
+        "avgodkjenn",
+        "oppheve attestering",
+        "unapprove"
+      ],
+      "kall": [
+        "PUT /travelExpense/:undeliver",
+        "PUT /travelExpense/:unapprove"
+      ],
+      "fremgangsmate": "Godkjent -> levert: PUT /travelExpense/:unapprove?id=<id1,id2,...> (status APPROVED -> DELIVERED; vil normalt avvises hvis bilag er opprettet eller status er SALARY_PAID – sjekk voucher(id) og state først). Levert -> åpen: PUT /travelExpense/:undeliver?id=<id1,id2,...> (DELIVERED -> OPEN) slik at linjer kan endres. Kjør i den rekkefølgen ved behov. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Godkjenne (attestere) reiseregninger og utlegg",
+      "nokkelord": [
+        "godkjenn reiseregning",
+        "attester",
+        "attestere utlegg",
+        "godkjenne alle leverte",
+        "approve travel expense",
+        "godkjenningsflyt"
+      ],
+      "kall": [
+        "GET /travelExpense",
+        "PUT /travelExpense/:approve"
+      ],
+      "fremgangsmate": "1) Finn leverte: GET /travelExpense?state=DELIVERED&fields=id,number,amount,title. 2) PUT /travelExpense/:approve?id=<id1,id2,...>. overrideApprovalFlow=true overstyrer attestasjonsflyten (krever rettighet – bruk kun når brukeren eksplisitt ber om det). Status blir APPROVED. Selvgodkjenning styres av settings.canApproveOwnExpenses. Skrivende – krever alltid eksplisitt bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Bokføre godkjente reiseregninger (opprette bilag i hovedboken)",
+      "nokkelord": [
+        "bokfør reiseregning",
+        "bokføre utlegg",
+        "lag bilag",
+        "opprett bilag reiseregning",
+        "kostnadsfør reise",
+        "postere reiseregning",
+        "create vouchers",
+        "bokfore"
+      ],
+      "kall": [
+        "GET /travelExpense",
+        "PUT /travelExpense/:createVouchers",
+        "GET /ledger/voucher/{id}",
+        "GET /ledger/voucher/{voucherId}/pdf"
+      ],
+      "fremgangsmate": "1) GET /travelExpense?state=APPROVED&fields=id,number,amount,voucher(id),accountingPeriodClosed. 2) PUT /travelExpense/:createVouchers?id=<id1,id2,...>&date=<yyyy-MM-dd> – date er PÅKREVD (bilagsdato) og må ligge i åpen periode. id er valgfri i spec-en, men angi den alltid eksplisitt (kommaseparert) så du ikke bokfører flere enn tiltenkt. 3) Kontroller bilaget: GET /travelExpense/{id}?fields=voucher(id,number) og GET /ledger/voucher/{id}?fields=id,number,date,postings(account(number),amountGross,employee(id)). PDF: GET /ledger/voucher/{voucherId}/pdf. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne bokførte reiseregningsbilag og avstemme skyldig reiseregning mot ansattreskontro",
+      "nokkelord": [
+        "avstem reiseregninger",
+        "skyldig reiseregning",
+        "skyldig ansatte",
+        "ansattreskontro",
+        "åpne poster ansatt",
+        "apne poster",
+        "reiseregningsbilag",
+        "bilagstype reiseregning",
+        "ikke utbetalt reiseregning"
+      ],
+      "kall": [
+        "GET /ledger/voucherType",
+        "GET /ledger/voucher",
+        "GET /ledger/posting",
+        "GET /ledger/posting/openPost",
+        "GET /travelExpense"
+      ],
+      "fremgangsmate": "1) GET /ledger/voucherType?name=Reise for bilagstype-id. 2) GET /ledger/voucher?typeId=<id>&dateFrom=..&dateTo=.. (begge påkrevd). 3) Åpne poster per ansatt: GET /ledger/posting/openPost?date=<til og uten>&employeeId=..&fields=id,date,amount,account(number),employee(id). 4) Hovedbokposteringer: GET /ledger/posting?dateFrom..&dateTo..&employeeId=.. . 5) Sammenlign med GET /travelExpense?state=APPROVED (ikke utbetalt) vs SALARY_PAID. Rapporter per ansatt-id/initialer og aggregater (GDPR).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Endre reiseregning (tittel, reisedetaljer, prosjekt, avdeling, forskudd, viderefakturering)",
+      "nokkelord": [
+        "endre reiseregning",
+        "koble til prosjekt",
+        "bytt avdeling",
+        "reiseforskudd",
+        "forskudd",
+        "viderefakturer reise",
+        "fakturerbar reise",
+        "påslag",
+        "update travel expense"
+      ],
+      "kall": [
+        "GET /travelExpense/{id}",
+        "PUT /travelExpense/{id}",
+        "GET /project",
+        "GET /department"
+      ],
+      "fremgangsmate": "Hent id+version: GET /travelExpense/{id}?fields=id,version,state. PUT /travelExpense/{id} med id, version og felt som skal endres: title, travelDetails(...), project:{id}, department:{id}, freeDimension1-3:{id}, travelAdvance (forskudd), isChargeable, isFixedInvoicedAmount/fixedInvoicedAmount, isMarkupInvoicedPercent/markupInvoicedPercent, isIncludeAttachedReceiptsWhenReinvoicing. Kun mulig når state=OPEN. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Kopiere en reiseregning (f.eks. gjentakende reise)",
+      "nokkelord": [
+        "kopier reiseregning",
+        "dupliser",
+        "samme reise igjen",
+        "gjentakende reise",
+        "copy travel expense"
+      ],
+      "kall": [
+        "PUT /travelExpense/:copy"
+      ],
+      "fremgangsmate": "PUT /travelExpense/:copy?id=<id> (id påkrevd, ett element). Returnerer ny reiseregning i status OPEN. Oppdater deretter datoer med PUT /travelExpense/{nyId} og linjer via under-endepunktene. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Konvertere mellom reiseregning og ansattutlegg",
+      "nokkelord": [
+        "konverter til utlegg",
+        "gjør om til reiseregning",
+        "feil type",
+        "bytt fra reise til utlegg",
+        "convert"
+      ],
+      "kall": [
+        "GET /travelExpense/{id}",
+        "PUT /travelExpense/{id}/convert"
+      ],
+      "fremgangsmate": "PUT /travelExpense/{id}/convert (path-id, ingen query/body) bytter mellom reiseregning og ansattutlegg. Reisespesifikke linjer (diett, km, nattillegg) hører ikke hjemme på et utlegg – sjekk innholdet først med GET /travelExpense/{id}?fields=id,state,travelDetails(departureDate),perDiemCompensations(id),mileageAllowances(id),accommodationAllowances(id),costs(id). Gjør det mens status er OPEN. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slette reiseregning eller utlegg",
+      "nokkelord": [
+        "slett reiseregning",
+        "slett utlegg",
+        "fjern reiseregning",
+        "feilregistrert reise",
+        "delete travel expense"
+      ],
+      "kall": [
+        "GET /travelExpense/{id}",
+        "DELETE /travelExpense/{id}"
+      ],
+      "fremgangsmate": "Sjekk status først: GET /travelExpense/{id}?fields=id,state,voucher(id). Normalt kan bare OPEN reiseregninger uten bilag slettes – kjør :unapprove/:undeliver først ved behov. DELETE /travelExpense/{id}. Permanent sletting – krever alltid eksplisitt bekreftelse fra brukeren.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente kostnadskategorier og betalingstyper med kontering",
+      "nokkelord": [
+        "kostnadskategorier",
+        "utgiftstyper",
+        "betalingstyper",
+        "hvilken konto",
+        "kontering utlegg",
+        "firmakort konto",
+        "privat betalt konto",
+        "mva-kode kategori",
+        "cost categories",
+        "payment types"
+      ],
+      "kall": [
+        "GET /travelExpense/costCategory",
+        "GET /travelExpense/costCategory/{id}",
+        "GET /travelExpense/paymentType",
+        "GET /travelExpense/paymentType/{id}"
+      ],
+      "fremgangsmate": "GET /travelExpense/costCategory?isInactive=false&fields=id,description,account(number,name),vatType(id,number),isVatLocked,showOnTravelExpenses,showOnEmployeeExpenses (filter: description inneholder, query, showOnEmployeeExpenses). GET /travelExpense/paymentType?isInactive=false&fields=id,description,account(number,name),showOnTravelExpenses,showOnEmployeeExpenses. Kategorien bestemmer kostnadskonto/mva, betalingstypen bestemmer motkonto (f.eks. skyldig ansatt vs firmakort). Kun lesing – oppsett endres i Tripletex-GUI.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke selskapets oppsett for reiseregninger",
+      "nokkelord": [
+        "reiseregning innstillinger",
+        "bruker vi satser",
+        "godkjenning påkrevd",
+        "kan godkjenne egne",
+        "skattefrie satser",
+        "kompenseres diett",
+        "settings"
+      ],
+      "kall": [
+        "GET /travelExpense/settings"
+      ],
+      "fremgangsmate": "GET /travelExpense/settings?fields=useRates,approvalRequired,taxFreePerDiemRates,taxFreeMileageRates,perDiemNotCompensated,accommodationNotCompensated,mileageNotCompensated,canApproveOwnExpenses. Kun lesing (ingen PUT i API-et). Bruk før registrering for å vite om satser brukes og om godkjenning kreves.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke om reiseregninger/utlegg er utbetalt (via lønn) og finne lønnsslipp-koblingen",
+      "nokkelord": [
+        "utbetalt reiseregning",
+        "er reiseregningen betalt",
+        "utbetaling utlegg",
+        "refusjon utbetalt",
+        "salary paid",
+        "reiseregning lønn",
+        "lønnsslipp reise",
+        "lonnsslipp reise",
+        "ikke utbetalt",
+        "skyldig utlegg"
+      ],
+      "kall": [
+        "GET /travelExpense",
+        "GET /travelExpense/{id}"
+      ],
+      "fremgangsmate": "GET /travelExpense?state=SALARY_PAID (utbetalt via lønn) eller state=APPROVED (godkjent, ikke utbetalt), evt. med departureDateFrom/returnDateTo og employeeId; fields=id,number,state,paymentAmount,approvedDate,voucher(id,number),payslip(id),showPayslip. Én: GET /travelExpense/{id}?fields=id,state,paymentAmount,payslip(id),voucher(id). Hent ikke lønnsslippens innhold (lønn per person er persondata) – oppgi kun status og summer. Gruppen har ikke noe utbetalingsendepunkt; utbetaling skjer via lønnskjøring eller bank/remittering.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Avvise eller sende tilbake en reiseregning til den ansatte",
+      "nokkelord": [
+        "avvis reiseregning",
+        "avvise utlegg",
+        "send tilbake reiseregning",
+        "returner reiseregning",
+        "reject travel expense",
+        "underkjenn",
+        "avvist reiseregning"
+      ],
+      "kall": [
+        "GET /travelExpense/{id}",
+        "PUT /travelExpense/:unapprove",
+        "PUT /travelExpense/:undeliver"
+      ],
+      "fremgangsmate": "API v2 har IKKE noe :reject-endepunkt for reiseregninger (state REJECTED og rejectedComment kan bare leses). Nærmeste alternativ: sjekk status (GET /travelExpense/{id}?fields=id,state,voucher(id)), deretter PUT /travelExpense/:unapprove?id=<id> hvis APPROVED og PUT /travelExpense/:undeliver?id=<id> hvis DELIVERED, slik at reiseregningen blir OPEN igjen og kan rettes. Formell avvisning med kommentar må gjøres i Tripletex-GUI. Skrivende – bekreft først.",
+      "skrivende": true
+    }
+  ],
+  "fallgruver": [
+    "Alle endepunkter i gruppen er merket PERSONDATA (knyttet til ansatte). Bruk alltid minimal fields= (f.eks. employee(id) i stedet for employee(*)), og vis aldri ansattnavn, adresser, passasjer-/deltakernavn eller beløp per navngitt person – bruk aggregater, initialer eller 'ansatt 1/2' (GDPR).",
+    "Ansattutlegg og reiseregning er samme objekt (TravelExpense): utlegg har INGEN travelDetails. Bytt type med PUT /travelExpense/{id}/convert – reisespesifikke linjer (diett/km/nattillegg) kan gå tapt.",
+    "Statusflyt: OPEN -> :deliver -> DELIVERED -> :approve -> APPROVED -> :createVouchers (bilag) -> SALARY_PAID når utbetalt via lønn. REJECTED ved avvisning (rejectedComment). Tilbake: :unapprove (APPROVED->DELIVERED) og :undeliver (DELIVERED->OPEN). Linjer kan bare endres/slettes i OPEN.",
+    "Action-endepunktene er PUT med kolon: /travelExpense/:deliver, /:undeliver, /:approve, /:unapprove, /:createVouchers, /:copy. Parameteren id er en kommaseparert liste av id-er i query (ikke body); :copy tar kun én id (påkrevd).",
+    "PUT /travelExpense/:createVouchers krever query-param date (yyyy-MM-dd) selv om beskrivelsen sier 'defaults to today'. Datoen må ligge i åpen regnskaps-/mva-periode (se accountingPeriodClosed/accountingPeriodVATClosed på objektet). Angi alltid id – ikke kjør uten id.",
+    "mileageAllowances og accommodationAllowances er read-only på TravelExpense – de MÅ opprettes via POST /travelExpense/mileageAllowance og POST /travelExpense/accommodationAllowance. Diett (perDiemCompensations) og costs kan sendes inline ved POST /travelExpense eller via egne endepunkter.",
+    "Satser er versjonert: velg rateCategory (og evt. rateType/TravelExpenseRate) som er gyldig på reisedatoen (dateFrom/dateTo, fromDate/toDate) og riktig type (PER_DIEM|ACCOMMODATION_ALLOWANCE|MILEAGE_ALLOWANCE), innland/utland, dagsreise/overnatting og sonekrav. Feil kategori for datoen gir 422.",
+    "Utenlandsdiett krever travelDetails.isForeignTravel=true og land/sone (countryCode og/eller travelExpenseZoneId fra GET /travelExpense/zone med date=reisedato).",
+    "Navneforskjell: søk på perDiemCompensation bruker isLunchDeduction/isDinnerDeduction, mens body-feltene heter isDeductionForLunch/isDeductionForDinner (frokost heter isDeductionForBreakfast begge steder).",
+    "dateTo, returnDateTo og openPost-date er 'til og UTEN' (eksklusiv). departureDateFrom/dateFrom er inklusiv.",
+    "PUT på reiseregning og linjer bør inneholde id og version (optimistisk låsing); feil version gir 409/422 – hent på nytt og prøv igjen.",
+    "Vedlegg lastes opp som multipart/form-data med feltet 'file'. createNewCost=true lager én kostnadslinje per vedlegg. DELETE attachment med sendToInbox=true flytter til bilagsmottak i stedet for å slette.",
+    "createCostParticipantAdvanced krever både costId og employeeId i query – bruk employeeId=0 for eksterne deltakere.",
+    "drivingStop har ingen søk eller PUT – endre ved å slette og opprette på nytt. Stoppene leses via mileageAllowance.drivingStops.",
+    "GET /travelExpense/settings, costCategory, paymentType, rate, rateCategory, rateCategoryGroup og zone er kun lesbare i API-et – oppsett og satser endres i Tripletex-GUI.",
+    "403 betyr normalt at token/bruker mangler rettighet til reiseregninger (eller til å godkjenne/attestere andres), eller at reiseregningsmodulen ikke er aktiv hos klienten. 422 betyr valideringsfeil (manglende felt, ugyldig sats/periode, feil status).",
+    "Beløp over statens skattefrie satser blir trekkpliktige og går til lønn/a-melding via satskategoriens ameldingWageCode/wageCodeNumber – utbetaling via lønn gir status SALARY_PAID og payslip-kobling.",
+    "Alle skrivende kall (opprette, endre, slette, levere, godkjenne, bokføre, laste opp) krever eksplisitt bekreftelse fra brukeren og at klienten er navngitt.",
+    "Det finnes ikke noe :reject-endepunkt i API v2 – avvisning (REJECTED med rejectedComment) gjøres i GUI; via API kan du bare :unapprove/:undeliver tilbake til OPEN.",
+    "GET /travelExpense kan ikke filtrere på reiseregningsnummer, id-liste eller bilagsdato; departureDateFrom/returnDateTo gjelder reisedatoer, så ansattutlegg (uten travelDetails) kan falle utenfor – filtrer på date/number i koden.",
+    "costCategory-søk: query= er eksakt treff (Equals), description= er «inneholder». På paymentType er både query og description «inneholder».",
+    "PUT /travelExpense/:undeliver har et TravelExpense-body-skjema i spec-en, men det er query-param id som styrer hvilke reiseregninger som angres.",
+    "GET /travelExpense/{travelExpenseId}/attachment returnerer binær fil (PDF), ikke JSON – les som buffer og del ikke filen (kan inneholde persondata).",
+    "Mange TravelExpense-felt er read-only (amount, paymentAmount, number, state, date, approvedDate, rejectedComment, mileageAllowances, accommodationAllowances) – de kan leses, men ignoreres/avvises i POST/PUT."
+  ]
+}

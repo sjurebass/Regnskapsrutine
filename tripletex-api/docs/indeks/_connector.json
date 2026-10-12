@@ -1,0 +1,2165 @@
+{
+ "kilde": "Tripletex MCP-connector (2f99e425-8298-4209-8b00-d05aaada97e5) kartlagt mot API v2 (ops.json)",
+ "konvensjon": "kunConnector=true betyr at verktøyets fulle funksjon ikke finnes i offentlig v2; kall lister da evt. nærmeste delvise v2-alternativ (tom liste = ingen). Ved v2-bruk: alltid fields= og redact() på personopplysninger.",
+ "verktoy": [
+  {
+   "tool": "add_accommodation_line",
+   "beskrivelse": "Legger til en satsbasert nattillegg-linje på en åpen eller avvist reiseregning.",
+   "kall": [
+    "POST /travelExpense/accommodationAllowance",
+    "GET /travelExpense/rateCategory",
+    "GET /travelExpense/zone"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "nattillegg",
+    "overnatting",
+    "reiseregning",
+    "accommodation",
+    "sone",
+    "sats"
+   ]
+  },
+  {
+   "tool": "add_expense_lines",
+   "beskrivelse": "Legger til kostnadslinjer (utlegg) på et åpent eller avvist utlegg eller en reiseregning.",
+   "kall": [
+    "POST /travelExpense/cost",
+    "GET /travelExpense/costCategory",
+    "GET /travelExpense/paymentType"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "utlegg",
+    "kostnadslinje",
+    "kvittering",
+    "reiseregning",
+    "expense",
+    "kostnadskategori"
+   ]
+  },
+  {
+   "tool": "add_mileage_line",
+   "beskrivelse": "Legger til en kjøregodtgjørelse-linje (km, evt. bompenger) på en åpen eller avvist reiseregning.",
+   "kall": [
+    "POST /travelExpense/mileageAllowance",
+    "POST /travelExpense/cost",
+    "GET /travelExpense/rateCategory"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "kjøregodtgjørelse",
+    "km",
+    "kilometer",
+    "bompenger",
+    "passasjertillegg",
+    "mileage",
+    "bil"
+   ]
+  },
+  {
+   "tool": "add_per_diem_line",
+   "beskrivelse": "Legger til diett (statlige satser) på en åpen eller avvist reiseregning, evt. med måltidstrekk.",
+   "kall": [
+    "POST /travelExpense/perDiemCompensation",
+    "DELETE /travelExpense/perDiemCompensation/{id}",
+    "GET /travelExpense/rate",
+    "GET /travelExpense/zone"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "diett",
+    "per diem",
+    "kostgodtgjørelse",
+    "måltidstrekk",
+    "frokost",
+    "reiseregning"
+   ]
+  },
+  {
+   "tool": "approve_expense",
+   "beskrivelse": "Godkjenner et levert utlegg eller en reiseregning som leder/attestant.",
+   "kall": [
+    "PUT /travelExpense/:approve"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "godkjenn reiseregning",
+    "godkjenn utlegg",
+    "attestering",
+    "approve",
+    "leder"
+   ]
+  },
+  {
+   "tool": "approve_month",
+   "beskrivelse": "Godkjenner en timelistemåned for én eller flere ansatte og låser timene.",
+   "kall": [
+    "PUT /timesheet/month/:approve"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "godkjenn måned",
+    "timeliste",
+    "månedsgodkjenning",
+    "timer",
+    "lås"
+   ]
+  },
+  {
+   "tool": "approve_week",
+   "beskrivelse": "Godkjenner en timelisteuke for én eller flere ansatte og låser timene.",
+   "kall": [
+    "PUT /timesheet/week/:approve"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "godkjenn uke",
+    "timeliste",
+    "ukegodkjenning",
+    "timer"
+   ]
+  },
+  {
+   "tool": "check_client_account_status",
+   "beskrivelse": "Sjekker om en klient har egen Tripletex-konto og hva byrået kan gjøre (koble til/opprette) – kun connector (delvis v2: se kall).",
+   "kall": [
+    "GET /company/>withLoginAccess",
+    "GET /customer/{id}"
+   ],
+   "kunConnector": true,
+   "skrivende": false,
+   "nokkelord": [
+    "klientkonto",
+    "ny klient",
+    "byrå",
+    "regnskapsbyrå",
+    "klientopprettelse",
+    "koble til klient"
+   ]
+  },
+  {
+   "tool": "clock_in",
+   "beskrivelse": "Starter stemplingsuret (inn-stempling) for innlogget bruker på en aktivitet/prosjekt.",
+   "kall": [
+    "PUT /timesheet/timeClock/:start"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "stemple inn",
+    "stemplingsur",
+    "clock in",
+    "start tid",
+    "tidsregistrering"
+   ]
+  },
+  {
+   "tool": "clock_out",
+   "beskrivelse": "Stopper det løpende stemplingsuret (ut-stempling) for innlogget bruker.",
+   "kall": [
+    "GET /timesheet/timeClock/present",
+    "PUT /timesheet/timeClock/{id}/:stop"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "stemple ut",
+    "stemplingsur",
+    "clock out",
+    "stopp tid"
+   ]
+  },
+  {
+   "tool": "complete_month",
+   "beskrivelse": "Markerer en timelistemåned som ferdig (levert til godkjenning).",
+   "kall": [
+    "PUT /timesheet/month/:complete"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "lever måned",
+    "fullfør måned",
+    "timeliste",
+    "complete"
+   ]
+  },
+  {
+   "tool": "complete_week",
+   "beskrivelse": "Markerer en timelisteuke som ferdig (levert til godkjenning).",
+   "kall": [
+    "PUT /timesheet/week/:complete"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "lever uke",
+    "fullfør uke",
+    "timeliste",
+    "complete"
+   ]
+  },
+  {
+   "tool": "create_department",
+   "beskrivelse": "Oppretter en ny avdeling med valgfritt nummer og avdelingsleder.",
+   "kall": [
+    "POST /department"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "avdeling",
+    "ny avdeling",
+    "department",
+    "avdelingsleder"
+   ]
+  },
+  {
+   "tool": "create_employee",
+   "beskrivelse": "Oppretter ansatt med første arbeidsforhold (a-meldingsklar) i ett kall.",
+   "kall": [
+    "POST /employee",
+    "POST /employee/employment",
+    "POST /employee/employment/details",
+    "GET /division",
+    "GET /employee/employment/occupationCode",
+    "GET /department"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "ny ansatt",
+    "ansettelse",
+    "arbeidsforhold",
+    "onboarding",
+    "stillingsprosent",
+    "yrkeskode",
+    "lønn"
+   ]
+  },
+  {
+   "tool": "create_expense",
+   "beskrivelse": "Oppretter et utlegg (refusjon av egne kostnader) med kostnadslinjer, valgfritt levert direkte.",
+   "kall": [
+    "POST /travelExpense",
+    "POST /travelExpense/cost",
+    "PUT /travelExpense/:deliver",
+    "GET /travelExpense/costCategory"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "utlegg",
+    "refusjon",
+    "nytt utlegg",
+    "kvittering",
+    "expense"
+   ]
+  },
+  {
+   "tool": "create_travel_expense",
+   "beskrivelse": "Oppretter en reiseregning med reisedetaljer og valgfrie kostnads-, km-, diett- og nattilleggslinjer.",
+   "kall": [
+    "POST /travelExpense",
+    "POST /travelExpense/cost",
+    "POST /travelExpense/mileageAllowance",
+    "POST /travelExpense/perDiemCompensation",
+    "POST /travelExpense/accommodationAllowance",
+    "PUT /travelExpense/:deliver"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "reiseregning",
+    "ny reise",
+    "reise",
+    "diett",
+    "kjøregodtgjørelse",
+    "travel expense"
+   ]
+  },
+  {
+   "tool": "credit_invoice",
+   "beskrivelse": "Lager kreditnota som nuller en hel utgående faktura.",
+   "kall": [
+    "PUT /invoice/{id}/:createCreditNote"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "kreditnota",
+    "krediter faktura",
+    "kanseller faktura",
+    "credit note"
+   ]
+  },
+  {
+   "tool": "delete_customer",
+   "beskrivelse": "Sletter en kunde permanent (blokkert hvis kunden har historikk – arkiver i stedet).",
+   "kall": [
+    "DELETE /customer/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "slett kunde",
+    "fjern kunde",
+    "delete customer"
+   ]
+  },
+  {
+   "tool": "delete_expense",
+   "beskrivelse": "Sletter et åpent eller avvist utlegg/reiseregning permanent.",
+   "kall": [
+    "DELETE /travelExpense/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "slett utlegg",
+    "slett reiseregning",
+    "forkast"
+   ]
+  },
+  {
+   "tool": "delete_expense_receipt",
+   "beskrivelse": "Sletter et vedlagt kvitteringsvedlegg på et åpent eller avvist utlegg/reiseregning.",
+   "kall": [
+    "GET /travelExpense/{travelExpenseId}/attachment",
+    "DELETE /travelExpense/{travelExpenseId}/attachment"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "slett kvittering",
+    "fjern vedlegg",
+    "kvittering"
+   ]
+  },
+  {
+   "tool": "delete_hours",
+   "beskrivelse": "Sletter én eller flere timeføringer (på id eller dato+prosjekt+aktivitet).",
+   "kall": [
+    "GET /timesheet/entry",
+    "DELETE /timesheet/entry/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "slett timer",
+    "fjern timeføring",
+    "timeliste",
+    "delete hours"
+   ]
+  },
+  {
+   "tool": "delete_order",
+   "beskrivelse": "Sletter en salgsordre permanent (blokkert ved fakturaer/timer/bilag).",
+   "kall": [
+    "DELETE /order/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "slett ordre",
+    "fjern ordre",
+    "delete order"
+   ]
+  },
+  {
+   "tool": "delete_supplier",
+   "beskrivelse": "Sletter en leverandør permanent (blokkert hvis leverandøren har historikk – arkiver i stedet).",
+   "kall": [
+    "DELETE /supplier/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "slett leverandør",
+    "fjern leverandør",
+    "delete supplier"
+   ]
+  },
+  {
+   "tool": "delete_wage_type_registration",
+   "beskrivelse": "Sletter lønnsart-registreringer (overtid/tillegg) fra timelisten for én ansatt.",
+   "kall": [
+    "GET /timesheet/salaryTypeSpecification",
+    "DELETE /timesheet/salaryTypeSpecification/{id}",
+    "DELETE /timesheet/salaryProjectTypeSpecification/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "slett overtid",
+    "lønnsart",
+    "tillegg",
+    "timeliste"
+   ]
+  },
+  {
+   "tool": "establish_client_access",
+   "beskrivelse": "Oppretter eller kobler til en klients Tripletex-konto for byrået (klientopprettelse) – kun connector.",
+   "kall": [],
+   "kunConnector": true,
+   "skrivende": true,
+   "nokkelord": [
+    "opprett klient",
+    "klientopprettelse",
+    "tilgangsforespørsel",
+    "byrå",
+    "ny klientkonto",
+    "pakke"
+   ]
+  },
+  {
+   "tool": "estimate_client_account_price",
+   "beskrivelse": "Anslår pris for ny klientkonto (pakke, bilagsnivå, tilleggstjenester) – kun connector.",
+   "kall": [],
+   "kunConnector": true,
+   "skrivende": false,
+   "nokkelord": [
+    "pris",
+    "prisestimat",
+    "klientkonto",
+    "pakke",
+    "abonnement"
+   ]
+  },
+  {
+   "tool": "execute_contact",
+   "beskrivelse": "Oppretter eller oppdaterer en kontaktperson hos en kunde.",
+   "kall": [
+    "POST /contact",
+    "PUT /contact/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "kontaktperson",
+    "kontakt",
+    "ny kontakt",
+    "oppdater kontakt"
+   ]
+  },
+  {
+   "tool": "execute_customer",
+   "beskrivelse": "Oppretter eller oppdaterer en kunde (adresser, e-post, sendemåte, kategorier, betalingsbetingelser).",
+   "kall": [
+    "POST /customer",
+    "PUT /customer/{id}",
+    "GET /customer/category"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "ny kunde",
+    "oppdater kunde",
+    "kundekort",
+    "arkiver kunde",
+    "sendemåte",
+    "EHF",
+    "kundekategori"
+   ]
+  },
+  {
+   "tool": "execute_employee",
+   "beskrivelse": "Oppdaterer felter på en eksisterende ansatt (kontaktinfo, avdeling, fødselsnr., kontonr., brukertype).",
+   "kall": [
+    "GET /employee/{id}",
+    "PUT /employee/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "oppdater ansatt",
+    "ansattdetaljer",
+    "kontonummer",
+    "fødselsnummer",
+    "brukertype"
+   ]
+  },
+  {
+   "tool": "execute_employment",
+   "beskrivelse": "Oppretter, endrer eller avslutter et arbeidsforhold for en eksisterende ansatt.",
+   "kall": [
+    "POST /employee/employment",
+    "PUT /employee/employment/{id}",
+    "POST /employee/employment/details",
+    "PUT /employee/employment/details/{id}",
+    "GET /employee/employment/occupationCode"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "arbeidsforhold",
+    "lønnsendring",
+    "stillingsprosent",
+    "sluttdato",
+    "avslutt arbeidsforhold",
+    "yrkeskode"
+   ]
+  },
+  {
+   "tool": "execute_hour_registration",
+   "beskrivelse": "Registrerer eller oppdaterer timeføringer (upsert per dato/prosjekt/aktivitet) for én ansatt.",
+   "kall": [
+    "GET /timesheet/entry",
+    "POST /timesheet/entry",
+    "PUT /timesheet/entry/{id}",
+    "POST /timesheet/entry/list",
+    "GET /activity/>forTimeSheet"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "før timer",
+    "registrer timer",
+    "timeføring",
+    "timeliste",
+    "hours",
+    "prosjekttimer"
+   ]
+  },
+  {
+   "tool": "execute_order",
+   "beskrivelse": "Oppretter en salgsordre med ordrelinjer (produkt eller fritekst) for en kunde.",
+   "kall": [
+    "POST /order",
+    "POST /order/orderline/list",
+    "GET /currency",
+    "GET /ledger/vatType",
+    "GET /product/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "ny ordre",
+    "salgsordre",
+    "ordrelinjer",
+    "fakturagrunnlag",
+    "order"
+   ]
+  },
+  {
+   "tool": "execute_product",
+   "beskrivelse": "Oppretter eller oppdaterer et produkt (vare/tjeneste) med pris og mva.",
+   "kall": [
+    "POST /product",
+    "PUT /product/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "nytt produkt",
+    "vare",
+    "tjeneste",
+    "pris",
+    "oppdater produkt",
+    "product"
+   ]
+  },
+  {
+   "tool": "execute_project_operation",
+   "beskrivelse": "Oppretter, oppdaterer, lukker eller sletter prosjekter i batch (opptil 100).",
+   "kall": [
+    "POST /project",
+    "PUT /project/{id}",
+    "DELETE /project/{id}",
+    "POST /project/list",
+    "PUT /project/list"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "nytt prosjekt",
+    "oppdater prosjekt",
+    "avslutt prosjekt",
+    "slett prosjekt",
+    "prosjektleder"
+   ]
+  },
+  {
+   "tool": "execute_supplier",
+   "beskrivelse": "Oppretter eller oppdaterer en leverandør (org.nr., e-post, kontonr., adresser, kategorier).",
+   "kall": [
+    "POST /supplier",
+    "PUT /supplier/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "ny leverandør",
+    "oppdater leverandør",
+    "arkiver leverandør",
+    "kontonummer leverandør"
+   ]
+  },
+  {
+   "tool": "execute_wage_type_registration",
+   "beskrivelse": "Registrerer lønnsart-tillegg (f.eks. overtid) som antall på timelisten for én ansatt.",
+   "kall": [
+    "GET /salary/type",
+    "POST /timesheet/salaryTypeSpecification",
+    "PUT /timesheet/salaryTypeSpecification/{id}",
+    "POST /timesheet/salaryProjectTypeSpecification",
+    "PUT /timesheet/salaryProjectTypeSpecification/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "overtid",
+    "lønnsart",
+    "tillegg",
+    "timeliste",
+    "overtid 50",
+    "overtid 100"
+   ]
+  },
+  {
+   "tool": "fetch_report",
+   "beskrivelse": "Henter Tripletex-rapporter (resultat, saldobalanse, reskontro, prosjektøkonomi, nøkkeltall m.m.) som tabell – kun connector (delvis v2: se kall).",
+   "kall": [
+    "GET /balanceSheet",
+    "GET /ledger",
+    "GET /ledger/posting",
+    "GET /resultbudget"
+   ],
+   "kunConnector": true,
+   "skrivende": false,
+   "nokkelord": [
+    "rapport",
+    "resultatrapport",
+    "saldobalanse",
+    "kundereskontro",
+    "leverandørreskontro",
+    "prosjektøkonomi",
+    "nøkkeltall",
+    "EBITDA",
+    "topp kunder",
+    "likviditet"
+   ]
+  },
+  {
+   "tool": "fetch_taxcards",
+   "beskrivelse": "Henter skattekort-svar fra Skatteetaten og lagrer dem i Tripletex (steg 2 etter bestilling) – kun connector.",
+   "kall": [],
+   "kunConnector": true,
+   "skrivende": true,
+   "nokkelord": [
+    "skattekort",
+    "hent skattekort",
+    "Skatteetaten",
+    "Altinn",
+    "forskuddstrekk"
+   ]
+  },
+  {
+   "tool": "get_activities_for_project",
+   "beskrivelse": "Lister aktiviteter innlogget ansatt kan føre timer på for et prosjekt på en gitt dato.",
+   "kall": [
+    "GET /activity/>forTimeSheet"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "aktiviteter",
+    "prosjektaktiviteter",
+    "timeføring",
+    "generelle aktiviteter"
+   ]
+  },
+  {
+   "tool": "get_amelding_status",
+   "beskrivelse": "Viser status for a-meldingen for en måned og påløpt/ubetalt trekk og AGA. Egen kobling: npm run amelding -- status (internt kall GET /salary/tskinternal/amelding/ameldingStatus).",
+   "kall": [
+    "POST /salary/taxDeduction/reconciliation/context",
+    "GET /salary/taxDeduction/reconciliation/{reconciliationId}/balanceAndOwedAmount",
+    "POST /salary/payrollTax/reconciliation/context",
+    "GET /salary/payrollTax/reconciliation/{reconciliationId}/overview"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "a-melding",
+    "amelding",
+    "status a-melding",
+    "Skatteetaten",
+    "forskuddstrekk",
+    "arbeidsgiveravgift",
+    "AGA",
+    "termin"
+   ]
+  },
+  {
+   "tool": "get_balance_sheet",
+   "beskrivelse": "Henter saldobalanse per konto (IB, bevegelse, UB) for en periode med dimensjonsfilter.",
+   "kall": [
+    "GET /balanceSheet"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "saldobalanse",
+    "balanse",
+    "trial balance",
+    "kontosaldo",
+    "IB",
+    "UB",
+    "ufordelt resultat"
+   ]
+  },
+  {
+   "tool": "get_change_log",
+   "beskrivelse": "Viser endringslogg (hvem/når opprettet/endret) for kunde, faktura, ordre eller timeføringer via fields=changes.",
+   "kall": [
+    "GET /customer/{id}",
+    "GET /invoice/{id}",
+    "GET /order/{id}",
+    "GET /timesheet/entry"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "endringslogg",
+    "logg",
+    "hvem endret",
+    "historikk",
+    "audit",
+    "changes"
+   ]
+  },
+  {
+   "tool": "get_close_group",
+   "beskrivelse": "Slår opp en lukkegruppe (utlignede poster) via lukkegruppe-id eller post-id.",
+   "kall": [
+    "GET /ledger/closeGroup/{id}",
+    "GET /ledger/posting/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "lukkegruppe",
+    "utligning",
+    "lukkede poster",
+    "close group",
+    "avstemming"
+   ]
+  },
+  {
+   "tool": "get_contact",
+   "beskrivelse": "Henter én kontaktperson med detaljer.",
+   "kall": [
+    "GET /contact/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "kontaktperson",
+    "kontakt",
+    "hent kontakt"
+   ]
+  },
+  {
+   "tool": "get_current_clock_status",
+   "beskrivelse": "Viser om innlogget bruker er inn- eller utstemplet.",
+   "kall": [
+    "GET /timesheet/timeClock/present"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "stemplingsstatus",
+    "stemplet inn",
+    "stemplingsur",
+    "clock status"
+   ]
+  },
+  {
+   "tool": "get_current_datetime",
+   "beskrivelse": "Returnerer dato, klokkeslett, ukenummer og måned i Oslo-tid – kun connector (lokalt verktøy uten API-kall).",
+   "kall": [],
+   "kunConnector": true,
+   "skrivende": false,
+   "nokkelord": [
+    "dato",
+    "klokkeslett",
+    "ukenummer",
+    "i dag",
+    "tid",
+    "Oslo"
+   ]
+  },
+  {
+   "tool": "get_customer",
+   "beskrivelse": "Henter én kunde med adresser, sendemåte, valuta og kategorier.",
+   "kall": [
+    "GET /customer/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "kunde",
+    "kundekort",
+    "hent kunde",
+    "kundeinfo"
+   ]
+  },
+  {
+   "tool": "get_customer_invoice_send_types",
+   "beskrivelse": "Viser hvilke sendekanaler (e-post, EHF, eFaktura, AvtaleGiro, papir) som er tilgjengelige for en kunde – kun connector (delvis v2: se kall).",
+   "kall": [
+    "GET /customer/{id}",
+    "GET /company/salesmodules"
+   ],
+   "kunConnector": true,
+   "skrivende": false,
+   "nokkelord": [
+    "sendemåte",
+    "EHF",
+    "eFaktura",
+    "AvtaleGiro",
+    "PEPPOL",
+    "fakturakanal"
+   ]
+  },
+  {
+   "tool": "get_employee",
+   "beskrivelse": "Henter komplett ansattpost med arbeidsforhold, historikk og a-meldingsstatus.",
+   "kall": [
+    "GET /employee/{id}",
+    "GET /employee/employment",
+    "GET /employee/employment/details"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "ansatt",
+    "ansattdetaljer",
+    "arbeidsforhold",
+    "a-meldingsklar",
+    "hent ansatt"
+   ]
+  },
+  {
+   "tool": "get_expense",
+   "beskrivelse": "Henter et utlegg eller en reiseregning med alle linjer, vedlegg og godkjenningsstatus.",
+   "kall": [
+    "GET /travelExpense/{id}",
+    "GET /travelExpense/cost",
+    "GET /travelExpense/mileageAllowance",
+    "GET /travelExpense/perDiemCompensation",
+    "GET /travelExpense/accommodationAllowance"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "reiseregning",
+    "utlegg",
+    "hent reiseregning",
+    "status reiseregning"
+   ]
+  },
+  {
+   "tool": "get_expense_receipt",
+   "beskrivelse": "Gir en kortlivet lenke til kvitteringen på et utlegg eller en reiseregning.",
+   "kall": [
+    "GET /travelExpense/{travelExpenseId}/attachment"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "kvittering",
+    "vedlegg",
+    "se kvittering",
+    "receipt"
+   ]
+  },
+  {
+   "tool": "get_holiday_balance",
+   "beskrivelse": "Viser feriesaldo (dager igjen, tatt, planlagt) og opptjente feriepenger for én ansatt.",
+   "kall": [
+    "GET /timesheet/month/byMonthNumber",
+    "GET /employee/{id}",
+    "GET /timesheet/entry"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "feriesaldo",
+    "ferie",
+    "feriedager",
+    "feriepenger",
+    "ferie igjen"
+   ]
+  },
+  {
+   "tool": "get_immediate_manager",
+   "beskrivelse": "Viser en ansatts nærmeste leder – kun connector (delvis v2 via avdelingsleder, se kall).",
+   "kall": [
+    "GET /employee/{id}",
+    "GET /department/{id}"
+   ],
+   "kunConnector": true,
+   "skrivende": false,
+   "nokkelord": [
+    "nærmeste leder",
+    "leder",
+    "hvem er sjefen",
+    "manager",
+    "avdelingsleder"
+   ]
+  },
+  {
+   "tool": "get_invoice",
+   "beskrivelse": "Henter én utgående faktura (på id eller fakturanummer) med ordrelinjer og bilag.",
+   "kall": [
+    "GET /invoice/{id}",
+    "GET /invoice"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "faktura",
+    "fakturanummer",
+    "hent faktura",
+    "fakturalinjer"
+   ]
+  },
+  {
+   "tool": "get_invoice_pdf_url",
+   "beskrivelse": "Gir lenke til PDF av en utgående faktura (v2 strømmer PDF-en direkte).",
+   "kall": [
+    "GET /invoice/{invoiceId}/pdf"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "faktura pdf",
+    "last ned faktura",
+    "fakturakopi"
+   ]
+  },
+  {
+   "tool": "get_month_overview",
+   "beskrivelse": "Viser månedsoversikt for én ansatt: status, timesum, fleksisaldo, feriesaldo og utbetalingsfelt.",
+   "kall": [
+    "GET /timesheet/month/byMonthNumber"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "månedsoversikt",
+    "fleksisaldo",
+    "fleks",
+    "timesum",
+    "timeliste måned"
+   ]
+  },
+  {
+   "tool": "get_month_status",
+   "beskrivelse": "Viser levert/godkjent-status og timesum for en måned for én eller flere ansatte.",
+   "kall": [
+    "GET /timesheet/month/byMonthNumber",
+    "GET /timesheet/salaryTypeSpecification"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "månedsstatus",
+    "timeliste",
+    "hvem har levert",
+    "godkjenningsstatus"
+   ]
+  },
+  {
+   "tool": "get_my_payslip",
+   "beskrivelse": "Henter én av mine lønnsslipper med lønnsarter/linjer.",
+   "kall": [
+    "GET /salary/payslip/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "lønnsslipp",
+    "min lønn",
+    "lønnsspesifikasjon",
+    "payslip"
+   ]
+  },
+  {
+   "tool": "get_my_wage_compilation",
+   "beskrivelse": "Henter min årlige lønnssammenstilling (lønn, trekk, skatt).",
+   "kall": [
+    "GET /salary/compilation"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "lønnssammenstilling",
+    "årsoppgave",
+    "feriepengegrunnlag",
+    "lønn år"
+   ]
+  },
+  {
+   "tool": "get_my_wage_compilation_pdf",
+   "beskrivelse": "Laster ned min årlige lønnssammenstilling som PDF.",
+   "kall": [
+    "GET /salary/compilation/pdf"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "lønnssammenstilling pdf",
+    "årsoppgave pdf"
+   ]
+  },
+  {
+   "tool": "get_order",
+   "beskrivelse": "Henter én salgsordre med ordrelinjer og valuta.",
+   "kall": [
+    "GET /order/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "ordre",
+    "hent ordre",
+    "ordrelinjer",
+    "abonnement"
+   ]
+  },
+  {
+   "tool": "get_payslip_pdf_url",
+   "beskrivelse": "Gir lenke til PDF av en lønnsslipp (v2 strømmer PDF-en direkte).",
+   "kall": [
+    "GET /salary/payslip/{id}/pdf"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "lønnsslipp pdf",
+    "last ned lønnsslipp"
+   ]
+  },
+  {
+   "tool": "get_project",
+   "beskrivelse": "Henter full konfigurasjon for ett eller flere prosjekter (mva, fastpris, deltakere, fakturakommentar).",
+   "kall": [
+    "GET /project/{id}",
+    "GET /project/number/{number}",
+    "GET /project/participant/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "prosjekt",
+    "prosjektoppsett",
+    "fastpris",
+    "deltakere",
+    "hent prosjekt"
+   ]
+  },
+  {
+   "tool": "get_recent_projects_and_activities",
+   "beskrivelse": "Lister innlogget ansatts nylig brukte prosjekter og aktiviteter pluss generelle aktiviteter.",
+   "kall": [
+    "GET /timesheet/entry/>recentProjects",
+    "GET /timesheet/entry/>recentActivities",
+    "GET /activity/>forTimeSheet"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "siste prosjekter",
+    "nylige aktiviteter",
+    "timeføring",
+    "recent"
+   ]
+  },
+  {
+   "tool": "get_reminder",
+   "beskrivelse": "Henter én purring med dato, trinn, gebyr, renter og KID.",
+   "kall": [
+    "GET /reminder/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "purring",
+    "inkassovarsel",
+    "purregebyr",
+    "hent purring"
+   ]
+  },
+  {
+   "tool": "get_reminder_pdf_url",
+   "beskrivelse": "Gir lenke til PDF av en purring (v2 strømmer PDF-en direkte).",
+   "kall": [
+    "GET /reminder/{reminderId}/pdf"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "purring pdf",
+    "purrebrev"
+   ]
+  },
+  {
+   "tool": "get_report_details",
+   "beskrivelse": "Beskriver rapporter i rapportkatalogen (kolonner, filtre, sorteringsakser) – kun connector.",
+   "kall": [],
+   "kunConnector": true,
+   "skrivende": false,
+   "nokkelord": [
+    "rapportkatalog",
+    "rapportdetaljer",
+    "rapport",
+    "kolonner"
+   ]
+  },
+  {
+   "tool": "get_supplier",
+   "beskrivelse": "Henter én leverandør med adresser, kategorier og bankkontoer.",
+   "kall": [
+    "GET /supplier/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "leverandør",
+    "hent leverandør",
+    "bankkonto leverandør"
+   ]
+  },
+  {
+   "tool": "get_supplier_invoice",
+   "beskrivelse": "Henter én leverandørfaktura med linjer, betalinger, attestering og posteringer (ny flyt kun via connector).",
+   "kall": [
+    "GET /supplierInvoice/{id}",
+    "GET /ledger/voucher/{id}",
+    "GET /ledger/posting"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "leverandørfaktura",
+    "inngående faktura",
+    "hent leverandørfaktura",
+    "attestering"
+   ]
+  },
+  {
+   "tool": "get_supplier_invoices_for_approval",
+   "beskrivelse": "Lister leverandørfakturaer som venter på attestering/godkjenning.",
+   "kall": [
+    "GET /supplierInvoice/forApproval"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "til godkjenning",
+    "attestering",
+    "leverandørfaktura godkjenning",
+    "approval queue"
+   ]
+  },
+  {
+   "tool": "get_taxcard_status",
+   "beskrivelse": "Viser hvilke ansatte som har eller mangler skattekort for et år – kun connector.",
+   "kall": [],
+   "kunConnector": true,
+   "skrivende": false,
+   "nokkelord": [
+    "skattekort",
+    "mangler skattekort",
+    "skattekortstatus",
+    "Skatteetaten"
+   ]
+  },
+  {
+   "tool": "get_voucher_document",
+   "beskrivelse": "Gir nedlastingslenke til dokumentet bak en leverandørfaktura eller et bilagsmottak-element.",
+   "kall": [
+    "GET /ledger/voucher/{voucherId}/pdf",
+    "GET /supplierInvoice/{invoiceId}/pdf",
+    "GET /document/{id}/content"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "bilag pdf",
+    "dokument",
+    "vedlegg",
+    "EHF",
+    "leverandørfaktura pdf"
+   ]
+  },
+  {
+   "tool": "get_voucher_inbox_count",
+   "beskrivelse": "Returnerer antall ubehandlede dokumenter i bilagsmottaket.",
+   "kall": [
+    "GET /voucherInbox/inboxCount"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "bilagsmottak",
+    "innboks",
+    "antall bilag",
+    "uleste bilag"
+   ]
+  },
+  {
+   "tool": "get_week_status",
+   "beskrivelse": "Viser levert/godkjent-status for en uke for én eller flere ansatte.",
+   "kall": [
+    "GET /timesheet/week",
+    "GET /timesheet/salaryTypeSpecification"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "ukestatus",
+    "timeliste uke",
+    "hvem har levert"
+   ]
+  },
+  {
+   "tool": "invoice_order",
+   "beskrivelse": "Gjør en ordre om til utgående faktura (evt. forhåndsbetalt eller a-konto).",
+   "kall": [
+    "PUT /order/{id}/:invoice"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "fakturer ordre",
+    "lag faktura",
+    "fakturering",
+    "a-konto",
+    "invoice"
+   ]
+  },
+  {
+   "tool": "list_active_companies",
+   "beskrivelse": "Lister selskapene økten er koblet til.",
+   "kall": [
+    "GET /token/session/>whoAmI",
+    "GET /company/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "selskaper",
+    "aktive selskaper",
+    "innlogget selskap",
+    "company"
+   ]
+  },
+  {
+   "tool": "list_client_account_admins",
+   "beskrivelse": "Lister kolleger i byrået med rollen brukeradministrator i klientkontoer – kun connector (delvis v2: se kall).",
+   "kall": [
+    "GET /employee/entitlement"
+   ],
+   "kunConnector": true,
+   "skrivende": false,
+   "nokkelord": [
+    "klientadmin",
+    "administrator",
+    "byrå",
+    "tilgang klient",
+    "rettigheter"
+   ]
+  },
+  {
+   "tool": "list_company_holidays",
+   "beskrivelse": "Lister selskapets helligdager/fridager for et år eller en periode.",
+   "kall": [
+    "GET /timesheet/companyHoliday"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "helligdager",
+    "fridager",
+    "røde dager",
+    "ferie kalender"
+   ]
+  },
+  {
+   "tool": "list_direct_reports",
+   "beskrivelse": "Lister ansatte som har en gitt person som nærmeste leder – kun connector (delvis v2 via avdeling, se kall).",
+   "kall": [
+    "GET /department",
+    "GET /employee"
+   ],
+   "kunConnector": true,
+   "skrivende": false,
+   "nokkelord": [
+    "direkte rapporter",
+    "mitt team",
+    "underordnede",
+    "hvem rapporterer til"
+   ]
+  },
+  {
+   "tool": "list_suppliers",
+   "beskrivelse": "Lister leverandører med eksakte filtre (e-post, org.nr., nummer, kategori).",
+   "kall": [
+    "GET /supplier"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "leverandørliste",
+    "leverandører",
+    "org.nr",
+    "filtrer leverandører"
+   ]
+  },
+  {
+   "tool": "list_timesheet_wage_types",
+   "beskrivelse": "Lister lønnsarter (overtid/tillegg) innlogget ansatt kan registrere på timelisten.",
+   "kall": [
+    "GET /salary/type"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "lønnsarter",
+    "overtidstyper",
+    "tillegg",
+    "wage types"
+   ]
+  },
+  {
+   "tool": "logged_in_user_info",
+   "beskrivelse": "Viser innlogget bruker: navn, ansatt-id, avdeling og selskapskontekst.",
+   "kall": [
+    "GET /token/session/>whoAmI",
+    "GET /employee/{id}",
+    "GET /voucherInbox/emailAddress"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "hvem er jeg",
+    "innlogget bruker",
+    "min ansatt-id",
+    "whoami"
+   ]
+  },
+  {
+   "tool": "lookup_company_in_brreg",
+   "beskrivelse": "Slår opp norsk foretak i Brønnøysundregistrene på org.nr., navn eller adresse – kun connector (ekstern kilde).",
+   "kall": [],
+   "kunConnector": true,
+   "skrivende": false,
+   "nokkelord": [
+    "Brreg",
+    "Brønnøysund",
+    "Enhetsregisteret",
+    "org.nr",
+    "organisasjonsnummer",
+    "foretaksoppslag"
+   ]
+  },
+  {
+   "tool": "order_taxcards",
+   "beskrivelse": "Bestiller skattekort fra Skatteetaten via Altinn for navngitte ansatte – kun connector.",
+   "kall": [],
+   "kunConnector": true,
+   "skrivende": true,
+   "nokkelord": [
+    "bestill skattekort",
+    "skattekort",
+    "Altinn",
+    "Skatteetaten"
+   ]
+  },
+  {
+   "tool": "reject_expense",
+   "beskrivelse": "Avviser et levert utlegg/reiseregning med kommentar tilbake til den ansatte – kun connector (delvis v2 uten kommentar, se kall).",
+   "kall": [
+    "PUT /travelExpense/:undeliver"
+   ],
+   "kunConnector": true,
+   "skrivende": true,
+   "nokkelord": [
+    "avvis reiseregning",
+    "avvis utlegg",
+    "send tilbake",
+    "reject"
+   ]
+  },
+  {
+   "tool": "remove_expense_line",
+   "beskrivelse": "Sletter én kostnadslinje fra et åpent eller avvist utlegg/reiseregning.",
+   "kall": [
+    "DELETE /travelExpense/cost/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "slett kostnadslinje",
+    "fjern utleggslinje"
+   ]
+  },
+  {
+   "tool": "remove_travel_line",
+   "beskrivelse": "Sletter én diett-, kjøregodtgjørelse- eller nattilleggslinje fra en åpen reiseregning.",
+   "kall": [
+    "DELETE /travelExpense/perDiemCompensation/{id}",
+    "DELETE /travelExpense/mileageAllowance/{id}",
+    "DELETE /travelExpense/accommodationAllowance/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "slett diett",
+    "slett km",
+    "slett nattillegg",
+    "fjern reiselinje"
+   ]
+  },
+  {
+   "tool": "reopen_month",
+   "beskrivelse": "Gjenåpner en levert timelistemåned slik at timene kan redigeres.",
+   "kall": [
+    "PUT /timesheet/month/:reopen"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "gjenåpne måned",
+    "åpne timeliste",
+    "reopen"
+   ]
+  },
+  {
+   "tool": "reopen_week",
+   "beskrivelse": "Gjenåpner en levert timelisteuke slik at timene kan redigeres.",
+   "kall": [
+    "PUT /timesheet/week/:reopen"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "gjenåpne uke",
+    "åpne timeliste uke"
+   ]
+  },
+  {
+   "tool": "search_accounts",
+   "beskrivelse": "Slår opp konti i kontoplanen (nummer, reskontrotype).",
+   "kall": [
+    "GET /ledger/account"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "kontoplan",
+    "konto",
+    "kontonummer",
+    "hovedbokskonto",
+    "NS 4102"
+   ]
+  },
+  {
+   "tool": "search_activities",
+   "beskrivelse": "Søker i aktivitetskatalogen (navn, nummer, fakturerbar).",
+   "kall": [
+    "GET /activity"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "aktivitet",
+    "aktivitetsliste",
+    "fakturerbar aktivitet"
+   ]
+  },
+  {
+   "tool": "search_client_companies",
+   "beskrivelse": "Søker blant klientene byrået har proxy-tilgang til.",
+   "kall": [
+    "GET /company/>withLoginAccess"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "klienter",
+    "klientliste",
+    "byråklienter",
+    "proxy",
+    "finn klient"
+   ]
+  },
+  {
+   "tool": "search_contacts",
+   "beskrivelse": "Søker kontaktpersoner på navn, e-post eller kunde.",
+   "kall": [
+    "GET /contact"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "kontaktpersoner",
+    "søk kontakt",
+    "kontakt kunde"
+   ]
+  },
+  {
+   "tool": "search_countries",
+   "beskrivelse": "Søker i landkatalogen (ISO-koder, norsk/engelsk navn).",
+   "kall": [
+    "GET /country"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "land",
+    "landkode",
+    "ISO",
+    "country"
+   ]
+  },
+  {
+   "tool": "search_customer_categories",
+   "beskrivelse": "Lister kundekategorier (felles for kunder og leverandører) og hvilken slot de hører til.",
+   "kall": [
+    "GET /customer/category"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "kundekategori",
+    "kategori",
+    "leverandørkategori",
+    "segment"
+   ]
+  },
+  {
+   "tool": "search_customers",
+   "beskrivelse": "Søker kunder på navn, e-post, telefon, org.nr. eller kategori.",
+   "kall": [
+    "GET /customer"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "søk kunde",
+    "finn kunde",
+    "kundeliste",
+    "org.nr"
+   ]
+  },
+  {
+   "tool": "search_departments",
+   "beskrivelse": "Lister/søker avdelinger med avdelingsleder.",
+   "kall": [
+    "GET /department",
+    "GET /department/query"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "avdelinger",
+    "avdelingsliste",
+    "finn avdeling"
+   ]
+  },
+  {
+   "tool": "search_employee_categories",
+   "beskrivelse": "Lister ansattkategorier.",
+   "kall": [
+    "GET /employee/category"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "ansattkategori",
+    "kategori ansatt"
+   ]
+  },
+  {
+   "tool": "search_employees",
+   "beskrivelse": "Søker ansatte på navn, avdeling, e-post eller ansattnummer.",
+   "kall": [
+    "GET /employee"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "søk ansatt",
+    "finn ansatt",
+    "ansattliste",
+    "ansatte i avdeling"
+   ]
+  },
+  {
+   "tool": "search_expense_cost_categories",
+   "beskrivelse": "Lister kostnadskategorier for utlegg og reiseregninger.",
+   "kall": [
+    "GET /travelExpense/costCategory"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "kostnadskategori",
+    "utleggskategori",
+    "parkering",
+    "bompenger"
+   ]
+  },
+  {
+   "tool": "search_expense_payment_types",
+   "beskrivelse": "Lister betalingstyper for utleggslinjer (privat utlegg, firmakort m.m.).",
+   "kall": [
+    "GET /travelExpense/paymentType"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "betalingstype",
+    "firmakort",
+    "privat utlegg",
+    "forskudd"
+   ]
+  },
+  {
+   "tool": "search_expenses",
+   "beskrivelse": "Lister utlegg og reiseregninger, filtrert på ansatt og status.",
+   "kall": [
+    "GET /travelExpense"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "reiseregninger",
+    "utlegg",
+    "søk reiseregning",
+    "leverte reiseregninger",
+    "status"
+   ]
+  },
+  {
+   "tool": "search_hour_entries",
+   "beskrivelse": "Lister timeføringer i en periode for en ansatt, med helligdagsflagg og lønnsart-registreringer.",
+   "kall": [
+    "GET /timesheet/entry",
+    "GET /timesheet/companyHoliday",
+    "GET /timesheet/salaryTypeSpecification"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "timeføringer",
+    "timer",
+    "timeliste",
+    "hva har jeg ført",
+    "hours"
+   ]
+  },
+  {
+   "tool": "search_invoices",
+   "beskrivelse": "Søker utgående (sendte) fakturaer på dato, kunde eller nummer, med utestående beløp.",
+   "kall": [
+    "GET /invoice"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "fakturaer",
+    "utgående faktura",
+    "ubetalt",
+    "forfalt",
+    "utestående",
+    "søk faktura"
+   ]
+  },
+  {
+   "tool": "search_ledger_postings",
+   "beskrivelse": "Søker hovedboksposteringer på periode, konto(område) eller leverandør.",
+   "kall": [
+    "GET /ledger/posting"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "posteringer",
+    "hovedbok",
+    "bilagslinjer",
+    "kostnader per konto",
+    "ledger"
+   ]
+  },
+  {
+   "tool": "search_my_payslips",
+   "beskrivelse": "Lister mine egne lønnsslipper.",
+   "kall": [
+    "GET /salary/payslip"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "mine lønnsslipper",
+    "lønnsslipp",
+    "lønn"
+   ]
+  },
+  {
+   "tool": "search_occupation_codes",
+   "beskrivelse": "Søker yrkeskoder (STYRK-08) for arbeidsforhold i a-meldingen.",
+   "kall": [
+    "GET /employee/employment/occupationCode"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "yrkeskode",
+    "STYRK",
+    "stillingskode",
+    "a-melding"
+   ]
+  },
+  {
+   "tool": "search_open_postings",
+   "beskrivelse": "Lister åpne (ikke utlignede) poster i kunde-/leverandørreskontro eller andre konti.",
+   "kall": [
+    "GET /ledger/posting/openPost",
+    "GET /ledger/openPost"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "åpne poster",
+    "uavstemte poster",
+    "reskontro",
+    "øreavvik",
+    "utligning",
+    "open items"
+   ]
+  },
+  {
+   "tool": "search_orders",
+   "beskrivelse": "Søker salgsordrer på dato, kunde, lukket- eller abonnementsstatus.",
+   "kall": [
+    "GET /order"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "ordrer",
+    "ordreliste",
+    "søk ordre",
+    "abonnement"
+   ]
+  },
+  {
+   "tool": "search_products",
+   "beskrivelse": "Søker produkter i produktkatalogen (navn, nummer, EAN).",
+   "kall": [
+    "GET /product"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "produkter",
+    "vare",
+    "tjeneste",
+    "produktkatalog",
+    "EAN"
+   ]
+  },
+  {
+   "tool": "search_project_categories",
+   "beskrivelse": "Lister prosjektkategorier.",
+   "kall": [
+    "GET /project/category"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "prosjektkategori",
+    "kategori prosjekt"
+   ]
+  },
+  {
+   "tool": "search_projects",
+   "beskrivelse": "Søker prosjekter på navn, nummer, kunde eller prosjektleder.",
+   "kall": [
+    "GET /project"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "prosjekter",
+    "søk prosjekt",
+    "prosjektliste",
+    "prosjektleder"
+   ]
+  },
+  {
+   "tool": "search_reminders",
+   "beskrivelse": "Søker purringer på dato, faktura eller kunde.",
+   "kall": [
+    "GET /reminder"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "purringer",
+    "inkasso",
+    "purreliste",
+    "dunning"
+   ]
+  },
+  {
+   "tool": "search_result_budgets",
+   "beskrivelse": "Leser resultatbudsjett for et år per selskap, avdeling, prosjekt, produkt eller ansatt.",
+   "kall": [
+    "GET /resultbudget",
+    "GET /resultbudget/company",
+    "GET /resultbudget/department/{id}",
+    "GET /resultbudget/project/{id}",
+    "GET /resultbudget/product/{id}",
+    "GET /resultbudget/employee/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "budsjett",
+    "resultatbudsjett",
+    "budsjett vs regnskap",
+    "avdelingsbudsjett"
+   ]
+  },
+  {
+   "tool": "search_supplier_invoices",
+   "beskrivelse": "Søker leverandørfakturaer på leverandør, dato, beløp eller status (ny flyt kun via connector, gammelt register via v2).",
+   "kall": [
+    "GET /supplierInvoice"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "leverandørfakturaer",
+    "inngående fakturaer",
+    "hva skylder vi",
+    "søk leverandørfaktura",
+    "bilagsmottak"
+   ]
+  },
+  {
+   "tool": "search_suppliers",
+   "beskrivelse": "Fritekstsøk etter leverandører på navn, nummer eller org.nr.",
+   "kall": [
+    "GET /supplierCustomer/search",
+    "GET /supplier"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "søk leverandør",
+    "finn leverandør",
+    "leverandørnavn"
+   ]
+  },
+  {
+   "tool": "search_travel_zones",
+   "beskrivelse": "Lister reisesoner (land) for diett- og nattilleggssatser.",
+   "kall": [
+    "GET /travelExpense/zone"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "reisesone",
+    "sone",
+    "land diett",
+    "utenlandsreise"
+   ]
+  },
+  {
+   "tool": "search_vat_types",
+   "beskrivelse": "Lister mva-typer/-koder med sats og fradrag.",
+   "kall": [
+    "GET /ledger/vatType"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "mva",
+    "mva-kode",
+    "avgiftskode",
+    "vat",
+    "25%"
+   ]
+  },
+  {
+   "tool": "search_voucher_types",
+   "beskrivelse": "Lister bilagstyper.",
+   "kall": [
+    "GET /ledger/voucherType"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "bilagstype",
+    "bilagsart",
+    "voucher type"
+   ]
+  },
+  {
+   "tool": "search_wage_type_registrations",
+   "beskrivelse": "Lister lønnsart-registreringer (overtid/tillegg) i en periode for en ansatt.",
+   "kall": [
+    "GET /timesheet/salaryTypeSpecification",
+    "GET /timesheet/salaryProjectTypeSpecification"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "overtid",
+    "lønnsart",
+    "tillegg",
+    "overtidsregistreringer"
+   ]
+  },
+  {
+   "tool": "send_amelding",
+   "beskrivelse": "Sender a-meldingen for en måned til Skatteetaten. Egen kobling: npm run amelding -- send (internt kall POST /salary/tskinternal/amelding/send).",
+   "kall": [],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "send a-melding",
+    "a-melding",
+    "innrapportering",
+    "Skatteetaten",
+    "Altinn"
+   ]
+  },
+  {
+   "tool": "send_invoice",
+   "beskrivelse": "Sender en opprettet faktura til kunden via e-post, EHF, eFaktura, AvtaleGiro eller papir.",
+   "kall": [
+    "PUT /invoice/{id}/:send"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "send faktura",
+    "e-post faktura",
+    "EHF",
+    "eFaktura",
+    "fakturautsendelse"
+   ]
+  },
+  {
+   "tool": "send_invoice_reminder",
+   "beskrivelse": "Sender purring (myk, purring med gebyr eller inkassovarsel) på en forfalt faktura.",
+   "kall": [
+    "PUT /invoice/{id}/:createReminder"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "purring",
+    "send purring",
+    "inkassovarsel",
+    "purregebyr",
+    "forfalt faktura"
+   ]
+  },
+  {
+   "tool": "set_month_payout",
+   "beskrivelse": "Setter utbetaling/trekk i lønn (timer) for fleksi- og feriesaldo på en månedstimeliste – kun connector (v2 kan bare lese, se kall).",
+   "kall": [
+    "GET /timesheet/month/byMonthNumber"
+   ],
+   "kunConnector": true,
+   "skrivende": true,
+   "nokkelord": [
+    "fleksi utbetaling",
+    "trekk i lønn",
+    "ferieutbetaling",
+    "månedstimeliste"
+   ]
+  },
+  {
+   "tool": "submit_expense",
+   "beskrivelse": "Leverer et utlegg/reiseregning til godkjenning.",
+   "kall": [
+    "PUT /travelExpense/:deliver"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "lever reiseregning",
+    "lever utlegg",
+    "send til godkjenning",
+    "deliver"
+   ]
+  },
+  {
+   "tool": "suggest_per_diem",
+   "beskrivelse": "Forhåndsviser offisielle diettsatser for en reiseregning.",
+   "kall": [
+    "GET /travelExpense/{id}",
+    "GET /travelExpense/rate",
+    "GET /travelExpense/rateCategory",
+    "GET /travelExpense/zone"
+   ],
+   "kunConnector": false,
+   "skrivende": false,
+   "nokkelord": [
+    "diettsats",
+    "foreslå diett",
+    "statens satser",
+    "per diem"
+   ]
+  },
+  {
+   "tool": "tripletex_run_script",
+   "beskrivelse": "Kjører JavaScript i sandkasse mot connectorens leseverktøy for mange selskaper samtidig – kun connector (tilsvarer egne skript med connect()).",
+   "kall": [],
+   "kunConnector": true,
+   "skrivende": false,
+   "nokkelord": [
+    "skript",
+    "batch",
+    "alle klienter",
+    "aggreger",
+    "flere selskaper"
+   ]
+  },
+  {
+   "tool": "unapprove_expense",
+   "beskrivelse": "Trekker tilbake godkjenning av et utlegg/reiseregning (tilbake til levert).",
+   "kall": [
+    "PUT /travelExpense/:unapprove"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "angre godkjenning",
+    "fjern godkjenning reiseregning",
+    "unapprove"
+   ]
+  },
+  {
+   "tool": "unapprove_month",
+   "beskrivelse": "Trekker tilbake godkjenning av en timelistemåned (tilbake til levert).",
+   "kall": [
+    "PUT /timesheet/month/:unapprove"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "angre godkjenning måned",
+    "fjern godkjenning timeliste"
+   ]
+  },
+  {
+   "tool": "unapprove_week",
+   "beskrivelse": "Trekker tilbake godkjenning av en timelisteuke (tilbake til levert).",
+   "kall": [
+    "PUT /timesheet/week/:unapprove"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "angre godkjenning uke",
+    "fjern godkjenning uke"
+   ]
+  },
+  {
+   "tool": "update_expense",
+   "beskrivelse": "Endrer hodet på et åpent/avvist utlegg eller reiseregning (tittel, prosjekt, avdeling, reisedetaljer).",
+   "kall": [
+    "GET /travelExpense/{id}",
+    "PUT /travelExpense/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "endre reiseregning",
+    "oppdater utlegg",
+    "reisedetaljer",
+    "prosjekt på reiseregning"
+   ]
+  },
+  {
+   "tool": "update_expense_line",
+   "beskrivelse": "Endrer én kostnadslinje (beløp, kategori, betalingstype, dato) på et åpent utlegg/reiseregning.",
+   "kall": [
+    "PUT /travelExpense/cost/{id}"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "endre kostnadslinje",
+    "endre beløp",
+    "oppdater utleggslinje"
+   ]
+  },
+  {
+   "tool": "update_result_budget",
+   "beskrivelse": "Erstatter resultatbudsjett for én bærer og ett år per konto – kun connector (v2 kan bare lese, se kall).",
+   "kall": [
+    "GET /resultbudget"
+   ],
+   "kunConnector": true,
+   "skrivende": true,
+   "nokkelord": [
+    "oppdater budsjett",
+    "resultatbudsjett",
+    "legg inn budsjett"
+   ]
+  },
+  {
+   "tool": "upload_expense_receipt",
+   "beskrivelse": "Laster opp kvittering (PDF/bilde) til nytt eller eksisterende utlegg/reiseregning; automatisk tolking skjer kun i connectoren.",
+   "kall": [
+    "POST /travelExpense",
+    "POST /travelExpense/{travelExpenseId}/attachment"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "last opp kvittering",
+    "kvittering",
+    "vedlegg",
+    "skann kvittering",
+    "receipt"
+   ]
+  },
+  {
+   "tool": "withdraw_expense",
+   "beskrivelse": "Trekker tilbake mitt eget leverte utlegg/reiseregning til åpen.",
+   "kall": [
+    "PUT /travelExpense/:undeliver"
+   ],
+   "kunConnector": false,
+   "skrivende": true,
+   "nokkelord": [
+    "trekk tilbake reiseregning",
+    "angre levering",
+    "withdraw"
+   ]
+  }
+ ]
+}

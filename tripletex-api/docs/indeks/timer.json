@@ -1,0 +1,910 @@
+{
+  "group": "timer",
+  "tags": [
+    {
+      "tag": "timesheet/entry",
+      "beskrivelse": "Registrere, søke, endre og slette timeføringer (timer per ansatt, dato, prosjekt og aktivitet), inkludert sum timer og nylig brukte prosjekter/aktiviteter.",
+      "nokkelord": [
+        "timer",
+        "timeføring",
+        "timeforing",
+        "timeregistrering",
+        "timeliste",
+        "timelister",
+        "føre timer",
+        "fore timer",
+        "registrere timer",
+        "timeseddel",
+        "timesheet",
+        "prosjekttimer",
+        "fakturerbare timer",
+        "fakturerbar tid",
+        "ufakturerte timer",
+        "sum timer",
+        "total hours",
+        "arbeidstimer",
+        "fakturagrunnlag",
+        "tidsregistrering",
+        "timerapport",
+        "timeregnskap",
+        "time tracking",
+        "timer på prosjekt",
+        "timepris"
+      ]
+    },
+    {
+      "tag": "timesheet/month",
+      "beskrivelse": "Status, levering, godkjenning, oppheving av godkjenning og gjenåpning av månedstimelister per ansatt, med timesum, fleksisaldo og feriesaldo.",
+      "nokkelord": [
+        "månedstimeliste",
+        "maanedstimeliste",
+        "godkjenne timeliste",
+        "godkjenne måned",
+        "godkjenne maned",
+        "attestere timer",
+        "levere timeliste",
+        "fullføre måned",
+        "gjenåpne måned",
+        "gjenapne maned",
+        "oppheve godkjenning",
+        "approve month",
+        "complete month",
+        "reopen month",
+        "fleksitid",
+        "fleks",
+        "fleksisaldo",
+        "flexsaldo",
+        "feriesaldo",
+        "timebank",
+        "avspasering",
+        "lønnsgrunnlag timer",
+        "godkjenning av timer",
+        "attestasjon timer",
+        "timelister før lønn"
+      ]
+    },
+    {
+      "tag": "timesheet/week",
+      "beskrivelse": "Ukestatus for timelister per ISO-uke og ansatt, med levering, godkjenning, oppheving av godkjenning og gjenåpning av uker.",
+      "nokkelord": [
+        "ukestimeliste",
+        "ukentlig timeliste",
+        "ukenummer",
+        "iso-uke",
+        "ukestatus",
+        "godkjenne uke",
+        "levere uke",
+        "fullføre uke",
+        "fullfore uke",
+        "gjenåpne uke",
+        "gjenapne uke",
+        "oppheve godkjenning uke",
+        "weekyear",
+        "approve week",
+        "complete week",
+        "reopen week",
+        "ikke levert timeliste",
+        "manglende timer",
+        "ukeliste timer",
+        "week status",
+        "unapprove week"
+      ]
+    },
+    {
+      "tag": "timesheet/timeClock",
+      "beskrivelse": "Stemplingsur (stoppeklokke) for inn- og utstempling som automatisk oppretter/oppdaterer timeføringer.",
+      "nokkelord": [
+        "stemplingsur",
+        "stempling",
+        "stemple inn",
+        "stemple ut",
+        "innstempling",
+        "utstempling",
+        "stoppeklokke",
+        "time clock",
+        "clock in",
+        "clock out",
+        "start klokke",
+        "stopp klokke",
+        "kjørende klokke",
+        "kjorende klokke",
+        "lunsjpause",
+        "lunch break",
+        "oppmøte",
+        "oppmote",
+        "stemplingsklokke",
+        "punch in",
+        "punch out",
+        "hvem er stemplet inn"
+      ]
+    },
+    {
+      "tag": "timesheet/allocated",
+      "beskrivelse": "Allokerte (planlagte) timer per ansatt, særlig ferie/fri på firmaets interne ferieaktivitet, med godkjenning som kopierer timene inn i timelisten.",
+      "nokkelord": [
+        "allokerte timer",
+        "allokering",
+        "planlagte timer",
+        "ressursplanlegging",
+        "bemanningsplan",
+        "ferie",
+        "feriesøknad",
+        "feriesoknad",
+        "ferieplan",
+        "godkjenne ferie",
+        "avvise ferie",
+        "allocated hours",
+        "vacation",
+        "holiday request",
+        "leave request",
+        "lederkommentar",
+        "manager comment",
+        "sommerferie",
+        "fellesferie",
+        "bedriftsferie",
+        "ferietimer",
+        "planlagt fravær",
+        "planlagt fravaer"
+      ]
+    },
+    {
+      "tag": "timesheet/companyHoliday",
+      "beskrivelse": "[BETA] Firmaets egne fridager (dato og prosent fri), f.eks. inneklemte dager, julaften og nyttårsaften, som påvirker normaltid i timelisten.",
+      "nokkelord": [
+        "firmafridag",
+        "fridag",
+        "fridager",
+        "helligdag",
+        "helligdager",
+        "inneklemt dag",
+        "inneklemte dager",
+        "julaften",
+        "nyttårsaften",
+        "nyttarsaften",
+        "halv dag",
+        "company holiday",
+        "røde dager",
+        "rode dager",
+        "arbeidskalender",
+        "firmafridager",
+        "påskeaften",
+        "paskeaften",
+        "redusert normaltid"
+      ]
+    },
+    {
+      "tag": "timesheet/salaryTypeSpecification",
+      "beskrivelse": "[BETA] Lønnsarter/tillegg registrert i timelisten per ansatt og dato uten prosjektkobling (f.eks. overtid, kveldstillegg, helgetillegg) som grunnlag for lønnskjøringen.",
+      "nokkelord": [
+        "lønnsart",
+        "lonnsart",
+        "lønnsarter i timeliste",
+        "overtid",
+        "overtidstillegg",
+        "kveldstillegg",
+        "helgetillegg",
+        "skifttillegg",
+        "utrykning",
+        "vakttillegg",
+        "salary type",
+        "salary type specification",
+        "variabel lønn",
+        "variabel lonn",
+        "variable tillegg",
+        "timelønn",
+        "timelonn",
+        "lønnstillegg",
+        "lonnstillegg",
+        "tillegg i timeliste",
+        "overtid 50",
+        "overtid 100"
+      ]
+    },
+    {
+      "tag": "timesheet/salaryProjectTypeSpecification",
+      "beskrivelse": "Lønnsarter/tillegg i timelisten knyttet til prosjekt og aktivitet (f.eks. prosjekttillegg eller overtid på prosjekt); feltet wagePayment viser lønnsslippen når tillegget er tatt med i lønn.",
+      "nokkelord": [
+        "prosjektlønnsart",
+        "prosjektlonnsart",
+        "prosjekttillegg",
+        "lønnsart prosjekt",
+        "lonnsart prosjekt",
+        "overtid prosjekt",
+        "project salary type",
+        "salary project type specification",
+        "tillegg på prosjekt",
+        "tillegg per aktivitet",
+        "overtid på prosjekt",
+        "overtid pa prosjekt",
+        "prosjektlønn",
+        "prosjektlonn"
+      ]
+    },
+    {
+      "tag": "timesheet/settings",
+      "beskrivelse": "[BETA] Firmaets timelisteinnstillinger (stemplingsur på/av, levering av timeliste, fleks- og feriesaldo, krav om kommentar, standard aktivitet).",
+      "nokkelord": [
+        "timelisteinnstillinger",
+        "innstillinger timer",
+        "oppsett timeliste",
+        "timesheet settings",
+        "fleksitid aktivert",
+        "krav om kommentar",
+        "obligatorisk kommentar",
+        "stemplingsur aktivert",
+        "standardaktivitet",
+        "default activity",
+        "konfigurasjon timeliste",
+        "feriesaldo aktivert",
+        "levering av timeliste påkrevd"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Hente timeføringer for en periode (alle ansatte eller én ansatt)",
+      "nokkelord": [
+        "timeliste",
+        "timer",
+        "timeføringer",
+        "timeoversikt",
+        "hvor mange timer",
+        "timer forrige måned",
+        "hente timer",
+        "timesheet",
+        "hours"
+      ],
+      "kall": [
+        "GET /timesheet/entry",
+        "GET /employee"
+      ],
+      "fremgangsmate": "GET /timesheet/entry med påkrevd dateFrom og dateTo (dateTo er eksklusiv: hele sept = dateFrom=2026-09-01&dateTo=2026-10-01). Filtrer med employeeId/projectId/activityId (kommaseparerte id-lister) og ev. comment. Svaret har sumAllHours i tillegg til values. Bruk minimalt fields=id,date,hours,chargeableHours,project(id,number,name),activity(id,name),employee(id) – ikke hent navn/e-post på ansatte (GDPR); rapporter per 'ansatt 1/2' eller initialer. Finn employeeId via GET /employee?fields=id,employeeNumber kun ved behov. Paginer med from/count.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente timer på et prosjekt (timeliste/timerapport per prosjekt)",
+      "nokkelord": [
+        "prosjekttimer",
+        "timer på prosjekt",
+        "timerapport",
+        "timeliste prosjekt",
+        "hourlist",
+        "prosjektoppfølging",
+        "prosjektrapport",
+        "registrerte timer"
+      ],
+      "kall": [
+        "GET /project",
+        "GET /timesheet/entry",
+        "GET /project/{id}/period/hourlistReport"
+      ],
+      "fremgangsmate": "1) Finn prosjekt-id: GET /project?number=… eller name=… (fields=id,number,name). 2) Detaljer: GET /timesheet/entry?projectId={id}&dateFrom=…&dateTo=… (dateTo eksklusiv) med fields=date,hours,chargeableHours,activity(name),employee(id),comment. 3) Aggregert: GET /project/{id}/period/hourlistReport?dateFrom=…&dateTo=… gir registeredHours, chargeableHours, nonChargeableHours, approvedButUnchargedHours og nonApprovedHours. Rapporter aggregert per aktivitet, ikke per navngitt ansatt.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne ufakturerte (og fakturerte) timer på prosjekt – fakturagrunnlag og fakturareserve",
+      "nokkelord": [
+        "ufakturerte timer",
+        "ikke fakturert",
+        "fakturagrunnlag",
+        "fakturareserve",
+        "fakturerbare timer",
+        "wip",
+        "arbeid i arbeid",
+        "timer til fakturering",
+        "fakturerte timer",
+        "invoicing reserve"
+      ],
+      "kall": [
+        "GET /timesheet/entry",
+        "GET /project/{id}/period/invoicingReserve",
+        "GET /project/batchPeriod/invoicingReserveByProjectIds",
+        "GET /project/{id}/period/invoiced",
+        "GET /project/{id}/period/hourlistReport"
+      ],
+      "fremgangsmate": "Per timeføring: GET /timesheet/entry?projectId=…&dateFrom=…&dateTo=…&fields=id,date,hours,chargeable,chargeableHours,hourlyRate,invoice(id,invoiceNumber) – rader med chargeable=true og invoice=null er ufakturert; invoice satt = fakturert. Beløp: GET /project/{id}/period/invoicingReserve (dateFrom/dateTo påkrevd) eller for mange prosjekter GET /project/batchPeriod/invoicingReserveByProjectIds?ids=…(maks 1000). Allerede fakturert: GET /project/{id}/period/invoiced. approvedButUnchargedHours fra hourlistReport gir godkjente, ikke fakturerte timer. Selve faktureringen skjer via ordre (salg-gruppen, PUT /order/{id}/:invoice).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Summere totalt antall timer for en ansatt i en periode",
+      "nokkelord": [
+        "sum timer",
+        "totalt timer",
+        "antall timer",
+        "timesum",
+        "total hours",
+        "hvor mye har ansatt jobbet",
+        "arbeidede timer"
+      ],
+      "kall": [
+        "GET /timesheet/entry/>totalHours",
+        "GET /timesheet/entry"
+      ],
+      "fremgangsmate": "GET /timesheet/entry/>totalHours?employeeId=…&startDate=yyyy-MM-dd&endDate=yyyy-MM-dd (NB: startDate/endDate, ikke dateFrom/dateTo; endDate er eksklusiv). Standardverdier: employeeId = token-eier, startDate = i dag, endDate = i morgen – oppgi derfor alltid alle tre. Returnerer ett tall i value. For flere ansatte: GET /timesheet/entry med dateFrom/dateTo og les sumAllHours, eller fields=employee(id),hours og summer lokalt. Stien inneholder '>' – quote i shell / URL-encode som %3E.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Føre timer for en ansatt på prosjekt/aktivitet",
+      "nokkelord": [
+        "føre timer",
+        "fore timer",
+        "registrere timer",
+        "legge inn timer",
+        "timeføring",
+        "ny timeføring",
+        "post timer",
+        "log hours",
+        "create timesheet entry"
+      ],
+      "kall": [
+        "GET /employee",
+        "GET /project/>forTimeSheet",
+        "GET /activity/>forTimeSheet",
+        "POST /timesheet/entry",
+        "GET /timesheet/settings"
+      ],
+      "fremgangsmate": "1) employeeId: GET /employee?employeeNumber=…&fields=id (minimalt). 2) Gyldige prosjekter for dato: GET /project/>forTimeSheet?employeeId=…&date=… 3) Gyldige aktiviteter: GET /activity/>forTimeSheet?projectId=…&employeeId=…&date=… (for interne/generelle aktiviteter uten prosjekt brukes GET /activity?isGeneral=true). 4) POST /timesheet/entry body {employee:{id}, project:{id} (utelat for generell aktivitet), activity:{id}, date:'yyyy-MM-dd', hours:7.5, comment:'…'}. Sjekk GET /timesheet/settings (requireCommentsOnRegisteredHoursAllProjects) om kommentar er påkrevd. Kun én føring per ansatt/dato/aktivitet/prosjekt – finnes den, oppdater med PUT i stedet. Skrivende: bekreft med bruker først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Føre mange timer på en gang (bulk/import av timelister)",
+      "nokkelord": [
+        "importere timer",
+        "bulk timer",
+        "masseregistrering",
+        "timer fra excel",
+        "flere timeføringer",
+        "import timeliste",
+        "batch"
+      ],
+      "kall": [
+        "POST /timesheet/entry/list",
+        "GET /timesheet/entry"
+      ],
+      "fremgangsmate": "Bygg en JSON-array med TimesheetEntry-objekter ({employee:{id}, project:{id}, activity:{id}, date, hours, comment}) – flere ansatte kan sendes i samme kall (POST /timesheet/entry/list, body er en liste). Sjekk først med GET /timesheet/entry (samme periode, fields=id,date,employee(id),project(id),activity(id)) at kombinasjonen ansatt/dato/aktivitet/prosjekt ikke finnes fra før – duplikater gir valideringsfeil (422) og kan stoppe hele kallet. Send i passe store bolker. Skrivende: vis sammendrag (antall rader, sum timer per prosjekt) og få bekreftelse før POST.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre en eller flere timeføringer (timer, dato, aktivitet, kommentar)",
+      "nokkelord": [
+        "endre timer",
+        "korrigere timer",
+        "rette timeføring",
+        "oppdatere timer",
+        "flytte timer til annet prosjekt",
+        "feilført time",
+        "update timesheet entry"
+      ],
+      "kall": [
+        "GET /timesheet/entry/{id}",
+        "GET /timesheet/entry",
+        "PUT /timesheet/entry/{id}",
+        "PUT /timesheet/entry/list"
+      ],
+      "fremgangsmate": "Hent føringen først (GET /timesheet/entry/{id} eller søk med dateFrom/dateTo) inkl. id,version,employee(id),project(id),activity(id),date,hours,comment,locked. Er locked=true (godkjent uke/måned eller fakturert) må uken/måneden gjenåpnes/oppheves først. PUT /timesheet/entry/{id} med HELT objekt inkl. version – felt som er med men tomme/0 blir nullet. Flere samtidig: PUT /timesheet/entry/list med liste av komplette objekter. Skrivende: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slette en feilført timeføring",
+      "nokkelord": [
+        "slette timer",
+        "fjerne timeføring",
+        "slett time",
+        "delete hours",
+        "feilregistrert",
+        "dobbeltført"
+      ],
+      "kall": [
+        "GET /timesheet/entry",
+        "DELETE /timesheet/entry/{id}"
+      ],
+      "fremgangsmate": "Finn føringen med GET /timesheet/entry?employeeId=…&dateFrom=…&dateTo=…&fields=id,version,date,hours,project(number),activity(name),locked. DELETE /timesheet/entry/{id}?version=… Låste (godkjente/fakturerte) føringer kan ikke slettes før uke/måned er gjenåpnet; fakturerte timer må krediteres i stedet. Sletting er irreversibel – bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne prosjekter og aktiviteter en ansatt kan føre timer på (inkl. nylig brukte)",
+      "nokkelord": [
+        "hvilke prosjekter",
+        "gyldige aktiviteter",
+        "aktivitetsliste",
+        "nylig brukte prosjekter",
+        "siste prosjekter",
+        "recent projects",
+        "recent activities",
+        "for timesheet",
+        "timekoder"
+      ],
+      "kall": [
+        "GET /project/>forTimeSheet",
+        "GET /activity/>forTimeSheet",
+        "GET /timesheet/entry/>recentProjects",
+        "GET /timesheet/entry/>recentActivities",
+        "GET /activity"
+      ],
+      "fremgangsmate": "Gyldige for en dato: GET /project/>forTimeSheet?employeeId=…&date=… og GET /activity/>forTimeSheet?projectId=…&employeeId=…&date=… (projectId påkrevd; filterExistingHours=true skjuler aktiviteter med timer fra før). Nylig brukte: GET /timesheet/entry/>recentProjects?employeeId=… og GET /timesheet/entry/>recentActivities?projectId=…&employeeId=… (projectId påkrevd). Generelle/interne aktiviteter (ferie, sykdom, intern tid): GET /activity?isGeneral=true eller absence=true. Uten employeeId brukes token-eier. fields=id,number,name.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke status på månedstimelister (levert/godkjent) for ansatte",
+      "nokkelord": [
+        "månedsstatus",
+        "manedsstatus",
+        "er timelisten godkjent",
+        "levert timeliste",
+        "godkjent måned",
+        "hvem har ikke levert",
+        "monthly status",
+        "timeliste status"
+      ],
+      "kall": [
+        "GET /employee",
+        "GET /timesheet/month/byMonthNumberList",
+        "GET /timesheet/month/{id}",
+        "GET /timesheet/month/byMonthNumber"
+      ],
+      "fremgangsmate": "1) Ansatt-id-er: GET /employee?fields=id (ev. departmentId). 2) GET /timesheet/month/byMonthNumberList?employeeIds=1,2,3&monthYearList=2026-08,2026-09 (begge påkrevd; format yyyy-MM) med fields=id,employee(id),monthYear,completed,approved,approvedDate,approvedUntilDate. completed=false betyr ikke levert. Enkeltpost: GET /timesheet/month/{id}. byMonthNumber (én måned) er DEPRECATED – bruk byMonthNumberList. Oppgi resultat som antall/initialer, ikke navn.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente fleksisaldo, timesum, normaltid og feriesaldo for en måned",
+      "nokkelord": [
+        "fleksitid",
+        "fleksisaldo",
+        "flexsaldo",
+        "timebank",
+        "plusstimer",
+        "minustimer",
+        "normaltid",
+        "standardtid",
+        "feriesaldo",
+        "feriedager igjen",
+        "avspasering",
+        "overtid saldo"
+      ],
+      "kall": [
+        "GET /timesheet/month/byMonthNumberList",
+        "GET /employee/standardTime/byDate",
+        "GET /timesheet/settings"
+      ],
+      "fremgangsmate": "GET /timesheet/month/byMonthNumberList?employeeIds=…&monthYearList=2026-09&fields=employee(id),monthYear,hourSummary(sumHours,standardTime,chargeableHours,nonChargeableHours,hoursWithPay),flexSummary(incomingHourBalance,outgoingHourBalance,change),vacationSummary(incomingVacationBalance,outgoingVacationBalance,vacationTakenThisYear). Fleks/feriesaldo er bare meningsfullt når det er slått på: sjekk GET /timesheet/settings (flexBalance, vacationBalance). Normaltid for ansatt: GET /employee/standardTime/byDate?employeeId=…&date=… Saldo per person er personopplysning – vis aggregert eller anonymisert.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Godkjenne månedstimelister (f.eks. før lønnskjøring)",
+      "nokkelord": [
+        "godkjenne timeliste",
+        "godkjenne måned",
+        "godkjenne maned",
+        "attestere timer",
+        "approve month",
+        "timegodkjenning",
+        "godkjenne før lønn",
+        "lukke måned"
+      ],
+      "kall": [
+        "GET /timesheet/month/byMonthNumberList",
+        "PUT /timesheet/month/:approve"
+      ],
+      "fremgangsmate": "1) Sjekk status med GET /timesheet/month/byMonthNumberList?employeeIds=…&monthYearList=yyyy-MM (completed/approved). 2) PUT /timesheet/month/:approve?employeeIds=1,2,3&monthYear=2026-09 (valgfritt approvedUntilDate=yyyy-MM-dd for delvis godkjenning; standard er slutten av måneden). Oppgi ALLTID employeeIds – uten blir token-eier brukt. Er id oppgitt ignoreres andre parametre. Ingen body. Godkjenning låser timene (locked=true). Krever at token-bruker har rett til å godkjenne timer (403 ellers). Skrivende: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Levere (fullføre) månedstimeliste på vegne av ansatt",
+      "nokkelord": [
+        "levere timeliste",
+        "fullføre måned",
+        "fullfore maned",
+        "sende inn timer",
+        "complete month",
+        "markere som ferdig"
+      ],
+      "kall": [
+        "PUT /timesheet/month/:complete",
+        "GET /timesheet/month/byMonthNumberList"
+      ],
+      "fremgangsmate": "PUT /timesheet/month/:complete?employeeIds=…&monthYear=yyyy-MM (eller id=… som overstyrer resten). Ingen body. Kontroller etterpå med GET /timesheet/month/byMonthNumberList at completed=true. Skrivende: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Oppheve godkjenning eller gjenåpne en måned for korrigering",
+      "nokkelord": [
+        "oppheve godkjenning",
+        "angre godkjenning",
+        "gjenåpne måned",
+        "gjenapne maned",
+        "låse opp timeliste",
+        "unapprove month",
+        "reopen month",
+        "korrigere godkjent timeliste"
+      ],
+      "kall": [
+        "PUT /timesheet/month/:unapprove",
+        "PUT /timesheet/month/:reopen",
+        "GET /timesheet/month/byMonthNumberList"
+      ],
+      "fremgangsmate": "Rekkefølge: først PUT /timesheet/month/:unapprove?employeeIds=…&monthYear=yyyy-MM (fjerner godkjenning), deretter ved behov PUT /timesheet/month/:reopen (fjerner levert-status slik at ansatt kan endre). Ingen body; id overstyrer andre parametre. Timer som allerede er fakturert eller lønnet forblir låst. Skrivende: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sjekke ukestatus – hvem har ikke levert/fått godkjent timelisten for en uke",
+      "nokkelord": [
+        "ukestatus",
+        "ukeliste",
+        "ikke levert",
+        "manglende timeliste",
+        "uke 39",
+        "week status",
+        "godkjent uke",
+        "purre timer"
+      ],
+      "kall": [
+        "GET /timesheet/week",
+        "GET /employee"
+      ],
+      "fremgangsmate": "GET /timesheet/week?weekYear=2026-39&employeeIds=… (weekYear = ISO år-ukenummer, f.eks. 2026-39) med fields=id,employee(id),year,week,completed,approved,approvedDate. Filtrer på approvedBy=<ansatt-id> for å se uker en bestemt leder har godkjent. Ansatte uten rad eller med completed=false har ikke levert. Oppgi som antall/initialer.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Levere, godkjenne, oppheve godkjenning eller gjenåpne en uke",
+      "nokkelord": [
+        "godkjenne uke",
+        "levere uke",
+        "fullføre uke",
+        "gjenåpne uke",
+        "oppheve godkjenning uke",
+        "approve week",
+        "complete week",
+        "reopen week",
+        "unapprove week"
+      ],
+      "kall": [
+        "PUT /timesheet/week/:complete",
+        "PUT /timesheet/week/:approve",
+        "PUT /timesheet/week/:unapprove",
+        "PUT /timesheet/week/:reopen",
+        "GET /timesheet/week"
+      ],
+      "fremgangsmate": "Alle tar id ELLER (employeeId + weekYear, f.eks. 2026-39) som query, ingen body. Merk: uke-kallene tar én employeeId (ikke liste) – loop per ansatt. Flyt: :complete (levert) → :approve (godkjent). Tilbake: :unapprove → :reopen. Hent id/status via GET /timesheet/week. Skrivende: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Stemple inn (starte stemplingsur)",
+      "nokkelord": [
+        "stemple inn",
+        "starte klokke",
+        "start stemplingsur",
+        "clock in",
+        "innstempling",
+        "starte arbeidsdag"
+      ],
+      "kall": [
+        "GET /timesheet/settings",
+        "GET /timesheet/timeClock/present",
+        "PUT /timesheet/timeClock/:start"
+      ],
+      "fremgangsmate": "Sjekk at stemplingsur er aktivert (GET /timesheet/settings?fields=timeClock). Sjekk at ingen klokke allerede kjører: GET /timesheet/timeClock/present?employeeId=… Deretter PUT /timesheet/timeClock/:start?activityId=… (påkrevd) &projectId=… (for prosjektaktivitet) &employeeId=… (standard token-eier – oppgi alltid) &date=… (standard i dag) &lunchBreakDuration=… &comment=… Ingen body. NB: comment overskriver kommentaren på en eksisterende timeføring hvis klokka startes på den. Skrivende: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Stemple ut (stoppe stemplingsur)",
+      "nokkelord": [
+        "stemple ut",
+        "stoppe klokke",
+        "stopp stemplingsur",
+        "clock out",
+        "utstempling",
+        "avslutte arbeidsdag"
+      ],
+      "kall": [
+        "GET /timesheet/timeClock/present",
+        "PUT /timesheet/timeClock/{id}/:stop"
+      ],
+      "fremgangsmate": "Finn kjørende klokke: GET /timesheet/timeClock/present?employeeId=…&fields=id,version,date,timeStart,project(id),activity(id). PUT /timesheet/timeClock/{id}/:stop?version=…&comment=… (kommentar kan være påkrevd hvis firmaet krever kommentar). Timene legges automatisk på timeføringen. Skrivende: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se og korrigere stemplinger (hvem er stemplet inn, start-/stopptid, lunsj)",
+      "nokkelord": [
+        "stemplinger",
+        "hvem er på jobb",
+        "stemplet inn nå",
+        "kjørende klokker",
+        "korrigere stempling",
+        "endre starttid",
+        "time clock entries",
+        "isrunning"
+      ],
+      "kall": [
+        "GET /timesheet/timeClock",
+        "GET /timesheet/timeClock/{id}",
+        "PUT /timesheet/timeClock/{id}"
+      ],
+      "fremgangsmate": "Søk: GET /timesheet/timeClock?dateFrom=…&dateTo=…(eksklusiv)&isRunning=true/false&employeeId=…&projectId=…&hourId=<timeføring-id> med fields=id,version,employee(id),date,timeStart,timeStop,lunchBreakDuration,timesheetEntry(id). Korriger: hent med GET /timesheet/timeClock/{id} og send komplett objekt med version til PUT /timesheet/timeClock/{id}. Oppmøtedata er personopplysninger – vis antall/initialer. Skrivende ved PUT: bekreft.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere planlagt ferie/fri eller allokerte timer for ansatte",
+      "nokkelord": [
+        "registrere ferie",
+        "legge inn ferie",
+        "planlagt ferie",
+        "allokere timer",
+        "ressursplan",
+        "fri",
+        "feriesøknad",
+        "allocated hours",
+        "vacation planning"
+      ],
+      "kall": [
+        "GET /activity",
+        "POST /timesheet/allocated",
+        "POST /timesheet/allocated/list"
+      ],
+      "fremgangsmate": "Finn firmaets interne ferieaktivitet: GET /activity?absence=true (eller isGeneral=true) &fields=id,name. POST /timesheet/allocated body {employee:{id}, activity:{id}, project:{id}(valgfri), date, hours, managerComment}. Flere ansatte/dager: POST /timesheet/allocated/list. Kun én per ansatt/dato/aktivitet/prosjekt; kun ferie/fri-timer kan ha kommentar; kommentar sender varsel til ansatt. Skrivende: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se allokerte timer og ferieplaner/feriesøknader",
+      "nokkelord": [
+        "allokerte timer",
+        "ferieplan",
+        "hvem har ferie",
+        "feriesøknader",
+        "ventende ferie",
+        "ikke godkjent ferie",
+        "allocated"
+      ],
+      "kall": [
+        "GET /timesheet/allocated",
+        "GET /timesheet/allocated/{id}"
+      ],
+      "fremgangsmate": "GET /timesheet/allocated?dateFrom=…&dateTo=…(eksklusiv)&employeeIds=…&projectIds=…&activityIds=… med fields=id,version,employee(id),activity(name),date,hours,isApproved. isApproved=false = ikke godkjent ennå. Enkeltpost: GET /timesheet/allocated/{id}. Fravær er personopplysning – oppgi aggregert/initialer.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Godkjenne eller oppheve godkjenning av feriesøknader (allokerte ferietimer)",
+      "nokkelord": [
+        "godkjenne ferie",
+        "avvise ferie",
+        "feriegodkjenning",
+        "approve vacation",
+        "unapprove",
+        "godkjenne fri",
+        "ferieønske",
+        "oppheve godkjenning ferie",
+        "feriesoknad"
+      ],
+      "kall": [
+        "GET /timesheet/allocated",
+        "PUT /timesheet/allocated/{id}/:approve",
+        "PUT /timesheet/allocated/:approveList",
+        "PUT /timesheet/allocated/{id}/:unapprove",
+        "PUT /timesheet/allocated/:unapproveList",
+        "DELETE /timesheet/allocated/{id}"
+      ],
+      "fremgangsmate": "Kun for allokerte timer på firmaets interne ferie-/fri-aktivitet. Enkelt: PUT /timesheet/allocated/{id}/:approve?managerComment=… Mange: PUT /timesheet/allocated/:approveList?ids=… ELLER employeeIds=…&dateFrom=…&dateTo=…(eksklusiv) – ids overstyrer resten, og uten ids OG uten employeeIds gjelder kallet bare token-eier. Godkjente timer kopieres inn i timelisten bare hvis uke/måned ikke er godkjent og ingen stemplingsur kjører. Oppheve/avvise: :unapprove / :unapproveList (samme parametre); for å fjerne søknaden helt: DELETE /timesheet/allocated/{id}. Ingen body. Ansatt får varsel ved endring – bekreft med bruker før kall.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre eller slette allokerte timer",
+      "nokkelord": [
+        "endre ferie",
+        "slette ferie",
+        "flytte ferie",
+        "endre allokering",
+        "slette allokerte timer",
+        "update allocated"
+      ],
+      "kall": [
+        "GET /timesheet/allocated/{id}",
+        "PUT /timesheet/allocated/{id}",
+        "PUT /timesheet/allocated/list",
+        "DELETE /timesheet/allocated/{id}"
+      ],
+      "fremgangsmate": "Hent posten (GET /timesheet/allocated/{id}) og send HELT objekt med version til PUT /timesheet/allocated/{id} – felt som er tomme/0 blir nullet. Flere: PUT /timesheet/allocated/list. Slett: DELETE /timesheet/allocated/{id}. Endret kommentar sender varsel til ansatt. Skrivende: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Vedlikeholde firmafridager (inneklemte dager, julaften, nyttårsaften)",
+      "nokkelord": [
+        "firmafridag",
+        "inneklemt dag",
+        "julaften fri",
+        "halv dag",
+        "helligdager",
+        "fridager i år",
+        "company holiday",
+        "normaltid",
+        "røde dager"
+      ],
+      "kall": [
+        "GET /timesheet/companyHoliday",
+        "GET /timesheet/companyHoliday/{id}",
+        "POST /timesheet/companyHoliday",
+        "PUT /timesheet/companyHoliday/{id}",
+        "DELETE /timesheet/companyHoliday/{id}"
+      ],
+      "fremgangsmate": "[BETA] Se: GET /timesheet/companyHoliday?years=2026&fields=id,version,date,percentage. Opprett: POST /timesheet/companyHoliday {date:'2026-12-24', percentage:100} (50 = halv dag). Endre: PUT /timesheet/companyHoliday/{id} med version. Slett: DELETE /timesheet/companyHoliday/{id}. Påvirker normaltid/fleks for alle ansatte. Skrivende kall: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere lønnsarter/tillegg i timelisten (overtid, kveldstillegg, helgetillegg)",
+      "nokkelord": [
+        "overtid",
+        "registrere overtid",
+        "tillegg i timeliste",
+        "kveldstillegg",
+        "helgetillegg",
+        "lønnsart timeliste",
+        "variabel lønn",
+        "salary type specification"
+      ],
+      "kall": [
+        "GET /salary/type",
+        "GET /timesheet/salaryTypeSpecification",
+        "GET /timesheet/salaryTypeSpecification/{id}",
+        "POST /timesheet/salaryTypeSpecification",
+        "PUT /timesheet/salaryTypeSpecification/{id}",
+        "DELETE /timesheet/salaryTypeSpecification/{id}"
+      ],
+      "fremgangsmate": "[BETA] 1) Finn lønnsart som kan brukes i timelisten: GET /salary/type?showInTimesheet=true&fields=id,number,name. 2) POST /timesheet/salaryTypeSpecification {employee:{id}, salaryType:{id}, date, count, description}. Kun én per ansatt/dato/lønnsart. Se eksisterende: GET /timesheet/salaryTypeSpecification?employeeId=…&dateFrom=…&dateTo=… Endre/slett: PUT/DELETE /timesheet/salaryTypeSpecification/{id} (hent version først). Lønnsdata er personopplysninger – vis aggregert. Skrivende: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere prosjektrelaterte lønnsarter/tillegg (tillegg per prosjekt og aktivitet)",
+      "nokkelord": [
+        "prosjekttillegg",
+        "overtid på prosjekt",
+        "lønnsart prosjekt",
+        "tillegg prosjekt",
+        "project salary type",
+        "prosjektlønn"
+      ],
+      "kall": [
+        "GET /salary/type",
+        "GET /timesheet/salaryProjectTypeSpecification",
+        "GET /timesheet/salaryProjectTypeSpecification/{id}",
+        "POST /timesheet/salaryProjectTypeSpecification",
+        "PUT /timesheet/salaryProjectTypeSpecification/{id}",
+        "DELETE /timesheet/salaryProjectTypeSpecification/{id}"
+      ],
+      "fremgangsmate": "1) Lønnsart: GET /salary/type?showInTimesheet=true&fields=id,number,name. 2) POST /timesheet/salaryProjectTypeSpecification {employee:{id}, project:{id}, activity:{id}, salaryType:{id}, date, count, description}. Søk: GET /timesheet/salaryProjectTypeSpecification?employeeId=…&projectId=…&activityId=…&dateFrom=…&dateTo=…(eksklusiv); includeNotConnectedToActivities=true (sammen med activityId) tar med de som ikke er koblet til aktivitet. wagePayment satt = tillegget er tatt med i en lønnsslipp – ikke endre/slette slike uten å avklare lønnen. Endre/slett: PUT/DELETE /timesheet/salaryProjectTypeSpecification/{id} (hent version først). Lønnsdata er personopplysninger – vis aggregert. Skrivende: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente lønnsgrunnlag fra timelister før lønnskjøring (timelønn, overtid, tillegg) og lage lønnsutkast",
+      "nokkelord": [
+        "lønnsgrunnlag",
+        "lonnsgrunnlag",
+        "timer til lønn",
+        "timelønnede",
+        "timelonn",
+        "overtid til utbetaling",
+        "lønnskjøring",
+        "lønnsutkast",
+        "lonnsutkast",
+        "variabel lønn"
+      ],
+      "kall": [
+        "GET /timesheet/month/byMonthNumberList",
+        "GET /timesheet/entry",
+        "GET /timesheet/salaryTypeSpecification",
+        "GET /timesheet/salaryProjectTypeSpecification",
+        "POST /salary/transaction"
+      ],
+      "fremgangsmate": "1) Sjekk at månedene er godkjent: GET /timesheet/month/byMonthNumberList (approved=true; hourSummary.hoursWithPay/hourlyWageHoursWithPay gir timer med lønn). 2) Detaljer ved behov: GET /timesheet/entry (dateFrom/dateTo) og tillegg via GET /timesheet/salaryTypeSpecification og GET /timesheet/salaryProjectTypeSpecification (dateFrom/dateTo, employeeId). 3) Lønnsutkast (lønn-gruppen): POST /salary/transaction med payslips/specifications – IKKE godkjenn/utbetal. Behandle lønnsdata kun lokalt, vis aggregat. Skrivende steg 3: bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Lese timelisteinnstillingene for firmaet",
+      "nokkelord": [
+        "timelisteinnstillinger",
+        "er stemplingsur på",
+        "krav om kommentar",
+        "fleksitid aktivert",
+        "feriesaldo aktivert",
+        "standard aktivitet",
+        "timesheet settings"
+      ],
+      "kall": [
+        "GET /timesheet/settings"
+      ],
+      "fremgangsmate": "[BETA] GET /timesheet/settings?fields=timeClock,timesheetCompleted,flexBalance,vacationBalance,showDetailedTimeSheet,requireCommentsOnRegisteredHoursAllProjects,defaultProjectActivity(id,name). Kun lesing – innstillingene kan ikke endres via API. Bruk før føring (påkrevd kommentar?), stempling (timeClock på?) og fleks-/feriesaldo-rapporter.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sammenligne budsjetterte og faktiske timer på prosjekt",
+      "nokkelord": [
+        "budsjett timer",
+        "timebudsjett",
+        "budsjett mot faktisk",
+        "avvik timer",
+        "kapasitetsplan",
+        "overskridelse",
+        "prosjektkontroll",
+        "capacity plan"
+      ],
+      "kall": [
+        "GET /project/capacityPlan/budget",
+        "GET /timesheet/entry",
+        "GET /project/{id}/period/hourlistReport"
+      ],
+      "fremgangsmate": "GET /project/capacityPlan/budget?projectId=…&periodStart=…&periodEnd=…(eksklusiv)&periodType=MONTH (HOUR|DAY|WEEK|MONTH, alle tre påkrevd) gir budsjetterte og førte timer per aktivitet og ansatt. Suppler med GET /project/{id}/period/hourlistReport eller GET /timesheet/entry?projectId=… (dateFrom/dateTo). Rapporter per aktivitet/prosjekt, ikke per navngitt ansatt.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Kontrollere fravær (ferie, sykdom, permisjon) i timelistene mot permisjonsregistreringer",
+      "nokkelord": [
+        "fravær",
+        "fravaer",
+        "sykefravær",
+        "sykefravaer",
+        "egenmelding",
+        "permisjon",
+        "ferie tatt",
+        "fraværsaktivitet",
+        "absence",
+        "leave of absence"
+      ],
+      "kall": [
+        "GET /activity",
+        "GET /timesheet/entry",
+        "GET /employee/employment",
+        "GET /employee/employment/leaveOfAbsence"
+      ],
+      "fremgangsmate": "1) Fraværsaktiviteter: GET /activity?absence=true&fields=id,name. 2) Timer på dem: GET /timesheet/entry?activityId=<ids>&dateFrom=…&dateTo=…(eksklusiv)&fields=employee(id),date,hours,activity(name). 3) Permisjoner: finn arbeidsforhold-id med GET /employee/employment?employeeId=…&fields=id, deretter GET /employee/employment/leaveOfAbsence?employmentIds=…&date=… (date standard i dag). Sykefravær er helseopplysninger (særlig kategori) – hent kun når oppgaven krever det, behandle lokalt og oppgi bare aggregater.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Se timepris, internkost og normalarbeidstid for ansatte (grunnlag for timeverdi og fleks)",
+      "nokkelord": [
+        "timepris",
+        "timesats",
+        "kostpris",
+        "internkost",
+        "timekost",
+        "hourly rate",
+        "hourly cost",
+        "normalarbeidstid",
+        "normaltid",
+        "arbeidstid per dag",
+        "standard time",
+        "prosjektpris",
+        "timepriser prosjekt"
+      ],
+      "kall": [
+        "GET /employee/hourlyCostAndRate",
+        "GET /employee/standardTime",
+        "GET /employee/standardTime/byDate",
+        "GET /project/hourlyRates"
+      ],
+      "fremgangsmate": "Timepris/kostpris per ansatt (gyldig fra dato): GET /employee/hourlyCostAndRate?employeeId=…&fields=date,rate,budgetRate,hourCostRate. Normalarbeidstid: GET /employee/standardTime?employeeId=…&fields=fromDate,hoursPerDay eller GET /employee/standardTime/byDate?employeeId=…&date=… Prosjektets timepriser: GET /project/hourlyRates?projectId=…&startDateFrom=…&fields=* (type: TYPE_PREDEFINED_HOURLY_RATES|TYPE_PROJECT_SPECIFIC_HOURLY_RATES|TYPE_FIXED_HOURLY_RATE). Uten employeeId brukes token-eier. Timesats/kost per person er personopplysning – vis aggregert. Nye satser (POST /employee/hourlyCostAndRate, POST /employee/standardTime) er skrivende og hører til ansatt-gruppen.",
+      "skrivende": false
+    }
+  ],
+  "fallgruver": [
+    "GET /timesheet/entry krever dateFrom og dateTo; dateTo er eksklusiv (til og IKKE med). Hele september = dateFrom=2026-09-01&dateTo=2026-10-01. Svaret har sumAllHours i tillegg til values.",
+    "GET /timesheet/entry/>totalHours bruker startDate/endDate (ikke dateFrom/dateTo), endDate eksklusiv; standard er token-eier, startDate=i dag og endDate=i morgen.",
+    "Stier med '>' (/timesheet/entry/>totalHours, >recentProjects, >recentActivities, /project/>forTimeSheet, /activity/>forTimeSheet) må quotes i shell og ev. URL-encodes som %3E.",
+    "Handlingskall med ':' (/:approve, /:complete, /:unapprove, /:reopen, /:start, /:stop, /:approveList, /:unapproveList) er PUT med query-parametre og ingen body.",
+    "Månedskall bruker monthYear=yyyy-MM (f.eks. 2026-09) og employeeIds (liste); ukekall bruker weekYear=ISO år-uke (f.eks. 2026-39) og én employeeId. Er id oppgitt ignoreres øvrige parametre.",
+    "Uten employeeId/employeeIds brukes token-eieren (ofte regnskapsfører-/integrasjonsbrukeren) – oppgi alltid ansatt eksplisitt ved godkjenning, levering, stempling og summering.",
+    "Kun én timeføring per ansatt/dato/aktivitet/prosjekt (også for allokerte timer og én lønnsart per ansatt/dato/lønnsart) – POST feiler med 422 hvis den finnes; oppdater med PUT i stedet.",
+    "PUT på timesheet/entry, allocated og timeClock: felt som er med men ikke satt eller 0 blir nullet. Hent objektet først og send komplett objekt med version.",
+    "Låste timeføringer (locked=true: godkjent uke/måned eller fakturert) kan ikke endres/slettes. Opphev godkjenning (:unapprove) og gjenåpne (:reopen) først; fakturerte timer må krediteres.",
+    "Prosjekt/aktivitet må være gyldig for ansatt og dato (åpent prosjekt, ansatt deltaker, aktivitet koblet til prosjektet). Bruk /project/>forTimeSheet og /activity/>forTimeSheet for å unngå 422. Generelle aktiviteter (ferie, sykdom, intern tid) føres uten project.",
+    "chargeable, chargeableHours, hourlyRate, hourlyCost og locked er skrivebeskyttet; fakturerbarhet styres av aktivitet/prosjekt. projectChargeableHours kan settes.",
+    "/timesheet/allocated/:approve og :unapprove gjelder kun firmaets interne ferie-/fri-aktivitet. Godkjente timer kopieres til timelisten bare hvis uke/måned ikke er godkjent og ingen stemplingsur kjører. Endringer sender varsel til ansatt (bivirkning).",
+    "Stemplingsur: :start krever activityId (og projectId for prosjektaktivitet), bare én klokke kan kjøre per ansatt; :stop krever id fra GET /timesheet/timeClock/present. Kommentar kan være obligatorisk (se /timesheet/settings). Stemplingsur må være aktivert i firmaet.",
+    "BETA-endepunkter: /timesheet/companyHoliday, /timesheet/salaryTypeSpecification og /timesheet/settings kan endres uten varsel. /timesheet/settings er kun lesbar. /timesheet/month/byMonthNumber er DEPRECATED – bruk byMonthNumberList.",
+    "403 betyr normalt at modulen Timeliste/Prosjekt ikke er aktiv hos klienten, eller at token-brukeren mangler rettighet til å se/godkjenne andres timer. 422 = valideringsfeil (ugyldig kombinasjon, låst periode, duplikat, manglende kommentar).",
+    "Fleks- og feriesaldo i MonthlyStatus (flexSummary, vacationSummary) er bare meningsfulle når flexBalance/vacationBalance er slått på i /timesheet/settings.",
+    "GDPR: alle /timesheet-endepunkter er personopplysninger (timer, fravær, stempling, lønnsarter). Bruk alltid minimal fields= (employee(id), ikke navn/e-post), vis aggregater eller 'ansatt 1/2'/initialer, og ikke lagre radene i filer. Sykefravær/permisjon er særlig sensitive.",
+    "Alle skrivende kall (føre/endre/slette timer, godkjenne/levere/gjenåpne uke eller måned, stemple, ferie- og lønnsartregistrering) krever eksplisitt bekreftelse fra bruker og at klienten er navngitt.",
+    "Listekall har count=1000 som standard (from=0). Sjekk fullResultSize og paginer med from/count ved store uttrekk (mange ansatte/lange perioder).",
+    "GET /timesheet/month/byMonthNumberList krever både employeeIds og monthYearList (yyyy-MM, kommaseparert) selv om beskrivelsen nevner token-eier som standard.",
+    "PUT /timesheet/allocated/:approveList og :unapproveList: ids overstyrer alt annet; uten ids og uten employeeIds gjelder kallet bare token-eier.",
+    "dateTo er eksklusiv også på /timesheet/allocated, /timesheet/timeClock, /timesheet/salaryTypeSpecification og /timesheet/salaryProjectTypeSpecification (der er dateFrom/dateTo valgfrie).",
+    "PUT /timesheet/timeClock/:start med comment overskriver kommentaren på en eksisterende timeføring som klokka startes på."
+  ]
+}
