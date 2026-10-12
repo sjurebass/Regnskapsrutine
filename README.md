@@ -1,81 +1,77 @@
-# avstemminger
+# Regnskapsrutine
 
-Løpende regnskapskontroll av Tripletex-klientene, med én mappe per kunde (navn som i
-Tripletex) og én undermappe per år.
+Byråets felles Claude-skills for løpende regnskap: Tripletex som regnskapssystem, Tally som praksissystem og Missive for e-post.
+Klon repoet, åpne mappa i Claude Code, og si for eksempel «kjør mangelliste» eller «hvem mangler mva for t5».
 
-## Komme i gang
+Repoet inneholder skills, indekser og referanser – aldri regnskap eller kundedata. Klientreglene ligger i kundeinstruksen i Tally,
+og leveranser går til Tally, Tripletex og Missive. Reglene Claude følger står i [CLAUDE.md](CLAUDE.md).
 
-Se [SETUP.md](SETUP.md) – tokens, klientliste, profiler og første kjøring.
-[MASKINPORTEN.md](MASKINPORTEN.md) vurderer automatisk henting av A07 og offentlige brev.
-Bakgrunnen og hele kontrollkatalogen står i [RUTINE-FORSLAG.md](RUTINE-FORSLAG.md).
+## Skills
 
-```bash
-uv run --system-certs python maanedskontroll.py --periode 2026-08
-```
+| Skill | Si for eksempel | Tally-oppgave | Leser fra | Skriver til | Krever utover MCP | Status |
+|---|---|---|---|---|---|---|
+| [`mangelliste`](.claude/skills/mangelliste/SKILL.md) | «kjør mangelliste» | Oversendelse mangelliste | Tally, Tripletex, Missive (Fiken/PO via Chrome) | Missive-utkast, Tally | – | I bruk |
+| [`bilagsforing`](.claude/skills/bilagsforing/SKILL.md) | «bilagsføring på <klient>» | Bilagsbehandling | Tripletex, Tally | Tripletex (bilag, match), Tally | Føring: CLI eller Tripletex-UI | Ny |
+| [`bankavstemming`](.claude/skills/bankavstemming/SKILL.md) | «bankavstemming for <klient>», «hvilke klienter har åpne bankkontoer» | Bankavstemming | Tripletex | Excel (scratch), Tally | Matching/lukking: CLI eller UI. Excel: `uv` | Ny |
+| [`mva-termin`](.claude/skills/mva-termin/SKILL.md) | «hvem mangler mva for t5», «avstem mva for <klient>» | MVA-kontroll, MVA-innlevering | Tripletex, Tally (Altinn) | Avstemmingsmodulen, Tally | Del B/C: CLI eller UI | Omskrevet |
+| [`lonn`](.claude/skills/lonn/SKILL.md) | «lag lønnsutkast», «legg inn lønnsendringen», «er a-meldingen sendt» | Lønnsforslag, Kjør lønn, A-melding | Tripletex, Missive, Tally | Tripletex (lønnskjøring, arbeidsforhold), Tally | – | Ny |
+| [`lonnsavstemming-a07`](.claude/skills/lonnsavstemming-a07/SKILL.md) | «lønnsavstemming termin 4 for <klient>» | Terminvis lønnsavstemming | A07-XML, Tripletex | Excel (scratch), Tally | `uv` | Oppdatert |
+| [`tally-gjoremal`](.claude/skills/tally-gjoremal/SKILL.md) | «se fristlisten», «før timer for i dag» | alle | Tally, Missive-kalender | Tally | – | Ny |
+| [`kundeinstruks`](.claude/skills/kundeinstruks/SKILL.md) | «hent kundeinstruks for <klient>», «husk for <klient> at …» | – | Tally | Tally (kundeinstruks) | – | Ny |
+| [`leverandorindeks`](.claude/skills/leverandorindeks/SKILL.md) | «er <leverandør> mva-registrert», «vurder leverandøren» | – | `data/leverandorer.json`, Brreg | `data/leverandorer.json` | Filsystem (Claude Code) | Ny |
+| [`aarsoppgjoer-kontroll`](.claude/skills/aarsoppgjoer-kontroll/SKILL.md) | «kontroller årsoppgjøret» + filer | Årsoppgjør | Opplastede filer, Brreg | PDF (scratch), Tally | `uv` | Oppdatert |
 
-## Hva som ligger her
+«CLI» er Sjurs egen Tripletex-kobling (`C:\Users\Sjur\Tripletex API`). Skillene merker stegene som trenger den med
+**Krever CLI (Sjur) eller Tripletex-UI:**. Uten CLI gir Claude en ferdig liste å gjøre i Tripletex.
 
-| | |
-|---|---|
-| `maanedskontroll.py` | kjører katalogen på alle aktive klienter og skriver rapportene |
-| `sjekk-tilgang.py` | diagnose: virker tokenet, svarer endepunktene? |
-| `hent-klienter.py` | henter klientlisten fra Tripletex og oppdaterer `klienter.json` |
-| `synk-kunderegister.py` | synker `klienter.json` mot kunderegisteret (`Kundeoversikt*.xlsx` på skrivebordet) |
-| `lag-klientfiler.py` | oppretter `klientprofil.md` og `kjente-avvik.md` for nye kunder |
-| `selvtest.py` | kjører katalogen mot testdata med kjent fasit, uten API |
-| `klienter.json` | hvilke klienter rutinen gjelder for (`aktiv: true`) |
-| `tools/` | API-klient, datauthenting, kontroller, rapporter |
-| `status/` | samlet statusrapport per måned + kjøringshistorikk |
-| `mal/` | Silfer-logo og eksempelrapport |
+## Indekser
 
-## Per kunde
-
-| | |
-|---|---|
-| `logg.md` | historikk – hver kjøring legger til en linje |
-| `klientprofil.md` | hvilke kontroller som gjelder, kontonumre, vesentlighetsgrense |
-| `kjente-avvik.md` | avvik som er vurdert og skal rapporteres som «kjent» |
-| `<år>/` | rapporter, A07-filer og dokumentasjon |
-
-## Skills – de andre rapportene
-
-Ligger i `.claude/skills/` og følger med repoet. Klon, åpne mappa i Claude Code,
-og skillene er tilgjengelige – be om «lønnsavstemming termin 3» eller «åpne
-bankposter», så kjøres de.
-
-| Skill | Gjør | Status |
+| Indeks | Hvor | Brukes til |
 |---|---|---|
-| `lonnsavstemming-a07` | terminavstemming av lønn mot A07 fra Altinn → Excel + PDF | **kun instruksjoner** – se under |
-| `bankavstemming-aapne-poster` | åpne bankposter per konto → Excel til kunden | komplett |
-| `aarsoppgjoer-kontroll` | kvalitetssikring av årsregnskap og skattemelding → PDF | komplett |
+| Skillindeksen | Denne fila | Hvilken skill gjør hva |
+| Klientindeksen | Kundeinstruksen i Tally, fast mal (skillen `kundeinstruks`) | System, bank, mva, lønn, bilagsregler, kjente avvik per klient |
+| Leverandørindeksen | [`data/leverandorer.json`](data/leverandorer.json) (skillen `leverandorindeks`) | Mva-behandling og Brreg-fakta per leverandør, felles for alle klienter |
+| Tripletex-endepunktindeksen | [`tripletex-api/`](tripletex-api/README.md) | Om et Tripletex-kall finnes, parametere og fallgruver |
+| Kontrollkatalogen | [`docs/kontrollkatalog.md`](docs/kontrollkatalog.md) | Alle løpende kontroller, hvilken skill og hvilket MCP-verktøy |
 
-**Merk om `lonnsavstemming-a07`:** skillen beskriver syv Excel-ark, PDF-mal og full
-kontrollogikk, men skriptene den viser til (`scripts/lonnsavstemming_a07.py`,
-`lag_pdf.py`, `hent_tripletex.js`, `references/kontrollogikk.md`) finnes ikke.
-SKILL.md har derfor et avsnitt «Skriptet mangler?» som ber Claude bygge det på
-nytt hver gang. Det virker, men gir ikke nødvendigvis identisk resultat fra gang
-til gang – og det er nettopp det en kollega trenger. Skriptene bør skrives én gang
-og legges i skillen.
+## Månedshjulet
 
-Månedskontrollen erstatter ikke disse. Den fanger opp det løpende, og flagger når
-en A07-avstemming mangler for terminen.
+| Når | Hva | Skill | Tally-oppgave |
+|---|---|---|---|
+| 1.–5. | Mangelliste for forrige måned, så bilag som kan føres mot bank | `mangelliste`, `bilagsforing` | Oversendelse mangelliste, Bilagsbehandling |
+| 5. | A-melding for forrige måned levert? Stripe-, Dintero- og andre oppgjørsbilag | `lonn`, `bilagsforing` | A-melding |
+| Lønnsdato − 2 virkedager | Lønnsutkast | `lonn` | Kjør lønn |
+| Lønnsdato | Lønnsslipper (regnskapsfører fullfører kjøringen) | `lonn` | Send lønnsslipper |
+| 10. i partallsmåneder (31.8 for mai–juni) | Mva: hvem mangler, kontroll før innsending, etterarbeid | `mva-termin` | MVA-kontroll, MVA-innlevering |
+| 15. i oddetallsmåneder | Skattetrekk og arbeidsgiveravgift forfaller | `lonn` (status), `lonnsavstemming-a07` | Terminvis lønnsavstemming |
+| Løpende | Bankavstemming, fristliste, timer | `bankavstemming`, `tally-gjoremal` | Bankavstemming |
+| Årlig | Årsoppgjør, aksjonærregister (31.1), skattemelding (31.5), årsregnskap (31.7) | `aarsoppgjoer-kontroll`, `mva-termin --aarlig` | Årsoppgjørsløpet |
 
-## Hva som bevisst ikke ligger i git
+Frister som faller på en helg eller helligdag, flyttes til neste virkedag.
 
-Repoet inneholder verktøyet, ikke regnskapet. `.gitignore` utelater alt som
-standard og slipper inn verktøyfilene én for én, slik at en ny kundemappe havner
-utenfor uten at noen må huske å oppdatere noe.
+## Oppsett for kollegaer
 
-Utenfor git: alle kundemapper (`klientprofil.md` med kontonumre, `logg.md`,
-A07-filer, rapporter), `status/`, `klienter.json` med kundenavn, og `.env` med
-tokens. `klienter.eksempel.json` viser formatet.
+1. **Connectorer** i Claude (claude.ai → Innstillinger → Connectors): Tally MCP, Tripletex (tripletex-mcp-iota.vercel.app) og Missive.
+   Claude in Chrome trengs bare for Fiken- og PowerOffice-klienter i `mangelliste`.
+2. **Claude Code** (desktop-appen eller terminalen). Klon repoet og åpne mappa:
+   ```bash
+   git clone https://github.com/sjurebass/Regnskapsrutine.git
+   ```
+3. **uv** for Excel- og PDF-skriptene (ingen admin-rettigheter trengs). Bak bedriftsproxy: sett `UV_SYSTEM_CERTS=1`.
+   ```powershell
+   powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+   ```
+4. **Node** (for `tripletex-api/finn.js`) er valgfritt.
 
-Skal du dele repoet med en kollega, kan det gjøres som det står – men sjekk
-`git status` før du legger til noe nytt.
+Skillene kan også lastes inn som enkeltmapper i Claude Desktop (Innstillinger → Skills), men `leverandorindeks` og `tripletex-api/` krever repoet.
+
+## Annet
+
+- [`docs/maskinporten.md`](docs/maskinporten.md) – vurdering av Maskinporten for A07 og brev fra det offentlige. Tilgangspakker må være på plass
+  for alle klienter før 31.12.2026.
+- Den første Python-månedskontrollen (september 2026) ligger i git-taggen `v1-python`.
 
 ## Grenser
 
-Verktøyet leser fra Tripletex. Det bokfører ikke, sender ingenting inn til Altinn,
-betaler ingenting og sender ingen e-post. Alle funn er forslag til deg.
-
-Opprettet 10.09.2026 fra Tripletex-klientlisten. Kontrollrutine lagt til 17.09.2026.
+Claude leser fritt, men alt som skriver, vises først og krever ja. Claude sender aldri e-post, mva-melding eller (uten ja) a-melding, godkjenner aldri
+lønn eller betaling, låser aldri perioder og sletter aldri permanent.
