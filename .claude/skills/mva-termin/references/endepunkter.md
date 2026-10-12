@@ -1,5 +1,7 @@
 # Mva-avstemming: endepunktindeks
 
+> **Merk (oktober 2026):** Designdokument fra september 2026. `klientprofil.md`, `kjente-avvik.md`, `logg.md` og kundemappene `<Kunde>/<år>/…` er erstattet av kundeinstruksen i Tally (skillen `kundeinstruks`), og leveranser lagres i Tally eller avstemmingsmodulen. `npm run mva`/`modul` og `%LOCALAPPDATA%\silfer-mva` gjelder bare CLI-hurtigveien. Driftsflyten står i `SKILL.md`.
+
 Designgrunnlag. Opprinnelig indeksert fra lokale filer (openapi.json, openapi-internal.json, docs/avstemmingsmodul.md, docs/api-v2-oppgaver.md, src/*.js, tools/*.py) og kontrollert en gang til av en egen verifiseringsagent. Rettelsene fra verifiseringen er tatt inn her. **Kalibrering K0 (2026-09-24, bare GET, én kalibreringsklient)** er lagt inn med status `testet K0 2026-09-24`, og resultatene står i `kalibrering.md`.
 
 ## Tegnforklaring
@@ -383,7 +385,7 @@ Tilleggstester i K0:
 - `/ledger/accountingPeriod`: **BRUK**. isClosed, end er eksklusiv, låsing per år.
 - `/company/settings/altinn`: **BRUK**, med `fields=altInnId`.
 
-## Kalibrering 25.09.2026 (Flip Oppussing T4, registrert klient)
+## Kalibrering 25.09.2026 (registrert klient, T4)
 
 **Går foran radene over der de er uenige.** B = byråkontekst (`authorization(0, konto)` i `src/modul.js`), K = klientkontekst.
 

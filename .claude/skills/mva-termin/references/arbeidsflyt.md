@@ -1,5 +1,7 @@
 # Mva-avstemming: anbefalt arbeidsflyt
 
+> **Merk (oktober 2026):** Designdokument fra september 2026. `klientprofil.md`, `kjente-avvik.md`, `logg.md` og kundemappene `<Kunde>/<år>/…` er erstattet av kundeinstruksen i Tally (skillen `kundeinstruks`), og leveranser lagres i Tally eller avstemmingsmodulen. `npm run mva`/`modul` og `%LOCALAPPDATA%\silfer-mva` gjelder bare CLI-hurtigveien. Driftsflyten står i `SKILL.md`.
+
 Kommandoen er «avstem mva for <klient> termin <n>». Den kan også gjelde flere navngitte klienter.
 
 Designet bygger på tre vinkler: veggklokketid, risiko og Sjurs tid. Endepunktene står i `endepunkter.md` og kontrollene i `kontroller.md`.
@@ -18,7 +20,7 @@ Den fulle flyten ble for omfattende for en enkelt mva-termin (ca. 2 mill. tokens
 - **Årlig** (`--aarlig`, ved årsoppgjøret og første kjøring): kontoplanens standardkoder, reskontro med feil fortegn og gamle poster, bank hittil i år, samt § 3-26 og registreringsplikt når de er avklart. Svar lagres i klientprofilen eller `kjente-avvik.md` og gjentas ikke per termin.
 - **Beslutningslista** er kort: det som må rettes og spørsmål først, én linje per punkt for resten, og detaljene i `funn.json`.
 
-## 0a. Praksis og Sjurs presiseringer (første fulle kjøring, Flip Oppussing T4 2026, 25.09.2026)
+## 0a. Praksis og Sjurs presiseringer (første fulle kjøring på en registrert klient, T4 2026, 25.09.2026)
 
 Dette går foran designet lenger ned der de er uenige. Den operative rekkefølgen står i SKILL.md («Per termin»).
 
@@ -443,7 +445,7 @@ Sjur vil ha **så mye dokumentasjon som mulig lagret som vedlegg og kommentarer 
 | VAT termin n | kodelinjer (vatTypeId) | Forklaring på avvik, tolldeklarasjoner, eksportdokumentasjon | kommentarer + klientmappa | referenceId = vatTypeId (verifisert) |
 | BALANCE, siste måned i terminen | 2740 | Kvittering for terminen | som over | 403 |
 | **ANNUAL_BALANCE år** | **2740** | **Kvitteringer for alle årets mva-meldinger** (Sjurs krav) | som over, alle terminer | 403 |
-| BALANCE hver måned | 19xx | Tripletex' bankavstemmingsrapport og kontoutskrift | `npm run modul -- bankpdf` (PUT export/pdf, FileDownload, bare lukkede måneder) + kontoutskrift fra Sjur | **i bruk 25.09.2026** (Flip T4) |
+| BALANCE hver måned | 19xx | Tripletex' bankavstemmingsrapport og kontoutskrift | `npm run modul -- bankpdf` (PUT export/pdf, FileDownload, bare lukkede måneder) + kontoutskrift fra Sjur | **i bruk 25.09.2026** (registrert klient, T4) |
 | BALANCE siste måned | 1500 / 2400 | Vurdering av åpne poster med tiltaksliste (inneværende år, kundenavn tillatt) | `npm run modul -- reskontro-vurdering --dato --vurderinger <json>` | **i bruk 25.09.2026** |
 | BALANCE begge måneder | 2740 | Avstemmingsnotat (saldo mot dokumentert saldo, bevegelser, meldinger, skattekonto, kontroll av utkastet) | `npm run modul -- notat-2740 --forklaring-MM "beløp\|tekst"` | **i bruk 25.09.2026**. Oppdateres etter Opprett og etter Send |
 | BALANCE hver måned | 2500 / 2600 / 2770 | Skattekonto: krav og betalinger | `/claimsAndPayments` | lages av flyten |

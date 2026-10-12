@@ -1,5 +1,7 @@
 # Kalibrering K0: resultater
 
+> **Merk (oktober 2026):** Designdokument fra september 2026. `klientprofil.md`, `kjente-avvik.md`, `logg.md` og kundemappene `<Kunde>/<år>/…` er erstattet av kundeinstruksen i Tally (skillen `kundeinstruks`), og leveranser lagres i Tally eller avstemmingsmodulen. `npm run mva`/`modul` og `%LOCALAPPDATA%\silfer-mva` gjelder bare CLI-hurtigveien. Driftsflyten står i `SKILL.md`.
+
 **Dato:** 2026-09-24.
 
 **Klient:** kalibreringsklienten. Den er mva-registrert i alminnelig næring og har tomånedlige terminer. T1–T3 2026 er fullført i avstemmingsmodulen og brukes som fasit. T4 (juli–august) var åpen og ikke levert da testen ble kjørt.

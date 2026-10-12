@@ -1,5 +1,7 @@
 # Bilagsvurdering av mva – fremgangsmåte for agenten
 
+> **Merk (oktober 2026):** Designdokument fra september 2026. `klientprofil.md`, `kjente-avvik.md`, `logg.md` og kundemappene `<Kunde>/<år>/…` er erstattet av kundeinstruksen i Tally (skillen `kundeinstruks`), og leveranser lagres i Tally eller avstemmingsmodulen. `npm run mva`/`modul` og `%LOCALAPPDATA%\silfer-mva` gjelder bare CLI-hurtigveien. Driftsflyten står i `SKILL.md`.
+
 Denne filen beskriver hvordan agenten vurderer mva-behandlingen av bilagene i en termin for én Tripletex-klient.
 
 Grunnlag:

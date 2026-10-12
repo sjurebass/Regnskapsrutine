@@ -1,5 +1,7 @@
 # Fradragsregler for inngående merverdiavgift – kunnskapsgrunnlag for bilagsvurdering
 
+> **Merk (oktober 2026):** Designdokument fra september 2026. `klientprofil.md`, `kjente-avvik.md`, `logg.md` og kundemappene `<Kunde>/<år>/…` er erstattet av kundeinstruksen i Tally (skillen `kundeinstruks`), og leveranser lagres i Tally eller avstemmingsmodulen. `npm run mva`/`modul` og `%LOCALAPPDATA%\silfer-mva` gjelder bare CLI-hurtigveien. Driftsflyten står i `SKILL.md`.
+
 Status: september 2026. Reglene er gjennomgått av en research-agent og deretter kontrollert av en verifikator mot lovtekst på Lovdata (mval. LOV-2009-06-19-58, FMVA FOR-2009-12-15-1540, bokf.f. FOR-2004-12-01-1558, skatteforvaltningsforskriften FOR-2016-11-23-1360, kassasystemforskrifta FOR-2015-12-18-1616) og Skatteetatens Merverdiavgiftshåndbok (MVAH, «gjeldende», 2025-utgaven). Filen tar bare med regler som verifikatoren har bekreftet eller rettet. Påstander verifikatoren avviste, er fjernet.
 
 **Merking**

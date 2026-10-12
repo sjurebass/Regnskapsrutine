@@ -1,5 +1,7 @@
 # Mva-avstemming: kontrollkatalog
 
+> **Merk (oktober 2026):** Designdokument fra september 2026. `klientprofil.md`, `kjente-avvik.md`, `logg.md` og kundemappene `<Kunde>/<år>/…` er erstattet av kundeinstruksen i Tally (skillen `kundeinstruks`), og leveranser lagres i Tally eller avstemmingsmodulen. `npm run mva`/`modul` og `%LOCALAPPDATA%\silfer-mva` gjelder bare CLI-hurtigveien. Driftsflyten står i `SKILL.md`.
+
 Katalogen samler kontrollene fra de sju områdene. Rettelsene fra verifiseringen og kritikerens manglende kontroller (MX) er innarbeidet. Endepunktene står i `endepunkter.md`, og orkestreringen står i `arbeidsflyt.md`.
 
 ## Felles definisjoner
