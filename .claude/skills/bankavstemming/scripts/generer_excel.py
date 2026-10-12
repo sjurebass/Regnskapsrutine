@@ -123,7 +123,7 @@ def parse_amount(txt):
 
 
 def parse_raw(raw):
-    """'2026-06-08 5 060,50 Oase ... | Detaljer: Fylt på' -> (dato, belop, tekst)."""
+    """'2026-06-08 5 060,50 Firma ... | Detaljer: Fylt på' -> (dato, belop, tekst)."""
     s = raw.strip().replace("\u00a0", " ")
     # Bel\u00f8pet slutter ved \u00ab,dd\u00bb; stopp der s\u00e5 etterf\u00f8lgende referansenr (lange
     # sifferstrenger) ikke slukes inn i bel\u00f8pet.

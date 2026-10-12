@@ -1,9 +1,0 @@
-[project]
-name = "avstemminger"
-version = "0.1.0"
-description = "Løpende regnskapskontroll av Tripletex-klienter"
-requires-python = ">=3.11"
-dependencies = ["openpyxl>=3.1", "pillow>=10"]  # pillow trengs for logoen i rapportene
-
-[tool.uv]
-package = false
