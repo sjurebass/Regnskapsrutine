@@ -9,7 +9,7 @@ description: "Avstemmer lønnsområdet for en termin: A07 fra Skatteetaten mot T
 Ikke bruk nettleseren mot Tripletex. Er MCP-en nede: gjør det som kan gjøres uten regnskapsdata (parse A07, forbered ledger-strukturen),
 si at Tripletex-koblingen må kobles til igjen, og vent. Hurtigvei for Sjur: `npm run api` i `C:\Users\Sjur\Tripletex API` gir de samme posteringene.
 
-**Personvern:** A07 og lønnsbilag inneholder persondata. Excel-arket «Per ansatt» er leveransen og blir i scratch eller i Tally; i chatten vises bare
+**Personvern:** A07 og lønnsbilag inneholder persondata. Excel-filen lagres i klientens dokumentarkiv i Tally (kundens egne data); i chatten vises bare
 summer og avvik, aldri navn eller lønn per person. Slett A07-XML og ledger.json fra scratch når avstemmingen er levert.
 
 Input: A07-fil for én termin (XML primærkilde; ODS er samme data) + klientnavn. Mangler A07: be om filen (Altinn → Skatteetaten → «Avstemmingsinformasjon a-melding», velg termin, last ned XML). Ikke start uten den.
@@ -32,7 +32,7 @@ Sjekk selv før du går videre: flere innsendinger samme måned (= korrigeringer
 `selskap`, `orgnr`, `tripletex_id`, `periode{fra,til,termin,forfall}` (forfall = 15. i måneden etter terminslutt), `aga_sats`, `feriepenger_sats` (les 5020/5000 i et lønnsbilag: 0,12 / 0,125 / 0,143), `kid_aga`, `kid_trekk{}`, `ytelse_konto{}` (kun avvik fra standard, f.eks. `"elektroniskKommunikasjon": 5390` når EK er utgiftsgodtgjørelse), `konto{pensjon}` (autodetekt 5945/5950), `balanser[{a,n,ib,ch,ub}]`, `posteringer[[dato,bilag,konto,kontonavn,tekst,beløp]]`, `pensjon_historikk[[«YYYY-MM», tekst 594x, beløp, tekst pensjonsbilag, grunnlag]]` for hele året (grunnlag = AGA i pensjonsbilaget / sats), `forklart[]` (prefiks på kontrollrader som skal vises FORKLART i stedet for AVVIK – kun når merknaden forklarer avviket fullt ut), `merknader[]` (Excel, kan være utfyllende), `merknader_kort[]` (PDF: én setning per punkt med beløp + bilag + tiltak).
 
 ### 4. Kjør og verifiser
-Alle filer (A07-XML, ledger.json, Excel) ligger i scratch.
+Arbeidsfilene (A07-XML, ledger.json, Excel) ligger i scratch til de er lagret i Tally.
 ```bash
 uv run --with openpyxl --with pillow python .claude/skills/lonnsavstemming-a07/scripts/lonnsavstemming_a07.py <scratch>/a07.xml <scratch>/ledger.json "<scratch>/Lønnsavstemming <Klient> termin <n> <år>.xlsx"
 ```
@@ -46,13 +46,13 @@ LibreOffice finnes ikke på maskinene, så formlene beregnes først når filen �
 Merknader = korte faktasetninger med bilagsnr., beløp, årsak, tiltak – ikke prosa.
 
 ### 5. Lever
-- Del Excel-filen i chatten med SendUserFile.
-- Last den opp i Tally på oppgaven «Terminvis lønnsavstemming» (`upload_document`, kategori LONN, periode «<år>-T<n>») etter ja. Er filen over 3 MB: `start_opplasting`.
+- **Lagre i Tally** etter ja (`docs/dokumentlagring.md`): Excel-filen og A07-XML, kategori `LONN`, periode `ÅÅÅÅ-T<n>`, samling `Lønn ÅÅÅÅ`, knyttet til oppgaven
+  «Terminvis lønnsavstemming». Kontroller med `list_documents` og gi lenken. Kan den ikke lagres, si det og del filen i chatten.
 - Bruker byrået avstemmingsmodulen i Tripletex for lønn, er kommentarer og vedlegg der **Krever CLI (Sjur) eller Tripletex-UI:** (se `tripletex-api/docs/avstemmingsmodul.md`).
   Kommentarer er én kort setning, for eksempel «Utbetalte feriepenger.» eller «Kravet skyldes ubetalt AGA etter korreksjon, se vedlegg.»
 - Svar 3–6 linjer: stemmer/avvik, skyldig AGA + forfall + KID, hvert avvik med beløp og tiltak. Ingen navn eller beløp per person.
 - Fullfør i Tally: foreslå tidsbruk, spør, og ved ja `add_task_comment` + `log_time` + `complete_task` (se `tally-gjoremal`).
-- Slett A07-XML og ledger.json fra scratch.
+- Slett A07-XML, ledger.json og Excel-filen fra scratch når de er lagret i Tally.
 
 ## Skriptene
 

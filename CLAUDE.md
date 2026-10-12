@@ -41,8 +41,11 @@ Noen steg krever skriving som MCP-en ikke har (bilagsføring, bankmatch, avstemm
 
 ## Filer
 
-- Ingen lokale kundemapper. Leveranser går til Tally (oppgavekommentar, dokument, kundeinstruks), Tripletex (vedlegg, avstemmingsmodul)
-  og Missive (utkast). Excel og PDF lages i Claudes scratch-mappe og deles i chatten.
+- **Filer lagres i klientens dokumentarkiv i Tally** via Tally-MCP-en, med kategori, periode, samling og oppgave. Fremgangsmåten står i
+  `docs/dokumentlagring.md`. Kunden kan se arkivet, så last bare opp det kunden kan se, og bare etter ja.
+- Ingen kundemapper på PC-en. Claudes scratch-mappe brukes bare mens en fil lages, og tømmes når filen er lagret i Tally.
+- Kan filen ikke lagres i Tally (verktøyet for å fullføre opplasting mangler), si «ikke lagret i Tally» og del den i chatten.
+- Tripletex får det regnskapet trenger (vedlegg på bilag, avstemmingsmodulen), og Missive får utkast.
 - Python kjøres med `uv run --with <pakker> python …` (ingen admin-rettigheter på maskinene). Node finnes.
 - Repoet skal aldri inneholde kundenavn, tokens eller kundedata. Sjekk `git status` og grep etter kundenavn før commit.
 

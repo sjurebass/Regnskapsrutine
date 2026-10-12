@@ -11,7 +11,7 @@ må gjøre, og lager en Silfer-Excel med åpne poster til kunden. Den lukker Tal
 Grensen mot `mangelliste`: mangellisten er den månedlige e-posten til kunden for forrige måned. Bankavstemmingen ser på alle måneder
 i året, finner etterslep og kontoer uten avstemming, og gir byrået en arbeidsliste. Det byrået kan føre selv, tas med `bilagsforing`.
 
-Alt skjer i chatten. Excel-filen lages i scratch og deles i chatten.
+Alt skjer i chatten. Excel-filen lagres i klientens dokumentarkiv i Tally (`docs/dokumentlagring.md`).
 
 ## Faste regler
 
@@ -125,8 +125,11 @@ uv run --with openpyxl --with pillow python .claude/skills/bankavstemming/script
 - Kontoer uten poster tas med som tom liste; de vises med 0 i sammendraget.
 - Faner: «Sammendrag» (antall og sum per konto med formler, merknad) og «Åpne poster» (filtrerbar, kolonnene Dokumentasjon og Status er tomme for kunden).
 - Kontroller filen med openpyxl: antall og sum per konto skal stemme med steg 3. LibreOffice finnes ikke på maskinene; formlene beregnes når filen åpnes i Excel.
-- Del filen med SendUserFile. Si antall poster per konto og totalsum. Ikke lim inn listen i chatten.
-- Skal Excel-filen til kunden: Claude kan ikke legge ved filer i Missive-utkast. Last den opp i Tally på oppgaven (`upload_document`, kategori BILAG), eller be brukeren legge den ved i utkastet fra `mangelliste`.
+- **Lagre i Tally** etter ja (`docs/dokumentlagring.md`): kategori `BILAG`, periode `ÅÅÅÅ-MM`, samling `Bankavstemming ÅÅÅÅ`, knyttet til oppgaven «Bankavstemming».
+  Erstatter filen en tidligere liste for samme måned, arkiver den gamle. Kontroller med `list_documents`, og slett filen fra scratch.
+- Si antall poster per konto og totalsum, og gi lenken til dokumentet. Ikke lim inn listen i chatten.
+- Claude kan ikke legge ved filer i Missive-utkast. Skal kunden ha listen, viser e-posten fra `mangelliste` til dokumentet i Tally, eller brukeren legger den ved.
+- Kontoutskrifter og Tripletex sin bankavstemmings-PDF lagres på samme måte (samme kategori og samling).
 
 ## Krever CLI eller UI
 
@@ -159,7 +162,7 @@ Finnes `C:\Users\Sjur\Tripletex API`, gjør ett kall hele jobben for alle klient
 npm --prefix "C:\Users\Sjur\Tripletex API" run -s bankavstemming -- --til ÅÅÅÅ-MM --alle --excel --ut "<scratch>\bankavstemming"
 ```
 
-Bruk `--client "navn"` (kan gjentas) i stedet for `--alle`. Ikke bruk `--kundemapper`; filene skal ligge i scratch.
+Bruk `--client "navn"` (kan gjentas) i stedet for `--alle`. Ikke bruk `--kundemapper`. Excel-filene i `--ut` lagres så i Tally som beskrevet over.
 Stdout er oversiktstabellen og kan vises direkte.
 
 ## Det du aldri gjør
@@ -168,7 +171,7 @@ Stdout er oversiktstabellen og kan vises direkte.
 - Sender e-post til kunden. Utkast lages i `mangelliste`.
 - Bruker hovedbokssøk for å finne åpne bankposter. Hovedboken viser bare det som er bokført.
 - Fjerner identiske rader. Mange like beløp er ekte.
-- Lagrer Excel-filer eller banktekster utenfor scratch.
+- Lagrer Excel-filer eller banktekster på PC-en i stedet for i Tally, eller laster opp uten ja.
 
 ## Fullfør i Tally
 

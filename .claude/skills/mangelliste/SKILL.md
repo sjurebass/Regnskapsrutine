@@ -9,7 +9,7 @@ Skillen tar oppgaven «Oversendelse mangelliste» i Tally fra åpen oppgave til 
 
 Skillen brukes av alle i byrået. Den som skriver «kjør mangelliste», er brukeren: det er brukerens oppgaver, brukerens tilkoblinger og brukerens pålogginger som gjelder.
 
-Alt skjer i chatten. Det lages ingen egen arbeidsflate eller side.
+Alt skjer i chatten. Det lages ingen egen arbeidsflate eller side. Lages det en fil (for eksempel Excel med åpne poster fra `bankavstemming`), lagres den i klientens dokumentarkiv i Tally (`docs/dokumentlagring.md`).
 
 ## Faste regler
 

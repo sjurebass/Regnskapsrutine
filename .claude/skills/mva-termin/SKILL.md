@@ -84,7 +84,9 @@ Les kundeinstruksen først (seksjonene «Mva», «Bank», «Kjente avvik»).
 - 2740 i begge måneder: notat med saldo per månedsslutt og forklaring. Etter «Opprett» er dokumentert saldo i siste måned −(beløp å betale).
 - 27xx i siste måned (0 etter oppgjørsbilaget).
 
-Sett dokumentert saldo og status «avstemt» først etter at dokumentasjonen er lastet opp. Ikke avstem hele balansen, og ikke fullfør
+Sett dokumentert saldo og status «avstemt» først etter at dokumentasjonen er lastet opp. Notatene (2740, reskontrovurdering) og
+kontoutskriftene lagres i tillegg i klientens dokumentarkiv i Tally: kategori `MVA_RAPPORT` (kontoutskrift: `BILAG`), periode `ÅÅÅÅ-T<n>`,
+samling `Mva ÅÅÅÅ`, knyttet til oppgaven «MVA-kontroll» (`docs/dokumentlagring.md`). Ikke avstem hele balansen, og ikke fullfør
 BALANCE, med mindre brukeren ber om det. Utligning av poster som går i null (én konto, én motpart, sum 0,00) gjøres med `modul utlign`.
 
 ## Del C – Etter innsending
@@ -96,7 +98,8 @@ Når regnskapsføreren har sendt og synkronisert:
    kunden; Claude godkjenner aldri.
 3. Oppdater 2740-notatet til «levert» og fullfør mva-avstemmingen når hovedbok, rapportert og Skatteetaten stemmer på hver linje.
    **Krever CLI (Sjur) eller Tripletex-UI.**
-4. Be regnskapsføreren låse perioden. Det finnes ikke noe API-kall for det.
+4. Lagre det endelige 2740-notatet og kvitteringen i Tally (kategori `MVA_RAPPORT`, samling `Mva ÅÅÅÅ`, oppgaven «MVA-innlevering»), se `docs/dokumentlagring.md`.
+5. Be regnskapsføreren låse perioden. Det finnes ikke noe API-kall for det.
 
 ## Flere klienter
 
@@ -116,7 +119,7 @@ npm --prefix "C:\Users\Sjur\Tripletex API" run -s modul -- <kommando> --client "
 - `--gjenbruk` bruker lagrede data og fletter inn `vurdering.json` fra unntakslista. `--aarlig` tar med årsoppgjørskontrollene.
 - `modul`: `perioder`, `linjer`, `bankpdf`, `last-opp [--erstatt]`, `sett-status`, `utlign`, `lukk`, `mva-oversikt`, `kontroll-utkast`, `notat-2740`,
   `reskontro-vurdering`, `fullfor`, `laas-opp`. Skriving krever `--bekreft` og ja i chat. Notatene er Silfer-PDF og lastes opp i modulen.
-- Arbeidsdata ligger i `%LOCALAPPDATA%\silfer-mva\<år>-T<n>\<kunde-id>\` og slettes når terminen er ferdig.
+- Arbeidsdata ligger i `%LOCALAPPDATA%\silfer-mva\<år>-T<n>\<kunde-id>\` og slettes når terminen er ferdig. Notat-PDF-ene som `modul` lager, lagres i Tally før de slettes.
 - Detaljer om kallene: `references/endepunkter.md` og `tripletex-api/docs/avstemmingsmodul.md`.
 
 ## Det du aldri gjør

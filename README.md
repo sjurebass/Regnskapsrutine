@@ -4,7 +4,7 @@ Byråets felles Claude-skills for løpende regnskap: Tripletex som regnskapssyst
 Klon repoet, åpne mappa i Claude Code, og si for eksempel «kjør mangelliste» eller «hvem mangler mva for t5».
 
 Repoet inneholder skills, indekser og referanser – aldri regnskap eller kundedata. Klientreglene ligger i kundeinstruksen i Tally,
-og leveranser går til Tally, Tripletex og Missive. Reglene Claude følger står i [CLAUDE.md](CLAUDE.md).
+filene i klientens dokumentarkiv i Tally ([docs/dokumentlagring.md](docs/dokumentlagring.md)), og utkast til kunden i Missive. Reglene Claude følger står i [CLAUDE.md](CLAUDE.md).
 
 ## Skills
 
@@ -12,14 +12,14 @@ og leveranser går til Tally, Tripletex og Missive. Reglene Claude følger står
 |---|---|---|---|---|---|---|
 | [`mangelliste`](.claude/skills/mangelliste/SKILL.md) | «kjør mangelliste» | Oversendelse mangelliste | Tally, Tripletex, Missive (Fiken/PO via Chrome) | Missive-utkast, Tally | – | I bruk |
 | [`bilagsforing`](.claude/skills/bilagsforing/SKILL.md) | «bilagsføring på <klient>» | Bilagsbehandling | Tripletex, Tally | Tripletex (bilag, match), Tally | Føring: CLI eller Tripletex-UI | Ny |
-| [`bankavstemming`](.claude/skills/bankavstemming/SKILL.md) | «bankavstemming for <klient>», «hvilke klienter har åpne bankkontoer» | Bankavstemming | Tripletex | Excel (scratch), Tally | Matching/lukking: CLI eller UI. Excel: `uv` | Ny |
+| [`bankavstemming`](.claude/skills/bankavstemming/SKILL.md) | «bankavstemming for <klient>», «hvilke klienter har åpne bankkontoer» | Bankavstemming | Tripletex | Tally-dokument (Excel) | Matching/lukking: CLI eller UI. Excel: `uv` | Ny |
 | [`mva-termin`](.claude/skills/mva-termin/SKILL.md) | «hvem mangler mva for t5», «avstem mva for <klient>» | MVA-kontroll, MVA-innlevering | Tripletex, Tally (Altinn) | Avstemmingsmodulen, Tally | Del B/C: CLI eller UI | Omskrevet |
 | [`lonn`](.claude/skills/lonn/SKILL.md) | «lag lønnsutkast», «legg inn lønnsendringen», «er a-meldingen sendt» | Lønnsforslag, Kjør lønn, A-melding | Tripletex, Missive, Tally | Tripletex (lønnskjøring, arbeidsforhold), Tally | – | Ny |
-| [`lonnsavstemming-a07`](.claude/skills/lonnsavstemming-a07/SKILL.md) | «lønnsavstemming termin 4 for <klient>» | Terminvis lønnsavstemming | A07-XML, Tripletex | Excel (scratch), Tally | `uv` | Oppdatert |
+| [`lonnsavstemming-a07`](.claude/skills/lonnsavstemming-a07/SKILL.md) | «lønnsavstemming termin 4 for <klient>» | Terminvis lønnsavstemming | A07-XML, Tripletex | Tally-dokument (Excel, A07) | `uv` | Oppdatert |
 | [`tally-gjoremal`](.claude/skills/tally-gjoremal/SKILL.md) | «se fristlisten», «før timer for i dag» | alle | Tally, Missive-kalender | Tally | – | Ny |
 | [`kundeinstruks`](.claude/skills/kundeinstruks/SKILL.md) | «hent kundeinstruks for <klient>», «husk for <klient> at …» | – | Tally | Tally (kundeinstruks) | – | Ny |
 | [`leverandorindeks`](.claude/skills/leverandorindeks/SKILL.md) | «er <leverandør> mva-registrert», «vurder leverandøren» | – | `data/leverandorer.json`, Brreg | `data/leverandorer.json` | Filsystem (Claude Code) | Ny |
-| [`aarsoppgjoer-kontroll`](.claude/skills/aarsoppgjoer-kontroll/SKILL.md) | «kontroller årsoppgjøret» + filer | Årsoppgjør | Opplastede filer, Brreg | PDF (scratch), Tally | `uv` | Oppdatert |
+| [`aarsoppgjoer-kontroll`](.claude/skills/aarsoppgjoer-kontroll/SKILL.md) | «kontroller årsoppgjøret» + filer | Årsoppgjør | Opplastede filer, Brreg | Tally-dokument (PDF) | `uv` | Oppdatert |
 
 «CLI» er Sjurs egen Tripletex-kobling (`C:\Users\Sjur\Tripletex API`). Skillene merker stegene som trenger den med
 **Krever CLI (Sjur) eller Tripletex-UI:**. Uten CLI gir Claude en ferdig liste å gjøre i Tripletex.
@@ -33,6 +33,7 @@ og leveranser går til Tally, Tripletex og Missive. Reglene Claude følger står
 | Leverandørindeksen | [`data/leverandorer.json`](data/leverandorer.json) (skillen `leverandorindeks`) | Mva-behandling og Brreg-fakta per leverandør, felles for alle klienter |
 | Tripletex-endepunktindeksen | [`tripletex-api/`](tripletex-api/README.md) | Om et Tripletex-kall finnes, parametere og fallgruver |
 | Kontrollkatalogen | [`docs/kontrollkatalog.md`](docs/kontrollkatalog.md) | Alle løpende kontroller, hvilken skill og hvilket MCP-verktøy |
+| Dokumentarkivet | Tally, per klient: kategori, periode og samling ([`docs/dokumentlagring.md`](docs/dokumentlagring.md)) | Hvor rapporter, kontoutskrifter, A07 og notater lagres |
 
 ## Månedshjulet
 

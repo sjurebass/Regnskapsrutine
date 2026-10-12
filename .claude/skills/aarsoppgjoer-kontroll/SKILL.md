@@ -759,7 +759,7 @@ with open(samlet_path, "wb") as f:
 print(f"Samlet rapport: {samlet_path}")
 ```
 
-Del **kun** den sammenslåtte PDF-en med SendUserFile (ikke de to enkeltrapportene). Sammenslåingen kjøres med `uv run --with pypdf python`.
+Lagre **kun** den sammenslåtte PDF-en i Tally (ikke de to enkeltrapportene). Sammenslåingen kjøres med `uv run --with pypdf python`.
 Brukeren skal ha én fil å forholde seg til.
 
 Hvis **kun ett** dokument er kjørt (Scenario A eller B), del den ene rapporten direkte.
@@ -828,12 +828,12 @@ aktivering som er sjelden for typiske SMBer).
 
 ## Arbeidsmappe, levering og Tally
 
-- `<scratch>` er Claudes scratch-mappe for økten. Alle mellomfiler (JSON) og rapportene lages der, aldri i kundemapper på disk.
+- `<scratch>` er Claudes scratch-mappe for økten. Mellomfiler (JSON) og rapportene lages der mens kontrollen kjører, aldri i kundemapper på disk.
 - `<SKILL_BASE_DIR>` er mappen denne filen ligger i. Skriptene finner fonter og logo selv.
-- Lever den samlede PDF-en med SendUserFile. Last den opp i Tally på årsoppgjørsoppgaven (`upload_document`, kategori ARSOPPGJOR,
-  periode «<år>») etter ja; er den over 3 MB, bruk `start_opplasting`.
+- **Lagre den samlede PDF-en i Tally** etter ja (`docs/dokumentlagring.md`): kategori `ARSOPPGJOR`, periode `ÅÅÅÅ`, samling `Årsoppgjør ÅÅÅÅ`, knyttet til
+  årsoppgjørsoppgaven. Kontroller med `list_documents` og gi lenken. Kan den ikke lagres, si det og del den i chatten.
 - Ting som bevisst venter til årsoppgjøret står i kundeinstruksens seksjon «Årsoppgjør» (skillen `kundeinstruks`). Les den før kontrollen,
   og ikke flagg det som allerede er avklart der.
 - Fullfør i Tally: foreslå tidsbruk og spør «Skal jeg fullføre <oppgave> for <klient> og føre <X> minutter?». Ved ja: `add_task_comment`
   (hva som er kontrollert, antall «må rettes»), `log_time`, `complete_task`.
-- Slett mellomfilene i scratch når rapporten er levert.
+- Slett mellomfilene og rapportene i scratch når PDF-en er lagret i Tally.
