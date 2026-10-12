@@ -1,0 +1,1256 @@
+{
+  "group": "ansatte",
+  "tags": [
+    {
+      "tag": "contact",
+      "beskrivelse": "Kontaktpersoner (eksterne personer, ikke ansatte) knyttet til kunder, med navn, e-post, telefon og avdeling – brukes bl.a. som «deres referanse» på ordre og faktura.",
+      "nokkelord": [
+        "kontakt",
+        "kontaktperson",
+        "kontaktpersoner",
+        "kundekontakt",
+        "contact",
+        "contacts",
+        "deres referanse",
+        "fakturamottaker",
+        "kontaktliste",
+        "ekstern kontakt",
+        "kontaktperson kunde",
+        "deres ref",
+        "fakturakontakt",
+        "customer contact",
+        "kontakt hos kunde",
+        "kontaktpers"
+      ]
+    },
+    {
+      "tag": "department",
+      "beskrivelse": "Avdelinger brukt som dimensjon i regnskapet (avdelingsregnskap), på ansatte, prosjekter og produkter.",
+      "nokkelord": [
+        "avdeling",
+        "avdelinger",
+        "department",
+        "departments",
+        "avdelingsnummer",
+        "avdelingsleder",
+        "avdelingsregnskap",
+        "kostnadssted",
+        "kostnadsbærer",
+        "resultatenhet",
+        "avdelingsdimensjon",
+        "profit center",
+        "cost center",
+        "inaktiv avdeling",
+        "avdelingsresultat",
+        "avd",
+        "avdelingsnr",
+        "avdelingsmodul",
+        "avdelingsoppsett"
+      ]
+    },
+    {
+      "tag": "division",
+      "beskrivelse": "Virksomheter/underenheter (bedriftsnummer) som arbeidsforhold knyttes til for a-meldingen og arbeidsgiveravgiftssone.",
+      "nokkelord": [
+        "virksomhet",
+        "virksomheter",
+        "underenhet",
+        "underenheter",
+        "division",
+        "divisions",
+        "bedriftsnummer",
+        "org.nr",
+        "orgnr",
+        "opplysningspliktig",
+        "aga-sone",
+        "brreg",
+        "virksomhetsnummer",
+        "orgnr underenhet",
+        "underenhet a-melding",
+        "virksomhet a-melding",
+        "arbeidsgiveravgiftssone",
+        "aga sone",
+        "filial",
+        "lokasjon",
+        "aga-kommune virksomhet"
+      ]
+    },
+    {
+      "tag": "employee",
+      "beskrivelse": "Ansatte og brukere i selskapet: opprette, søke, oppdatere personalia, avdeling, kategori og brukertype/innlogging.",
+      "nokkelord": [
+        "ansatt",
+        "ansatte",
+        "employee",
+        "employees",
+        "medarbeider",
+        "arbeidstaker",
+        "personal",
+        "personalregister",
+        "ansattnummer",
+        "ansattliste",
+        "bruker",
+        "brukere",
+        "brukertype",
+        "innlogging",
+        "tilgang",
+        "prosjektleder",
+        "nyansatt",
+        "onboarding",
+        "personopplysninger",
+        "ansattreskontro",
+        "fodselsnummer",
+        "d-nummer",
+        "kontonummer ansatt",
+        "sluttet",
+        "inaktiv ansatt",
+        "vår referanse",
+        "var referanse",
+        "ansattoversikt",
+        "personalliste",
+        "brukeradministrasjon",
+        "ny bruker",
+        "deaktivere ansatt"
+      ]
+    },
+    {
+      "tag": "employee/category",
+      "beskrivelse": "Ansattkategorier for å gruppere ansatte (f.eks. funksjonærer, timelønnede, lærlinger) i rapporter og filtre.",
+      "nokkelord": [
+        "ansattkategori",
+        "ansattkategorier",
+        "kategori",
+        "employee category",
+        "ansattgruppe",
+        "gruppering",
+        "lønnsgruppe",
+        "funksjonær",
+        "timelønnet",
+        "lærling",
+        "laerling",
+        "personalkategori",
+        "category",
+        "ansattkategori lønn",
+        "kategori ansatt"
+      ]
+    },
+    {
+      "tag": "employee/employment",
+      "beskrivelse": "Arbeidsforhold for en ansatt med start-/sluttdato, sluttårsak, virksomhet og skattetrekkskode, som rapporteres i a-meldingen.",
+      "nokkelord": [
+        "arbeidsforhold",
+        "ansettelse",
+        "employment",
+        "ansettelsesforhold",
+        "startdato",
+        "sluttdato",
+        "oppsigelse",
+        "sluttårsak",
+        "sluttarsak",
+        "a-melding",
+        "amelding",
+        "arbeidsforholds-id",
+        "hovedarbeidsgiver",
+        "biarbeidsgiver",
+        "trekkode",
+        "virksomhet",
+        "aa-registeret",
+        "aa-register",
+        "avslutte arbeidsforhold",
+        "skattetrekkskode",
+        "ansettelsesdato",
+        "tiltredelse",
+        "fratredelse",
+        "sluttet",
+        "gjenansettelse",
+        "arbeidsforhold-id",
+        "ingen arbeidsforhold pensjon"
+      ]
+    },
+    {
+      "tag": "employee/employment/details",
+      "beskrivelse": "Datostyrte detaljer på arbeidsforholdet: stillingsprosent, årslønn/timelønn, yrkeskode, arbeidstidsordning, ansettelsesform og AGA-kommune.",
+      "nokkelord": [
+        "arbeidsforholdsdetaljer",
+        "stillingsprosent",
+        "stillingsbrøk",
+        "årslønn",
+        "arslonn",
+        "månedslønn",
+        "manedslonn",
+        "timelønn",
+        "timelonn",
+        "lønnsendring",
+        "lonnsendring",
+        "lønnsjustering",
+        "yrkeskode",
+        "styrk",
+        "arbeidstidsordning",
+        "ansettelsesform",
+        "fast ansatt",
+        "midlertidig",
+        "avlønningstype",
+        "employment details",
+        "aga-kommune",
+        "skift",
+        "a-melding",
+        "stillingsandel",
+        "fastlønn",
+        "fastlonn",
+        "yrke",
+        "lønnsopplysninger arbeidsforhold",
+        "arbeidsgiveravgiftskommune"
+      ]
+    },
+    {
+      "tag": "employee/employment/employmentType",
+      "beskrivelse": "Kodeverk for arbeidsforholdstype, ansettelsesform, sluttårsak, lønnstype, arbeidstid og maritime arbeidsforhold.",
+      "nokkelord": [
+        "arbeidsforholdstype",
+        "employment type",
+        "ordinært arbeidsforhold",
+        "maritimt arbeidsforhold",
+        "frilanser",
+        "oppdragstaker",
+        "ansettelsesform",
+        "sluttårsak",
+        "sluttarsak",
+        "skipsregister",
+        "skipstype",
+        "fartsområde",
+        "kodeverk",
+        "koder",
+        "a-melding kodeliste",
+        "maritime"
+      ]
+    },
+    {
+      "tag": "employee/employment/leaveOfAbsence",
+      "beskrivelse": "Permisjoner og permitteringer på et arbeidsforhold (prosent, periode, type), som rapporteres i a-meldingen.",
+      "nokkelord": [
+        "permisjon",
+        "permisjoner",
+        "permittering",
+        "permittert",
+        "foreldrepermisjon",
+        "fødselspermisjon",
+        "fodselspermisjon",
+        "utdanningspermisjon",
+        "velferdspermisjon",
+        "militærtjeneste",
+        "leave of absence",
+        "furlough",
+        "lønnstrekk",
+        "a-melding permisjon",
+        "permisjonsprosent",
+        "permisjonsfravær",
+        "pappapermisjon",
+        "omsorgspermisjon",
+        "ulønnet permisjon",
+        "ulonnet permisjon",
+        "delvis permittert",
+        "permisjon a-melding"
+      ]
+    },
+    {
+      "tag": "employee/employment/leaveOfAbsenceType",
+      "beskrivelse": "Kodeliste over permisjonstyper (permisjon, permittering, foreldrepenger, militær, utdanning, velferd m.m.).",
+      "nokkelord": [
+        "permisjonstype",
+        "permisjonstyper",
+        "leave of absence type",
+        "permitteringstype",
+        "kodeliste permisjon",
+        "foreldrepenger",
+        "velferdspermisjon",
+        "utdanningspermisjon",
+        "permisjonskode"
+      ]
+    },
+    {
+      "tag": "employee/employment/occupationCode",
+      "beskrivelse": "Yrkeskoder (STYRK-08) som må settes på arbeidsforholdet for a-meldingen.",
+      "nokkelord": [
+        "yrkeskode",
+        "yrkeskoder",
+        "styrk",
+        "styrk-08",
+        "stillingskode",
+        "occupation code",
+        "yrke",
+        "stillingstittel",
+        "profesjonskode",
+        "a-melding yrke",
+        "yrkesbetegnelse"
+      ]
+    },
+    {
+      "tag": "employee/employment/remunerationType",
+      "beskrivelse": "Kodeliste over avlønningstyper (fastlønn, timelønn, provisjon, honorar, akkord).",
+      "nokkelord": [
+        "avlønningstype",
+        "avlonningstype",
+        "lønnstype",
+        "lonnstype",
+        "fastlønn",
+        "fastlonn",
+        "timelønn",
+        "timelonn",
+        "provisjon",
+        "honorar",
+        "akkord",
+        "remuneration type",
+        "månedslønn"
+      ]
+    },
+    {
+      "tag": "employee/employment/workingHoursScheme",
+      "beskrivelse": "Kodeliste over arbeidstidsordninger (ikke skift, døgnkontinuerlig, skift, offshore m.m.).",
+      "nokkelord": [
+        "arbeidstidsordning",
+        "arbeidstid",
+        "skift",
+        "skiftarbeid",
+        "turnus",
+        "døgnkontinuerlig",
+        "dognkontinuerlig",
+        "offshore",
+        "working hours scheme",
+        "ikke skift",
+        "helkontinuerlig"
+      ]
+    },
+    {
+      "tag": "employee/hourlyCostAndRate",
+      "beskrivelse": "Datostyrt timekost, internsats og budsjettsats per ansatt, brukt i prosjektregnskap og fakturering av timer.",
+      "nokkelord": [
+        "timekost",
+        "timesats",
+        "timepris",
+        "internpris",
+        "kostpris",
+        "budsjettsats",
+        "hourly rate",
+        "hourly cost",
+        "timekostnad",
+        "prosjektkalkyle",
+        "fakturerbar sats",
+        "internsats",
+        "hour cost rate",
+        "timekost ansatt",
+        "salgspris time",
+        "timerate",
+        "kostsats",
+        "timekostsats"
+      ]
+    },
+    {
+      "tag": "employee/nextOfKin",
+      "beskrivelse": "Pårørende/nærmeste pårørende registrert på en ansatt.",
+      "nokkelord": [
+        "pårørende",
+        "parorende",
+        "nærmeste pårørende",
+        "naermeste parorende",
+        "next of kin",
+        "ektefelle",
+        "samboer",
+        "partner",
+        "forelder",
+        "barn",
+        "søsken",
+        "kontakt ved ulykke",
+        "nødkontakt",
+        "nodkontakt",
+        "hms",
+        "pårørendeliste"
+      ]
+    },
+    {
+      "tag": "employee/preferences",
+      "beskrivelse": "Brukerinnstillinger per ansatt, som språk, prosjektfilter, ordrelinjeforslag og standard lager.",
+      "nokkelord": [
+        "innstillinger",
+        "brukerinnstillinger",
+        "preferanser",
+        "preferences",
+        "språk",
+        "sprak",
+        "language",
+        "engelsk",
+        "norsk",
+        "prosjektfilter",
+        "standard lager",
+        "ordrelinjeforslag",
+        "min bruker",
+        "innlogget bruker"
+      ]
+    },
+    {
+      "tag": "employee/standardTime",
+      "beskrivelse": "Datostyrt normalarbeidstid (timer per dag) per ansatt, brukt i timeføring, fleksitid og overtid.",
+      "nokkelord": [
+        "normaltid",
+        "normalarbeidstid",
+        "arbeidstid",
+        "timer per dag",
+        "standard time",
+        "standardtid",
+        "fleksitid",
+        "overtid",
+        "deltid",
+        "heltid",
+        "timebank",
+        "arbeidsdag",
+        "normaltid ansatt",
+        "arbeidstimer per dag",
+        "hours per day"
+      ]
+    },
+    {
+      "tag": "employee/entitlement",
+      "beskrivelse": "Tilganger/rettigheter for brukere, både i egen konto og i klientkontoer (regnskapsførerbyrå), satt via maler.",
+      "nokkelord": [
+        "tilgang",
+        "tilganger",
+        "rettighet",
+        "rettigheter",
+        "entitlement",
+        "entitlements",
+        "rolle",
+        "roller",
+        "brukerrettigheter",
+        "tilgangsmal",
+        "regnskapsfører",
+        "revisor",
+        "klienttilgang",
+        "klientkonto",
+        "byrå",
+        "personalansvarlig",
+        "fakturaansvarlig",
+        "avdelingsleder",
+        "403",
+        "ingen tilgang",
+        "tilgangsgjennomgang",
+        "tilgangskontroll",
+        "privilegier",
+        "privileges",
+        "brukertilgang",
+        "proxy-innlogging",
+        "klientrettigheter"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Hente liste over ansatte (aktive, per avdeling, prosjektledere)",
+      "nokkelord": [
+        "ansattliste",
+        "liste ansatte",
+        "hvem er ansatt",
+        "ansatte",
+        "employee",
+        "søk ansatt",
+        "sok ansatt",
+        "finn ansatt",
+        "ansattnummer",
+        "aktive ansatte",
+        "inaktive ansatte",
+        "prosjektledere",
+        "ansatte i avdeling",
+        "antall ansatte",
+        "brukere med tilgang",
+        "personalliste",
+        "ansattoversikt",
+        "vår referanse"
+      ],
+      "kall": [
+        "GET /employee",
+        "GET /employee/{id}"
+      ],
+      "fremgangsmate": "GET /employee med filtre: firstName/lastName (inneholder), employeeNumber (lik), departmentId (liste), isInactive=false, hasSystemAccess=true (kun brukere med innlogging), onlyProjectManagers/assignableProjectManagers=true for prosjektledere, periodStart/periodEnd for ansatte i en periode. GDPR: bruk alltid minimale fields=, f.eks. fields=id,employeeNumber,displayName,department(name) – aldri fødselsnummer, kontonummer, adresse eller telefon med mindre oppgaven krever det; vis initialer/«ansatt 1» i svar. Bruk count/from for paginering. GET /employee/{id} for én ansatt (samme fields-regel). NB: isInactive på /employee ser kun på flagget, ikke på om arbeidsforholdet er aktivt. count er 1000 som standard – bruk from/count ved store lister. Employee har ikke noe skrivbart isInactive-felt: en ansatt blir inaktiv via sluttdato på arbeidsforholdet.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Søke etter ansatte og eksterne kontakter samlet",
+      "nokkelord": [
+        "søk person",
+        "sok person",
+        "ansatte og kontakter",
+        "finn bruker",
+        "ekstern bruker",
+        "kontaktperson ansatt",
+        "searchForEmployeesAndContacts",
+        "regnskapsfører bruker",
+        "lesetilgang"
+      ],
+      "kall": [
+        "GET /employee/searchForEmployeesAndContacts"
+      ],
+      "fremgangsmate": "GET /employee/searchForEmployeesAndContacts?firstName=&lastName=&email= (inneholder). Kontakter er med som standard (includeContacts=true); sett includeContacts=false for kun ansatte. hasSystemAccess=true for brukere med innlogging, excludeReadOnly=true for å utelate lesebrukere. isInactive her kombineres med ansettelsesperioden (i motsetning til GET /employee). GDPR: fields=id,displayName,isContact.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette ny ansatt med arbeidsforhold (nyansatt/onboarding)",
+      "nokkelord": [
+        "ny ansatt",
+        "nyansatt",
+        "opprette ansatt",
+        "registrere ansatt",
+        "legge til ansatt",
+        "onboarding",
+        "ansette",
+        "create employee",
+        "ny medarbeider",
+        "ansettelse",
+        "a-melding ny ansatt",
+        "arbeidsforhold ny"
+      ],
+      "kall": [
+        "GET /department",
+        "GET /employee/employment/occupationCode",
+        "GET /division",
+        "POST /employee",
+        "POST /employee/employment",
+        "POST /employee/employment/details"
+      ],
+      "fremgangsmate": "1) GET /department?fields=id,name (avdeling kreves normalt ved opprettelse). 2) POST /employee med firstName, lastName, department{id}, userType (NO_ACCESS hvis ingen innlogging; STANDARD/EXTENDED krever e-post som må bekreftes), samt dateOfBirth/nationalIdentityNumber, adresse og bankAccountNumber når lønn skal kjøres. 3) POST /employee/employment med employee{id}, startDate, division{id} (virksomhet for a-melding, fra GET /division), evt. isMainEmployer/taxDeductionCode. 4) POST /employee/employment/details med employment{id}, date (=startdato), employmentType (ORDINARY), employmentForm (PERMANENT/TEMPORARY), remunerationType (MONTHLY_WAGE/HOURLY_WAGE), workingHoursScheme (NOT_SHIFT), occupationCode{id} (fra GET /employee/employment/occupationCode?nameNO=), percentageOfFullTimeEquivalent, annualSalary eller hourlyWage. Employee-body har også employments-feltet, så arbeidsforhold kan sendes nestet i samme POST. Fødselsdato (dateOfBirth) eller fødselsnummer må normalt være satt på den ansatte for at arbeidsforholdet skal kunne rapporteres i a-meldingen. Unngå NOT_CHOSEN på employmentType/employmentForm/remunerationType/workingHoursScheme – det gir avvik i a-meldingen. Skrivende – krever brukerens bekreftelse. GDPR: personopplysninger behandles kun lokalt, aldri i logger/svar.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Importere mange ansatte på en gang (masseimport / historisk import)",
+      "nokkelord": [
+        "importere ansatte",
+        "masseimport",
+        "bulk",
+        "flere ansatte",
+        "overføre ansatte",
+        "konvertering",
+        "systembytte",
+        "historisk import",
+        "migrering",
+        "employee list",
+        "import fra annet system"
+      ],
+      "kall": [
+        "POST /employee/list",
+        "POST /ledger/voucher/historical/employee",
+        "GET /department"
+      ],
+      "fremgangsmate": "POST /employee/list med en liste Employee-objekter (uten id/version), hver med firstName, lastName, department{id}, userType. Ved konvertering fra annet lønnssystem der avdeling mangler: POST /ledger/voucher/historical/employee [BETA] (mindre streng validering, avdeling ikke påkrevd). Kontroller etterpå med GET /employee?fields=id,employeeNumber,displayName. Skrivende – bekreft først. GDPR: ikke lagre importfilen med personopplysninger i scratch/logg.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Kontrollere at ansatte og arbeidsforhold er komplette før lønnskjøring/a-melding",
+      "nokkelord": [
+        "kontroll ansatte",
+        "ansattkontroll",
+        "a-melding avvik",
+        "avvik a-melding",
+        "mangler arbeidsforhold",
+        "mangler yrkeskode",
+        "mangler virksomhet",
+        "stillingsprosent mangler",
+        "klargjøre lønn",
+        "klargjore lonn",
+        "før lønnskjøring",
+        "for lonnskjoring",
+        "datakvalitet ansatte",
+        "aa-registeret",
+        "lønnskontroll"
+      ],
+      "kall": [
+        "GET /employee",
+        "GET /employee/employment",
+        "GET /employee/employment/details",
+        "GET /division"
+      ],
+      "fremgangsmate": "1) GET /employee?isInactive=false&fields=id,employeeNumber,dateOfBirth,employments(id) – sjekk kun om felt er satt, skriv aldri ut verdier (GDPR). 2) For hver ansatt: GET /employee/employment?employeeId=<id>&fields=id,startDate,endDate,division(id,name),taxDeductionCode,isMainEmployer – flagg arbeidsforhold uten division. 3) GET /employee/employment/details?employmentId=<liste>&fields=employment(id),date,employmentType,employmentForm,remunerationType,workingHoursScheme,occupationCode(code),percentageOfFullTimeEquivalent – flagg manglende yrkeskode, NOT_CHOSEN-verdier eller 0 % stilling. 4) GET /division?fields=id,name,organizationNumber,municipality(name) for å se at virksomhetene har kommune. Rapporter kun aggregert/«ansatt 1, 2» med hva som mangler. Kun lesing.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Oppdatere ansattopplysninger (adresse, bankkonto, avdeling, kategori, brukertype)",
+      "nokkelord": [
+        "endre ansatt",
+        "oppdatere ansatt",
+        "ny adresse",
+        "nytt kontonummer",
+        "bytte avdeling",
+        "flytte avdeling",
+        "endre e-post",
+        "brukertype",
+        "gi innlogging",
+        "fjerne tilgang",
+        "no_access",
+        "ansattkategori",
+        "update employee",
+        "personalia"
+      ],
+      "kall": [
+        "GET /employee/{id}",
+        "PUT /employee/{id}"
+      ],
+      "fremgangsmate": "Finn id via GET /employee (fields=id,version,displayName). PUT /employee/{id} med kun feltene som skal endres (partial object), f.eks. department{id}, employeeCategory{id}, address{addressLine1,postalCode,city}, bankAccountNumber/iban/bic, userType (STANDARD|EXTENDED|NO_ACCESS). Å sette userType=NO_ACCESS fjerner innlogging. Ta med version fra GET for å unngå versjonskonflikt (409). Det finnes ingen DELETE /employee og intet skrivbart isInactive – ansatte «avsluttes» via sluttdato på arbeidsforholdet. Skrivende – bekreft med brukeren. GDPR: ikke skriv ut nye/gamle verdier for kontonummer, adresse o.l. i svaret; bekreft bare at feltet er oppdatert.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente arbeidsforhold og stillingsdetaljer for en ansatt",
+      "nokkelord": [
+        "arbeidsforhold",
+        "se arbeidsforhold",
+        "stillingsprosent",
+        "ansettelsesdato",
+        "startdato",
+        "sluttdato",
+        "lønn ansatt",
+        "årslønn",
+        "yrkeskode",
+        "employment",
+        "a-melding kontroll",
+        "aa-register",
+        "avvik a-melding"
+      ],
+      "kall": [
+        "GET /employee/employment",
+        "GET /employee/employment/{id}",
+        "GET /employee/employment/details",
+        "GET /employee/employment/details/{id}"
+      ],
+      "fremgangsmate": "GET /employee/employment?employeeId=<id>&fields=id,startDate,endDate,employmentEndReason,division(name),taxDeductionCode,isMainEmployer. Deretter GET /employee/employment/details?employmentId=<id>&fields=date,employmentType,employmentForm,remunerationType,percentageOfFullTimeEquivalent,occupationCode(code,nameNO). Detaljene er datostyrte (historikk) – nyeste date gjelder. latestSalary på employment gir siste detaljer. GDPR: hent annualSalary/hourlyWage kun når oppgaven krever lønnstall, og vis ikke lønn per navngitt person.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Registrere nytt arbeidsforhold for eksisterende ansatt",
+      "nokkelord": [
+        "nytt arbeidsforhold",
+        "opprette arbeidsforhold",
+        "ekstra stilling",
+        "biarbeidsgiver",
+        "hovedarbeidsgiver",
+        "gjenansettelse",
+        "ansette på nytt",
+        "create employment",
+        "a-melding arbeidsforhold",
+        "skattetrekk kode",
+        "trekkode"
+      ],
+      "kall": [
+        "GET /employee",
+        "GET /division",
+        "POST /employee/employment",
+        "POST /employee/employment/details"
+      ],
+      "fremgangsmate": "Finn employee id (GET /employee, minimale fields). POST /employee/employment med employee{id}, startDate (yyyy-MM-dd), division{id}, evt. employmentId (arbeidsforholds-ID fra tidligere system), isMainEmployer (default true) og taxDeductionCode (default loennFraHovedarbeidsgiver/loennFraBiarbeidsgiver etter isMainEmployer; EMPTY er ulovlig). Følg opp med POST /employee/employment/details (date, employmentType, employmentForm, remunerationType, workingHoursScheme, occupationCode, percentageOfFullTimeEquivalent, annualSalary/hourlyWage). Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Avslutte arbeidsforhold når en ansatt slutter",
+      "nokkelord": [
+        "slutte",
+        "sluttet",
+        "oppsigelse",
+        "avslutte arbeidsforhold",
+        "sluttdato",
+        "sluttårsak",
+        "sluttarsak",
+        "fratredelse",
+        "avgang",
+        "permisjon slutt",
+        "end employment",
+        "a-melding sluttdato",
+        "fjerne tilgang ved slutt"
+      ],
+      "kall": [
+        "GET /employee/employment",
+        "GET /employee/employment/employmentType/employmentEndReasonType",
+        "PUT /employee/employment/{id}",
+        "PUT /employee/{id}"
+      ],
+      "fremgangsmate": "GET /employee/employment?employeeId=&fields=id,version,startDate,endDate. PUT /employee/employment/{id} med endDate og employmentEndReason (EMPLOYMENT_END_EMPLOYEE = arbeidstaker sa opp, EMPLOYMENT_END_EMPLOYER = arbeidsgiver sa opp, EMPLOYMENT_END_EXPIRED = midlertidig utløpt, EMPLOYMENT_END_WRONGLY_REPORTED, EMPLOYMENT_END_SYSTEM_OR_ACCOUNTANT_CHANGE, EMPLOYMENT_END_INTERNAL_CHANGE). Sett isRemoveAccessAtEmploymentEnded=true for automatisk å fjerne innlogging (gjelder alle arbeidsforhold på den ansatte), eller PUT /employee/{id} med userType=NO_ACCESS. Ansatte kan ikke slettes via API (ingen DELETE /employee); de blir inaktive når arbeidsforholdet er avsluttet. Husk at sluttdato skal med i a-meldingen for måneden. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere lønnsendring, ny stillingsprosent eller AGA-kommune på arbeidsforholdet",
+      "nokkelord": [
+        "lønnsendring",
+        "lonnsendring",
+        "lønnsjustering",
+        "lønnsøkning",
+        "ny lønn",
+        "årslønn",
+        "timelønn",
+        "stillingsprosent",
+        "redusert stilling",
+        "deltid",
+        "endre yrkeskode",
+        "arbeidsgiveravgift kommune",
+        "aga-sone",
+        "skattekommune",
+        "employment details",
+        "lønnsoppgjør"
+      ],
+      "kall": [
+        "GET /employee/employment/details",
+        "POST /employee/employment/details",
+        "PUT /employee/employment/details/{id}",
+        "GET /municipality"
+      ],
+      "fremgangsmate": "Detaljer er datostyrte: for en endring fra en ny dato, POST /employee/employment/details med employment{id}, date (gjelder fra), og nye verdier (annualSalary eller hourlyWage, percentageOfFullTimeEquivalent, occupationCode{id} osv.) – da bevares historikken. Rett en feilregistrering med PUT /employee/employment/details/{id} (id+version fra GET ...?employmentId=). monthlySalary er skrivebeskyttet og beregnes av årslønn. payrollTaxMunicipalityId{id} settes fra GET /municipality?includePayrollTaxZones=true. workingHoursScheme med skift krever shiftDurationHours. Skrivende – bekreft. GDPR: ikke vis lønn per navngitt ansatt i svar.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne riktig yrkeskode (STYRK) til arbeidsforhold",
+      "nokkelord": [
+        "yrkeskode",
+        "styrk",
+        "styrk-08",
+        "stillingskode",
+        "finne yrkeskode",
+        "occupation code",
+        "yrke",
+        "stillingsbetegnelse",
+        "a-melding yrkeskode",
+        "feil yrkeskode"
+      ],
+      "kall": [
+        "GET /employee/employment/occupationCode",
+        "GET /employee/employment/occupationCode/{id}"
+      ],
+      "fremgangsmate": "GET /employee/employment/occupationCode?nameNO=<del av yrkesnavn>&fields=id,code,nameNO, eller code=<sifre> for å søke på kode. Bruk id i occupationCode{id} på employment details. GET /employee/employment/occupationCode/{id} for å slå opp en kjent id. Ingen personopplysninger.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Slå opp kodeverk for arbeidsforhold (type, form, sluttårsak, avlønning, arbeidstid, maritimt)",
+      "nokkelord": [
+        "kodeverk",
+        "kodeliste",
+        "arbeidsforholdstype",
+        "ansettelsesform",
+        "sluttårsak",
+        "avlønningstype",
+        "arbeidstidsordning",
+        "maritimt",
+        "skipsregister",
+        "fartsområde",
+        "skipstype",
+        "lønnstype",
+        "a-melding koder",
+        "employment type"
+      ],
+      "kall": [
+        "GET /employee/employment/employmentType",
+        "GET /employee/employment/employmentType/employmentFormType",
+        "GET /employee/employment/employmentType/employmentEndReasonType",
+        "GET /employee/employment/employmentType/salaryType",
+        "GET /employee/employment/employmentType/scheduleType",
+        "GET /employee/employment/employmentType/maritimeEmploymentType",
+        "GET /employee/employment/remunerationType",
+        "GET /employee/employment/workingHoursScheme"
+      ],
+      "fremgangsmate": "Listene returnerer kode, nameNO og enum-verdi. I request-body brukes enum-strengene direkte: employmentType ORDINARY|MARITIME|FREELANCE, employmentForm PERMANENT|TEMPORARY|PERMANENT_AND_HIRED_OUT|TEMPORARY_AND_HIRED_OUT|TEMPORARY_ON_CALL, remunerationType MONTHLY_WAGE|HOURLY_WAGE|COMMISION_PERCENTAGE|FEE|PIECEWORK_WAGE, workingHoursScheme NOT_SHIFT|ROUND_THE_CLOCK|SHIFT_365|OFFSHORE_336|CONTINUOUS|OTHER_SHIFT. maritimeEmploymentType krever type=SHIP_REGISTER|SHIP_TYPE|TRADE_AREA. Rene oppslag, ingen persondata.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Registrere permisjon eller permittering på en ansatt",
+      "nokkelord": [
+        "permisjon",
+        "permittering",
+        "permittere",
+        "foreldrepermisjon",
+        "fødselspermisjon",
+        "pappaperm",
+        "mammaperm",
+        "utdanningspermisjon",
+        "velferdspermisjon",
+        "militærtjeneste",
+        "ulønnet permisjon",
+        "lønnstrekk",
+        "a-melding permisjon",
+        "leave of absence",
+        "furlough",
+        "delvis permittert"
+      ],
+      "kall": [
+        "GET /employee/employment",
+        "GET /employee/employment/leaveOfAbsenceType",
+        "POST /employee/employment/leaveOfAbsence",
+        "POST /employee/employment/leaveOfAbsence/list"
+      ],
+      "fremgangsmate": "Finn employment id (GET /employee/employment?employeeId=&fields=id,startDate). POST /employee/employment/leaveOfAbsence med employment{id}, startDate, endDate, percentage (0-100), isWageDeduction (trekk i lønn), type: LEAVE_OF_ABSENCE, FURLOUGH (permittering), PARENTAL_BENEFITS, MILITARY_SERVICE, EDUCATIONAL, COMPASSIONATE (velferd), OTHER_STATUTORILY_REQUIRED/OTHER_NOT_STATUTORILY_REQUIRED, EDUCATIONAL_STATUTORILY_REQUIRED/EDUCATIONAL_NOT_STATUTORILY_REQUIRED. Flere på en gang: POST .../leaveOfAbsence/list. Kodeliste: GET /employee/employment/leaveOfAbsenceType. Skrivende – bekreft. GDPR: permisjon/fravær er sensitiv – aldri navngi den ansatte i svar/rapport.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente, endre eller avslutte permisjoner og permitteringer",
+      "nokkelord": [
+        "hvem har permisjon",
+        "permitterte",
+        "liste permisjoner",
+        "endre permisjon",
+        "forlenge permisjon",
+        "avslutte permisjon",
+        "tilbake fra permisjon",
+        "permisjonsprosent",
+        "a-melding kontroll permisjon"
+      ],
+      "kall": [
+        "GET /employee/employment/leaveOfAbsence",
+        "GET /employee/employment/leaveOfAbsence/{id}",
+        "PUT /employee/employment/leaveOfAbsence/{id}"
+      ],
+      "fremgangsmate": "GET /employee/employment/leaveOfAbsence?employmentIds=<liste>&date=yyyy-MM-dd (date er standard i dag – sett den for å se andre perioder) og evt. minPercentage/maxPercentage (0-100); fields=id,version,startDate,endDate,percentage,type. Endre/forlenge/avslutte med PUT /employee/employment/leaveOfAbsence/{id} (ny endDate eller percentage). Lesing er ikke skrivende; PUT krever bekreftelse. GDPR: rapporter kun aggregert (antall permitterte), aldri navn.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere eller endre timekost og timesats per ansatt",
+      "nokkelord": [
+        "timekost",
+        "timesats",
+        "timepris",
+        "kostpris ansatt",
+        "internpris",
+        "budsjettsats",
+        "hourly rate",
+        "hourly cost",
+        "prosjektkost",
+        "etterkalkyle",
+        "manglende timesats",
+        "fakturerbar sats"
+      ],
+      "kall": [
+        "GET /employee/hourlyCostAndRate",
+        "GET /employee/hourlyCostAndRate/{id}",
+        "POST /employee/hourlyCostAndRate",
+        "PUT /employee/hourlyCostAndRate/{id}"
+      ],
+      "fremgangsmate": "GET /employee/hourlyCostAndRate?employeeId=<id> (NB: uten employeeId returneres token-eierens satser)&fields=id,version,date,rate,budgetRate,hourCostRate. Ny sats fra en dato: POST /employee/hourlyCostAndRate med employee{id}, date, rate (timesats/salgspris), hourCostRate (timekost), budgetRate. Rette eksisterende: PUT /employee/hourlyCostAndRate/{id}. Satsene er datostyrte – ikke overskriv historikk ved prisendring. Prosjekter som mangler sats: GET /project/{id}/actionList/employeesWithMissingHourlyRate (prosjekt-gruppen). Skrivende – bekreft. Ingen DELETE – feilregistreringer rettes med PUT.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sette eller hente normalarbeidstid per ansatt",
+      "nokkelord": [
+        "normaltid",
+        "normalarbeidstid",
+        "timer per dag",
+        "arbeidstid ansatt",
+        "deltid",
+        "heltid",
+        "fleksitid",
+        "overtid",
+        "standard time",
+        "37,5 timer",
+        "7,5 timer",
+        "timebank"
+      ],
+      "kall": [
+        "GET /employee/standardTime",
+        "GET /employee/standardTime/byDate",
+        "GET /employee/standardTime/{id}",
+        "POST /employee/standardTime",
+        "PUT /employee/standardTime/{id}",
+        "GET /salary/settings/standardTime"
+      ],
+      "fremgangsmate": "GET /employee/standardTime/byDate?employeeId=&date= gir gjeldende normaltid (employeeId standard = token-eier, date standard = i dag). Historikk: GET /employee/standardTime?employeeId=<id> (employeeId er også her token-eier som standard – send alltid eksplisitt). Ny normaltid fra dato: POST /employee/standardTime med employee{id}, fromDate, hoursPerDay (f.eks. 7.5). Rette: PUT /employee/standardTime/{id}. Firmaets standard ligger i GET /salary/settings/standardTime (lønn-gruppen) og gjelder når ansatt ikke har egen. Skrivende for POST/PUT – bekreft. Ingen DELETE – rett med PUT.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere eller oppdatere pårørende for en ansatt",
+      "nokkelord": [
+        "pårørende",
+        "parorende",
+        "nærmeste pårørende",
+        "next of kin",
+        "nødkontakt",
+        "ektefelle",
+        "samboer",
+        "kontakt ved ulykke",
+        "hms"
+      ],
+      "kall": [
+        "GET /employee/nextOfKin",
+        "GET /employee/nextOfKin/{id}",
+        "POST /employee/nextOfKin",
+        "PUT /employee/nextOfKin/{id}"
+      ],
+      "fremgangsmate": "GET /employee/nextOfKin?employeeId=<id> (send alltid – standard er token-eier)&fields=id,version,typeOfRelationship (hent navn/telefon kun når det faktisk trengs). POST /employee/nextOfKin med employee{id}, name, phoneNumber, address, typeOfRelationship (SPOUSE|PARTNER|PARENT|CHILD|SIBLING). Endre: PUT /employee/nextOfKin/{id}. GDPR: pårørende er tredjeperson – aldri vis navn/telefon i svar, rapporter eller filer. Skrivende – bekreft.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Opprette, endre og slette ansattkategorier",
+      "nokkelord": [
+        "ansattkategori",
+        "kategori",
+        "gruppere ansatte",
+        "employee category",
+        "lærling",
+        "timelønnede",
+        "funksjonærer",
+        "slette kategori",
+        "ny kategori"
+      ],
+      "kall": [
+        "GET /employee/category",
+        "GET /employee/category/{id}",
+        "POST /employee/category",
+        "POST /employee/category/list",
+        "PUT /employee/category/{id}",
+        "PUT /employee/category/list",
+        "DELETE /employee/category/{id}",
+        "DELETE /employee/category/list"
+      ],
+      "fremgangsmate": "GET /employee/category?query=|name=|number=&fields=id,number,name. Opprette: POST /employee/category (name, number, description) eller POST .../list for flere. Endre: PUT /employee/category/{id} (partial) eller PUT .../list (id+version påkrevd). Slette: DELETE /employee/category/{id} eller DELETE /employee/category/list?ids=1,2. Koble ansatt til kategori via PUT /employee/{id} med employeeCategory{id}. Skrivende – bekreft, særlig sletting.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Tilgangsgjennomgang: hvilke brukere har innlogging og hvilke rettigheter",
+      "nokkelord": [
+        "tilgangsgjennomgang",
+        "tilgangskontroll",
+        "hvem har tilgang",
+        "brukere med innlogging",
+        "brukeroversikt",
+        "rettighetsoversikt",
+        "internkontroll tilgang",
+        "revisjon tilganger",
+        "hvem er jeg",
+        "token-eier",
+        "whoami"
+      ],
+      "kall": [
+        "GET /employee",
+        "GET /employee/entitlement",
+        "GET /token/session/>whoAmI"
+      ],
+      "fremgangsmate": "1) GET /token/session/>whoAmI?fields=employeeId,company(id,name) for å se hvilken bruker/klient tokenet representerer (sitér stien pga. '>'). 2) GET /employee?hasSystemAccess=true&fields=id,employeeNumber,userType,isProxy – isProxy=true er regnskapsfører-/revisorbyrå. 3) Per bruker: GET /employee/entitlement?employeeId=<id>&fields=entitlementId,name (employeeId må sendes, ellers får du token-eierens). Oppsummer antall brukere per userType og antall rettigheter – ikke navn/e-post. Kun lesing.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Gi eller endre tilganger/rettigheter for en bruker i egen konto",
+      "nokkelord": [
+        "tilgang",
+        "rettigheter",
+        "gi tilgang",
+        "fjerne tilgang",
+        "brukerrettigheter",
+        "rolle",
+        "tilgangsmal",
+        "entitlement",
+        "full tilgang",
+        "regnskapsfører tilgang",
+        "revisor tilgang",
+        "personalansvarlig",
+        "fakturaansvarlig",
+        "avdelingsleder",
+        "403",
+        "mangler tilgang",
+        "tildele rettigheter",
+        "rettighetsmal"
+      ],
+      "kall": [
+        "GET /employee/entitlement",
+        "GET /employee/entitlement/{id}",
+        "PUT /employee/entitlement/:grantEntitlementsByTemplate",
+        "PUT /employee/{id}"
+      ],
+      "fremgangsmate": "Se dagens rettigheter: GET /employee/entitlement?employeeId=<id> (uten employeeId får du token-eierens egne rettigheter)&fields=id,name,entitlementId. Tildel via mal: PUT /employee/entitlement/:grantEntitlementsByTemplate?employeeId=&template= (NONE_PRIVILEGES|ALL_PRIVILEGES|INVOICING_MANAGER|PERSONELL_MANAGER|ACCOUNTANT|AUDITOR|DEPARTMENT_LEADER) – ingen body, query-parametere. [BETA]. Brukeren får bare rettigheter som brukertypen tillater; sett først userType=EXTENDED via PUT /employee/{id} ved behov for full tilgang. NONE_PRIVILEGES fjerner rettigheter. Skrivende og sikkerhetskritisk – bekreft alltid.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Gi regnskapsfører/revisor tilgang til en klientkonto (byrå)",
+      "nokkelord": [
+        "klienttilgang",
+        "klientkonto",
+        "tilgang klient",
+        "byrå",
+        "regnskapsbyrå",
+        "regnskapsfører",
+        "revisor",
+        "fullmakt",
+        "proxy login",
+        "standard rettigheter regnskapsfører",
+        "agro",
+        "klientrettigheter",
+        "hvilke klienter"
+      ],
+      "kall": [
+        "GET /company/>withLoginAccess",
+        "GET /employee/entitlement/client",
+        "PUT /employee/entitlement/:grantClientEntitlementsByTemplate"
+      ],
+      "fremgangsmate": "Kjøres fra byråets konto. Finn klientene brukeren har innlogging til: GET /company/>withLoginAccess (fields=id,name). Se rettigheter i klient: GET /employee/entitlement/client?employeeId=&customerId=<klient-id> [BETA]. Tildel: PUT /employee/entitlement/:grantClientEntitlementsByTemplate?employeeId=&customerId=&template=STANDARD_PRIVILEGES_ACCOUNTANT|STANDARD_PRIVILEGES_AUDITOR|ALL_PRIVILEGES|NONE_PRIVILEGES|AGRO_* &addToExisting=true (legg til i stedet for å erstatte). Alle tre query-parametere er påkrevd. Skrivende og sikkerhetskritisk – bekreft klient og mal eksplisitt.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre brukerinnstillinger og språk",
+      "nokkelord": [
+        "språk",
+        "sprak",
+        "engelsk",
+        "norsk",
+        "bytte språk",
+        "brukerinnstillinger",
+        "preferanser",
+        "prosjektfilter",
+        "standard lager",
+        "ordrelinjeforslag",
+        "change language",
+        "min profil"
+      ],
+      "kall": [
+        "GET /employee/preferences/>loggedInEmployeePreferences",
+        "GET /employee/preferences",
+        "PUT /employee/preferences/{id}",
+        "PUT /employee/preferences/list",
+        "PUT /employee/preferences/:changeLanguage"
+      ],
+      "fremgangsmate": "Egen bruker: GET /employee/preferences/>loggedInEmployeePreferences (sitér stien i shell pga. '>'). Andre: GET /employee/preferences?employeeId=. Språk for innlogget bruker: PUT /employee/preferences/:changeLanguage?language=NO|EN (ingen body). Andre felt (filterOnProjectParticipant, filterOnProjectManager, orderLineSuggestions ON|OFF|UNANSWERED, defaultWarehouseId): PUT /employee/preferences/{id} eller PUT .../list (id+version). Skrivende – bekreft.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente avdelinger (avdelingsliste)",
+      "nokkelord": [
+        "avdelinger",
+        "avdelingsliste",
+        "avdelingsnummer",
+        "finn avdeling",
+        "søk avdeling",
+        "department",
+        "kostnadssted",
+        "avdelingsleder",
+        "inaktive avdelinger"
+      ],
+      "kall": [
+        "GET /department",
+        "GET /department/query",
+        "GET /department/{id}"
+      ],
+      "fremgangsmate": "GET /department?name=&departmentNumber=&departmentManagerId=&isInactive=false&fields=id,departmentNumber,name,isInactive. Fritekst/wildcard: GET /department/query?query=<tekst> (isInactive: true=bare inaktive, false=bare aktive, utelatt=begge). GET /department/{id} for én. Avdeling-id brukes som departmentId i hovedbok, saldobalanse, prosjekt, produkt og reiseregning. Unngå departmentManager(*) med persondata – bruk departmentManager(id,displayName) om nødvendig. Avdelingsregnskap forutsetter at avdelingsmodulen (moduledepartment/moduleDepartmentAccounting) er aktivert i selskapet.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette eller endre avdelinger",
+      "nokkelord": [
+        "ny avdeling",
+        "opprette avdeling",
+        "endre avdeling",
+        "gi nytt navn avdeling",
+        "avdelingsleder",
+        "avdelingsnummer",
+        "flere avdelinger",
+        "department create",
+        "avdelingsstruktur",
+        "kostnadssted"
+      ],
+      "kall": [
+        "POST /department",
+        "POST /department/list",
+        "PUT /department/{id}",
+        "PUT /department/list",
+        "GET /employee"
+      ],
+      "fremgangsmate": "POST /department med name, departmentNumber og evt. departmentManager{id} (ansatt-id fra GET /employee?fields=id,displayName). Flere: POST /department/list. Endre navn/nummer/leder: PUT /department/{id} (partial) eller PUT /department/list (id+version påkrevd). Avdelingsmodulen må være aktiv i selskapet for at avdeling skal brukes i regnskapet. Skrivende – bekreft.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slette eller deaktivere en avdeling",
+      "nokkelord": [
+        "slette avdeling",
+        "deaktivere avdeling",
+        "inaktiv avdeling",
+        "legge ned avdeling",
+        "arkivere avdeling",
+        "delete department"
+      ],
+      "kall": [
+        "GET /department/{id}",
+        "DELETE /department/{id}",
+        "PUT /department/{id}"
+      ],
+      "fremgangsmate": "Avdelinger som er brukt i posteringer, på ansatte eller prosjekter kan normalt ikke slettes – da PUT /department/{id} med isInactive=true. DELETE /department/{id} kun for ubrukte avdelinger (feil gir 4xx/validering). Hent version via GET /department/{id}?fields=id,version,name. Skrivende og irreversibelt ved sletting – bekreft.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente resultat, saldobalanse og budsjett per avdeling (avdelingsregnskap)",
+      "nokkelord": [
+        "avdelingsregnskap",
+        "resultat per avdeling",
+        "avdelingsresultat",
+        "saldobalanse avdeling",
+        "posteringer avdeling",
+        "kostnader per avdeling",
+        "budsjett avdeling",
+        "resultatbudsjett",
+        "dimensjon",
+        "segment",
+        "avdelingsrapport"
+      ],
+      "kall": [
+        "GET /department",
+        "GET /balanceSheet",
+        "GET /ledger/posting",
+        "GET /resultbudget/department/{id}"
+      ],
+      "fremgangsmate": "1) GET /department?fields=id,departmentNumber,name. 2) Saldobalanse per avdeling: GET /balanceSheet?dateFrom=&dateTo=(ekskl.)&departmentId= eller departmentIds=1,2 (evt. accountNumberFrom=3000&accountNumberTo=8999 for resultat). 3) Posteringer: GET /ledger/posting?dateFrom=&dateTo=&departmentId=&fields=date,account(number),amount,description,voucher(number). 4) Budsjett: GET /resultbudget/department/{id}?year=. dateTo er eksklusiv i begge rapportene. Kun lesing.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Registrere og vedlikeholde virksomheter/underenheter og koble arbeidsforhold",
+      "nokkelord": [
+        "virksomhet",
+        "underenhet",
+        "bedriftsnummer",
+        "ny virksomhet",
+        "division",
+        "a-melding virksomhet",
+        "arbeidsforhold mangler virksomhet",
+        "aga-sone",
+        "kommune",
+        "organisasjonsnummer underenhet",
+        "flytte ansatte virksomhet"
+      ],
+      "kall": [
+        "GET /division",
+        "POST /division",
+        "POST /division/list",
+        "PUT /division/{id}",
+        "PUT /division/list",
+        "GET /municipality",
+        "PUT /employee/employment/{id}"
+      ],
+      "fremgangsmate": "GET /division?query=&fields=id,name,organizationNumber,startDate,endDate,municipality(name). Opprette: POST /division med name, organizationNumber (underenhetens 9-sifrede nr.), startDate, municipality{id} og municipalityDate (kommune fra GET /municipality, avgjør AGA-sone). Endre: PUT /division/{id} eller PUT /division/list. Koble ansattes arbeidsforhold: PUT /employee/employment/{id} med division{id}. Det finnes ingen DELETE – avslutt med endDate. GET /company/divisions er utgått (deprecated). Skrivende – bekreft.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente kontaktpersoner hos en kunde",
+      "nokkelord": [
+        "kontaktperson",
+        "kontaktpersoner",
+        "kundekontakt",
+        "hvem er kontakt",
+        "fakturakontakt",
+        "deres referanse",
+        "contact",
+        "kontakter kunde",
+        "e-post kunde"
+      ],
+      "kall": [
+        "GET /customer",
+        "GET /contact",
+        "GET /contact/{id}"
+      ],
+      "fremgangsmate": "Finn kunde-id: GET /customer?customerName=<navn> (eller organizationNumber=<orgnr>)&fields=id,name,organizationNumber. GET /contact?customerId=<id>&fields=id,firstName,lastName,isInactive (legg til email/phone bare hvis oppgaven krever det). Kan også filtreres på firstName/lastName/email/departmentId. GDPR: kontaktpersoner er personer – vis initialer eller rolle i svar, ikke full e-post/telefon.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette, endre eller slette kontaktpersoner",
+      "nokkelord": [
+        "ny kontaktperson",
+        "opprette kontakt",
+        "legge til kontakt",
+        "endre kontakt",
+        "slette kontakt",
+        "deaktivere kontakt",
+        "oppdatere e-post kontakt",
+        "contact create",
+        "importere kontakter"
+      ],
+      "kall": [
+        "POST /contact",
+        "POST /contact/list",
+        "PUT /contact/{id}",
+        "DELETE /contact/list"
+      ],
+      "fremgangsmate": "POST /contact med firstName, lastName, email, phoneNumberMobile, customer{id} (og evt. department{id}). Flere: POST /contact/list. Endre: PUT /contact/{id} (partial), sett isInactive=true for å deaktivere i stedet for å slette. Slette: DELETE /contact/list?ids=1,2 [BETA]. Skrivende – bekreft, og sletting er irreversibel. GDPR: ikke logg kontaktdata.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se ansattreskontro og åpne poster på en ansatt (utlegg, forskudd, lån)",
+      "nokkelord": [
+        "ansattreskontro",
+        "reskontro ansatt",
+        "åpne poster ansatt",
+        "apne poster",
+        "utlegg",
+        "skyldig ansatt",
+        "forskudd",
+        "lån til ansatt",
+        "lan til ansatt",
+        "mellomværende ansatt",
+        "2910",
+        "1570",
+        "tilgode ansatt",
+        "employee ledger"
+      ],
+      "kall": [
+        "GET /employee",
+        "GET /ledger/posting/openPost",
+        "GET /ledger/posting",
+        "GET /balanceSheet"
+      ],
+      "fremgangsmate": "Finn employee id (GET /employee?fields=id,employeeNumber). Åpne poster per dato: GET /ledger/posting/openPost?date=yyyy-MM-dd (til og ekskl.)&employeeId=&fields=date,account(number),amount,description,voucher(number) (evt. accountNumberFrom/To). Bevegelser: GET /ledger/posting?dateFrom=&dateTo=&employeeId=. Saldo: GET /balanceSheet?dateFrom=&dateTo=&employeeId=. Kun lesing. GDPR: i rapport, bruk ansattnummer/«ansatt 1», ikke navn.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Registrere opptjente feriepenger fra tidligere system ved oppstart",
+      "nokkelord": [
+        "opptjente feriepenger",
+        "feriepenger",
+        "feriepengegrunnlag",
+        "overføre feriepenger",
+        "systembytte",
+        "konvertering lønn",
+        "ekstra ferieuke",
+        "holiday allowance",
+        "feriepenger i fjor",
+        "inngående feriepenger"
+      ],
+      "kall": [
+        "GET /employee/{id}",
+        "PUT /employee/{id}"
+      ],
+      "fremgangsmate": "Les nåværende: GET /employee/{id}?fields=id,version,holidayAllowanceEarned(*). Oppdater med PUT /employee/{id} og holidayAllowanceEarned{year (opptjeningsår), amount (opptjente feriepenger), basis (grunnlag), amountExtraHolidayWeek (5. ferieuke/60+)}. Kan også sendes ved POST /employee eller /ledger/voucher/historical/employee ved import. Feriepengesatser settes i lønnsinnstillinger (lønn-gruppen). Skrivende – bekreft. GDPR: beløp per ansatt vises ikke navngitt.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Laste opp eller hente dokumenter i ansattarkivet (arbeidskontrakt, attester)",
+      "nokkelord": [
+        "ansattarkiv",
+        "personalmappe",
+        "arbeidskontrakt",
+        "ansettelseskontrakt",
+        "last opp kontrakt",
+        "dokument ansatt",
+        "attest",
+        "document archive",
+        "vedlegg ansatt"
+      ],
+      "kall": [
+        "GET /documentArchive/employee/{id}",
+        "POST /documentArchive/employee/{id}"
+      ],
+      "fremgangsmate": "Hent liste: GET /documentArchive/employee/{employeeId}?periodDateFrom=&periodDateTo=&fields=id,fileName,archiveDate [BETA]. Last opp: POST /documentArchive/employee/{employeeId} som multipart/form-data med feltet file [BETA]. Skrivende ved opplasting – bekreft. GDPR: dokumentene er personopplysninger; ikke les innhold eller lagre filer lokalt uten behov.",
+      "skrivende": true
+    }
+  ],
+  "fallgruver": [
+    "GDPR: alle /employee*- og /contact-endepunkter er merket PERSONDATA. Bruk alltid minimale fields= (f.eks. id,employeeNumber,displayName), aldri fields=* på ansatte. Aldri vis fødsels-/D-nummer, kontonummer, adresse, telefon, e-post, lønn per person, permisjon/fravær eller pårørende i svar – bruk aggregater, initialer eller «ansatt 1». CLI-et maskerer via src/privacy.js; bruk redact() i egne skript.",
+    "POST /employee krever normalt department{id}; historisk import uten avdeling må gå via POST /ledger/voucher/historical/employee [BETA]. userType STANDARD/EXTENDED krever e-post som brukeren må bekrefte; bruk NO_ACCESS for ansatte uten innlogging.",
+    "Arbeidsforhold (employment) og detaljer (employment/details) er to nivåer: startDate/endDate/sluttårsak/virksomhet ligger på employment, mens stillingsprosent, lønn, yrkeskode og arbeidstidsordning ligger på datostyrte details. Lønnsendring = ny details-rad med ny date, ikke overskriving (bevarer historikk for a-meldingen).",
+    "taxDeductionCode styres av isMainEmployer (true → loennFraHovedarbeidsgiver, false → loennFraBiarbeidsgiver). Verdien EMPTY kan ikke settes. isRemoveAccessAtEmploymentEnded ligger egentlig på Employee og påvirker alle arbeidsforholdene.",
+    "Arbeidsforhold uten division (virksomhet/underenhet) eller uten yrkeskode gir avvik i a-meldingen. Divisions har verken GET /{id} eller DELETE – søk med GET /division?query= og avslutt med endDate. GET /company/divisions er deprecated.",
+    "Kodeverk-endepunktene (employmentType, remunerationType, workingHoursScheme, leaveOfAbsenceType) returnerer id/code/nameNO, men request-body bruker enum-strenger (f.eks. ORDINARY, PERMANENT, MONTHLY_WAGE, NOT_SHIFT, FURLOUGH). GET .../maritimeEmploymentType krever type=SHIP_REGISTER|SHIP_TYPE|TRADE_AREA. Skiftordning krever shiftDurationHours.",
+    "GET /employee/employment/leaveOfAbsence har date som standard i dag – uten date ser du bare permisjoner som er aktive i dag. percentage/minPercentage/maxPercentage må være 0-100.",
+    "isInactive har ulik betydning: på GET /employee matcher den kun flagget, mens på /employee/searchForEmployeesAndContacts kombineres den med ansettelsesperioden. searchForEmployeesAndContacts tar med eksterne kontakter som standard (includeContacts=true).",
+    "Action-endepunkter med kolon (PUT /employee/entitlement/:grantEntitlementsByTemplate, :grantClientEntitlementsByTemplate, PUT /employee/preferences/:changeLanguage) tar query-parametere og ingen body. Entitlement-malene er [BETA], og brukeren får bare rettigheter som userType tillater (STANDARD gir begrenset). :changeLanguage gjelder kun innlogget bruker (token-eier).",
+    "Stier med '>' (GET /employee/preferences/>loggedInEmployeePreferences, GET /company/>withLoginAccess) må siteres i shell, ellers tolkes '>' som omdirigering og det lages en fil.",
+    "PUT /{id} tar et partial object; PUT /list (department, division, employee/category, employee/preferences) krever id og version på hvert objekt. POST skal ikke ha id/version. Ved 409/versjonskonflikt: hent version på nytt.",
+    "DELETE /department/{id} feiler for avdelinger i bruk – sett isInactive=true i stedet. DELETE /contact/list er [BETA]; foretrekk isInactive=true på kontakten. Sletting er irreversibel og krever alltid bekreftelse.",
+    "Timekost/timesats (hourlyCostAndRate) og normaltid (standardTime) er datostyrte – registrer ny rad med date/fromDate ved endring. Ansattens standardTime overstyrer firmaets /salary/settings/standardTime.",
+    "403 betyr normalt at token-brukeren mangler rettighet (f.eks. personal-/lønnstilgang eller klienttilgang) eller at modulen (avdeling, lønn, prosjekt) ikke er aktiv – ikke at data mangler. Klienttilgang-endepunktene må kjøres fra byråkontoen med customerId = klientens id.",
+    "Flere GET-endepunkter har employeeId som standard lik token-eieren (hourlyCostAndRate, standardTime, standardTime/byDate, nextOfKin, entitlement, entitlement/client). Glemmer du employeeId får du stille og rolig token-brukerens egne data – send alltid employeeId eksplisitt.",
+    "Det finnes ingen DELETE for employee, employment, employment/details, leaveOfAbsence, hourlyCostAndRate, standardTime, nextOfKin eller division. Feil rettes med PUT (id+version), og arbeidsforhold/virksomheter avsluttes med endDate. Employee har heller ikke noe skrivbart isInactive-felt.",
+    "count er 1000 som standard på listeendepunktene; bruk from/count for paginering og sjekk fullResultSize i svaret.",
+    "Enum-verdien NOT_CHOSEN (employmentType, employmentForm, remunerationType, workingHoursScheme) finnes i API-et, men gir avvik i a-meldingen – sett alltid reelle verdier.",
+    "Enkelte områder forutsetter at modul er aktivert i selskapet (f.eks. moduledepartment/moduleDepartmentAccounting for avdeling, moduleEmployeeCategory for ansattkategori, moduleDivisions for virksomheter, moduleHourCost for timekost). Valideringsfeil/403 kan skyldes manglende modul.",
+    "Alle skrivende kall (opprette/endre ansatt, arbeidsforhold, permisjon, tilganger, avdeling, kontakt) krever eksplisitt bekreftelse fra brukeren og at klienten er navngitt."
+  ]
+}

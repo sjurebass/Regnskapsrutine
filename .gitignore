@@ -1,39 +1,33 @@
-# Kundedata skal ikke i repoet. Derfor er ALT utelatt som standard, og bare
-# verktøyfilene sluppet inn eksplisitt. Da havner en ny kundemappe utenfor
-# automatisk – ingen risiko for at den blir med fordi noen glemte å oppdatere
-# denne filen.
+# Repoet inneholder verktøy, skills og indekser – aldri regnskap eller kundedata.
+# Kundedokumenter hører hjemme i Tally og Tripletex, og arbeidsfiler i Claudes scratch-mappe.
 
-/*
-
-!/.gitignore
-!/.env.example
-!/README.md
-!/SETUP.md
-!/RUTINE-FORSLAG.md
-!/MASKINPORTEN.md
-!/pyproject.toml
-!/kjor.cmd
-!/klienter.eksempel.json
-
-!/maanedskontroll.py
-!/selvtest.py
-!/sjekk-tilgang.py
-!/hent-klienter.py
-!/lag-klientfiler.py
-!/synk-kunderegister.py
-
-!/tools/
-!/mal/
-!/.claude/
-
-# Aldri, uansett hvor de måtte ligge
+# Hemmeligheter
 .env
-__pycache__/
-*.pyc
+.env.*
+
+# Leveranser og uttrekk (lages i scratch, aldri her)
+*.xlsx
+*.xls
+*.pdf
+*.zip
+*.csv
+*.xml
+!.claude/skills/**/assets/**
+
+# Python / uv
 .venv/
 uv.lock
-*.new
-klienter.json
+__pycache__/
+*.pyc
 
-# Personlige Claude-innstillinger (tillatelser) skal ikke i repoet
-/.claude/settings.local.json
+# Node
+node_modules/
+
+# Personlige Claude-innstillinger (tillatelser)
+.claude/settings.local.json
+
+# Diverse
+*.new
+*.bak
+.DS_Store
+Thumbs.db

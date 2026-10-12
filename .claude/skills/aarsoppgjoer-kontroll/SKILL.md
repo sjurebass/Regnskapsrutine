@@ -1,17 +1,6 @@
 ---
-name: aarsoppgjoer-kontroll
-description: >
-  Samlet kvalitetssikring av årsoppgjør for norske AS – kjører årsregnskapskontroll OG
-  skattemeldingskontroll parallelt. Bruk dette skillen når brukeren laster opp én eller
-  flere av disse filene: (1) PDF-årsregnskap (for notatkontroll, matematikk, notehenvisninger,
-  brreg-rollesjekk), (2) XML-skattemelding fra Altinn/regnskapssystem (innsendt 2024),
-  (3) XLSX fra Maestro, Skatteetaten eller kontoplan (utkast 2025 / IB-kilde).
-  Trigger på "sjekk årsregnskapet", "kontroller årsoppgjøret", "kvalitetssikre regnskap",
-  "sjekk skattemeldingen", "IB-kontroll", "betalbar skatt", "noter", "notekobling",
-  "sammenlign skattemelding", "utkast 2025", "innsendt 2024", "kontoplan", eller ved
-  opplasting av PDF-årsregnskap og/eller XML+XLSX-skattemeldingsfiler.
-  Produserer én eller to PDF-rapporter med Silfer-branding (årsregnskapsrapport og/eller
-  skattemeldingsrapport). Kun for norske AS (22 % skattesats).
+name: "aarsoppgjoer-kontroll"
+description: "Kvalitetssikring av årsoppgjør for norske AS: årsregnskapskontroll (noter, notehenvisninger, matematikk, Brreg-rollesjekk) og skattemeldingskontroll (IB/UB, midlertidige forskjeller, egenkapital, fremført underskudd, permanente forskjeller, skatteberegning) parallelt, med krysskontroll og Silfer-PDF. Bruk ved «sjekk årsregnskapet», «kontroller årsoppgjøret», «kvalitetssikre regnskap», «sjekk skattemeldingen», «IB-kontroll», «betalbar skatt», «notekobling», eller opplasting av PDF-årsregnskap, XML-skattemelding eller XLSX fra Maestro, Skatteetaten eller kontoplan. Bare AS (22 %)."
 ---
 
 # Årsoppgjør-kontroll – samlet kvalitetssikring (v3)
@@ -304,7 +293,7 @@ For "nokkel"-feltet, hent fra regnskapet (null hvis ikke funnet):
 
 ## Del I – Steg 3: Samle funn og generer årsregnskapsrapport
 
-Kombiner til `/tmp/rapport_aarsregnskap.json`:
+Kombiner til `<scratch>/rapport_aarsregnskap.json`:
 
 ```json
 {
@@ -335,16 +324,9 @@ Kombiner til `/tmp/rapport_aarsregnskap.json`:
 Generer PDF (SKILL_BASE_DIR = mappen der dette SKILL.md-filen ligger):
 
 ```bash
-pip install reportlab --break-system-packages -q
-
-SESSION=$(ls /sessions/ | head -1)
-mkdir -p /sessions/$SESSION/fonts/poppins
-cp <SKILL_BASE_DIR>/fonts/poppins/*.ttf /sessions/$SESSION/fonts/poppins/
-cp <SKILL_BASE_DIR>/silfer_logo.png /sessions/$SESSION/silfer_logo.png
-
-python <SKILL_BASE_DIR>/scripts/generer_rapport_aarsregnskap.py \
-    /sessions/$SESSION/mnt/outputs/Gjennomgang_[Selskap]_[aar].pdf \
-    /tmp/rapport_aarsregnskap.json
+uv run --with reportlab python <SKILL_BASE_DIR>/scripts/generer_rapport_aarsregnskap.py \
+    <scratch>/Gjennomgang_[Selskap]_[aar].pdf \
+    <scratch>/rapport_aarsregnskap.json
 ```
 
 ---
@@ -354,7 +336,7 @@ python <SKILL_BASE_DIR>/scripts/generer_rapport_aarsregnskap.py \
 ## Del II – Steg 1: Parse XML (Python, ~1 sek)
 
 ```bash
-python <SKILL_BASE_DIR>/scripts/parse_xml.py "<sti/til/2024_skattemelding.xml>" > /tmp/xml_data.json
+uv run --with openpyxl python <SKILL_BASE_DIR>/scripts/parse_xml.py "<sti/til/2024_skattemelding.xml>" > <scratch>/xml_data.json
 ```
 
 Scriptet håndterer automatisk:
@@ -362,7 +344,7 @@ Scriptet håndterer automatisk:
 - **Direkte format** (separate Skattemelding.xml + Naeringsspesifikasjon.xml fra ZIP):
 
 ```bash
-python <SKILL_BASE_DIR>/scripts/parse_xml.py "<Skattemelding.xml>" --naering "<Naeringsspesifikasjon.xml>" > /tmp/xml_data.json
+uv run --with openpyxl python <SKILL_BASE_DIR>/scripts/parse_xml.py "<Skattemelding.xml>" --naering "<Naeringsspesifikasjon.xml>" > <scratch>/xml_data.json
 ```
 
 ## Del II – Steg 2A: Parse Maestro XLSX (kun Maestro-format)
@@ -370,7 +352,7 @@ python <SKILL_BASE_DIR>/scripts/parse_xml.py "<Skattemelding.xml>" --naering "<N
 Gjenkjenn: arket inneholder kolonnene `Tema, ID, Gruppe, Beskrivelse, I år, I fjor`.
 
 ```bash
-python <SKILL_BASE_DIR>/scripts/parse_maestro_xlsx.py "<sti/til/maestro_2025.xlsx>" > /tmp/pdf_data.json
+uv run --with openpyxl python <SKILL_BASE_DIR>/scripts/parse_maestro_xlsx.py "<sti/til/maestro_2025.xlsx>" > <scratch>/pdf_data.json
 ```
 
 «I fjor»-kolonnen = UB 2024 = IB 2025.
@@ -380,7 +362,7 @@ python <SKILL_BASE_DIR>/scripts/parse_maestro_xlsx.py "<sti/til/maestro_2025.xls
 Gjenkjenn: tre arknavn «Oppsummering», «Skattemelding», «Næringsspesifikasjon».
 
 ```bash
-python <SKILL_BASE_DIR>/scripts/parse_skatteetaten_xlsx.py "<sti/til/skattemelding_2025.xlsx>" > /tmp/pdf_data.json
+uv run --with openpyxl python <SKILL_BASE_DIR>/scripts/parse_skatteetaten_xlsx.py "<sti/til/skattemelding_2025.xlsx>" > <scratch>/pdf_data.json
 ```
 
 Returnerer midlertidige forskjeller IB per 3-sifret typekode (101, 140, 141 osv.) fra
@@ -429,7 +411,7 @@ Returner KUN gyldig JSON:
 ## Del II – Steg 2D: Kontoplansjekk (kjøres alltid når HAR_KONTOPLAN = True)
 
 ```bash
-python <SKILL_BASE_DIR>/scripts/parse_kontoplan.py "<sti/til/kontoplan.xlsx>" > /tmp/kontoplan_data.json
+uv run --with openpyxl python <SKILL_BASE_DIR>/scripts/parse_kontoplan.py "<sti/til/kontoplan.xlsx>" > <scratch>/kontoplan_data.json
 ```
 
 Kontoplanparser kjører to kvalitetskontroller og returnerer IB 2025 per MidForsRef-typekode:
@@ -447,7 +429,7 @@ skattemeldingen. Sjekker at summen er reflektert.
 
 ```python
 import json
-kp = json.loads(open('/tmp/kontoplan_data.json').read())
+kp = json.loads(open('<scratch>/kontoplan_data.json').read())
 qc = kp.get('quality_checks', {})
 
 utsatt = qc.get('utsatt_skatt_konflikt', {})
@@ -466,7 +448,7 @@ Når IB-kilde er Skatteetaten XLSX (midl. forskjeller som 3-sifret typekode), br
 `ib_2025_midl` fra kontoplan som sikrere IB-kilde og sammenlign:
 
 ```python
-xml_data = json.loads(open('/tmp/xml_data.json').read())
+xml_data = json.loads(open('<scratch>/xml_data.json').read())
 kp_midl = kp.get('ib_2025_midl', {})
 
 print("\n── IB-kontroll midlertidige forskjeller (kontoplan vs. XML UB) ──")
@@ -489,13 +471,13 @@ import json, datetime, sys
 sys.path.insert(0, '<SKILL_BASE_DIR>/scripts')
 from parse_xml import beregn_skatt, KONTO_NAVN
 
-xml_data = json.loads(open('/tmp/xml_data.json').read())
-pdf_data = json.loads(open('/tmp/pdf_data.json').read())
+xml_data = json.loads(open('<scratch>/xml_data.json').read())
+pdf_data = json.loads(open('<scratch>/pdf_data.json').read())
 
 # Hvis kontoplan er tilgjengelig og pdf_data mangler ib_2025 (Skatteetaten XLSX format),
 # bruk kontoplan-IB for midlertidige forskjeller
 try:
-    kp_data  = json.loads(open('/tmp/kontoplan_data.json').read())
+    kp_data  = json.loads(open('<scratch>/kontoplan_data.json').read())
     kp_midl  = kp_data.get('ib_2025_midl', {})
 except FileNotFoundError:
     kp_midl = {}
@@ -562,7 +544,7 @@ und_diff, und_ok = diff_ok(und_ub, und_ib if und_ib is not None else 0)
 # Hvis kontoplan er tilgjengelig: sjekk at ikke-fradragsberettigede summer finnes i XML
 kontoplan_perm_avvik = []
 try:
-    kp_data = json.loads(open('/tmp/kontoplan_data.json').read())
+    kp_data = json.loads(open('<scratch>/kontoplan_data.json').read())
     iff = kp_data.get('quality_checks', {}).get('ikke_fradragsberettiget', {})
     if not iff.get('ok') and iff.get('total', 0) > 1.0:
         xml_perm_total = sum(
@@ -634,7 +616,7 @@ rapport = {
     }
 }
 
-with open('/tmp/rapport_skattemelding.json', 'w') as f:
+with open('<scratch>/rapport_skattemelding.json', 'w') as f:
     json.dump(rapport, f, ensure_ascii=False, indent=2)
 print("Skattemeldingsdata klar")
 ```
@@ -642,30 +624,23 @@ print("Skattemeldingsdata klar")
 ## Del II – Steg 4: Generer skattemeldingsrapport (PDF)
 
 ```bash
-pip install reportlab --break-system-packages -q
-
-SESSION=$(ls /sessions/ | head -1)
-mkdir -p /sessions/$SESSION/fonts/poppins
-cp <SKILL_BASE_DIR>/fonts/poppins/*.ttf /sessions/$SESSION/fonts/poppins/
-cp <SKILL_BASE_DIR>/silfer_logo.png /sessions/$SESSION/silfer_logo.png
-
-python <SKILL_BASE_DIR>/scripts/generer_rapport_skattemelding.py \
-    /tmp/rapport_skattemelding.json \
-    /sessions/$SESSION/mnt/outputs/Skattemeldingskontroll_[Selskap]_2025.pdf
+uv run --with reportlab python <SKILL_BASE_DIR>/scripts/generer_rapport_skattemelding.py \
+    <scratch>/rapport_skattemelding.json \
+    <scratch>/Skattemeldingskontroll_[Selskap]_2025.pdf
 ```
 
 ---
 
 # Del III – Krysskontroll (kun Scenario C: begge dokumenter)
 
-Når både `/tmp/rapport_aarsregnskap.json` og `/tmp/rapport_skattemelding.json` foreligger,
+Når både `<scratch>/rapport_aarsregnskap.json` og `<scratch>/rapport_skattemelding.json` foreligger,
 kjør denne Python-blokken for å kryssjekke nøkkeltall mellom de to dokumentene:
 
 ```python
 import json
 
-ar  = json.loads(open('/tmp/rapport_aarsregnskap.json').read())
-skm = json.loads(open('/tmp/rapport_skattemelding.json').read())
+ar  = json.loads(open('<scratch>/rapport_aarsregnskap.json').read())
+skm = json.loads(open('<scratch>/rapport_skattemelding.json').read())
 
 TOLER = 1.0
 kryss = []
@@ -701,7 +676,7 @@ if av_ar is not None or av_skm is not None:
     diff_ok(av_ar, av_skm, "Avskrivninger (årsregnskap vs. skattemelding)")
 
 # Lagre krysskontrollresultat
-with open('/tmp/krysskontroll.json', 'w') as f:
+with open('<scratch>/krysskontroll.json', 'w') as f:
     json.dump(kryss, f, ensure_ascii=False, indent=2)
 
 # Vis resultater i chat
@@ -771,20 +746,20 @@ from pypdf import PdfWriter, PdfReader
 
 writer = PdfWriter()
 for pdf_path in [
-    "/sessions/$SESSION/mnt/outputs/Gjennomgang_[Selskap]_[aar].pdf",
-    "/sessions/$SESSION/mnt/outputs/Skattemeldingskontroll_[Selskap]_2025.pdf"
+    "<scratch>/Gjennomgang_[Selskap]_[aar].pdf",
+    "<scratch>/Skattemeldingskontroll_[Selskap]_2025.pdf"
 ]:
     reader = PdfReader(pdf_path)
     for page in reader.pages:
         writer.add_page(page)
 
-samlet_path = "/sessions/$SESSION/mnt/outputs/Årsoppgjørskontroll_[Selskap]_2025.pdf"
+samlet_path = "<scratch>/Årsoppgjørskontroll_[Selskap]_2025.pdf"
 with open(samlet_path, "wb") as f:
     writer.write(f)
 print(f"Samlet rapport: {samlet_path}")
 ```
 
-Del **kun** den sammenslåtte PDF-en med `present_files` (ikke de to enkeltrapportene).
+Del **kun** den sammenslåtte PDF-en med SendUserFile (ikke de to enkeltrapportene). Sammenslåingen kjøres med `uv run --with pypdf python`.
 Brukeren skal ha én fil å forholde seg til.
 
 Hvis **kun ett** dokument er kjørt (Scenario A eller B), del den ene rapporten direkte.
@@ -848,3 +823,17 @@ aktivering som er sjelden for typiske SMBer).
 - Disponeringer i RR (overføringer, utbytte): skal ha notehenvisning til EK-noten
 - EK-linjer i balansen (overkursfond, annen innskutt EK, udekket tap): skal ha notekobling
 - Notehenvisning fra driftsresultat til virksomhetens art: korrekt praksis, ikke flagg
+
+---
+
+## Arbeidsmappe, levering og Tally
+
+- `<scratch>` er Claudes scratch-mappe for økten. Alle mellomfiler (JSON) og rapportene lages der, aldri i kundemapper på disk.
+- `<SKILL_BASE_DIR>` er mappen denne filen ligger i. Skriptene finner fonter og logo selv.
+- Lever den samlede PDF-en med SendUserFile. Last den opp i Tally på årsoppgjørsoppgaven (`upload_document`, kategori ARSOPPGJOR,
+  periode «<år>») etter ja; er den over 3 MB, bruk `start_opplasting`.
+- Ting som bevisst venter til årsoppgjøret står i kundeinstruksens seksjon «Årsoppgjør» (skillen `kundeinstruks`). Les den før kontrollen,
+  og ikke flagg det som allerede er avklart der.
+- Fullfør i Tally: foreslå tidsbruk og spør «Skal jeg fullføre <oppgave> for <klient> og føre <X> minutter?». Ved ja: `add_task_comment`
+  (hva som er kontrollert, antall «må rettes»), `log_time`, `complete_task`.
+- Slett mellomfilene i scratch når rapporten er levert.

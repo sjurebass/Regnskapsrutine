@@ -1,0 +1,1082 @@
+{
+  "group": "innkjop",
+  "tags": [
+    {
+      "tag": "supplier",
+      "beskrivelse": "Leverandørregisteret: søke opp, opprette, endre, deaktivere og slette leverandører (grunnlaget for leverandørreskontroen).",
+      "nokkelord": [
+        "leverandør",
+        "leverandor",
+        "leverandører",
+        "leverandorer",
+        "leverandørregister",
+        "leverandørliste",
+        "leverandørnummer",
+        "leverandørkort",
+        "kreditor",
+        "kreditorer",
+        "vendor",
+        "supplier",
+        "org.nr",
+        "organisasjonsnummer",
+        "orgnr",
+        "bankkonto leverandør",
+        "kontonummer leverandør",
+        "iban",
+        "bic",
+        "opprette leverandør",
+        "ny leverandør",
+        "deaktivere leverandør",
+        "grossist",
+        "leverandørkategori",
+        "faktura-epost"
+      ]
+    },
+    {
+      "tag": "supplierInvoice",
+      "beskrivelse": "Inngående fakturaer (leverandørfaktura/EHF): søke, hente PDF, attestere/godkjenne, avvise, sende til attestant, endre kontering/dimensjon og registrere betaling.",
+      "nokkelord": [
+        "leverandørfaktura",
+        "leverandorfaktura",
+        "inngående faktura",
+        "inngaende faktura",
+        "innkjøpsfaktura",
+        "regning",
+        "supplier invoice",
+        "incoming invoice",
+        "accounts payable",
+        "ehf",
+        "attestering",
+        "attestere",
+        "attestant",
+        "godkjenne faktura",
+        "avvise faktura",
+        "kontering",
+        "kid",
+        "fakturanummer",
+        "forfall",
+        "forfallsliste",
+        "betale leverandør",
+        "remittering",
+        "kreditnota leverandør",
+        "leverandørgjeld",
+        "utestående leverandør"
+      ]
+    },
+    {
+      "tag": "document",
+      "beskrivelse": "Lese metadata og laste ned innholdet (fil) for dokumenter i Tripletex, f.eks. originalfakturaen bak en leverandørfaktura eller et arkivdokument (BETA).",
+      "nokkelord": [
+        "dokument",
+        "document",
+        "fil",
+        "vedlegg",
+        "last ned",
+        "laste ned",
+        "download",
+        "original faktura",
+        "originalfaktura",
+        "pdf",
+        "innhold",
+        "content",
+        "bilagsdokument",
+        "originalbilag",
+        "ehf xml"
+      ]
+    },
+    {
+      "tag": "documentArchive",
+      "beskrivelse": "Dokumentarkivet: laste opp, liste, endre og slette arkiverte filer knyttet til leverandør, kunde, prosjekt, produkt, konto, anleggsmiddel, ansatt eller kontrollskjema, samt opplasting til arkivmottak (BETA).",
+      "nokkelord": [
+        "dokumentarkiv",
+        "arkiv",
+        "arkivere",
+        "document archive",
+        "dokumentasjon",
+        "avtale",
+        "kontrakt",
+        "last opp",
+        "laste opp",
+        "upload",
+        "arkivmottak",
+        "reception",
+        "kontrollskjema",
+        "årsoppgjør dokumentasjon",
+        "arsoppgjor",
+        "anleggsmiddel",
+        "kontodokumentasjon",
+        "avstemmingsdokumentasjon",
+        "vedlegg"
+      ]
+    },
+    {
+      "tag": "purchaseOrder",
+      "beskrivelse": "Innkjøpsordrer (krever Logistikk Basic): opprette, finne, endre, sende til leverandør på e-post/FTP, vedlegg og slette.",
+      "nokkelord": [
+        "innkjøpsordre",
+        "innkjopsordre",
+        "innkjøp",
+        "innkjop",
+        "bestilling",
+        "bestille varer",
+        "purchase order",
+        "po",
+        "ordre til leverandør",
+        "sende innkjøpsordre",
+        "logistikk",
+        "logistics basic",
+        "restordre",
+        "leveringsdato",
+        "varekjøp",
+        "varekjop",
+        "innkjøpsordrer",
+        "rekvisisjon",
+        "innkjøp prosjekt"
+      ]
+    },
+    {
+      "tag": "purchaseOrder/orderline",
+      "beskrivelse": "Linjer på en innkjøpsordre: produkt, antall, innkjøpspris og rabatt – opprette, endre og slette enkeltvis eller i liste.",
+      "nokkelord": [
+        "innkjøpsordrelinje",
+        "ordrelinje",
+        "orderline",
+        "linje",
+        "vare",
+        "produkt",
+        "antall",
+        "innkjøpspris",
+        "innkjopspris",
+        "rabatt",
+        "enhetspris",
+        "purchase order line"
+      ]
+    },
+    {
+      "tag": "purchaseOrder/goodsReceipt",
+      "beskrivelse": "Varemottak: registrere mottatte varer på en innkjøpsordre (eller uten ordre), bekrefte mottaket (som fører varene inn på lager) og korrigere/slette mottak.",
+      "nokkelord": [
+        "varemottak",
+        "varemottakelse",
+        "mottak",
+        "mottatt",
+        "goods receipt",
+        "motta varer",
+        "bekrefte varemottak",
+        "mottakskontroll",
+        "lagerinngang",
+        "inn på lager",
+        "restordre",
+        "delleveranse",
+        "levert",
+        "varemottak uten ordre"
+      ]
+    },
+    {
+      "tag": "purchaseOrder/goodsReceiptLine",
+      "beskrivelse": "Linjer på et varemottak: mottatt antall per produkt, lager og lagerplass – registrere, justere og slette.",
+      "nokkelord": [
+        "varemottakslinje",
+        "mottakslinje",
+        "goods receipt line",
+        "mottatt antall",
+        "antall mottatt",
+        "lagerplass",
+        "lokasjon",
+        "quantity received",
+        "rest",
+        "delmottak"
+      ]
+    },
+    {
+      "tag": "purchaseOrder/deviation",
+      "beskrivelse": "Avvik ved varemottak (for få, for mange, skadet, erstatning) med tiltak som restordre eller retur, og godkjenningsflyt for avvikene.",
+      "nokkelord": [
+        "avvik",
+        "deviation",
+        "avviksbehandling",
+        "for få",
+        "for mange",
+        "skadet vare",
+        "defekt",
+        "retur",
+        "returnere",
+        "restordre",
+        "erstatningsvare",
+        "reklamasjon",
+        "godkjenne avvik"
+      ]
+    },
+    {
+      "tag": "purchaseOrder/purchaseOrderIncomingInvoiceRelation",
+      "beskrivelse": "Kobling mellom innkjøpsordre og inngående faktura (bilag), brukt til å matche ordre, varemottak og leverandørfaktura.",
+      "nokkelord": [
+        "koble faktura",
+        "kobling",
+        "relasjon",
+        "matching",
+        "3-veis match",
+        "treveis matching",
+        "innkjøpsordre faktura",
+        "leverandørfaktura ordre",
+        "bilag",
+        "voucher",
+        "purchase order invoice",
+        "fakturakontroll"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Finne en leverandør (på navn, org.nr. eller leverandørnummer)",
+      "nokkelord": [
+        "finn leverandør",
+        "søk leverandør",
+        "sok leverandor",
+        "leverandørliste",
+        "leverandørnummer",
+        "org.nr",
+        "organisasjonsnummer",
+        "supplier search",
+        "hvem er leverandøren",
+        "leverandørkategori"
+      ],
+      "kall": [
+        "GET /supplier",
+        "GET /supplierCustomer/search",
+        "GET /supplier/{id}",
+        "GET /customer/category"
+      ],
+      "fremgangsmate": "GET /supplier har INGEN navnefilter: bruk GET /supplierCustomer/search?query=<navn>&fields=id,name (søker bare AKTIVE kunder og leverandører samlet) eller GET /supplier?organizationNumber=<9 siffer> / supplierNumber=<nr> (eksakt treff). Alternativt hent alle med GET /supplier?fields=id,name,supplierNumber,organizationNumber,isInactive (count er 1000 som standard – paginér med from) og filtrer lokalt; isInactive=true for inaktive. changedSince=<tidspunkt> gir bare endrede (synk). Filtrer på kategori med category1Id/category2Id/category3Id (id fra GET /customer/category). Detaljer: GET /supplier/{id}?fields=... med minimale felter. isCustomer=true betyr at leverandøren også er kunde. Er leverandøren en privatperson (isPrivateIndividual) er navn/adresse/konto personopplysninger – vis ikke.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette ny leverandør (én eller mange)",
+      "nokkelord": [
+        "ny leverandør",
+        "opprett leverandør",
+        "registrere leverandør",
+        "legge inn leverandør",
+        "importere leverandører",
+        "create supplier",
+        "leverandørkort"
+      ],
+      "kall": [
+        "GET /supplier",
+        "POST /supplier",
+        "POST /supplier/list",
+        "GET /customer/category",
+        "POST /customer/category",
+        "GET /ledger/account"
+      ],
+      "fremgangsmate": "1) Sjekk duplikat: GET /supplier?organizationNumber=<orgnr>&fields=id,name. 2) POST /supplier med minst name; gjerne organizationNumber, email/invoiceEmail, postalAddress{addressLine1,postalCode,city,country{id}}, bankAccountPresentation[{bban|iban,bic}] (feltet bankAccounts er DEPRECATED), currency{id}, language NO|EN, category1{id}. supplierNumber tildeles automatisk om det utelates. ledgerAccount (reskontrokonto, normalt 2400) kan settes via GET /ledger/account?ledgerType=VENDOR. 3) Mange på én gang: POST /supplier/list med array. Kategorier deles med kunder: GET/POST /customer/category. Krever bekreftelse fra bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre leverandøropplysninger (bankkonto, adresse, e-post, kategori, valuta)",
+      "nokkelord": [
+        "endre leverandør",
+        "oppdatere leverandør",
+        "ny bankkonto leverandør",
+        "kontonummer leverandør",
+        "adresse leverandør",
+        "faktura-epost",
+        "update supplier",
+        "iban",
+        "bic",
+        "swift"
+      ],
+      "kall": [
+        "GET /supplier/{id}",
+        "PUT /supplier/{id}",
+        "PUT /supplier/list"
+      ],
+      "fremgangsmate": "Hent først GET /supplier/{id}?fields=id,version,<feltene som skal endres> for å få version. PUT /supplier/{id} med id, version og kun feltene som endres. Bankkonto settes i bankAccountPresentation (bban for norske, iban+bic for utenlandske). Flere samtidig: PUT /supplier/list. Kontonummer er sensitivt – vis aldri fullt kontonummer i svar (maskér). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Deaktivere eller slette leverandør",
+      "nokkelord": [
+        "slette leverandør",
+        "deaktivere leverandør",
+        "inaktiv leverandør",
+        "arkivere leverandør",
+        "delete supplier",
+        "fjerne leverandør"
+      ],
+      "kall": [
+        "GET /supplier/{id}",
+        "PUT /supplier/{id}",
+        "DELETE /supplier/{id}"
+      ],
+      "fremgangsmate": "DELETE /supplier/{id} virker bare hvis leverandøren ikke har posteringer/bilag; ellers feiler kallet. Da: GET /supplier/{id}?fields=id,version og PUT /supplier/{id} med isInactive=true. Sletting er irreversibel – krever eksplisitt bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente leverandørreskontro, saldo og åpne poster per leverandør",
+      "nokkelord": [
+        "leverandørreskontro",
+        "leverandorreskontro",
+        "reskontro",
+        "åpne poster",
+        "apne poster",
+        "leverandørgjeld",
+        "utestående leverandør",
+        "skyldig",
+        "saldo leverandør",
+        "kontoutskrift leverandør",
+        "aldersfordeling",
+        "forfalt",
+        "open post",
+        "hvor mye har vi kjøpt",
+        "innkjøpsvolum",
+        "2400"
+      ],
+      "kall": [
+        "GET /ledger/posting/openPost",
+        "GET /ledger/openPost",
+        "GET /ledger/posting",
+        "GET /supplier",
+        "GET /ledger/account"
+      ],
+      "fremgangsmate": "Åpne poster per dato: GET /ledger/posting/openPost?date=<dag ETTER skjæringsdato (eksklusiv, påkrevd)>&supplierId=<id> (uten supplierId = alle leverandører; bruk accountNumberFrom=2400&accountNumberTo=2499 for bare leverandørgjeld) og fields=id,date,supplier(id,name),invoiceNumber,termOfPayment,amount,amountCurrency,voucher(number). sorted=false gir raskere svar. Bevegelser/historikk: GET /ledger/posting?dateFrom=&dateTo=(begge påkrevd, dateTo eksklusiv)&supplierId=&fields=date,amount,invoiceNumber,voucher(number). Reskontrokonto: GET /ledger/account?ledgerType=VENDOR. Summer per leverandør lokalt og aldersfordel på termOfPayment (forfall). Leverandørnavn: GET /supplier?id=<liste>&fields=id,name.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Liste leverandørfakturaer for en periode eller en leverandør",
+      "nokkelord": [
+        "leverandørfakturaer",
+        "inngående fakturaer",
+        "liste fakturaer",
+        "fakturaer fra leverandør",
+        "supplier invoices",
+        "periode",
+        "måned",
+        "hente fakturaer",
+        "innkjøpsfakturaer"
+      ],
+      "kall": [
+        "GET /supplierInvoice",
+        "GET /supplier",
+        "GET /ledger/posting",
+        "GET /ledger/voucher/>voucherReception"
+      ],
+      "fremgangsmate": "GET /supplierInvoice krever invoiceDateFrom og invoiceDateTo (To er EKSKLUSIV – bruk dagen etter siste dato). Filtrer med supplierId, invoiceNumber, kid eller voucherId (alle eksakt). Nyttige fields=id,invoiceNumber,invoiceDate,invoiceDueDate,supplier(id,name),amount,amountCurrency,currency(code),outstandingAmount,isCreditNote,voucher(id,number,year). count er 1000 som standard – paginér med from/count. Bilag ført manuelt mot 2400 via /ledger/voucher kan mangle her; kontroller mot GET /ledger/posting?supplierId=&dateFrom=&dateTo= ved avstemming. Fakturaer som fortsatt ligger ubehandlet i bilagsmottaket finnes via GET /ledger/voucher/>voucherReception.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Lage forfallsliste / betalingsforslag over ubetalte leverandørfakturaer",
+      "nokkelord": [
+        "forfallsliste",
+        "betalingsforslag",
+        "ubetalte fakturaer",
+        "ubetalt",
+        "hva skal betales",
+        "forfaller denne uken",
+        "forfalte leverandørfakturaer",
+        "utestående leverandørgjeld",
+        "likviditet",
+        "betalingsliste",
+        "unpaid supplier invoices",
+        "due date"
+      ],
+      "kall": [
+        "GET /supplierInvoice",
+        "GET /ledger/posting/openPost",
+        "GET /supplier"
+      ],
+      "fremgangsmate": "1) GET /supplierInvoice?invoiceDateFrom=<f.eks. 1 år tilbake>&invoiceDateTo=<i morgen>&fields=id,invoiceNumber,invoiceDueDate,supplier(id,name),amountCurrency,currency(code),outstandingAmount,kidOrReceiverReference,isCreditNote og behold rader med outstandingAmount ≠ 0 (outstandingAmount er i fakturavaluta). Sorter på invoiceDueDate og grupper i forfalt / forfaller innen X dager. 2) Kontroll mot hovedbok: GET /ledger/posting/openPost?date=<i morgen>&accountNumberFrom=2400&accountNumberTo=2499&fields=supplier(id,name),invoiceNumber,termOfPayment,amount. Kun lesing – selve betalingen registreres med :addPayment (egen oppgave, krever bekreftelse). Vis ikke kontonumre.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Kontrollere om en leverandørfaktura allerede er registrert (duplikatsjekk på fakturanummer/KID)",
+      "nokkelord": [
+        "dobbelfaktura",
+        "duplikat",
+        "dobbeltregistrert",
+        "allerede bokført",
+        "fakturanummer",
+        "kid",
+        "sjekk faktura",
+        "betalt to ganger",
+        "duplicate invoice"
+      ],
+      "kall": [
+        "GET /supplierInvoice",
+        "GET /ledger/voucher/>externalVoucherNumber",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "GET /supplierInvoice?invoiceNumber=<nr>&supplierId=<id>&invoiceDateFrom=<bredt, f.eks. 2 år tilbake>&invoiceDateTo=<i morgen>&fields=id,invoiceNumber,invoiceDate,amount,voucher(number,year). Alternativt kid=<KID>. For importerte bilag: GET /ledger/voucher/>externalVoucherNumber?externalVoucherNumber=. Sjekk evt. også GET /ledger/posting?supplierId=&dateFrom=&dateTo= og se etter samme beløp/invoiceNumber.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente detaljer for én leverandørfaktura (kontering, betalinger, attesteringsstatus, utestående)",
+      "nokkelord": [
+        "vis leverandørfaktura",
+        "fakturadetaljer",
+        "kontering",
+        "hvem har attestert",
+        "attesteringsstatus",
+        "betalt",
+        "utestående beløp",
+        "restbeløp",
+        "supplier invoice detail"
+      ],
+      "kall": [
+        "GET /supplierInvoice/{id}",
+        "GET /ledger/voucher/{id}",
+        "GET /voucherApprovalListElement/{id}"
+      ],
+      "fremgangsmate": "GET /supplierInvoice/{id}?fields=id,invoiceNumber,invoiceDate,invoiceDueDate,kidOrReceiverReference,amount,amountExcludingVat,currency(code),outstandingAmount,isCreditNote,supplier(id,name),voucher(id,number,year),payments(date,amount),approvalListElements(status,organisationLevel,actionDate),originalInvoiceDocumentId. Konteringslinjer (konto, mva, prosjekt, avdeling): GET /ledger/voucher/{voucher.id}?fields=postings(id,row,account(number,name),vatType(number),amountGross,project(id),department(id)). approvalListElements inneholder ansatte – vis ikke navn, bruk «attestant 1/2». Enkeltsteg i attesteringsflyten: GET /voucherApprovalListElement/{id}?fields=status,organisationLevel,actionDate,comment.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Laste ned PDF / originalfil av en leverandørfaktura",
+      "nokkelord": [
+        "pdf leverandørfaktura",
+        "last ned faktura",
+        "originalfaktura",
+        "fakturabilde",
+        "vedlegg faktura",
+        "ehf pdf",
+        "download invoice",
+        "se faktura"
+      ],
+      "kall": [
+        "GET /supplierInvoice/{invoiceId}/pdf",
+        "GET /supplierInvoice/{id}",
+        "GET /document/{id}",
+        "GET /document/{id}/content",
+        "GET /ledger/voucher/{voucherId}/pdf"
+      ],
+      "fremgangsmate": "Enklest: GET /supplierInvoice/{invoiceId}/pdf (binær PDF – lagre til fil, ikke skriv ut). Originaldokument (f.eks. EHF/XML eller skannet fil): hent originalInvoiceDocumentId fra GET /supplierInvoice/{id}, deretter GET /document/{id} (metadata: fileName, mimeType) og GET /document/{id}/content?download=true (BETA). Hele bilaget som PDF: GET /ledger/voucher/{voucherId}/pdf.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Se leverandørfakturaer som venter på attestering/godkjenning",
+      "nokkelord": [
+        "til attestering",
+        "til godkjenning",
+        "venter på godkjenning",
+        "attesteringskø",
+        "ikke attestert",
+        "for approval",
+        "godkjenningsliste",
+        "mine fakturaer til attestering"
+      ],
+      "kall": [
+        "GET /supplierInvoice/forApproval"
+      ],
+      "fremgangsmate": "GET /supplierInvoice/forApproval?showAll=true&fields=id,invoiceNumber,invoiceDate,invoiceDueDate,supplier(name),amount,currency(code),approvalListElements(status,organisationLevel). Uten showAll vises bare fakturaer der innlogget bruker (API-brukeren) er attestant; employeeId kan settes for en bestemt attestant (bruk kun id). searchText søker i avdeling, prosjekt m.m. Sorter på forfall for å prioritere.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Attestere/godkjenne leverandørfaktura (én eller flere)",
+      "nokkelord": [
+        "attestere",
+        "godkjenne",
+        "godkjenn faktura",
+        "attestering",
+        "approve invoice",
+        "godkjenne leverandørfaktura",
+        "overstyre attestering"
+      ],
+      "kall": [
+        "PUT /supplierInvoice/{invoiceId}/:approve",
+        "PUT /supplierInvoice/:approve",
+        "GET /supplierInvoice/forApproval"
+      ],
+      "fremgangsmate": "Finn id via GET /supplierInvoice/forApproval. Én faktura: PUT /supplierInvoice/{invoiceId}/:approve?comment=<valgfri>. Flere: PUT /supplierInvoice/:approve?invoiceIds=1,2,3. overrideApprovalFlow=true fullfører hele attesteringsflyten uten resterende nivåer og krever rollen firma-attestant. Godkjenning skjer som API-brukeren – krever eksplisitt bekreftelse fra bruker før kall.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Avvise leverandørfaktura",
+      "nokkelord": [
+        "avvise faktura",
+        "avvis",
+        "reject",
+        "underkjenne",
+        "returnere faktura",
+        "feil faktura",
+        "ikke godkjent"
+      ],
+      "kall": [
+        "PUT /supplierInvoice/{invoiceId}/:reject",
+        "PUT /supplierInvoice/:reject"
+      ],
+      "fremgangsmate": "PUT /supplierInvoice/{invoiceId}/:reject?comment=<begrunnelse> – comment er PÅKREVD. Flere: PUT /supplierInvoice/:reject?comment=...&invoiceIds=1,2. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sende leverandørfaktura til attestant (legge til mottaker i godkjenningsflyt)",
+      "nokkelord": [
+        "send til attestant",
+        "videresende faktura",
+        "legg til mottaker",
+        "tildele attestant",
+        "add recipient",
+        "fordele faktura",
+        "sende til godkjenning"
+      ],
+      "kall": [
+        "PUT /supplierInvoice/{invoiceId}/:addRecipient",
+        "PUT /supplierInvoice/:addRecipient",
+        "GET /employee"
+      ],
+      "fremgangsmate": "Finn ansatt-id: GET /employee?fields=id (filtrer f.eks. på e-post/nummer som brukeren oppgir; hent minst mulig – GDPR, vis ikke navn i svar). Deretter PUT /supplierInvoice/{invoiceId}/:addRecipient?employeeId=<id>&comment=<valgfri>, eller for flere fakturaer PUT /supplierInvoice/:addRecipient?employeeId=&invoiceIds=1,2. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre kontering (konto/mva) på leverandørfaktura og bokføre den",
+      "nokkelord": [
+        "endre kontering",
+        "kontere faktura",
+        "feil konto",
+        "endre mva-kode",
+        "konteringslinjer",
+        "bokføre leverandørfaktura",
+        "debetposteringer",
+        "kostnadskonto",
+        "fordele kostnad"
+      ],
+      "kall": [
+        "PUT /supplierInvoice/voucher/{id}/postings",
+        "GET /supplierInvoice/{id}",
+        "GET /ledger/account",
+        "GET /ledger/vatType"
+      ],
+      "fremgangsmate": "BETA. {id} er BILAGS-id (voucher.id), ikke faktura-id – hent den med GET /supplierInvoice/{id}?fields=voucher(id),orderLines. Gyldige kostnadskontoer: GET /ledger/account?isApplicableForSupplierInvoice=true&fields=id,number,name. Inngående mva-koder: GET /ledger/vatType?typeOfVat=INCOMING_INVOICE (eller INCOMING)&vatDate=<fakturadato>&fields=id,number,name. Body er en JSON-ARRAY av OrderLinePosting [{posting:{account{id},vatType{id},amountGross,project{id},department{id}}, orderLine}] – kun debetlinjene. voucherDate endrer bilags- og fakturadato. sendToLedger=true (bokfør) krever oppsett fra Tripletex. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre prosjekt, avdeling eller fri dimensjon på leverandørfaktura",
+      "nokkelord": [
+        "endre prosjekt",
+        "endre avdeling",
+        "dimensjon",
+        "fri dimensjon",
+        "kostnadssted",
+        "prosjektkostnad",
+        "fordele på prosjekt",
+        "change dimension"
+      ],
+      "kall": [
+        "PUT /supplierInvoice/{invoiceId}/:changeDimension",
+        "GET /ledger/voucher/{id}",
+        "GET /project",
+        "GET /department",
+        "GET /ledger/accountingDimensionValue/search"
+      ],
+      "fremgangsmate": "1) Finn debetposteringene: GET /ledger/voucher/{voucher.id}?fields=postings(id,row,account(number),amountGross) – bruk bare kostnadslinjene (ikke 2400-linjen). 2) Finn dimensjons-id: GET /project?fields=id,number,name, GET /department?fields=id,name, eller GET /ledger/accountingDimensionValue/search for fri dimensjon. 3) PUT /supplierInvoice/{invoiceId}/:changeDimension?debitPostingIds=<id1,id2>&dimension=PROJECT|DEPARTMENT|EMPLOYEE|PRODUCT|FREE_DIMENSION_1|FREE_DIMENSION_2|FREE_DIMENSION_3&dimensionId=<id>. Alle fire parametere er påkrevd. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere betaling av leverandørfaktura",
+      "nokkelord": [
+        "betale leverandør",
+        "registrere betaling",
+        "betalt faktura",
+        "utbetaling",
+        "delbetaling",
+        "nettbank",
+        "autopay",
+        "remittering",
+        "add payment",
+        "betalingstype"
+      ],
+      "kall": [
+        "POST /supplierInvoice/{invoiceId}/:addPayment",
+        "GET /ledger/paymentTypeOut",
+        "GET /supplierInvoice/{id}"
+      ],
+      "fremgangsmate": "Merk: dette er POST selv om stien har ':'. Krever oppsett fra Tripletex. Hent betalingstyper: GET /ledger/paymentTypeOut?fields=id,description (BETA). POST /supplierInvoice/{invoiceId}/:addPayment?paymentType=<id> (påkrevd; 0 = sist brukte for leverandøren) eller useDefaultPaymentType=true, samt amount, paymentDate (yyyy-MM-dd), kidOrReceiverReference, bban. partialPayment=true for å tillate flere delbetalinger. Sjekk outstandingAmount etterpå med GET /supplierInvoice/{id}. Kontonummer (bban) skal ikke vises i svar. Dette kan utløse faktisk betaling via bankintegrasjon – krever eksplisitt bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere leverandørfaktura manuelt som bilag (uten EHF)",
+      "nokkelord": [
+        "føre leverandørfaktura",
+        "fore leverandorfaktura",
+        "bokføre inngående faktura",
+        "registrere faktura manuelt",
+        "leverandørbilag",
+        "kostnadsbilag",
+        "manuell kontering",
+        "bilag leverandør",
+        "postering 2400"
+      ],
+      "kall": [
+        "GET /ledger/voucherType",
+        "GET /supplier",
+        "GET /ledger/account",
+        "GET /ledger/vatType",
+        "POST /ledger/voucher",
+        "POST /ledger/voucher/{voucherId}/attachment"
+      ],
+      "fremgangsmate": "1) Bilagstype: GET /ledger/voucherType?name=Leverandørfaktura&fields=id,name. 2) Leverandør-id (GET /supplier), kontoer (GET /ledger/account?number=2400,6800&fields=id,number) og inngående mva-kode (GET /ledger/vatType?typeOfVat=INCOMING_INVOICE eller INCOMING). 3) POST /ledger/voucher med date, description, voucherType{id}, vendorInvoiceNumber og postings (row fra 1): kreditlinje konto 2400 med supplier{id}, amountGross negativ (brutto), invoiceNumber, termOfPayment (forfallsdato); debetlinje kostnadskonto med vatType{id} og amountGross positiv (brutto – mva-linjen beregnes). Summen må bli 0, avrund til 2 desimaler. sendToLedger er true som standard og krever rettigheten «Avansert bilag»; sendToLedger=false lagrer uten å bokføre. Utenlandsk valuta: amountGrossCurrency + currency{id}, evt. convertFromAmountGrossCurrency=true. 4) Legg ved faktura: POST /ledger/voucher/{voucherId}/attachment (multipart, felt 'file'). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Laste opp faktura/kvittering til bilagsmottaket for tolkning",
+      "nokkelord": [
+        "bilagsmottak",
+        "innboks",
+        "inbox",
+        "laste opp bilag",
+        "skanne faktura",
+        "tolke faktura",
+        "importere dokument",
+        "kvittering",
+        "send bilag på e-post",
+        "bilagsadresse",
+        "import document"
+      ],
+      "kall": [
+        "POST /ledger/voucher/importDocument",
+        "GET /voucherInbox/emailAddress",
+        "GET /voucherInbox/inboxCount",
+        "POST /documentArchive/reception"
+      ],
+      "fremgangsmate": "POST /ledger/voucher/importDocument som multipart/form-data med 'file' (PDF, PNG, JPEG, TIFF; EHF/XML bare etter avtale med Tripletex) og valgfri 'description'; split=true lager ett bilag per side. Bilaget havner i bilagsmottaket for tolkning/kontering. Alternativ: GET /voucherInbox/emailAddress gir klientens e-postadresse for bilag. GET /voucherInbox/inboxCount viser antall i innboksen. Rene arkivfiler (ikke bilag): POST /documentArchive/reception (BETA). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se hva som ligger i bilagsmottaket / ikke bokførte bilag",
+      "nokkelord": [
+        "bilagsmottak",
+        "innboks",
+        "ubehandlede bilag",
+        "ikke bokført",
+        "ikke postert",
+        "ventende bilag",
+        "voucher reception",
+        "non posted",
+        "hvor mange bilag i innboksen",
+        "uposterte"
+      ],
+      "kall": [
+        "GET /ledger/voucher/>voucherReception",
+        "GET /ledger/voucher/>nonPosted",
+        "GET /voucherInbox/inboxCount"
+      ],
+      "fremgangsmate": "Antall: GET /voucherInbox/inboxCount. Innhold: GET /ledger/voucher/>voucherReception?dateFrom=&dateTo=(eksklusiv)&searchText=&fields=id,date,description,vendorInvoiceNumber,supplierVoucherType. Ikke-bokførte (registrerte men ikke sendt til hovedbok): GET /ledger/voucher/>nonPosted?includeNonApproved=true (påkrevd param)&dateFrom=&dateTo=.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sende leverandørbilag tilbake til bilagsmottaket eller reversere feilført leverandørfaktura",
+      "nokkelord": [
+        "tilbake til innboks",
+        "send to inbox",
+        "angre bokføring",
+        "reversere",
+        "tilbakeføre",
+        "feilført",
+        "motbilag",
+        "reverse voucher",
+        "korrigere leverandørfaktura"
+      ],
+      "kall": [
+        "PUT /ledger/voucher/{id}/:sendToInbox",
+        "PUT /ledger/voucher/{id}/:reverse",
+        "GET /ledger/voucher/{id}"
+      ],
+      "fremgangsmate": "Hent version: GET /ledger/voucher/{id}?fields=id,version,number,date. Tilbake til bilagsmottak for ny kontering: PUT /ledger/voucher/{id}/:sendToInbox?version=<v>&comment=<årsak>. Allerede bokført i låst/rapportert periode: PUT /ledger/voucher/{id}/:reverse?date=<reverseringsdato> (påkrevd) – lager motbilag. Ekte kreditnota fra leverandør registreres som egen leverandørfaktura (isCreditNote). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Laste opp dokument til dokumentarkivet (leverandør, kunde, prosjekt, produkt, konto, anleggsmiddel, ansatt)",
+      "nokkelord": [
+        "arkivere dokument",
+        "laste opp avtale",
+        "kontrakt leverandør",
+        "dokumentarkiv",
+        "arkiv",
+        "vedlegg på leverandør",
+        "dokumentasjon konto",
+        "avstemmingsdokumentasjon",
+        "upload document archive"
+      ],
+      "kall": [
+        "POST /documentArchive/supplier/{id}",
+        "POST /documentArchive/customer/{id}",
+        "POST /documentArchive/project/{id}",
+        "POST /documentArchive/product/{id}",
+        "POST /documentArchive/account/{id}",
+        "POST /documentArchive/asset/{id}",
+        "POST /documentArchive/employee/{id}",
+        "POST /documentArchive/reception"
+      ],
+      "fremgangsmate": "BETA. Finn id til objektet (GET /supplier, /customer, /project, /product, /ledger/account, /asset). POST /documentArchive/<objekttype>/{id} som multipart/form-data med feltet 'file'. Kontodokumentasjon (f.eks. avstemmingsbilag til årsoppgjør): /documentArchive/account/{kontoens id, ikke kontonummer}. Uten tilknytning: POST /documentArchive/reception. Ansattarkiv inneholder personopplysninger – bruk kun når nødvendig. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente/liste dokumenter fra dokumentarkivet",
+      "nokkelord": [
+        "hent arkiv",
+        "dokumenter på leverandør",
+        "arkiverte dokumenter",
+        "finn avtale",
+        "dokumentarkiv liste",
+        "last ned arkivdokument",
+        "dokumentasjon konto"
+      ],
+      "kall": [
+        "GET /documentArchive/supplier/{id}",
+        "GET /documentArchive/customer/{id}",
+        "GET /documentArchive/project/{id}",
+        "GET /documentArchive/product/{id}",
+        "GET /documentArchive/account/{id}",
+        "GET /documentArchive/asset/{id}",
+        "GET /documentArchive/employee/{id}",
+        "GET /document/{id}",
+        "GET /document/{id}/content"
+      ],
+      "fremgangsmate": "BETA. GET /documentArchive/<objekttype>/{id}?periodDateFrom=&periodDateTo=(eksklusiv)&fields=id,fileName,mimeType,archiveDate,size. Last ned fil: GET /document/{id}/content?download=true med arkivdokumentets id (verifiser med GET /document/{id} at fileName stemmer) og lagre til fil – ikke skriv binærinnhold ut. Ansattdokumenter: kun ved behov, ikke vis filnavn med personopplysninger.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Endre eller slette et arkivdokument",
+      "nokkelord": [
+        "gi nytt navn dokument",
+        "endre arkivdato",
+        "slette dokument",
+        "fjerne vedlegg arkiv",
+        "rydde arkiv",
+        "update document archive",
+        "delete document"
+      ],
+      "kall": [
+        "PUT /documentArchive/{id}",
+        "DELETE /documentArchive/{id}"
+      ],
+      "fremgangsmate": "BETA. PUT /documentArchive/{id} med id, version og fileName/archiveDate/mimeType som skal endres. DELETE /documentArchive/{id} sletter permanent – krever eksplisitt bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Laste opp og hente dokumentasjon på kontrollskjema (f.eks. årsoppgjørskontroller)",
+      "nokkelord": [
+        "kontrollskjema",
+        "control form",
+        "årsoppgjør",
+        "arsoppgjor",
+        "dokumentasjon kontroll",
+        "revisjon",
+        "vedlegg kontrollskjema",
+        "dynamic control form"
+      ],
+      "kall": [
+        "GET /documentArchive/dynamicControlForm/{id}",
+        "POST /documentArchive/dynamicControlForm/{id}",
+        "POST /documentArchive/dynamicControlForm/{id}/list"
+      ],
+      "fremgangsmate": "BETA. {id} er kontrollskjemaets id (finnes via årsoppgjørs-/kontrollskjemaendepunktene i gruppen arsoppgjor). Liste: GET /documentArchive/dynamicControlForm/{id}?periodDateFrom=&periodDateTo=. Én fil: POST .../{id} (multipart 'file'); flere filer: POST .../{id}/list (multipart). Opplasting krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne innkjøpsordrer (åpne, per leverandør, prosjekt eller med avvik)",
+      "nokkelord": [
+        "innkjøpsordrer",
+        "liste innkjøp",
+        "åpne bestillinger",
+        "ikke mottatt",
+        "bestillinger leverandør",
+        "purchase orders",
+        "po status",
+        "innkjøp prosjekt",
+        "ordre med avvik"
+      ],
+      "kall": [
+        "GET /purchaseOrder",
+        "GET /purchaseOrder/{id}",
+        "GET /purchaseOrder/orderline/{id}"
+      ],
+      "fremgangsmate": "Krever Logistikk Basic. GET /purchaseOrder?supplierId=&projectId=&number=&isClosed=false&withDeviationOnly=true|false&creationDateFrom=&creationDateTo=&deliveryDateFrom=&deliveryDateTo=(alle datoer INKLUSIVE)&fields=id,number,status,supplier(name),deliveryDate,creationDate,isClosed. Det finnes INGEN status-parameter – filtrer status lokalt. Status-enum: STATUS_OPEN, STATUS_SENT, STATUS_RECEIVING, STATUS_CONFIRMED, STATUS_CONFIRMED_DEVIATION_DETECTED, STATUS_DEVIATION_OPEN, STATUS_DEVIATION_CONFIRMED, STATUS_CLOSED, STATUS_CANCELLED. Linjer: GET /purchaseOrder/{id}?fields=orderLines(id,product(number,name),count,quantityReceived,unitCostCurrency,amountExcludingVatCurrency) eller GET /purchaseOrder/orderline/{id}.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne leverandørens produkter og innkjøpspriser",
+      "nokkelord": [
+        "leverandørprodukt",
+        "leverandorprodukt",
+        "innkjøpspris",
+        "innkjopspris",
+        "prisliste leverandør",
+        "varenummer leverandør",
+        "supplier product",
+        "kostpris",
+        "hva koster varen hos leverandøren"
+      ],
+      "kall": [
+        "GET /product/supplierProduct",
+        "GET /supplier",
+        "GET /product"
+      ],
+      "fremgangsmate": "GET /product/supplierProduct?vendorId=<leverandør-id>&query=<tekst>&isInactive=false&fields=id,number,name,costExcludingVatCurrency,currency(code),resaleProduct(id,number,name),isMainSupplierProduct. For ett eget produkt: productId=<id>. targetCurrencyId=<id> konverterer prisen. Leverandør-id fra GET /supplier, eget produkt fra GET /product?fields=id,number,name.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette innkjøpsordre med varelinjer",
+      "nokkelord": [
+        "ny innkjøpsordre",
+        "opprette bestilling",
+        "bestille fra leverandør",
+        "lage po",
+        "create purchase order",
+        "innkjøp",
+        "legge til linjer",
+        "leverandørprodukt",
+        "innkjøpspris"
+      ],
+      "kall": [
+        "GET /supplier",
+        "GET /product",
+        "GET /product/supplierProduct",
+        "POST /purchaseOrder",
+        "POST /purchaseOrder/orderline",
+        "POST /purchaseOrder/orderline/list"
+      ],
+      "fremgangsmate": "Krever Logistikk Basic. 1) Leverandør-id (GET /supplier) og produkter (GET /product?fields=id,number,name eller leverandørens produkter GET /product/supplierProduct?vendorId=<id>). 2) POST /purchaseOrder med supplier{id}, deliveryDate, ourContact{id}, evt. project{id}, department{id}, deliveryAddress, currency, comments. orderLines er read-only på ordren. 3) POST /purchaseOrder/orderline/list med [{purchaseOrder{id}, product{id}, count, unitCostCurrency, discount}] (eller én og én med POST /purchaseOrder/orderline). Pris hentes fra produktets innkjøpspris hvis utelatt. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre, lukke eller slette innkjøpsordre og ordrelinjer, og legge ved filer",
+      "nokkelord": [
+        "endre innkjøpsordre",
+        "endre antall",
+        "slette innkjøpsordre",
+        "kansellere bestilling",
+        "lukke ordre",
+        "slette linje",
+        "vedlegg innkjøpsordre",
+        "update purchase order",
+        "tilbud leverandør vedlegg"
+      ],
+      "kall": [
+        "GET /purchaseOrder/{id}",
+        "PUT /purchaseOrder/{id}",
+        "DELETE /purchaseOrder/{id}",
+        "GET /purchaseOrder/orderline/{id}",
+        "PUT /purchaseOrder/orderline/{id}",
+        "PUT /purchaseOrder/orderline/list",
+        "DELETE /purchaseOrder/orderline/{id}",
+        "DELETE /purchaseOrder/orderline/list",
+        "POST /purchaseOrder/{id}/attachment",
+        "POST /purchaseOrder/{id}/attachment/list",
+        "DELETE /purchaseOrder/{id}/attachment"
+      ],
+      "fremgangsmate": "Krever Logistikk Basic. Hent version først (GET /purchaseOrder/{id}?fields=id,version,status). Ordrehode: PUT /purchaseOrder/{id} (f.eks. deliveryDate, isClosed=true for å lukke). Linjer: PUT /purchaseOrder/orderline/{id} eller /list (count, unitCostCurrency, discount); slett med DELETE /purchaseOrder/orderline/{id} eller DELETE /purchaseOrder/orderline/list (body med linjer). Vedlegg: POST /purchaseOrder/{id}/attachment (multipart 'file') eller /attachment/list; DELETE /purchaseOrder/{id}/attachment fjerner. DELETE /purchaseOrder/{id} sletter hele ordren. Alle krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sende innkjøpsordre til leverandør",
+      "nokkelord": [
+        "sende innkjøpsordre",
+        "send bestilling",
+        "e-post leverandør",
+        "send po",
+        "ftp",
+        "edi",
+        "send purchase order",
+        "bestillingsbekreftelse"
+      ],
+      "kall": [
+        "PUT /purchaseOrder/{id}/:send",
+        "PUT /purchaseOrder/{id}/:sendByEmail"
+      ],
+      "fremgangsmate": "Krever Logistikk Basic. Standard: PUT /purchaseOrder/{id}/:send?sendType=DEFAULT|EMAIL|FTP (valgfri) – e-post går til receiverEmail på ordren, ellers leverandørens e-post. Tilpasset e-post: PUT /purchaseOrder/{id}/:sendByEmail med body {email, subject, message}. Sjekk lastSentTimestamp/status (STATUS_SENT) etterpå. Sender ekstern melding – krever eksplisitt bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere varemottak på en innkjøpsordre",
+      "nokkelord": [
+        "varemottak",
+        "motta varer",
+        "registrere mottak",
+        "bekrefte varemottak",
+        "varer mottatt",
+        "delleveranse",
+        "restordre",
+        "goods receipt",
+        "lagerføre",
+        "inn på lager"
+      ],
+      "kall": [
+        "PUT /purchaseOrder/goodsReceipt/{id}/:registerGoodsReceipt",
+        "GET /purchaseOrder/goodsReceiptLine",
+        "PUT /purchaseOrder/goodsReceiptLine/{id}",
+        "PUT /purchaseOrder/goodsReceiptLine/list",
+        "POST /purchaseOrder/goodsReceiptLine",
+        "POST /purchaseOrder/goodsReceiptLine/list",
+        "PUT /purchaseOrder/goodsReceipt/{id}/:confirm",
+        "PUT /purchaseOrder/goodsReceipt/{id}/:receiveAndConfirm",
+        "GET /inventory"
+      ],
+      "fremgangsmate": "Krever Logistikk Basic. {id} i disse action-kallene er INNKJØPSORDRENS id. Alt mottatt: PUT /purchaseOrder/goodsReceipt/{poId}/:receiveAndConfirm?receivedDate=yyyy-MM-dd (påkrevd)&inventoryId=<lager, standard hovedlager fra GET /inventory>. Delmottak: 1) PUT /purchaseOrder/goodsReceipt/{poId}/:registerGoodsReceipt?registrationDate= (påkrevd; setter mottatt = bestilt), 2) GET /purchaseOrder/goodsReceiptLine?purchaseOrderId=<poId> og juster quantityReceived med PUT /purchaseOrder/goodsReceiptLine/{id} eller /list, 3) PUT /purchaseOrder/goodsReceipt/{poId}/:confirm?createRestOrder=true for restordre på manko. Nytt produkt som ikke var bestilt: POST /purchaseOrder/goodsReceiptLine(/list). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere varemottak uten innkjøpsordre",
+      "nokkelord": [
+        "varemottak uten ordre",
+        "mottak uten bestilling",
+        "direkte varemottak",
+        "lagerinngang",
+        "goods receipt without purchase order"
+      ],
+      "kall": [
+        "POST /purchaseOrder/goodsReceipt",
+        "POST /purchaseOrder/goodsReceipt/list",
+        "GET /inventory",
+        "GET /product"
+      ],
+      "fremgangsmate": "Krever Logistikk Basic. POST /purchaseOrder/goodsReceipt med registrationDate, comment og goodsReceiptLines [{product{id}, quantityReceived, inventory{id}, inventoryLocation{id}}]. Flere mottak: POST /purchaseOrder/goodsReceipt/list (bedre ytelse). Produkt-/lager-id fra GET /product og GET /inventory. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente oversikt over varemottak og mottatte antall",
+      "nokkelord": [
+        "liste varemottak",
+        "åpne varemottak",
+        "ubekreftede mottak",
+        "hva er mottatt",
+        "mottatt antall",
+        "restantall",
+        "goods receipts",
+        "varemottak periode"
+      ],
+      "kall": [
+        "GET /purchaseOrder/goodsReceipt",
+        "GET /purchaseOrder/goodsReceipt/{id}",
+        "GET /purchaseOrder/goodsReceiptLine",
+        "GET /purchaseOrder/goodsReceiptLine/{id}"
+      ],
+      "fremgangsmate": "Krever Logistikk Basic. GET /purchaseOrder/goodsReceipt?receivedDateFrom=&receivedDateTo=(begge inkl.)&status=STATUS_OPEN|STATUS_CONFIRMED&withoutPurchase=true|false&fields=id,registrationDate,status,purchaseOrder(number),comment. For én ordre: GET /purchaseOrder/goodsReceipt/{poId} (id = innkjøpsordre-id). Linjer: GET /purchaseOrder/goodsReceiptLine?purchaseOrderId=<poId>&fields=id,product(number,name),quantityOrdered,quantityReceived,quantityRest,deviation. receivedBy er en ansatt – ikke vis navn.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Korrigere eller slette varemottak og varemottakslinjer",
+      "nokkelord": [
+        "angre varemottak",
+        "slette varemottak",
+        "korrigere mottak",
+        "feil antall mottatt",
+        "endre varemottak",
+        "delete goods receipt"
+      ],
+      "kall": [
+        "PUT /purchaseOrder/goodsReceipt/{id}",
+        "DELETE /purchaseOrder/goodsReceipt/{id}",
+        "DELETE /purchaseOrder/goodsReceipt/list",
+        "PUT /purchaseOrder/goodsReceiptLine/{id}",
+        "DELETE /purchaseOrder/goodsReceiptLine/{id}",
+        "DELETE /purchaseOrder/goodsReceiptLine/list"
+      ],
+      "fremgangsmate": "Krever Logistikk Basic. PUT /purchaseOrder/goodsReceipt/{id} (her er id VAREMOTTAKETS id) for dato/kommentar/linjer. Slett: DELETE /purchaseOrder/goodsReceipt/{id} eller DELETE /purchaseOrder/goodsReceipt/list?ids=1,2. Linjer: PUT/DELETE /purchaseOrder/goodsReceiptLine/{id}, DELETE /purchaseOrder/goodsReceiptLine/list (body). Bekreftede mottak har påvirket lager – sjekk status først. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere og behandle avvik ved varemottak (for få, for mange, skadet, retur, restordre)",
+      "nokkelord": [
+        "avvik",
+        "avviksregistrering",
+        "manko",
+        "for få varer",
+        "for mange varer",
+        "skadet",
+        "defekt",
+        "retur til leverandør",
+        "restordre",
+        "reklamasjon",
+        "godkjenne avvik",
+        "deviation"
+      ],
+      "kall": [
+        "POST /purchaseOrder/deviation",
+        "POST /purchaseOrder/deviation/list",
+        "GET /purchaseOrder/deviation",
+        "GET /purchaseOrder/deviation/{id}",
+        "PUT /purchaseOrder/deviation/{id}",
+        "PUT /purchaseOrder/deviation/list",
+        "DELETE /purchaseOrder/deviation/{id}",
+        "PUT /purchaseOrder/deviation/{id}/:deliver",
+        "PUT /purchaseOrder/deviation/{id}/:approve",
+        "PUT /purchaseOrder/deviation/{id}/:undeliver"
+      ],
+      "fremgangsmate": "Krever Logistikk Basic. 1) Registrer: POST /purchaseOrder/deviation (eller /list) med purchaseOrderLine{id}, date, cause=CAUSE_DEFECT|CAUSE_TOO_FEW|CAUSE_TOO_MANY|CAUSE_REPLACEMENT, action=ACTION_IGNORE|ACTION_GENERATE_RESTORDER|ACTION_RETURN|ACTION_RETURN_GENERATE_RESTORDER, comment. 2) Send til godkjenning: PUT /purchaseOrder/deviation/{poId}/:deliver. 3) Godkjenn: PUT /purchaseOrder/deviation/{poId}/:approve (tilbake: :undeliver). Action-kallene tar INNKJØPSORDRE-id; GET /purchaseOrder/deviation/{id} tar ORDRELINJE-id; liste: GET /purchaseOrder/deviation?purchaseOrderId= (påkrevd). Endre: PUT /purchaseOrder/deviation/{id} eller /list. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Koble innkjøpsordre til leverandørfaktura (bilag)",
+      "nokkelord": [
+        "koble faktura til ordre",
+        "matche faktura",
+        "innkjøpsordre faktura",
+        "fakturamatch",
+        "knytte bilag",
+        "link purchase order invoice",
+        "fakturakontroll"
+      ],
+      "kall": [
+        "POST /purchaseOrder/purchaseOrderIncomingInvoiceRelation",
+        "POST /purchaseOrder/purchaseOrderIncomingInvoiceRelation/list",
+        "GET /purchaseOrder/purchaseOrderIncomingInvoiceRelation/{id}",
+        "PUT /purchaseOrder/purchaseOrderIncomingInvoiceRelation/{id}",
+        "DELETE /purchaseOrder/purchaseOrderIncomingInvoiceRelation/{id}",
+        "DELETE /purchaseOrder/purchaseOrderIncomingInvoiceRelation/list",
+        "GET /supplierInvoice"
+      ],
+      "fremgangsmate": "Krever Logistikk Basic. Finn bilags-id for fakturaen (GET /supplierInvoice?...&fields=id,voucher(id)). POST /purchaseOrder/purchaseOrderIncomingInvoiceRelation med orderOut{id=innkjøpsordre}, voucher{id=bilag}, registerGoodsReceipt=true hvis varemottak skal registreres samtidig. Flere: /list. Endre/fjerne: PUT/DELETE .../{id}, DELETE .../list?ids=. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Kontrollere innkjøpsordre mot varemottak og faktura (treveis matching)",
+      "nokkelord": [
+        "treveis matching",
+        "3-veis match",
+        "kontroll faktura mot ordre",
+        "fakturert vs bestilt",
+        "mottatt vs fakturert",
+        "avstemme innkjøp",
+        "hvilken faktura hører til ordren",
+        "three way match"
+      ],
+      "kall": [
+        "GET /purchaseOrder/purchaseOrderIncomingInvoiceRelation",
+        "GET /purchaseOrder/{id}",
+        "GET /purchaseOrder/goodsReceiptLine",
+        "GET /supplierInvoice",
+        "GET /ledger/voucher/{id}"
+      ],
+      "fremgangsmate": "Krever Logistikk Basic. 1) Relasjoner: GET /purchaseOrder/purchaseOrderIncomingInvoiceRelation?orderOutId=<poId> (eller voucherId=<bilag>)&fields=id,orderOut(id,number),voucher(id,number). 2) Bestilt: GET /purchaseOrder/{id}?fields=orderLines(product(number),count,unitCostCurrency,amountExcludingVatCurrency). 3) Mottatt: GET /purchaseOrder/goodsReceiptLine?purchaseOrderId=. 4) Fakturert: GET /supplierInvoice?voucherId=<id>&invoiceDateFrom=&invoiceDateTo= eller GET /ledger/voucher/{id}?fields=postings(...). Sammenlign antall og beløp lokalt.",
+      "skrivende": false
+    }
+  ],
+  "fallgruver": [
+    "GET /supplierInvoice krever invoiceDateFrom OG invoiceDateTo; invoiceDateTo er EKSKLUSIV (bruk dagen etter siste dato). Samme for dateTo på /ledger/posting og date på /ledger/posting/openPost og /ledger/openPost.",
+    "Datofiltrene på /purchaseOrder (creationDate/deliveryDate) og /purchaseOrder/goodsReceipt (receivedDate) er INKLUSIVE – ulikt resten av API-et.",
+    "GET /supplier har ikke navnefilter. Bruk GET /supplierCustomer/search?query=<navn>, organizationNumber= (eksakt) eller hent alle med fields=id,name og filtrer lokalt.",
+    "POST /supplierInvoice/{invoiceId}/:addPayment er POST (ikke PUT) til tross for ':'-stien, krever oppsett fra Tripletex og paymentType er påkrevd (0 = sist brukte for leverandøren). Kan utløse ekte bankbetaling.",
+    "PUT /supplierInvoice/voucher/{id}/postings er BETA og tar BILAGS-id (voucher.id), ikke faktura-id; sendToLedger=true krever oppsett fra Tripletex.",
+    "Attestering: overrideApprovalFlow=true krever rollen firma-attestant; :reject krever comment. /supplierInvoice/forApproval viser bare API-brukerens egne uten showAll=true.",
+    ":changeDimension krever alle fire: debitPostingIds (kommaseparert, kun kostnadslinjer), dimension (PROJECT|DEPARTMENT|EMPLOYEE|PRODUCT|FREE_DIMENSION_1-3) og dimensionId.",
+    "Alle /purchaseOrder/*-endepunkter krever modulen Logistikk Basic – 403/422 betyr normalt at modulen mangler hos klienten.",
+    "Forvirrende id-er i varemottak/avvik: :registerGoodsReceipt, :confirm, :receiveAndConfirm, GET /purchaseOrder/goodsReceipt/{id} og deviation :deliver/:approve/:undeliver tar INNKJØPSORDRE-id; PUT/DELETE /purchaseOrder/goodsReceipt/{id} tar varemottakets id; GET /purchaseOrder/deviation/{id} og GET /purchaseOrder/goodsReceiptLine/{id} tar ordrelinje-id. DELETE /purchaseOrder/deviation/{id} har misvisende beskrivelse – verifiser før bruk.",
+    "Alle /document- og /documentArchive-endepunkter er BETA. Opplasting er multipart/form-data med feltet 'file'. /documentArchive/account/{id} tar kontoens id, ikke kontonummer.",
+    "POST /ledger/voucher/importDocument godtar PDF/PNG/JPEG/TIFF; EHF/XML kun etter avtale med Tripletex. split=true gir ett bilag per side. POST /ledger/voucher/{voucherId}/attachment legger til sider i eksisterende vedlegg.",
+    "Manuell leverandørfaktura via POST /ledger/voucher: kun amountGross brukes, postings må balansere (sum 0), row starter på 1, supplier{id} + invoiceNumber + termOfPayment settes på 2400-linjen for at reskontroen skal bli riktig.",
+    "DELETE /supplier/{id} feiler hvis leverandøren har posteringer – sett isInactive=true med PUT i stedet. Feltet bankAccounts er DEPRECATED; bruk bankAccountPresentation.",
+    "Leverandør- og kundekategorier er samme ressurs: /customer/category (bruk type-parameteren).",
+    "Beløp på SupplierInvoice: amount er i NOK, amountCurrency i fakturavaluta, outstandingAmount er i fakturavaluta. amount/amountExcludingVat er 0 når verdien mangler.",
+    "Ved PUT må id og version (hentet rett før) sendes med, ellers 409/konflikt.",
+    "403 betyr manglende rettighet/rolle for API-brukeren (f.eks. ikke attestant, mangler 'Avansert bilag') eller manglende modul hos klienten – ikke at objektet ikke finnes.",
+    "GDPR: leverandører som er privatpersoner/ENK, bankkontonummer (bban/iban), attestanter (ansatte), receivedBy og /documentArchive/employee inneholder personopplysninger – bruk minimale fields= og vis aldri navn/kontonummer i svar.",
+    "Alle skrivende kall (opprette/endre/slette leverandør, attestere, avvise, betale, sende innkjøpsordre, laste opp) krever brukerens bekreftelse og at klienten er eksplisitt angitt.",
+    "count er 1000 som standard på listeendepunkter (/supplier, /supplierInvoice, /purchaseOrder ...) – paginér med from/count når fullResultSize er større.",
+    "GET /purchaseOrder har ingen status-parameter (bare isClosed og withDeviationOnly) – filtrer status lokalt. GET /purchaseOrder/goodsReceipt?status= godtar kun STATUS_OPEN|STATUS_CONFIRMED.",
+    "Masse-sletting er ulik: DELETE /purchaseOrder/goodsReceipt/list og /purchaseOrder/purchaseOrderIncomingInvoiceRelation/list tar ?ids=1,2 (påkrevd), mens DELETE /purchaseOrder/orderline/list og /purchaseOrder/goodsReceiptLine/list tar objektene i JSON-body.",
+    "PUT /purchaseOrder/{id}/:send: sendType er DEFAULT|EMAIL|FTP; e-post går til receiverEmail på ordren, ellers leverandørens e-post. PUT /purchaseOrder/{id}/:sendByEmail tar body {email, subject, message}.",
+    "GET /supplierCustomer/search returnerer bare AKTIVE kunder/leverandører – inaktive må hentes med GET /supplier?isInactive=true.",
+    "POST /ledger/voucher har sendToLedger=true som standard (krever «Avansert bilag»); bruk sendToLedger=false for å lagre uten å bokføre. Inngående mva-koder: GET /ledger/vatType?typeOfVat=INCOMING_INVOICE eller INCOMING.",
+    "GET /supplierInvoice viser fakturaer registrert i leverandørfaktura-flyten (EHF/bilagsmottak). Ved avstemming av leverandørgjeld er /ledger/posting/openPost på 2400-serien fasit."
+  ]
+}

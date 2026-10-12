@@ -1,0 +1,116 @@
+# Kalibrering K0: resultater
+
+> **Merk (oktober 2026):** Designdokument fra september 2026. `klientprofil.md`, `kjente-avvik.md`, `logg.md` og kundemappene `<Kunde>/<år>/…` er erstattet av kundeinstruksen i Tally (skillen `kundeinstruks`), og leveranser lagres i Tally eller avstemmingsmodulen. `npm run mva`/`modul` og `%LOCALAPPDATA%\silfer-mva` gjelder bare CLI-hurtigveien. Driftsflyten står i `SKILL.md`.
+
+**Dato:** 2026-09-24.
+
+**Klient:** kalibreringsklienten. Den er mva-registrert i alminnelig næring og har tomånedlige terminer. T1–T3 2026 er fullført i avstemmingsmodulen og brukes som fasit. T4 (juli–august) var åpen og ikke levert da testen ble kjørt.
+
+**Metode:**
+- Bare GET-kall, i klient- og byråkontekst.
+- Ingen skrivekall. Ingen avstemminger eller meldinger er opprettet.
+- Hver testgruppe ble etterprøvd av en uavhengig kontrollør med egne kall. Der test og kontroll var uenige, gjelder kontrollørens bevis.
+
+**Om tallene:** Regnskapstall er bare gjengitt som fortegn og relasjoner.
+
+**Videre bruk:** `kalibrering.json` (maskinlesbar) bygges fra denne filen.
+
+**Utfall:**
+- **BRUK**: virker som designet antar, eventuelt med rettelsene under
+- **FALLBACK**: virker ikke (403 eller feil), så designets alternativ gjelder
+- **MANUELT**: Sjur må gjøre eller avgjøre
+- **IKKE TESTET**: krever skriving eller UI
+
+## Resultat per test
+
+| Nr | Spørsmål | Utfall | Kort funn | Konsekvens for designet |
+|---|---|---|---|---|
+| 1 | `/vat/reconciliation/{id}/overview` før levering: finnes ledgerData og basis, og er fortegnet det samme som etter levering? | BRUK (høy) | Før levering er `basis` og `ledgerData` fylt ut, mens `reportedData`, `taxAdminData`, `difference` og `ledgerDataAtPreviousReconciliation` er null. Σ ledgerData = vatTermAmount før levering, og = altinnPaymentAmount etter. Fortegnet viser linjens bidrag til beløpet å betale: utgående +, fradrag −. En fradragslinje kan bli positiv ved netto kreditnotaer. Samme konvensjon ble sett på leverte og ikke-leverte terminer, men ingen termin er målt både før og etter levering. Beløpene er hele kroner, avkortet mot null. `ledgerDataAtPreviousReconciliation` fylles først når avstemmingen er fullført (COMPLETED), ikke ved levering. Om `difference` tar med taxAdmin når den er fylt ut, er uavklart. | Fase A kan bruke Σ overview.ledgerData som ekstra kontroll i P1, men bare når VAT-avstemmingen allerede finnes. Nye terminer har ingen avstemming, og context-POST er ikke testet, så der er vatTermAmount og `>vatTerm` kilden. Bruk aldri `difference` før levering, og regn begge avvikene selv. Tolerer under 1 kr per linje mot hovedboken. |
+| 2 | referenceId for mva-linje, BALANCE-linje og 2740 | MANUELT (middels). Lesedelen er gjort, skrivedelen er ikke testet. | `/validations` er tom på alle mva-avstemminger: fullførte, åpne og levert-men-ikke-synket. Den er også tom på en BALANCE i DRAFT. Det finnes ingen kommentarer eller vedlegg på mva hos klienten. Kommentarskjema: id, version, url, reconciliationId, createdAt, createdBy, referenceId og comment. `createdBy` må utelates med fields. I en feriepengeavstemming ligger samme kommentar både på konto-id og på kontonummer. Kontonummer er det riktige, og det viser at feil referenceId lagres uten feil. Kode 86 har to linjer med samme vatTypeId. | «/validations gir referenceId» holder ikke før levering. Om den gir referenceId ved avvik etter levering, er uavklart. For mva kreves «test»-metoden, se under. referenceId er fortsatt ikke verifisert for mva-linjer, 2740 og BALANCE-linjer. Vedleggsskjemaet er ukjent. |
+| 3 | `/balance/reconciliation/{id}/table`: rowId, autoReconciled for 19xx, periode | BRUK (høy) | **BALANCE er månedlig** (termNumber 1–12, endDate eksklusiv), og det finnes en 13. periode av typen ANNUAL_BALANCE med term=1. Linjene har ingen egen id. **rowId = accountId**: UI-koden sender PUT `table/{accountId}` med hele linjen og `reconciledBy/controlledBy = null`. `table/list` er en PUT med en array av linjer. GET på `table/list` og `table/{accountId}` gir HTTP 400 (code 4000) med meldingen «405». balanceOut = /balanceSheet UB med dateTo = endDate. **Når bankmåneden lukkes, blir 19xx ikke autoReconciled.** documentedBalance fylles da med saldoen og difference blir 0, men status blir stående NOT_RECONCILED. 2740 blir autoReconciled i begge terminmånedene først etter VAT `:complete`. 2600/2610/2770/2771 blir auto når lønnsavstemmingen er fullført. 2700/2703/2710 blir aldri auto. Nestet fields virker bare med `*` først, f.eks. `fields=*,groups(*,lines(...))`. | Én mva-termin gir to BALANCE-avstemminger, og D = endDate for hver måned. BALANCE `:complete` gjøres per måned. Filtrer bort ANNUAL_BALANCE. 19xx må settes til RECONCILED med PUT eller i UI. Kontrollen kan lese documentedBalance ≠ null og difference = 0 som «bank lukket og stemmer». Stoppregelen «balanceOut ≠ UB» holder. |
+| 4 | `/ledger/posting/openPost` for en historisk dato D mot supplierSubLedger og /balanceSheet | BRUK (høy) | `openPost(date=D)` er et ekte historisk snitt. Poster som ble lukket etter D, regnes som åpne. Id-mengden = {ikke lukket} ∪ {closeGroup.date ≥ D}, uten avvik. Σ = /balanceSheet UB for både 1500 og 2400 på tre datoer. D er eksklusiv. `/ledger/openPost` gir samme sum. Uten kontofilter kommer leverandørmerkede poster på andre kontoer med. `/internal/supplierSubLedger`: openAmount og totalOpenAmount er **dagens** restbeløp, ikke historiske. totalDebit − totalCredit er historisk, men avvek med et konstant, uforklart beløp fra 2400-saldoen. | RK1/RK2: Σ openPost(date=D, accountId) = balanceSheet UB, der D = BALANCE-periodens endDate. Kontofilter er påkrevd. supplierSubLedger er ikke fasit, bare en sekundær diagnose. Brukes den, er `openPostingsAsOfDate` = D (eksklusiv) og `endDate` = D − 1. |
+| 5 | `/vatReturnsOverview/vatTermAmount`: fortegn, og tall for terminer som ikke er levert | BRUK (høy) | Parametrene er `year`, `term` og `reportType` (valgfri). Svaret er `{value}` i hele kroner. + betyr å betale og − til gode, som altinnPaymentAmount. Tallet er lik altinnPaymentAmount for leverte terminer, og gir også tall for T4 og T5 som ikke er levert eller opprettet. Verdien = Σ per kode av trunc(−Σ(amountGross − amount)), der trunc avkorter mot null per kode, ikke avrunder. **Kallet svarer 0 uten feilmelding** når term mangler eller er feil (også med parameternavnet `vatTerm`) eller når reportType er feil. Om tallet for en levert termin er lagret eller beregnet på nytt, er uavklart. | M0/T1: sammenlign per kode etter trunkering, med 0 kr toleranse. Valider term (1–6) og reportType mot `/vatReturnsOverview/reportTypes`. Er svaret 0, kryssjekk mot `>vatTerm`. ET1 bruker `/vatReturns/{id}`, ikke vatTermAmount. |
+| 6 | `/ledger/posting`: vatType på 27xx-linjer med row 0, isAmountVatClosed, posteringsdato eller bilagsdato, `voucher(changes)` | BRUK (høy) | Systemgenererte 27xx-linjer har row 0 og vatType `"0"`. `vatType.number` er en **streng**. Det finnes også manuelle linjer (systemGenerated=false) på 2700/2703/2710. `isAmountVatClosed=true` gjelder nøyaktig de kodede linjene i leverte terminer. **Terminen følger `posting.date`**: kode 86-grunnlaget i leverte meldinger stemmer bare med posteringsdato, og dateFrom/dateTo filtrerer på posting.date. `voucher(changes(changeType,timestamp))` godtas og gir både CREATE og UPDATE. `fullResultSize` er ikke et totalantall, men en indikator på at det finnes flere sider. | M0: bla til en side gir færre enn count, og tell radene selv. Sammenlign med `'0'`. Filtrer 27xx på systemGenerated=true og ikke bare på kontonummer. Manuelle 27xx-linjer går til T3. ET2 kan bruke en kodet linje i levert termin med isAmountVatClosed=false som signal (middels sikkerhet, ikke observert), bekreftet med changes der changeType=CREATE. |
+| 7 | `/vatReturns/validateCreate`, `>vatTerm` og `/vatReturns/{id}` | BRUK (høy) | validateCreate er GET og virker. Levert termin gir `alreadyExists=true`. Løpende termin gir `incompleteVouchers > 0`. **`>vatTerm` gir et fullt beregnet utkast** (id=0, NOT_STARTED, linjer per standardCode) for enhver termin, også før «Opprett». For en levert termin gir den meldingen som ble levert. **Fields-felle:** eksplisitte fields på vatGroups eller lines tømmer linjene. Kall uten fields eller med `fields=*`. Toppnivåfelt går fint. Linjenes vatType er bare `{id,url}`. Kode 86 gir to linjer med rate −25, og `isReversable=true` er motposten. isPaid og remainingAmountVatToPay er meningsløse når id=0. Et feil parameternavn gir 500. | Fase A kan bruke `>vatTerm`-utkastet i T1/T2/N4 allerede før Opprett. Lag et oppslag vatType.id → number fra /ledger/vatType. Kontroller som regner basis × rate må bruke abs(rate) for snudd avregning. Ny kontroll: en linje med fortegn motsatt av `expectedSign` gir FORKLAR. |
+| 8 | `/claimsAndPayments?year=`: svarer kallet med API-tokenet, og hvilken claimType har mva? | BRUK (høy), i klientkontekst | Kallet svarer når klienten har Altinn-systembruker. Det gir **alle krav med aktivitet i året**, også oppgjorte (outstandingAmount = 0), ikke bare åpne. `year` følger claimCreatedDate. Mva kjennes på claimGroup = «Merverdiavgift». Sett claimType-verdier: mvaMelding, konteringMvaÅBetale, konteringTilgodeMva, konteringKorrigertTilgodeMva, fastsettingsrenterMva11_2 og forsinkelsesrenterMva, men listen er ikke uttømmende. `claimGroup` som parameter ignoreres. En endringsmelding gir flere krav for samme termin. Renter har egne KID-er. For tilgode er claim.dueDate utbetalingsdatoen. Kallet ga 500 (code 1002) av og til, og et nytt forsøk virket. `byClient` fra byrået gir 403 KB-005 for en klient med isAgent=false. | SK2: filtrer lokalt på claimGroup, uten hvitliste over claimType. Hent terminens år og året etter. Et åpent krav har outstandingAmount ≠ 0. Gjør 3 nye forsøk ved 500. hasSystemUser=false gir status «ukjent». Skattekontoutskrift trengs bare når kallet ikke virker. |
+| 9 | `/bank/reconciliation/internal/state` med API-tokenet | BRUK (høy) | Kallet virker i klientkontekst. `startDate` er påkrevd (uten den kommer 500), men datoen kan være hvilken som helst dag i måneden. `balanceOutDifference` = ledgerOut − bankOut. Er bankOut null, er differansen lik saldoen i hovedboken. `reconciliation=null` betyr at det ikke finnes noen avstemming. Beløpene er identiske med `/bank/reconciliation` og `/balanceSheet`. `isReadOnly=true` betyr at en **senere** måned er lukket, så den siste lukkede måneden har false. `isApprovableIncomplete` er også true for en måned uten avstemming og med saldo 0. `requireReconciliation` er false på alle bankkontoer. | BK1: behold de offentlige kallene som hovedvei, og bruk state bare som supplement for åpne eller manglende måneder. Ingen av flaggene kan brukes alene som avviksflagg. Kontoutvalget kan ikke bygge på requireReconciliation. |
+| 10 | `/incomingInvoice/search`: 403? | FALLBACK (høy) | 403 code 9000 («no permission to access this feature») på search, `{voucherId}`, `internal/{voucherId}` og `internal/{voucherId}/changes`, uavhengig av parametere. Oppslagstabellene `internal/vat` og `taxTransactionTypes/list` svarer 200. Årsaken er enten at klienten ikke er pilotkunde, eller at tokenet mangler tilgang. | Standardveien er `/supplierInvoice` + 2400-posteringer (+ connector som reserve). Sjekk én gang per klient og cache svaret. Kryssjekk alltid mot 2400. |
+| 11 | `/bank/paymentWidget` (GET): betalingstyper og KID | FALLBACK (høy) | Hele betalingsfunksjonen gir 403 code 9000 for API-brukeren (widget, `/bank/payment`, `agreements/autoPayStatus`), også for scenarioId-er som ikke finnes. `/bank` og `/bank/statement` gir 200, så konteksten er riktig. **KID** leses fra `GET /vatReturns/{id}/paymentInfo` (kid, account, amount = totalAmountVatToPay, dueDate). Den svarer for alle leverte terminer, også tilgode. **KID er unik per termin**, men felles for tilleggskrav fra endringsmelding. Renter har egne KID-er. Den stemmer med KID-en på mvaMelding-kravet i claimsAndPayments. | Vei A (widget/AutoPay/ZTL) kan ikke brukes før API-brukeren har tilgang til betalinger. Årsaken kan være manglende rolle, manglende AutoPay, eller at tokenet er utelukket (MANUELT). Til da gjelder vei B. IN13: paymentInfo mot claimsAndPayments når kravet finnes. Profilfeltet `mva_kid` fjernes. |
+| 12 | `/accountingOffice/reconciliations`: filtrene customerId, year, term og type | BRUK (høy) | Alle fire filtrene virker på serversiden, hver for seg og sammen. Kombinasjonen gir 1 eller 0 treff og kan brukes som «finnes avstemmingen?». Ukjente parametere ignoreres uten feil: en skrivefeil ga alle avstemminger for alle kunder. `status` er ikke et filter. En ugyldig type gir 404. `fullResultSize` er bare en nedre grense. Standardrekkefølgen er etter id, men `sorting=term` virker. **`term` betyr måned for BALANCE og tomånedlig termin for VAT.** periodsOverview skiller ikke VAT_GENERAL fra VAT_PRIMARY, og type=VAT gir 422. | Bruk filtrene, men kontroller customer.id, year, term og type lokalt på svaret. Bla til en side gir færre enn count. Bruk alltid term sammen med type. Skill reportType med `reconciliations?type=`. |
+| 13 | `/addon/company/{id}`: id-begrep og aktive tillegg | MANUELT (høy) | Kallet gir tilleggskatalogen, ikke firmaets aktive tillegg. Svaret er identisk for kunde-id, company-id og en id som ikke finnes, og alle tillegg har active=false. `/integration` gir 0. `/company/modules` gir modulflagg, men ikke tredjepartstillegg. | Stryk kallet som kilde til integrasjoner. Integrasjonene står i klientprofilen (Sjur), eller de utledes fra posteringer og bilagstyper. `/company/modules` kan brukes som moduldiagnose. |
+| 14 | `/anomalies/context`: er modulen aktiv, og hva koster den? | MANUELT (middels) | `context`, `clientsOverview`, `clients` og `/anomalies?customerId=` gir 403 code 9000 i både byrå- og klientkontekst. `aggregate` og `aggregate/count` svarer 200 med 0. Det kan ikke skilles fra «modul inaktiv». `status` tar én verdi: UNRESOLVED, UNDER_REVIEW, RESOLVED eller ARCHIVED (OPEN er ugyldig). | Sjur oppgir `anomalies_aktiv` i byrå- eller klientprofilen. Et tomt svar eller 0 fra aggregate betyr «ukjent» med mindre profilen sier at modulen er aktiv. MK5, MD1, MT4, MF5 og RK16 kjører egen logikk når flagget mangler. |
+| 15 | Prøveskrivinger | IKKE TESTET | – | Se under. |
+| 16 | ID-porten på tvers av klienter | IKKE TESTET | – | Se under. |
+| A | `/ledger/accountingPeriod`: låsfelt | BRUK (høy) | Kallet gir månedsperioder med `end` eksklusiv. Låsfeltet er `isClosed`. `checkLedgerLogTime` og `checkWageLogTime` er stemplet fra `:check`. Tidligere år er låst i sin helhet (hver måned isClosed=true), mens inneværende år ikke er låst, heller ikke leverte terminer. Låsingen skjer altså per år. `getAccountingPeriodByDate` gir 403. | F3.9/IN22: isClosed=false for en levert termin i inneværende år er normalt og gir INFO. isClosed=false i et avsluttet tidligere år gir varsel. Hent aldri `*EmployeeName` eller `*EmployeePictureId`. |
+| B | `/company/settings/altinn` | BRUK (høy for kallet, middels for tolkningen) | `fields=altInnId` gir 200, og ID-en er satt. Hent aldri passordfeltet, og bruk aldri `fields=*`. | Diagnoseflagget `altinn_id_satt` i P0. Det sier ingenting om ID-porten eller systembruker. |
+
+## Ikke testet (krever skriving eller UI)
+
+**Test 2, «test»-kommentar (referenceId).** Lesedelen er gjort, men /validations gir ingen referenceId før levering. Fra Sjur trengs:
+1. I UI skriver Sjur «test» som kommentar i mva-avstemmingen for T4 på:
+   - linjen for kode 3
+   - linjen for kode 1
+   - én av de to linjene for kode 86 (noter hvilken)
+2. I BALANCE-avstemmingen for én måned skriver Sjur «test» på 2740 og på én vanlig linje, f.eks. 1500.
+3. Claude leser `GET .../comments` (lesende) og noterer referenceId-formatet: vatTypeId, konto-id eller kontonummer. Claude sjekker også om de to linjene for kode 86 kan skilles.
+4. Testkommentarene slettes, enten av Sjur i UI eller av Claude med DELETE etter eget ja.
+5. Samtidig avgjør Sjur om den doble feriepengekommentaren (lagret på konto-id i tillegg til kontonummer) skal ryddes. Det er også en DELETE og krever ja.
+
+**Test 15, prøveskrivinger.** Hver krever Sjurs ja per kall, på kalibreringsklienten:
+- **`PUT /balance/reconciliation/{id}/table/{accountId}`** på én linje i en BALANCE-måned i DRAFT, f.eks. RECONCILED på en 19xx-linje med lukket bankmåned. Hensikt: bekrefte body = linjen med `reconciledBy/controlledBy = null`.
+- **`POST .../comments/list`** med én kommentar på en referenceId som er verifisert i test 2.
+- **Lukking av én bankmåned** med differanse 0: enten `PUT /bank/reconciliation/{id}` (isClosed) eller `PUT .../internal/approve`. Sjur velger metode.
+- **`POST /vat/reconciliation/context`** for en termin uten avstemming (T5). Hensikt: bekrefte idempotens og at overview da kan leses før levering. Samme for `POST /balance/reconciliation/context`.
+- **`:modifyComment`** på én linje i en opprettet, ikke sendt melding. Krever at Sjur har trykket «Opprett». Hensikt: avgjøre technicalName eller title.
+- **Valgfritt: `POST /vatReturns`** på en testtermin. Til det er gjort, trykker Sjur «Opprett» i UI.
+- **Ikke et skrivekall, men avklaring:** Sjur sjekker i Tripletex om API-brukeren har rolle for betalinger/nettbank hos klienten, og om klienten har AutoPay eller ZTL. Svaret avgjør om vei A kan testes.
+
+**Test 16, ID-porten på tvers av klienter.** Fra Sjur trengs:
+1. Logg inn med ID-porten én gang i Tripletex-UI på én klient, og synkroniser (eller åpne innsending) der.
+2. Bytt til en annen klient i byråkontoen uten å logge ut, og prøv synkronisering eller innsending der.
+3. Noter om det krevdes ny innlogging.
+
+API-tokenet deler ikke ID-porten-økten (`/idporten/loginstatus` er active:false), så dette kan bare observeres i UI. Svaret avgjør om H2 blir én innlogging per bølge eller én per klient.
+
+## Andre funn
+
+**Oppgaver hos kalibreringsklienten** (må ses på av Sjur):
+- **T6 2025 er levert, men ikke fullført i modulen.** Avstemmingen står i DRAFT, og taxAdminData er null. Sjur må synke i UI, og deretter kjøres `:complete` etter ja.
+- **T4 2026 (frist 12.10):** Kode 1 har netto positivt fortegn (mot expectedSign NEGATIVE), så terminen viser beløp å betale i stedet for normalt til gode. Årsaken er leverandørfakturaer som bare krediterer varekjøpskontoen med kode 1. Det kan være ekte kreditnotaer eller fakturaer ført med feil fortegn. Må avklares før innsending.
+- **2740:** Saldoen per i dag er 0. IB for T4 avviker litt fra tilgodebeløpet for T3, og differansen er ikke forklart. Sjekkes i T4-avstemmingen.
+- **Tilgodeterminer:** T1–T3 2026 står i Tripletex som ikke betalt, med `AMOUNT_CREDITED`, en åpen post og `remainingAmount` lik hele beløpet. Hos Skatteetaten er tilgodebeløpet oppgjort. Tilbakebetalingene er trolig ført mot 2740 uten kobling til meldingen. T10 og SK1 må derfor ikke flagge dette alene. Se kontroller.md.
+- **Bankavstemmingen (BK1):**
+  - 1920: august er åpen med differanse.
+  - 1922: juni er åpen, men juli og august er lukket.
+  - 1921: bare manuell avstemming i juli, ingen i juni og august.
+  - 1941: juni og juli mangler.
+  - 1931: juni mangler, med en liten saldo.
+  - BALANCE for januar og februar viser 1920 som auto-avstemt, selv om bankmånedene nå er åpne. Statusen ser ikke ut til å oppheves når banken gjenåpnes.
+- **BALANCE:** Januar er COMPLETED, og de fleste linjene som ikke er auto-avstemt (også 1500 og 2400) står som IGNORED. Februar til desember er i DRAFT, og november mangler avstemming.
+- **Forsinkelsesrenter:** På skattekontoen er det forsinkelsesrente på AGA eller trekk i nesten hver termin 2025–2026. Hører til lønnsavstemmingen.
+- **Endringsmeldinger:** To terminer i 2025 fikk endringsmelding, med tilleggskrav og renter.
+- **Skattekontoen:** Det står to åpne kreditposter utenfor mva.
+
+**Generelt om API-et og modulen:**
+- **Fristen hentes, den beregnes ikke.** `overview.dueDate` og `paymentInfo.dueDate` flytter fristen ved helg: T4 har frist 12.10 (10.10 er en lørdag), og T3 hadde 31.08.
+- **Id-begreper:** `connect()`-id = kunde-id i byrået = `customerId` i modulen. `whoAmI.companyId` = customerCompanyId. `whoAmI?fields=company(id)` gir null, så bruk `fields=companyId`.
+- **`/vatReturnsOverview/overview`:** Opprettede terminer har `term=0`, så terminnummeret tas fra start/end eller status/list. `overview.status` er FEEDBACK_RECEIVED der `deliveryStatus` er RECEIPT_RECEIVED.
+- **Feilmønster:** 403 code 9000 med `validationMessages=null` betyr at funksjonen er sperret for tokenet eller klienten, uansett parametere. Aggregatkall kan svare 200 med tomt resultat selv når statuskallene er sperret, så tomt betyr ikke «ingen funn».
+- **Andre kall som ikke virker:**
+  - `/bank/integration/switch/ztlAccounts` gir 500 code 1000 (BK6-kilden trenger fallback)
+  - `/company/salesmodules` gir 403
+  - `getAccountingPeriodByDate` gir 403
+- **Personfelt:** `/integration` inneholder personfelt, så hent alltid med snevre fields. Med `fields=*` på BALANCE-tabellen gir `reconciledBy` bare `{id,url}`, men den bør likevel utelates.
+- **Leverandørfakturaer:** `/supplierInvoice` ga svært få fakturaer i T4 sammenlignet med 2400-bevegelsen. Kryssjekk alltid mot 2400-posteringer.
+- **Avkreftet:** Påstanden om at mange valutaposter på 2400 har amount 0, ble ikke gjenskapt av kontrolløren.
+
+## Oppdatering 24.09.2026 etter Sjurs tester
+
+| Nr | Utfall | Funn | Konsekvens |
+|---|---|---|---|
+| 2 (mva) | BRUK (høy) | Sjur skrev «test» på kode 3, 1 og 86 i T4. Kommentarene ble lagret med referenceId 3, 1 og 34, som er linjens `vatTypeId` (Tripletex-id). Id 34 er kode 86, og ja, id og kodenummer er forskjellige. Da Sjur skrev på én av de to linjene for kode 86, dukket kommentaren opp på begge i UI, fordi de har samme vatTypeId. | Mva-kommentarer skrives med referenceId = vatTypeId fra overview. Én kommentar dekker begge linjene for snudd avregning. |
+| 2 (BALANCE) | MANUELT (åpen) | Ingen «test»-kommentar ble funnet i noen BALANCE-avstemming for kalibreringsklienten i 2026. Søket dekket kommentarer, linjefelt og bilagslistene for 2740 og 1500. | Må avklares med Sjur om kommentaren ble skrevet et annet sted, eller om den ikke ble lagt inn. Til da er referenceId for BALANCE ikke verifisert. Antagelsen er kontonummer, jf. feriepengeavstemmingen. |
+| 16 | BRUK (høy) | ID-porten-innloggingen varer 10 min og gjelder alle klientene, uavhengig av hvilken klient Sjur logget inn fra. | H2 gjøres i 10-minuttersvinduer. Alt som ikke krever ID-porten tas før innlogging, se arbeidsflyt avsnitt 7. |
+| 11/15 (betaling) | Avklart mål, blokkert i API | Sjur: «opprette betaling» betyr å opprette den i Tripletex slik at den legger seg i godkjenningsflyten og venter på at kunden godkjenner den. AutoPay eller ZTL spiller ingen rolle. Kallet er `POST /bank/paymentWidget` (scenario VAT_RETURNS_2022, body SimplePaymentWidget). API-brukeren får 403 code 9000 på betalingsfunksjonen. JWT-tokenet har ingen scope-claims, så årsaken er trolig brukerens rettigheter hos klienten. | Sjur sjekker brukerens tilgang til betalinger hos klienten. Deretter en lesende GET av widgeten og én prøveopprettelse på en levert termin etter ja. Claude kaller aldri `:approve`. |
+
+Testkommentarene på mva-linjene i T4 ligger fortsatt i modulen. De slettes av Sjur i UI, eller av Claude med DELETE etter ja.

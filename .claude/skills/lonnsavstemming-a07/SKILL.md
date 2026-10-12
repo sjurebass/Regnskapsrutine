@@ -1,15 +1,20 @@
 ---
 name: lonnsavstemming-a07
-description: "Avstemmer lønnsområdet for en termin: A07 fra Skatteetaten mot Tripletex (forskuddstrekk 2600, AGA 5400/2770, grunnlag per ytelse, pensjon, feriepenger, per ansatt) → Silfer-Excel + PDF. Trigger: «avstem(m) lønnsområde(t) på …», «lønnsavstemming», «A07», «avstem a-melding», «skyldig arbeidsgiveravgift», «forskuddstrekk termin»."
+description: "Avstemmer lønnsområdet for en termin: A07 fra Skatteetaten mot Tripletex (forskuddstrekk 2600, AGA 5400/2770, grunnlag per ytelse, pensjon, feriepenger, per ansatt) → Silfer-Excel. Lukker Tally-oppgaven «Terminvis lønnsavstemming». Bruk ved «avstem lønnsområdet på …», «lønnsavstemming», «A07», «avstem a-melding», «skyldig arbeidsgiveravgift», «forskuddstrekk termin»."
 ---
 
 # Lønnsavstemming A07 mot Tripletex
 
-**Datakilde – absolutt regel:** Regnskapsdata hentes KUN via Tripletex-connectoren (MCP-verktøyene `search_client_companies`, `tripletex_run_script`, `get_amelding_status` m.fl.). **Aldri bruk Claude i Chrome** eller annen nettleser mot Tripletex-web – heller ikke som fallback når connectoren er nede. Er connectoren nede/ikke tilkoblet: gjør alt som kan gjøres uten regnskapsdata (parse A07, forbered skript/ledger-struktur), si fra til brukeren at Tripletex-connectoren må reconnectes, og prøv `ToolSearch`/`RefreshMcpTools` på nytt – ikke gå videre med andre datakilder.
+**Datakilde:** Regnskapsdata hentes via Tripletex-MCP-en (`search_client_companies`, `tripletex_run_script`, `get_amelding_status`, `get_balance_sheet`).
+Ikke bruk nettleseren mot Tripletex. Er MCP-en nede: gjør det som kan gjøres uten regnskapsdata (parse A07, forbered ledger-strukturen),
+si at Tripletex-koblingen må kobles til igjen, og vent. Hurtigvei for Sjur: `npm run api` i `C:\Users\Sjur\Tripletex API` gir de samme posteringene.
+
+**Personvern:** A07 og lønnsbilag inneholder persondata. Excel-arket «Per ansatt» er leveransen og blir i scratch eller i Tally; i chatten vises bare
+summer og avvik, aldri navn eller lønn per person. Slett A07-XML og ledger.json fra scratch når avstemmingen er levert.
 
 Input: A07-fil for én termin (XML primærkilde; ODS er samme data) + klientnavn. Mangler A07: be om filen (Altinn → Skatteetaten → «Avstemmingsinformasjon a-melding», velg termin, last ned XML). Ikke start uten den.
-Output: `Lønnsavstemming <Klient> termin <n> <år>.xlsx` + `.pdf` (Silfer). PDF = ark «Avstemming» (tre tabeller), én linje konklusjon, korte merknader (`merknader_kort`, maks én setning per punkt), a-meldingstabell – ingen annen tekst. Excel-ark: **Avstemming** (rent: post · A07/beregnet · regnskap · avvik · status, tre blokker forskuddstrekk/AGA/feriepenger + antall avvik) · Detaljer (kilde/bilag/merknad per kontroll, innsendingshistorikk, reverserte bilag, merknader) · Forskuddstrekk · Arbeidsgiveravgift (Sticos pkt. 1–5 + pensjon hittil i år + bevegelse 2770) · Per ansatt · Ytelser A07 · Posteringer. Leveres via SendUserFile (+ commit til tilkoblet mappe).
-Filer i skillen: `scripts/lonnsavstemming_a07.py` (Excel), `scripts/a07.py` (XML-parser), `scripts/kobling.py` (beløpsmatching mot person), `scripts/stil.py` (Silfer-formatering), `scripts/ledger_eksempel.json` (utfylt eksempel), `assets/silfer_logo.png`, `references/kontrollogikk.md` (full kontrollogikk, ledger.json-format og kjente avvik – kortversjon nederst her). Verifiseringsverktøy: `scripts/ledger_fra_rapport.py` henter regnskapssiden ut av en godkjent rapport, `scripts/sammenlign.py` sammenligner ark for ark – kjør begge etter endringer i kontrollogikken. PDF-generatoren (`lag_pdf.py`) og datauttrekket (`hent_tripletex.js`) er ennå ikke skrevet; bygg ledger.json fra Tripletex-connectoren inntil videre.
+Output: `Lønnsavstemming <Klient> termin <n> <år>.xlsx` (Silfer). Excel-ark: **Avstemming** (rent: post · A07/beregnet · regnskap · avvik · status, tre blokker forskuddstrekk/AGA/feriepenger + antall avvik) · Detaljer (kilde/bilag/merknad per kontroll, innsendingshistorikk, reverserte bilag, merknader) · Forskuddstrekk · Arbeidsgiveravgift (Sticos pkt. 1–5 + pensjon hittil i år + bevegelse 2770) · Per ansatt · Ytelser A07 · Posteringer. PDF-versjon finnes ikke ennå (`lag_pdf.py` er ikke skrevet); lever xlsx.
+Filer i skillen: `scripts/hent_tripletex.js` (datauttrekk i `tripletex_run_script`), `scripts/lonnsavstemming_a07.py` (Excel), `scripts/a07.py` (XML-parser), `scripts/kobling.py` (beløpsmatching mot person), `scripts/stil.py` (Silfer-formatering), `scripts/ledger_eksempel.json` (utfylt eksempel), `assets/silfer_logo.png`, `references/kontrollogikk.md` (full kontrollogikk, ledger.json-format og kjente avvik – kortversjon nederst her). Verifiseringsverktøy: `scripts/ledger_fra_rapport.py` henter regnskapssiden ut av en godkjent rapport, `scripts/sammenlign.py` sammenligner ark for ark – kjør begge etter endringer i kontrollogikken.
 
 ## Steg
 
@@ -17,9 +22,9 @@ Filer i skillen: `scripts/lonnsavstemming_a07.py` (Excel), `scripts/a07.py` (XML
 `parse_a07()` i skriptet leser innsendinger per måned (status, erstatterMeldingsId, levert, AGA, trekk per lønnsdato, KID), AGA-grunnlag lønn/pensjon/fradrag/sats/sone, inntektsmottakere med ytelser per opptjeningsperiode og trekk, betalingsinformasjon. Gjeldende innsendinger per måned = alle som IKKE er erstattet av en annen melding (`erstatterMeldingsId`), uansett status – også `MAA_KONTROLLERES`. De summeres. Statusfeltet avgjør altså ikke; dette er verifisert mot ferdige avstemminger. Ytelser uten opptjeningsperiode (feriepenger til sluttede) legges i måneden der grunnlaget mangler omtrent beløpet, pensjonsgrunnlaget medregnet.
 Sjekk selv før du går videre: flere innsendinger samme måned (= korrigeringer/tillegg → forløpet skal forklares), negative trekkbeløp (tilbakebetaling av lønn), personer uten ansattnummer/opptjeningsperiode, `fradragIGrunnlagetForSone` (refusjon fra NAV → reduserer AGA-grunnlag).
 
-### 2. Hent regnskapet fra Tripletex (KUN MCP-connector)
-1. `search_client_companies` → companyId.
-2. Kjør `scripts/hent_tripletex.js` i `tripletex_run_script` (cid, d1 = første dag i termin, d2 = første dag etter termin, y1 = 01.01). Henter posteringer 1950/2600/2770–2799/2900–2999/5000–5999/7100–7199/7740(A-melding) + 1920-betalingslinjer, saldoer, pensjon hittil i år. Output blir stort og havner i fil → parse `dato|bilag|konto|kontonavn|tekst|beløp` med Python. Split i to kall ved trunkering.
+### 2. Hent regnskapet fra Tripletex (MCP)
+1. `search_client_companies` → klientens navn slik Tripletex skriver det.
+2. Kjør `scripts/hent_tripletex.js` i `tripletex_run_script`: les fila, sett `KLIENT`, `D1` (første dag i termin), `D2` (første dag etter termin) og `Y1` (1. januar), og send hele teksten som `code`. Den henter posteringer 1950/2600/2770–2799/2900–2999/5000–5999/7100–7199/7740 + lønnslinjer på 1920, saldoer og pensjon hittil i år, og returnerer `{balanser, posteringer, pensjon_rader, advarsler}`. Les `advarsler` først. Første gang på en klient: sjekk at feltene (dato, bilag, konto, beløp) er fylt; er de tomme, se formen med ett `search_ledger_postings`-kall og rett `felt()` i `rad()`. Er svaret for stort, del terminen i to kall (én måned hver).
 3. `get_amelding_status` for siste måned i terminen: `accrued`/`notPaid` taxDeduction + payrollTax skal stemme med A07 (negativ notPaid taxDeduction = for mye innbetalt trekk).
 4. Hvis 2770 IB ≠ forrige termins a-meldte AGA: hent 2770 for forrige termin og forklar restsaldoen.
 
@@ -27,12 +32,11 @@ Sjekk selv før du går videre: flere innsendinger samme måned (= korrigeringer
 `selskap`, `orgnr`, `tripletex_id`, `periode{fra,til,termin,forfall}` (forfall = 15. i måneden etter terminslutt), `aga_sats`, `feriepenger_sats` (les 5020/5000 i et lønnsbilag: 0,12 / 0,125 / 0,143), `kid_aga`, `kid_trekk{}`, `ytelse_konto{}` (kun avvik fra standard, f.eks. `"elektroniskKommunikasjon": 5390` når EK er utgiftsgodtgjørelse), `konto{pensjon}` (autodetekt 5945/5950), `balanser[{a,n,ib,ch,ub}]`, `posteringer[[dato,bilag,konto,kontonavn,tekst,beløp]]`, `pensjon_historikk[[«YYYY-MM», tekst 594x, beløp, tekst pensjonsbilag, grunnlag]]` for hele året (grunnlag = AGA i pensjonsbilaget / sats), `forklart[]` (prefiks på kontrollrader som skal vises FORKLART i stedet for AVVIK – kun når merknaden forklarer avviket fullt ut), `merknader[]` (Excel, kan være utfyllende), `merknader_kort[]` (PDF: én setning per punkt med beløp + bilag + tiltak).
 
 ### 4. Kjør og verifiser
+Alle filer (A07-XML, ledger.json, Excel) ligger i scratch.
 ```bash
-python scripts/lonnsavstemming_a07.py a07.xml ledger.json "Lønnsavstemming <Klient> termin <n> <år>.xlsx"
-python <xlsx-skill>/scripts/recalc.py "<fil>.xlsx" 60   # total_errors må være 0
-python scripts/lag_pdf.py "<fil>.xlsx" ledger.json "<fil>.pdf"   # etter recalc; sjekk side 1 med pdftoppm
+uv run --with openpyxl --with pillow python .claude/skills/lonnsavstemming-a07/scripts/lonnsavstemming_a07.py <scratch>/a07.xml <scratch>/ledger.json "<scratch>/Lønnsavstemming <Klient> termin <n> <år>.xlsx"
 ```
-Dump alle ark (openpyxl data_only) og les dem. Krav før levering:
+LibreOffice finnes ikke på maskinene, så formlene beregnes først når filen åpnes i Excel. Kontroller med openpyxl at ingen celle inneholder feilverdier (`#REF!`, `#VALUE!`, `#DIV/0!`) og at summene i «Avstemming» stemmer med ledger.json. Dump alle ark og les dem. Krav før levering:
 - «Avstemming»: antall AVVIK = 0, eller hvert AVVIK er reelt og har merknad. FORKLART kun med merknad.
 - «Per ansatt»: alle rader OK, ingen «Koblingsproblemer» (ellers: feil `ytelse_konto`, eller tillegg ført utenfor lønnsbilag/reiseregning).
 - «Arbeidsgiveravgift» pkt. 2: «Uforklart differanse» = 0. Konti merket «NEI – kontroller» (bevegelse uten lønnsbilag, typisk 5320) = mulig ikke-innrapportert fordel → merknad.
@@ -42,15 +46,21 @@ Dump alle ark (openpyxl data_only) og les dem. Krav før levering:
 Merknader = korte faktasetninger med bilagsnr., beløp, årsak, tiltak – ikke prosa.
 
 ### 5. Lever
-Begge filer (xlsx + pdf) til `/mnt/user-data/outputs/`, SendUserFile, commit til tilkoblet mappe hvis mulig.
-Lokalt (avstemminger-mappa): xlsx + pdf i `<Kundemappe>/<år>/Lønnsavstemminger/`, A07-XML i `<Kundemappe>/<år>/A07/`. Svar 3–6 linjer: stemmer/avvik, skyldig AGA + forfall + KID, hvert avvik med beløp og tiltak.
+- Del Excel-filen i chatten med SendUserFile.
+- Last den opp i Tally på oppgaven «Terminvis lønnsavstemming» (`upload_document`, kategori LONN, periode «<år>-T<n>») etter ja. Er filen over 3 MB: `start_opplasting`.
+- Bruker byrået avstemmingsmodulen i Tripletex for lønn, er kommentarer og vedlegg der **Krever CLI (Sjur) eller Tripletex-UI:** (se `tripletex-api/docs/avstemmingsmodul.md`).
+  Kommentarer er én kort setning, for eksempel «Utbetalte feriepenger.» eller «Kravet skyldes ubetalt AGA etter korreksjon, se vedlegg.»
+- Svar 3–6 linjer: stemmer/avvik, skyldig AGA + forfall + KID, hvert avvik med beløp og tiltak. Ingen navn eller beløp per person.
+- Fullfør i Tally: foreslå tidsbruk, spør, og ved ja `add_task_comment` + `log_time` + `complete_task` (se `tally-gjoremal`).
+- Slett A07-XML og ledger.json fra scratch.
 
 ## Skriptene
 
-Ligger i `scripts/` og er verifisert mot de ferdige avstemmingene i kundemappene:
+Ligger i `scripts/`. Excel-skriptene er verifisert mot ferdige avstemminger fra september 2026; `hent_tripletex.js` er nytt (oktober 2026) og må kontrolleres mot ett ekte uttrekk første gang:
 
 | Fil | Gjør |
 |---|---|
+| `hent_tripletex.js` | datauttrekk i `tripletex_run_script`: posteringer, saldoer og pensjon hittil i år |
 | `a07.py` | parser A07-XML: innsendinger, grunnlag, ytelser per person, trekk |
 | `kobling.py` | kobler A07-beløp mot lønnsbilagslinjer ved beløpsmatching |
 | `stil.py` | Silfer-formatering (farger, fonter, statusregler) |
@@ -65,7 +75,7 @@ Ikke skriv skriptet på nytt. Finner du en feil, rett den i `scripts/` og kjør
 verifiseringen mot en eksisterende rapport på nytt.
 
 ## Fallgruver
-- **Aldri Claude i Chrome / Tripletex-web.** Connector nede → si fra, vent, prøv igjen.
+- **Ikke nettleseren mot Tripletex.** MCP-en nede → si fra, vent, prøv igjen.
 - `get_balance_sheet` utelater 2600 når IB/bevegelse/UB = 0 – bruk posteringene.
 - A07 gir trekk per person for hele terminen; månedsfordeling kommer fra 2600-linjene.
 - EK: naturalytelse (5210 + motkonto 5290) eller utgiftsgodtgjørelse (5390, kontant) – les `fordel`.

@@ -1,0 +1,1105 @@
+{
+  "group": "system",
+  "tags": [
+    {
+      "tag": "accountantDashboard/news",
+      "beskrivelse": "Offentlige nyhetsartikler og nyhetstagger fra Tripletex sitt regnskapsførerdashbord (produktnyheter og driftsmeldinger).",
+      "nokkelord": [
+        "nyheter",
+        "news",
+        "regnskapsførerdashbord",
+        "regnskapsforerdashbord",
+        "accountant dashboard",
+        "driftsmelding",
+        "produktnyheter",
+        "tripletex-nytt",
+        "artikler",
+        "nyhetstagger",
+        "kunngjøringer",
+        "kunngjoringer",
+        "hva er nytt",
+        "nyhetsartikler",
+        "release notes",
+        "oppdateringer i tripletex"
+      ]
+    },
+    {
+      "tag": "token/consumer",
+      "beskrivelse": "Oppslag av consumer token (integrasjonens/API-konsumentens nøkkel) ut fra token-strengen.",
+      "nokkelord": [
+        "consumer token",
+        "consumertoken",
+        "api-konsument",
+        "api konsument",
+        "integrasjonsnøkkel",
+        "integrasjonsnokkel",
+        "api consumer",
+        "applikasjonsnøkkel",
+        "token",
+        "autentisering",
+        "api-nøkkel",
+        "api nokkel",
+        "consumer key",
+        "integrasjonspartner",
+        "hvilken integrasjon",
+        "bytoken"
+      ]
+    },
+    {
+      "tag": "token/employee",
+      "beskrivelse": "Opprettelse av employee token (brukerens API-nøkkel knyttet til en ansatt og en consumer) – kun for utvalgte consumere.",
+      "nokkelord": [
+        "employee token",
+        "employeetoken",
+        "ansattoken",
+        "brukernøkkel",
+        "brukernokkel",
+        "api-tilgang",
+        "api tilgang",
+        "api-nøkkel",
+        "api nokkel",
+        "opprette token",
+        "integrasjon",
+        "tilgangsnøkkel",
+        "tilgangsnokkel",
+        "utløpsdato token",
+        "api-bruker",
+        "integrasjonsbruker",
+        "employee key",
+        "brukertoken"
+      ]
+    },
+    {
+      "tag": ".well-known",
+      "beskrivelse": "Offentlig JSON Web Key Set (JWKS) for å verifisere signaturen på Tripletex-JWT-er (f.eks. refresh-/session-tokens).",
+      "nokkelord": [
+        "jwks",
+        "jwks.json",
+        "well-known",
+        "json web key",
+        "jwt",
+        "signatur",
+        "verifisere token",
+        "public key",
+        "offentlig nøkkel",
+        "offentlig nokkel",
+        "nøkkelsett",
+        "tokenverifisering"
+      ]
+    },
+    {
+      "tag": "token/session",
+      "beskrivelse": "Innlogging mot API-et: lage/slette session token (fra consumer+employee token eller refresh token) og finne ut hvem som er innlogget (whoAmI).",
+      "nokkelord": [
+        "session token",
+        "sessiontoken",
+        "innlogging",
+        "logge inn",
+        "autentisering",
+        "authentication",
+        "refresh token",
+        "tlxr",
+        "jwt",
+        "whoami",
+        "hvem er jeg",
+        "innlogget bruker",
+        "logge ut",
+        "utlogging",
+        "basic auth",
+        "companyid",
+        "proxy",
+        "401",
+        "api-innlogging",
+        "createfromrefreshtoken",
+        "ttlseconds",
+        "sesjonstoken",
+        "token utløpt",
+        "token utlopt",
+        "actualemployeeid"
+      ]
+    },
+    {
+      "tag": "company",
+      "beskrivelse": "Selskapets/klientens firmaopplysninger (navn, org.nr., selskapsform, adresse, valuta) og listen over regnskapsklienter man har innloggingstilgang til.",
+      "nokkelord": [
+        "selskap",
+        "firma",
+        "klient",
+        "klienter",
+        "klientliste",
+        "regnskapsklient",
+        "firmaopplysninger",
+        "organisasjonsnummer",
+        "org.nr",
+        "orgnr",
+        "selskapsform",
+        "organisasjonsform",
+        "enkeltpersonforetak",
+        "withloginaccess",
+        "regnskapsfører",
+        "regnskapsforer",
+        "revisor",
+        "underenhet",
+        "klientoversikt",
+        "regnskapsbyrå",
+        "portefølje",
+        "proxy login",
+        "klient-id",
+        "firmanavn",
+        "foretaksform"
+      ]
+    },
+    {
+      "tag": "company/salesmodules",
+      "beskrivelse": "Aktive salgsmoduler (funksjonalitet/abonnementsmoduler som lønn, prosjekt, anleggsregister, årsoppgjør, OCR) og aktivering av nye moduler (BETA).",
+      "nokkelord": [
+        "moduler",
+        "salgsmoduler",
+        "sales modules",
+        "aktivere modul",
+        "lønnsmodul",
+        "lonnsmodul",
+        "prosjektmodul",
+        "anleggsregister",
+        "årsoppgjørsmodul",
+        "timeføring",
+        "timeforing",
+        "ocr",
+        "api_v2",
+        "logistikk",
+        "bilagspakke",
+        "lisens",
+        "abonnement",
+        "autoplus",
+        "bilagstolkning",
+        "elektroniske bilag",
+        "wage",
+        "hvorfor 403",
+        "manglende modul",
+        "arsoppgjorsmodul"
+      ]
+    },
+    {
+      "tag": "country",
+      "beskrivelse": "Oppslag i landregisteret (navn og ISO-koder) for å sette land på adresser, kunder, leverandører og ansatte.",
+      "nokkelord": [
+        "land",
+        "landkode",
+        "country",
+        "iso",
+        "iso-kode",
+        "alpha2",
+        "alpha3",
+        "norge",
+        "utland",
+        "utenlandsk",
+        "adresse land",
+        "country id",
+        "nasjonalitet",
+        "ztl",
+        "landliste",
+        "landskode",
+        "sverige",
+        "danmark",
+        "isoalpha2code",
+        "utenlandsk kunde",
+        "utenlandsk leverandør",
+        "utenlandsk leverandor"
+      ]
+    },
+    {
+      "tag": "event",
+      "beskrivelse": "Oversikt over tilgjengelige webhook-hendelser (event-nøkler) og eksempel-payload for hver hendelsestype (BETA).",
+      "nokkelord": [
+        "webhook",
+        "webhooks",
+        "hendelse",
+        "hendelser",
+        "event",
+        "events",
+        "event-nøkler",
+        "event nokler",
+        "varsling",
+        "notifikasjon",
+        "callback",
+        "payload",
+        "eksempel",
+        "integrasjon",
+        "sanntid",
+        "webhook-hendelser",
+        "event types",
+        "subject.verb",
+        "eksempel-payload",
+        "hendelsestyper"
+      ]
+    },
+    {
+      "tag": "event/subscription",
+      "beskrivelse": "Opprette, liste, endre og slette webhook-abonnementer som sender varsler til en HTTPS-URL når data endres i Tripletex (BETA).",
+      "nokkelord": [
+        "webhook",
+        "webhook-abonnement",
+        "abonnement",
+        "subscription",
+        "event subscription",
+        "hendelsesabonnement",
+        "callback-url",
+        "targeturl",
+        "hmac",
+        "signatur",
+        "varsling",
+        "notifikasjon",
+        "deaktivert webhook",
+        "disabled",
+        "reaktivere webhook",
+        "slette webhook",
+        "integrasjon",
+        "sanntidsvarsel",
+        "webhooks",
+        "x-request-signature",
+        "authheadername",
+        "callback url",
+        "webhook status",
+        "disabled_too_many_errors"
+      ]
+    },
+    {
+      "tag": "license",
+      "beskrivelse": "Status for og signering av Visma Developer Terms (utviklervilkår) på vegne av selskapet.",
+      "nokkelord": [
+        "lisens",
+        "license",
+        "developer terms",
+        "utviklervilkår",
+        "utviklervilkar",
+        "visma developer terms",
+        "vilkår",
+        "vilkar",
+        "signere vilkår",
+        "avtale",
+        "godta vilkår",
+        "api-vilkår",
+        "developer terms signert",
+        "juridisk aksept",
+        "visma"
+      ]
+    },
+    {
+      "tag": "municipality",
+      "beskrivelse": "Oppslag av norske kommuner med kommunenummer, fylke og arbeidsgiveravgiftssone (sone for AGA).",
+      "nokkelord": [
+        "kommune",
+        "kommuner",
+        "kommunenummer",
+        "municipality",
+        "fylke",
+        "arbeidsgiveravgift",
+        "aga",
+        "aga-sone",
+        "arbeidsgiveravgiftssone",
+        "sone",
+        "payroll tax zone",
+        "virksomhet",
+        "underenhet",
+        "a-melding",
+        "skattekommune",
+        "kommunenr",
+        "aga sone",
+        "arbeidsgiveravgiftsone",
+        "sone 1a",
+        "sone 4a",
+        "sone 5",
+        "tiltakssonen",
+        "nord-troms",
+        "finnmark",
+        "payrolltaxzone"
+      ]
+    },
+    {
+      "tag": "subscription",
+      "beskrivelse": "Tripletex-abonnementet (kontoen) for selskapet: tilgjengelige pakker/moduler med priser, oppsigelse/stenging av kontoen og gjenåpning – ikke webhook-abonnementer.",
+      "nokkelord": [
+        "abonnement",
+        "subscription",
+        "pakker",
+        "priser",
+        "si opp",
+        "oppsigelse",
+        "stenge konto",
+        "avslutte konto",
+        "lesetilgang",
+        "gjenåpne",
+        "gjenapne",
+        "reaktivere",
+        "tripletex-pakke",
+        "lisens",
+        "tripletex-abonnement",
+        "kontoabonnement",
+        "avslutte tripletex",
+        "bytte pakke",
+        "mikro",
+        "komplett",
+        "månedspris"
+      ]
+    },
+    {
+      "tag": "supportDashboard",
+      "beskrivelse": "Support-/partnerdashbord: kunder som er konkurs eller unntatt fra deaktivering/sletting, og eksport av kundetabellen (normalt kun for Tripletex-support/partnere).",
+      "nokkelord": [
+        "support",
+        "supportdashbord",
+        "support dashboard",
+        "konkurs",
+        "avvikling",
+        "tvangsavvikling",
+        "likvidert",
+        "ekskludert",
+        "suspendert",
+        "kundetabell",
+        "eksport",
+        "partner",
+        "export",
+        "tvangsoppløsning",
+        "tvangsopplosning",
+        "slettet foretak",
+        "konkursbo",
+        "bankrupt",
+        "liquidated"
+      ]
+    },
+    {
+      "tag": "userLicense",
+      "beskrivelse": "Eksport av brukerlisenstabellen (hvilke brukere/lisenser som er aktive i en periode) til PDF eller CSV.",
+      "nokkelord": [
+        "brukerlisens",
+        "brukerlisenser",
+        "user license",
+        "lisenser",
+        "antall brukere",
+        "brukere",
+        "eksport",
+        "csv",
+        "pdf",
+        "fakturagrunnlag",
+        "lisensoversikt",
+        "aktive brukere",
+        "brukeroversikt",
+        "lisenskostnad",
+        "lisensrapport",
+        "brukerlisensrapport",
+        "terminerte brukere",
+        "kontaktbrukere",
+        "user license export"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Liste alle klientene jeg (regnskapsføreren) har innloggingstilgang til og finne klient-ID",
+      "nokkelord": [
+        "klienter",
+        "klientliste",
+        "mine klienter",
+        "regnskapsklienter",
+        "kunder",
+        "klient-id",
+        "company id",
+        "companyid",
+        "proxy",
+        "innloggingstilgang",
+        "hvilke klienter",
+        "finn klient",
+        "withloginaccess",
+        "regnskapsfører",
+        "regnskapsforer",
+        "revisor",
+        "klientoversikt",
+        "regnskapsbyrå",
+        "portefølje",
+        "proxy login"
+      ],
+      "kall": [
+        "GET /company/>withLoginAccess"
+      ],
+      "fremgangsmate": "GET /company/>withLoginAccess med companyId 0 (egen bedrift) som brukernavn i Basic auth. Bruk fields=id,name,organizationNumber,type (count default 1000, bruk from/count ved flere). Feltet id er klientens company-id som brukes som brukernavn i Basic auth (\"<id>:<sessionToken>\") for alle videre kall mot klienten – ikke customerCompanyId. Unngå email/phoneNumber i fields (kan være personopplysninger for ENK). Lokalt: `npm run connect` lister klientene dynamisk – aldri hardkod eller filtrer listen, og gjør ingenting mot en klient før brukeren har navngitt den. '>' må være med i stien (aggregat-endepunkt).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke hvem jeg er innlogget som og hvilket selskap tokenet peker mot",
+      "nokkelord": [
+        "whoami",
+        "hvem er jeg",
+        "innlogget",
+        "innlogget bruker",
+        "hvilken bedrift",
+        "hvilket selskap",
+        "sjekk token",
+        "test tilkobling",
+        "tilkobling",
+        "proxy",
+        "employeeisproxy",
+        "company id",
+        "min bruker"
+      ],
+      "kall": [
+        "GET /token/session/>whoAmI"
+      ],
+      "fremgangsmate": "GET /token/session/>whoAmI (med companyId 0 eller klientens id som brukernavn). Bruk fields=employeeId,actualEmployeeId,companyId,company(id,name,organizationNumber),employeeIsProxy,loggedInWithConnect,language – ikke employee(*) (GDPR). companyId i svaret bekrefter hvilken klient kallet faktisk går mot; employeeIsProxy=true betyr regnskapsfører-innlogging hos klient (actualEmployeeId = den faktiske brukeren bak proxy). God første test ved 401/403. Lokalt: `npm run probe -- \"klient\"`.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente firmaopplysninger for en klient (navn, org.nr., selskapsform, adresse, valuta, oppstartsdato)",
+      "nokkelord": [
+        "firmaopplysninger",
+        "selskapsinfo",
+        "firmainfo",
+        "organisasjonsnummer",
+        "org.nr",
+        "orgnr",
+        "adresse",
+        "forretningsadresse",
+        "valuta",
+        "basisvaluta",
+        "startdato",
+        "firmanavn",
+        "company",
+        "selskap",
+        "klientinfo"
+      ],
+      "kall": [
+        "GET /token/session/>whoAmI",
+        "GET /company/{id}",
+        "GET /company/>withLoginAccess"
+      ],
+      "fremgangsmate": "1) Finn company-id via GET /token/session/>whoAmI?fields=companyId (når kallet går mot klienten) eller fra GET /company/>withLoginAccess?fields=id,name. 2) GET /company/{id}?fields=id,version,name,organizationNumber,type,startDate,endDate,address(addressLine1,postalCode,city,country(isoAlpha2Code)),currency(code) med klientens id som companyId i auth. Alternativt i ett kall: whoAmI?fields=company(name,organizationNumber,type,currency(code)). Firmanavn/org.nr. er greit å vise; unngå e-post/telefon (kan være personopplysninger for ENK).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne selskapsform/organisasjonsform til en klient (AS, ENK, ANS, DA, NUF osv.)",
+      "nokkelord": [
+        "selskapsform",
+        "organisasjonsform",
+        "foretaksform",
+        "as",
+        "enk",
+        "enkeltpersonforetak",
+        "ans",
+        "da",
+        "nuf",
+        "sa",
+        "asa",
+        "stiftelse",
+        "forening",
+        "type",
+        "årsoppgjør",
+        "arsoppgjor",
+        "skattemelding",
+        "næringsoppgave"
+      ],
+      "kall": [
+        "GET /company/{id}",
+        "GET /company/>withLoginAccess"
+      ],
+      "fremgangsmate": "GET /company/{id}?fields=name,organizationNumber,type – type er enum (NONE, ENK, AS, NUF, ANS, DA, PRE, KS, ASA, BBL, BRL, GFS, SPA, SF, IKS, KF_FKF, FCD, EOFG, BA, STI, ORG, ESEK, SA, SAM, BO, VPFO, OS, FLI, Other). For mange klienter samtidig: GET /company/>withLoginAccess?fields=id,name,type. Relevant for valg av årsoppgjørsmodul (YEAR_END_REPORTING_AS/ENK/…) og skattemelding.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Oppdatere firmaopplysninger (adresse, e-post, telefon, navn, selskapsform)",
+      "nokkelord": [
+        "oppdatere firma",
+        "endre adresse",
+        "ny adresse",
+        "endre firmanavn",
+        "endre selskapsform",
+        "firmaopplysninger",
+        "oppdatere selskap",
+        "company update",
+        "endre e-post",
+        "endre telefon",
+        "flytting"
+      ],
+      "kall": [
+        "GET /token/session/>whoAmI",
+        "GET /company/{id}",
+        "PUT /company"
+      ],
+      "fremgangsmate": "1) Bekreft klient med GET /token/session/>whoAmI?fields=companyId,company(name). 2) GET /company/{id}?fields=id,version,name,type,organizationNumber,address(*) for gjeldende version. 3) PUT /company med body {id, version, <kun feltene som endres>} – delvis oppdatering via PUT er støttet. Skrivbare felt: name, startDate, endDate, organizationNumber, email, phoneNumber, phoneNumberMobile, faxNumber, address, type, currency. Ingen id i stien – oppdaterer selskapet kallet går mot (companyId i auth). Skrivende: krever brukerens bekreftelse. 409 = versjonskonflikt, hent på nytt.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sjekke hvilke moduler klienten har aktivert (lønn, prosjekt, anleggsregister, årsoppgjør, OCR/bilagsmottak)",
+      "nokkelord": [
+        "moduler",
+        "aktive moduler",
+        "salgsmoduler",
+        "har klienten lønn",
+        "lønnsmodul",
+        "lonnsmodul",
+        "prosjektmodul",
+        "anleggsregister",
+        "anleggsmidler",
+        "årsoppgjørsmodul",
+        "arsoppgjorsmodul",
+        "ocr",
+        "bilagsmottak",
+        "ehf",
+        "api-modul",
+        "abonnement",
+        "hvorfor 403",
+        "funksjonalitet"
+      ],
+      "kall": [
+        "GET /company/salesmodules",
+        "GET /subscription/packages"
+      ],
+      "fremgangsmate": "GET /company/salesmodules?fields=name,costStartDate (BETA) gir aktive moduler (f.eks. WAGE, SMART_WAGE, PROJECT, SMART_PROJECT, FIXED_ASSETS_REGISTER, YEAR_END_REPORTING_AS, OCR, ELECTRONIC_VOUCHERS, API_V2, LOGISTICS). For en mer lesbar oversikt med aktiv/tilgjengelig og pris: GET /subscription/packages?fields=title,active,available,monthlyPrice. Nyttig når et endepunkt gir 403 – ofte mangler modulen.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Aktivere en ny modul for klienten (f.eks. lønn, prosjekt, anleggsregister eller årsoppgjør)",
+      "nokkelord": [
+        "aktivere modul",
+        "slå på modul",
+        "sla pa modul",
+        "bestille modul",
+        "legge til modul",
+        "lønn",
+        "lonn",
+        "prosjekt",
+        "anleggsregister",
+        "årsoppgjør",
+        "arsoppgjor",
+        "sales module",
+        "oppgradere",
+        "kjøpe modul",
+        "kjope modul"
+      ],
+      "kall": [
+        "GET /company/salesmodules",
+        "GET /subscription/packages",
+        "POST /company/salesmodules"
+      ],
+      "fremgangsmate": "1) GET /company/salesmodules?fields=name,costStartDate for å se hva som allerede er aktivt (evt. GET /subscription/packages?fields=title,active,available,monthlyPrice for pris). 2) POST /company/salesmodules med body {name: <enum, f.eks. WAGE | SMART_WAGE | PROJECT | SMART_PROJECT | TIME_TRACKING | FIXED_ASSETS_REGISTER | YEAR_END_REPORTING_AS | YEAR_END_REPORTING_ENK | YEAR_END_REPORTING_ANS/DA/SA/STI/ORG/FLI/NUF | OCR | ELECTRONIC_VOUCHERS | LOGISTICS>, costStartDate: 'YYYY-MM-DD'}. BETA, svarer 201. Mange moduler har ekstra kostnad for klienten – krever alltid eksplisitt bekreftelse. Det finnes ikke noe API-kall for å deaktivere en modul.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se hvilke abonnementspakker og priser som finnes for kontoen",
+      "nokkelord": [
+        "abonnement",
+        "pakker",
+        "priser",
+        "pris",
+        "hva koster",
+        "månedspris",
+        "manedspris",
+        "tripletex-pakke",
+        "basis",
+        "smart",
+        "komplett",
+        "mikro",
+        "tilgjengelige moduler",
+        "kostnad"
+      ],
+      "kall": [
+        "GET /subscription/packages"
+      ],
+      "fremgangsmate": "GET /subscription/packages?fields=id,title,shortDescription,active,available,monthlyPrice,yearlyPrice,startUpPrice,perUserPrice,canDeactivate,possibleStartDate. Svaret er en ResponseWrapper der listen ligger i value (ikke values), og endepunktet har ingen paging. Kun lesing.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Si opp / stenge Tripletex-kontoen til en klient (med eller uten lesetilgang)",
+      "nokkelord": [
+        "si opp",
+        "oppsigelse",
+        "stenge konto",
+        "avslutte abonnement",
+        "avslutte kunde",
+        "legge ned",
+        "avvikling",
+        "lesetilgang",
+        "arkiv",
+        "oppbevaringsplikt",
+        "cancel subscription",
+        "slette konto"
+      ],
+      "kall": [
+        "GET /token/session/>whoAmI",
+        "PUT /subscription/cancel"
+      ],
+      "fremgangsmate": "1) Bekreft klient med GET /token/session/>whoAmI?fields=companyId,company(name,organizationNumber). 2) PUT /subscription/cancel med body {readAccess: true|false, nbOfYears: <antall år med lesetilgang>}. Husk bokføringslovens oppbevaringsplikt (5 år for primærdokumentasjon) – velg normalt readAccess=true. Svært inngripende og kan ha kostnad: kun etter eksplisitt bekreftelse fra brukeren.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Gjenåpne en stengt Tripletex-konto med tidligere moduler",
+      "nokkelord": [
+        "gjenåpne",
+        "gjenapne",
+        "reaktivere konto",
+        "åpne konto igjen",
+        "apne konto igjen",
+        "reactivate",
+        "angre oppsigelse",
+        "abonnement"
+      ],
+      "kall": [
+        "PUT /subscription/reactivate"
+      ],
+      "fremgangsmate": "PUT /subscription/reactivate (ingen body) gjenåpner kontoen med tidligere moduler. Medfører fakturering av abonnement – krever brukerens bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slå opp land og landkode (ISO) for å sette land på kunde, leverandør, ansatt eller adresse",
+      "nokkelord": [
+        "land",
+        "landkode",
+        "country",
+        "iso",
+        "iso-kode",
+        "norge",
+        "sverige",
+        "utland",
+        "utenlandsk kunde",
+        "utenlandsk leverandør",
+        "adresse",
+        "country id",
+        "se",
+        "dk",
+        "de"
+      ],
+      "kall": [
+        "GET /country",
+        "GET /country/{id}"
+      ],
+      "fremgangsmate": "GET /country?code=NO,SE,DK&fields=id,name,isoAlpha2Code,isoAlpha3Code (code tar kommaseparert liste med ISO-koder; count default 1000). Bruk id i f.eks. address.country.id / postalAddress.country.id ved POST/PUT av kunde/leverandør/ansatt. GET /country/{id} for enkeltoppslag. isDisabled=false for kun aktive land. Slå alltid opp id i stedet for å hardkode.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Slå opp kommune, kommunenummer og arbeidsgiveravgiftssone",
+      "nokkelord": [
+        "kommune",
+        "kommunenummer",
+        "fylke",
+        "aga-sone",
+        "arbeidsgiveravgiftssone",
+        "sone 1a",
+        "sone 2",
+        "sone 5",
+        "arbeidsgiveravgift",
+        "aga",
+        "virksomhet",
+        "underenhet",
+        "a-melding",
+        "lønn",
+        "lonn",
+        "municipality"
+      ],
+      "kall": [
+        "GET /municipality",
+        "GET /municipality/query"
+      ],
+      "fremgangsmate": "Søk på navn: GET /municipality/query?query=Bergen&fields=id,number,name,county (BETA, «containing»-søk; merk count default 25). Full liste med soner: GET /municipality?includePayrollTaxZones=true&fields=id,number,name,county,payrollTaxZone (count default 1000 – dekker alle kommuner; /municipality har ikke navnefilter). Kommune-id brukes på virksomhet/underenhet (Division.municipality) som styrer AGA-sone i a-meldingen.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Se og endre virksomheter/underenheter (divisjoner) og deres kommune for a-melding",
+      "nokkelord": [
+        "virksomhet",
+        "underenhet",
+        "divisjon",
+        "division",
+        "bedrift",
+        "juridisk enhet",
+        "kommune",
+        "aga-sone",
+        "a-melding",
+        "arbeidsgiveravgift",
+        "org.nr underenhet",
+        "lønn",
+        "lonn"
+      ],
+      "kall": [
+        "GET /company/divisions",
+        "GET /division",
+        "PUT /division/{id}",
+        "GET /municipality/query"
+      ],
+      "fremgangsmate": "Bruk GET /division?fields=id,version,name,organizationNumber,municipality(number,name),municipalityDate,startDate,endDate (GET /company/divisions er DEPRECATED – kun fallback). For å bytte kommune: finn kommune-id via GET /municipality/query?query=<navn>, så PUT /division/{id} med {id, version, municipality:{id}, municipalityDate:'YYYY-MM-DD'} (dato endringen gjelder fra). Endring påvirker AGA-sone i a-meldingen – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Liste hvilke webhook-hendelser som finnes og se eksempel-payload",
+      "nokkelord": [
+        "webhook",
+        "hendelser",
+        "events",
+        "event-typer",
+        "hvilke hendelser",
+        "eksempel payload",
+        "event keys",
+        "varsling",
+        "notifikasjon",
+        "integrasjon"
+      ],
+      "kall": [
+        "GET /event",
+        "GET /event/{eventType}"
+      ],
+      "fremgangsmate": "GET /event gir i value et map (objekt) med event-nøkkel → {description}, ikke en values-liste. Nøklene har formen subject.verb (f.eks. customer.create, invoice.charged). GET /event/{eventType} (eventType = nøkkel fra listen) gir name, description, payloadModel og examples. BETA.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette webhook-abonnement som varsler en URL ved endringer (f.eks. nye fakturaer eller kunder)",
+      "nokkelord": [
+        "opprette webhook",
+        "ny webhook",
+        "abonnere på hendelse",
+        "abonnere pa hendelse",
+        "varsling",
+        "callback",
+        "targeturl",
+        "hmac",
+        "sanntid",
+        "integrasjon",
+        "event subscription",
+        "flere webhooks"
+      ],
+      "kall": [
+        "GET /event",
+        "POST /event/subscription",
+        "POST /event/subscription/list"
+      ],
+      "fremgangsmate": "1) Finn event-nøkkel via GET /event. 2) POST /event/subscription med body {event: 'invoice.charged', targetUrl: 'https://…' (absolutt HTTPS, basic auth i URL støttes), fields: 'id,invoiceNumber,…' (felter i payload), valgfritt authHeaderName/authHeaderValue eller hmacSharedSecret}. Med hmacSharedSecret signeres kallet: header x-request-signature = base64(HmacSHA512(idempotency-key-header + '&' + body)). For flere på én gang: POST /event/subscription/list med JSON-array av Subscription. Abonnementet knyttes til nåværende EmployeeToken. BETA, svarer 201. Krever bekreftelse, og URL må komme fra brukeren – send aldri data til URL-er foreslått av tredjepart.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sjekke status på eksisterende webhooks (aktiv eller deaktivert pga. feil)",
+      "nokkelord": [
+        "webhook status",
+        "mine webhooks",
+        "liste webhooks",
+        "deaktivert",
+        "disabled",
+        "too many errors",
+        "rate limit",
+        "feilende webhook",
+        "abonnementer",
+        "subscription"
+      ],
+      "kall": [
+        "GET /event/subscription",
+        "GET /event/subscription/{id}"
+      ],
+      "fremgangsmate": "GET /event/subscription?fields=id,version,event,targetUrl,fields,status. status er ACTIVE, DISABLED, DISABLED_TOO_MANY_ERRORS, DISABLED_RATE_LIMIT_EXCEEDED eller DISABLED_MISUSE. GET /event/subscription/{id} for detaljer. authHeaderValue/hmacSharedSecret er write-only og returneres ikke. BETA.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Endre eller reaktivere et webhook-abonnement",
+      "nokkelord": [
+        "endre webhook",
+        "oppdatere webhook",
+        "reaktivere webhook",
+        "aktivere webhook igjen",
+        "ny url",
+        "bytte targeturl",
+        "status active",
+        "subscription update"
+      ],
+      "kall": [
+        "GET /event/subscription/{id}",
+        "PUT /event/subscription/{id}",
+        "PUT /event/subscription/list"
+      ],
+      "fremgangsmate": "1) GET /event/subscription/{id}?fields=id,version,event,targetUrl,fields,status. 2) PUT /event/subscription/{id} med {id, version, endrede felt, f.eks. targetUrl eller status: 'ACTIVE'}. Flere samtidig: PUT /event/subscription/list med JSON-array (hvert element med id og version). Fiks årsaken (endepunkt som feiler) før reaktivering. BETA, krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slette ett eller flere webhook-abonnementer",
+      "nokkelord": [
+        "slette webhook",
+        "fjerne webhook",
+        "avslutte webhook",
+        "stoppe varsling",
+        "delete subscription",
+        "rydde webhooks"
+      ],
+      "kall": [
+        "GET /event/subscription",
+        "DELETE /event/subscription/{id}",
+        "DELETE /event/subscription/list"
+      ],
+      "fremgangsmate": "Finn id-er med GET /event/subscription?fields=id,event,targetUrl,status. Slett én: DELETE /event/subscription/{id}. Slett flere: DELETE /event/subscription/list?ids=1,2,3 (ids påkrevd, kommaseparert). BETA. Sletting krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Lage session token fra refresh token (tlxr_) for å kunne gjøre API-kall",
+      "nokkelord": [
+        "session token",
+        "refresh token",
+        "tlxr",
+        "jwt",
+        "logge inn",
+        "innlogging",
+        "autentisering",
+        "token utløpt",
+        "401",
+        "fornye token",
+        "ttl",
+        "createfromrefreshtoken"
+      ],
+      "kall": [
+        "POST /token/session/:createFromRefreshToken"
+      ],
+      "fremgangsmate": "POST /token/session/:createFromRefreshToken med body {refreshToken: 'tlxr_…', ttlSeconds: 300–28800}. Svaret gir value.token = sessionToken, brukes som passord i Basic auth med companyId (0 = egen bedrift, ellers klient-id) som brukernavn. Håndteres automatisk av src/auth.js i den lokale koblingen – tokenet i .env skal aldri vises, logges eller sendes videre. Endrer ingen regnskapsdata.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Lage session token fra consumer token og employee token",
+      "nokkelord": [
+        "session token",
+        "consumer token",
+        "employee token",
+        "logge inn",
+        "autentisering",
+        "innlogging",
+        "expirationdate",
+        "sessiontoken",
+        "basic auth"
+      ],
+      "kall": [
+        "POST /token/session/:create",
+        "PUT /token/session/:create"
+      ],
+      "fremgangsmate": "Foretrukket: POST /token/session/:create med body {consumerToken, employeeToken, expirationDate: 'YYYY-MM-DD'} (feltbeskrivelsene i spec er byttet om – følg feltnavnene). PUT /token/session/:create med query-parametere er DEPRECATED og legger tokens i URL/logger – unngå. Bruk value.token som passord i Basic auth ('<companyId|0>:<sessionToken>'). Endrer ingen regnskapsdata. Aldri vis eller logg tokens.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Logge ut / ugyldiggjøre et session token",
+      "nokkelord": [
+        "logge ut",
+        "utlogging",
+        "slette token",
+        "ugyldiggjøre token",
+        "ugyldiggjore",
+        "revoke",
+        "invalidere session",
+        "sikkerhet"
+      ],
+      "kall": [
+        "DELETE /token/session/{token}"
+      ],
+      "fremgangsmate": "DELETE /token/session/{token} med session-tokenet i stien. Påvirker kun innloggingen, ikke regnskapsdata. Tokenet havner i URL – ikke logg forespørselen. Normalt unødvendig når refresh-token-flyten med kort TTL brukes.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Opprette et employee token (API-nøkkel) for en ansatt",
+      "nokkelord": [
+        "employee token",
+        "api-nøkkel",
+        "api nokkel",
+        "ny api-tilgang",
+        "opprette token",
+        "integrasjonsbruker",
+        "systembruker",
+        "tilgangsnøkkel",
+        "tilgangsnokkel",
+        "api-bruker"
+      ],
+      "kall": [
+        "GET /employee",
+        "PUT /token/employee/:create"
+      ],
+      "fremgangsmate": "1) Finn employeeId med GET /employee?fields=id (filtrer minimalt – GDPR, ikke skriv ut navn/e-post). 2) PUT /token/employee/:create med query-parametere tokenName*, consumerName*, employeeId*, companyOwned* (true/false), expirationDate* (YYYY-MM-DD). Kun utvalgte consumere har lov (ellers 403). Tokenet i svaret er hemmelig – aldri vis eller logg det. Krever bekreftelse. Vanligvis opprettes employee token manuelt av administrator under brukerinnstillinger → API-tilgang.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slå opp consumer token (hvilken integrasjon/API-konsument et token tilhører)",
+      "nokkelord": [
+        "consumer token",
+        "api consumer",
+        "integrasjon",
+        "hvilken app",
+        "applikasjon",
+        "tokeninfo",
+        "utløpsdato",
+        "bytoken"
+      ],
+      "kall": [
+        "GET /token/consumer/byToken"
+      ],
+      "fremgangsmate": "GET /token/consumer/byToken?token=<consumerToken>&fields=id,apiConsumer(*),expirationDate. Tokenet sendes i query-strengen – unngå logging av URL. Vis aldri selve tokenet i svar.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Verifisere signaturen på en Tripletex-JWT (hente JWKS)",
+      "nokkelord": [
+        "jwks",
+        "jwt",
+        "verifisere",
+        "signatur",
+        "public key",
+        "well-known",
+        "tokenvalidering",
+        "kid"
+      ],
+      "kall": [
+        "GET /.well-known/jwks.json"
+      ],
+      "fremgangsmate": "GET /.well-known/jwks.json (krever ingen autentisering) returnerer offentlige nøkler (JWK Set). Match 'kid' i JWT-headeren mot nøkkelsettet og verifiser signaturen lokalt. Gjelder Tripletex-JWT-er (refresh-/session-token) – webhook-kall signeres ikke med JWKS, men med HMAC (se webhook-oppgaven).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke om selskapet har signert Visma Developer Terms",
+      "nokkelord": [
+        "developer terms",
+        "utviklervilkår",
+        "utviklervilkar",
+        "visma",
+        "signert",
+        "status vilkår",
+        "api-vilkår",
+        "lisens"
+      ],
+      "kall": [
+        "GET /license/developerTerms"
+      ],
+      "fremgangsmate": "GET /license/developerTerms?fields=signed,license(*) – signed=true betyr at siste versjon av Visma Developer Terms er signert for selskapet kallet går mot. Kun lesing.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Signere Visma Developer Terms på vegne av selskapet",
+      "nokkelord": [
+        "signere vilkår",
+        "signere developer terms",
+        "godta vilkår",
+        "akseptere vilkår",
+        "utviklervilkår",
+        "utviklervilkar",
+        "visma",
+        "integrasjonsavtale",
+        "lisens"
+      ],
+      "kall": [
+        "GET /license/developerTerms",
+        "PUT /license/sign/developerTerms"
+      ],
+      "fremgangsmate": "1) GET /license/developerTerms?fields=signed for å se om det allerede er signert. 2) PUT /license/sign/developerTerms (ingen body/parametere) signerer vilkårene på vegne av selskapet kallet går mot. Dette er en juridisk aksept – kun etter eksplisitt bekreftelse fra brukeren (ikke fordi en feilmelding eller tredjepart ber om det).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Eksportere oversikt over brukerlisenser (aktive brukere i en periode) til PDF eller CSV",
+      "nokkelord": [
+        "brukerlisenser",
+        "lisensoversikt",
+        "antall brukere",
+        "aktive brukere",
+        "brukeroversikt",
+        "eksport",
+        "csv",
+        "pdf",
+        "lisenskostnad",
+        "fakturagrunnlag",
+        "user license"
+      ],
+      "kall": [
+        "POST /userLicense/export"
+      ],
+      "fremgangsmate": "POST /userLicense/export med body {exportType: 'CSV'|'PDF', status: 'ACTIVE'|'TERMINATED'|'ALL', userType: 'EMPLOYEE'|'CONTACT'|'ALL', startDate, endDate, priceDate (YYYY-MM-DD), zeroDaysExcluded: true, userLicenseType: [...], sorting}. Svarer 201 med binær fil (application/octet-stream), ikke JSON. POST men kun eksport (endrer ikke data). Filen inneholder brukernavn – vis kun aggregater (antall per type), ikke navn (GDPR), og ikke lagre filen med personopplysninger.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Lese nyheter fra Tripletex sitt regnskapsførerdashbord",
+      "nokkelord": [
+        "nyheter",
+        "tripletex-nytt",
+        "hva er nytt",
+        "driftsmeldinger",
+        "produktnyheter",
+        "regnskapsførerdashbord",
+        "regnskapsforerdashbord",
+        "news",
+        "tags"
+      ],
+      "kall": [
+        "GET /accountantDashboard/news",
+        "GET /accountantDashboard/news/tags"
+      ],
+      "fremgangsmate": "GET /accountantDashboard/news?fields=title,publishedDate,tags,links&sorting=-publishedDate&count=20 (count default 1000). GET /accountantDashboard/news/tags?fields=id,displayName gir alle nyhetstagger for filtrering lokalt. Ikke klientspesifikt – kjør med companyId 0.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne kunder som er konkurs/avviklet eller unntatt fra deaktivering (supportdashbord) og eksportere kundetabellen",
+      "nokkelord": [
+        "konkurs",
+        "avviklet",
+        "tvangsavvikling",
+        "likvidert",
+        "suspendert",
+        "ekskludert",
+        "supportdashbord",
+        "kundetabell",
+        "eksport",
+        "partner"
+      ],
+      "kall": [
+        "GET /supportDashboard/bankruptAndExcludedCustomers",
+        "GET /supportDashboard/export"
+      ],
+      "fremgangsmate": "GET /supportDashboard/bankruptAndExcludedCustomers?fields=tripletexCompanyId,orgNumber,name,bankrupt,liquidated,forceLiquidated,suspended,excludedFromDisabling,excludedFromDeletion. Eksport: GET /supportDashboard/export?type=…&filter=…&startDateRange=YYYY-MM-DD&endDateRange=YYYY-MM-DD (alle fire påkrevd; type/filter har ingen dokumenterte enum-verdier i spec) – svaret er en binær fil (octet-stream). Beregnet for Tripletex-support/partnere – forvent 403 for vanlige regnskapsbrukere.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Feilsøke 401/403 – sjekke innlogging, klient, moduler og tilganger",
+      "nokkelord": [
+        "403",
+        "401",
+        "forbidden",
+        "ingen tilgang",
+        "mangler tilgang",
+        "tilganger",
+        "rettigheter",
+        "entitlements",
+        "feilsøke",
+        "feilsoke",
+        "feil klient",
+        "modul mangler",
+        "tilgangsstyring"
+      ],
+      "kall": [
+        "GET /token/session/>whoAmI",
+        "GET /company/salesmodules",
+        "GET /employee/entitlement",
+        "GET /employee/entitlement/client"
+      ],
+      "fremgangsmate": "1) GET /token/session/>whoAmI?fields=employeeId,companyId,employeeIsProxy – bekreft at companyId er riktig klient (401 = token utløpt/ugyldig; lag nytt session token). 2) GET /company/salesmodules?fields=name – mangler modulen (f.eks. WAGE, PROJECT, FIXED_ASSETS_REGISTER) gir det ofte 403. 3) GET /employee/entitlement?fields=name,entitlementId (egen bruker som standard) eller GET /employee/entitlement/client?customerId=<klient>&fields=name,entitlementId (BETA) for rettigheter hos klienten. 403 (kode 9000) = AuthorisationManager sier nei: manglende rolle/modul eller at employee tokenet ikke har nødvendige rettigheter. Ikke skriv ut navn på ansatte (GDPR).",
+      "skrivende": false
+    }
+  ],
+  "fallgruver": [
+    "Autentisering: Basic auth med brukernavn = companyId (0/blank = egen bedrift, ellers klientens id fra GET /company/>withLoginAccess) og passord = sessionToken. Feil companyId gir data fra feil klient eller 401/403 – bekreft alltid med GET /token/session/>whoAmI.",
+    "Session token lages fra refresh token (tlxr_) med POST /token/session/:createFromRefreshToken; ttlSeconds må være 300–28800 (5 min–8 t). Utløpt token gir 401 – lag nytt. Tokens skal aldri vises, logges eller sendes videre.",
+    "PUT /token/session/:create er DEPRECATED (tokens i query-string havner i logger) – bruk POST /token/session/:create med body.",
+    "'>'-stier er aggregater/spesialoppslag (/company/>withLoginAccess, /token/session/>whoAmI) og ':'-stier er handlinger (/token/session/:create, /token/employee/:create); tegnene må være med i URL-en.",
+    "PUT /company har ingen id i stien – den oppdaterer selskapet kallet går mot (companyId i auth). Send id og version i body; 409 = versjonskonflikt.",
+    "GET /company/divisions er DEPRECATED – bruk GET /division (virksomheter/underenheter) i stedet.",
+    "company/salesmodules, event, event/subscription og municipality/query er BETA og kan endre seg. POST /company/salesmodules kan påføre klienten kostnader og kan normalt ikke reverseres via API.",
+    "Mange endepunkter i andre grupper krever at en modul er aktiv (lønn, prosjekt, anleggsregister, logistikk, årsoppgjør). 403 skyldes ofte manglende modul eller manglende rettigheter på employee tokenet – sjekk GET /company/salesmodules og GET /employee/entitlement.",
+    "Webhooks: targetUrl må være absolutt HTTPS; abonnementet er knyttet til nåværende EmployeeToken; authHeaderValue og hmacSharedSecret er write-only. Abonnement deaktiveres automatisk ved mange feil (DISABLED_TOO_MANY_ERRORS) eller rate-limit – må reaktiveres med PUT og status ACTIVE.",
+    "DELETE /event/subscription/list krever query-parameter ids (kommaseparert liste).",
+    "PUT /token/employee/:create er kun tillatt for utvalgte consumere (ellers 403), og alle fem query-parametere (tokenName, consumerName, employeeId, companyOwned, expirationDate) er påkrevd.",
+    "PUT /subscription/cancel, PUT /subscription/reactivate og PUT /license/sign/developerTerms er forretningskritiske/juridiske handlinger på kontonivå – kun etter eksplisitt bekreftelse fra brukeren, og husk oppbevaringsplikten (velg readAccess=true ved oppsigelse).",
+    "POST /userLicense/export er en ren eksport (endrer ikke data) men returnerer fil med brukernavn – vis kun aggregater (GDPR).",
+    "supportDashboard-endepunktene er ment for Tripletex-support/partnere; forvent 403 for vanlige regnskapsbrukere. GET /supportDashboard/export krever type, filter, startDateRange og endDateRange.",
+    "Rate limiting per ansatt per API-consumer: se headerne X-Rate-Limit-Limit/Remaining/Reset; 429 betyr vent til perioden er over.",
+    "Bruk alltid fields= for å begrense svar; whoAmI og company kan returnere personopplysninger (employee(*), e-post, telefon) som ikke skal skrives ut.",
+    "Paging: count har default 1000 på de fleste listeendepunkter her, men GET /municipality/query har default count=25 – sett count eksplisitt ved søk som kan gi mange treff.",
+    "Svarformat: GET /event returnerer value som et map (event-nøkkel → beskrivelse), og GET /subscription/packages returnerer listen i value (ikke values) uten paging. Vanlige søk (/country, /municipality, /event/subscription) bruker values + from/count.",
+    "POST /event/subscription/list og PUT /event/subscription/list tar en JSON-array av Subscription-objekter (ikke ett objekt). PUT-elementene må ha id og version.",
+    "Webhook-signering: med hmacSharedSecret settes header x-request-signature = base64(HmacSHA512(idempotency-key + '&' + body)). JWKS (/.well-known/jwks.json) brukes til Tripletex-JWT-er, ikke til webhook-verifisering.",
+    "I spec er feltbeskrivelsene i PostSessionTokenBody byttet om (employeeToken beskrevet som consumer-token og omvendt) – følg feltnavnene consumerToken/employeeToken.",
+    "POST /token/session/:createFromRefreshToken og GET /.well-known/jwks.json har ingen security i spec (krever ikke Basic auth); alle andre kall krever Basic auth med sessionToken.",
+    "GET /supportDashboard/export og POST /userLicense/export returnerer binær fil (application/octet-stream), ikke JSON – lagre/parse som fil og ikke logg innholdet (kan inneholde navn).",
+    "Opprettende POST-kall (salesmodules, event/subscription, session token) svarer 201; DELETE svarer 204 uten body.",
+    "'abonnement' er tvetydig: tag subscription = Tripletex-kontoens abonnement/pakker (oppsigelse, gjenåpning), mens event/subscription = webhook-abonnementer.",
+    "Udokumenterte kall: at et kall mangler i openapi.json betyr ikke at det ikke finnes (avstemmingsmodulen har flere, f.eks. GET /accountingOffice/reconciliations, .../comments, PUT .../:complete). Sonder med GET: 404 «Object not found» = stien finnes ikke; 405 Method Not Allowed = stien finnes med annen metode; 422 «Expected number» = ordet ble tolket som {id} (sier ingenting). 403/422 på et skrivekall: les validationMessages – ofte en forretningsregel (f.eks. manglende kommentar), ikke manglende tilgang. Si «ikke funnet» og hva som er prøvd, aldri «finnes ikke», før UI-ets nettverkskall er sjekket. Beste kilde: UI-ets JavaScript under /page/<modul>/assets/*.js (søk etter \"/v2/\") eller nettverksloggen – asynkrone kall (SSE/EventSource) vises ikke alltid i loggen."
+  ]
+}

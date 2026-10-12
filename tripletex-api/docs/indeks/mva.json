@@ -1,0 +1,891 @@
+{
+  "group": "mva",
+  "tags": [
+    {
+      "tag": "ledger/vatSettings",
+      "beskrivelse": "MVA-innstillinger for selskapet: registreringsstatus (ikke registrert, søker, registrert, kompensasjon) og hvilke typer omsetning/mva-koder som er aktivert.",
+      "nokkelord": [
+        "mva-innstillinger",
+        "mva innstillinger",
+        "mva-registrert",
+        "mva registrert",
+        "momsregistrert",
+        "ikke mva-registrert",
+        "merverdiavgiftsregisteret",
+        "registreringsstatus",
+        "avgiftsplikt",
+        "mva-plikt",
+        "frivillig registrering",
+        "mva-kompensasjon",
+        "kompensasjonsmelding",
+        "aktivere mva-kode",
+        "aktivere importkoder",
+        "aktivere uttakskoder",
+        "snudd avregning",
+        "omvendt avgiftsplikt",
+        "tjenester fra utlandet",
+        "tilbakeføring",
+        "vat settings",
+        "vat registration",
+        "mva",
+        "moms",
+        "merverdiavgift"
+      ]
+    },
+    {
+      "tag": "ledger/vatType",
+      "beskrivelse": "MVA-koder (mva-typer) med sats og fradragsprosent, inkludert relative koder for forholdsmessig fradrag av inngående mva.",
+      "nokkelord": [
+        "mva-kode",
+        "mvakode",
+        "mva-koder",
+        "momskode",
+        "avgiftskode",
+        "mva-type",
+        "mva-sats",
+        "momssats",
+        "høy sats",
+        "hoy sats",
+        "middels sats",
+        "lav sats",
+        "25 %",
+        "15 %",
+        "12 %",
+        "fritatt",
+        "nullsats",
+        "utenfor mva-loven",
+        "forholdsmessig fradrag",
+        "fradragsprosent",
+        "inngående mva",
+        "inngaende mva",
+        "utgående mva",
+        "utgaende mva",
+        "vat code"
+      ]
+    },
+    {
+      "tag": "vatReturns",
+      "beskrivelse": "Status for MVA-meldingen per termin: levert/ikke levert til Skatteetaten, betalt/restbeløp, mva-grunnlag og bilagsnummer for mva-oppgjøret.",
+      "nokkelord": [
+        "mva-melding",
+        "mva melding",
+        "mvamelding",
+        "momsmelding",
+        "skattemelding for merverdiavgift",
+        "omsetningsoppgave",
+        "terminoppgave",
+        "mva-termin",
+        "termin",
+        "levert",
+        "innsendt",
+        "kvittering",
+        "altinn",
+        "skatteetaten",
+        "betalingsstatus",
+        "skyldig mva",
+        "mva til gode",
+        "restbeløp",
+        "restbelop",
+        "frist",
+        "mva-oppgjør",
+        "mva-oppgjor",
+        "momsoppgjør",
+        "vat return",
+        "vat status"
+      ]
+    },
+    {
+      "tag": "vatReturns/comment",
+      "beskrivelse": "Strukturerte merknader (standardkommentarer) som kan knyttes til linjer i MVA-meldingen, gruppert per mva-kode (BETA, kun lesing).",
+      "nokkelord": [
+        "merknad",
+        "merknader",
+        "kommentar",
+        "strukturert merknad",
+        "mva-melding merknad",
+        "forklaring til skatteetaten",
+        "tap på krav",
+        "tap pa krav",
+        "fortegn",
+        "vat comment",
+        "structured comment",
+        "merknad til mva-melding",
+        "merknad tap på krav",
+        "merknad uttak",
+        "merknad justering",
+        "standardmerknad",
+        "forklaring avvik"
+      ]
+    },
+    {
+      "tag": "vatTermSizeSettings",
+      "beskrivelse": "Terminlengde for MVA-rapportering (tomånedlig, månedlig, årstermin osv.) per rapporttype (alminnelig næring/primærnæring) med gyldig-fra-dato.",
+      "nokkelord": [
+        "terminlengde",
+        "termin",
+        "terminvis",
+        "tomånedlig",
+        "tomanedlig",
+        "månedlig",
+        "manedlig",
+        "årstermin",
+        "arstermin",
+        "primærnæring",
+        "primarnaering",
+        "alminnelig næring",
+        "alminnelig naering",
+        "rapporteringstermin",
+        "mva-periode",
+        "vat term",
+        "term size",
+        "termsize",
+        "terminordning",
+        "årsmelding mva",
+        "arsmelding mva",
+        "månedsmelding",
+        "manedsmelding",
+        "primærnæring termin"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Hente MVA-innstillinger for en klient (er selskapet mva-registrert, hvilke koder er aktivert?)",
+      "nokkelord": [
+        "mva-innstillinger",
+        "mva-registrert",
+        "er klienten mva-registrert",
+        "merverdiavgiftsregisteret",
+        "registreringsstatus",
+        "aktiverte mva-koder",
+        "vat settings",
+        "vatsettings"
+      ],
+      "kall": [
+        "GET /ledger/vatSettings"
+      ],
+      "fremgangsmate": "Ingen påkrevde parametere – kjøres mot valgt klient. GET /ledger/vatSettings?fields=id,version,vatRegistrationStatus,hasVatOutInside,hasVatOutOutside,hasVatOutNoneInside,hasVatOutMedium,hasVatOutLow,hasVatOutExportNone,hasVatInMedium,hasVatInImport,hasVatInHighForeignServices,hasVatInLowForeignServices,hasVatInFish,hasVatOutFish,hasVatInAndOutReverseDuty,hasAdjustmentVat,hasWithdrawalVat,hasDrawbackVat,hasCompensationCodes. vatRegistrationStatus: VAT_NOT_REGISTERED | VAT_APPLICANT | VAT_REGISTERED | VAT_COMPENSATION. has*-flaggene viser hvilke mva-koder som er aktivert (f.eks. hasVatOutMedium = kode 31). Kombiner med GET /vatTermSizeSettings for terminlengde.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Aktivere eller deaktivere mva-koder/omsetningstyper (f.eks. 15 % næringsmidler, import, tjenester fra utlandet, uttak)",
+      "nokkelord": [
+        "aktivere mva-kode",
+        "slå på mva-kode",
+        "sla pa mva-kode",
+        "middels sats",
+        "næringsmiddel",
+        "matmoms",
+        "lav sats",
+        "persontransport",
+        "eksport",
+        "import",
+        "tjenester fra utlandet",
+        "snudd avregning",
+        "uttak",
+        "justering",
+        "tilbakeføring",
+        "gull",
+        "klimakvoter",
+        "endre mva-innstillinger"
+      ],
+      "kall": [
+        "GET /ledger/vatSettings",
+        "PUT /ledger/vatSettings"
+      ],
+      "fremgangsmate": "1) GET /ledger/vatSettings for å hente hele objektet inkl. id og version. 2) PUT /ledger/vatSettings med hele objektet (id, version, vatRegistrationStatus og alle has*-flagg), der bare ønskede flagg endres – send med eksisterende verdier så ingenting nullstilles. Kobling flagg → kode: hasVatOutInside (salg innenfor mva-loven), hasVatOutNoneInside→5, hasVatOutOutside→6, hasVatOutMedium→31, hasVatOutLow→33, hasVatOutExportNone→52, hasVatInMedium→11, hasVatInImport→14/15/20/21, hasVatInHighForeignServices→86/87, hasVatInLowForeignServices→88/89, hasVatInFish→12, hasVatOutFish→32, hasVatInAndOutReverseDuty→51/91/92, hasAdjustmentVat/hasWithdrawalVat/hasDrawbackVat → justerings-/uttaks-/tilbakeføringskoder, hasCompensationCodes → kompensasjonskoder. Skrivende – bekreft med bruker før PUT.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre mva-registreringsstatus (ny registrering i Merverdiavgiftsregisteret, søker, kompensasjon eller avregistrering)",
+      "nokkelord": [
+        "registrere i mva-registeret",
+        "mva-registrering",
+        "ny mva-registrering",
+        "søkt mva-registrering",
+        "sokt mva-registrering",
+        "avregistrere mva",
+        "slettet fra mva-registeret",
+        "mva-kompensasjon",
+        "kompensasjonsordning",
+        "frivillige organisasjoner",
+        "vat registration status"
+      ],
+      "kall": [
+        "GET /ledger/vatSettings",
+        "PUT /ledger/vatSettings",
+        "GET /vatTermSizeSettings",
+        "POST /vatTermSizeSettings"
+      ],
+      "fremgangsmate": "1) GET /ledger/vatSettings (id, version). 2) PUT /ledger/vatSettings med vatRegistrationStatus = VAT_REGISTERED | VAT_APPLICANT | VAT_COMPENSATION | VAT_NOT_REGISTERED (send hele objektet). 3) Ved ny registrering: GET /vatTermSizeSettings og opprett ev. termin fra registreringsdato: POST /vatTermSizeSettings {reportType:'GENERAL_INDUSTRY', fromDate:'yyyy-MM-dd', termSize:'TWO_MONTHS'}. Ved avregistrering: POST med termSize:'NOT_REGISTERED' fra dato. Endringen styrer hvilke mva-koder som er lovlige på bilag – bekreft alltid med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Liste alle mva-koder med sats og fradragsprosent",
+      "nokkelord": [
+        "mva-koder",
+        "liste mva-koder",
+        "alle mva-koder",
+        "mva-satser",
+        "oversikt mva",
+        "avgiftskoder",
+        "vat types",
+        "vat codes",
+        "kodeliste"
+      ],
+      "kall": [
+        "GET /ledger/vatType"
+      ],
+      "fremgangsmate": "GET /ledger/vatType?count=1000&sorting=number&fields=id,number,name,displayName,percentage,deductionPercentage,parentType(id,number). number = mva-koden (SAF-T-standardkode, f.eks. '3'), id = intern Tripletex-id som brukes som vatType:{id} på posteringer, produkter og kontoer – de er ikke nødvendigvis like. Legg til shouldIncludeSpecificationTypes=true for å få med spesifikasjonskoder (uttak, justering, tilbakeføring). parentType er satt på relative koder (forholdsmessig fradrag).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne riktig mva-kode (id) for et kodenummer eller en transaksjonstype på en gitt dato",
+      "nokkelord": [
+        "hvilken mva-kode",
+        "riktig mva-kode",
+        "mva-kode for salg",
+        "mva-kode for kjøp",
+        "mva-kode for kjop",
+        "gyldige mva-koder",
+        "mva-kode id",
+        "kode 1",
+        "kode 3",
+        "kode 5",
+        "kode 6",
+        "kode 31",
+        "kode 33",
+        "kode 86",
+        "satsendring",
+        "vattypeid",
+        "momskode",
+        "kode 81",
+        "kode 14"
+      ],
+      "kall": [
+        "GET /ledger/vatType",
+        "GET /ledger/vatType/{id}"
+      ],
+      "fremgangsmate": "Slå opp id fra kodenummer: GET /ledger/vatType?number=3&fields=id,number,name,percentage (number tar kommaseparert liste, f.eks. number=1,3,5). Gyldige koder for en transaksjonstype på en dato: typeOfVat=OUTGOING (salg) | INCOMING (kjøp/bilag) | INCOMING_INVOICE (leverandørfaktura) | PROJECT | LEDGER, kombinert med vatDate=yyyy-MM-dd (vatDate virker bare sammen med typeOfVat; default i dag). Én kode: GET /ledger/vatType/{id}. Gjør dette før føring av bilag, oppretting av produkt eller setting av standardkode på konto.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette relativ mva-kode for forholdsmessig fradrag av inngående mva",
+      "nokkelord": [
+        "forholdsmessig fradrag",
+        "delvis fradrag",
+        "fradragsandel",
+        "blandet virksomhet",
+        "felleskostnader",
+        "relativ mva-kode",
+        "relative vat type",
+        "fordelingsnøkkel",
+        "fordelingsnokkel",
+        "fradragsprosent",
+        "inngående mva delvis"
+      ],
+      "kall": [
+        "GET /ledger/vatType",
+        "PUT /ledger/vatType/createRelativeVatType"
+      ],
+      "fremgangsmate": "1) Finn basiskoden: GET /ledger/vatType?number=1&fields=id,number,name,percentage (f.eks. fradrag inngående 25 %). 2) PUT /ledger/vatType/createRelativeVatType?name=<maks 8 tegn>&vatTypeId=<id>&percentage=<andel, f.eks. 60>. Alle tre er påkrevde query-parametere, ingen body (action-endepunkt med PUT). Den nye koden oppfører seg som basiskoden, men fradragsgrunnlaget = percentage % av beløpet (vises som deductionPercentage). Brukes ved blandet avgiftspliktig/ikke-avgiftspliktig virksomhet. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sjekke status på MVA-meldingen for én termin (levert og betalt?)",
+      "nokkelord": [
+        "status mva-melding",
+        "er mva levert",
+        "er mva-meldingen sendt",
+        "levert mva",
+        "mva betalt",
+        "kvittering altinn",
+        "mva-termin status",
+        "termin 1",
+        "termin 2",
+        "termin 3",
+        "termin 4",
+        "termin 5",
+        "termin 6",
+        "forrige termin",
+        "vat return status",
+        "momsmelding status",
+        "er moms levert"
+      ],
+      "kall": [
+        "GET /vatReturns/status"
+      ],
+      "fremgangsmate": "GET /vatReturns/status?year=2026&term=4&reportType=GENERAL_INDUSTRY&fields=year,term,vatReturns2022Id,voucherNumber,totalAmountVatBasis,altinnPaymentAmount,deliveryStatus(status,time),paymentStatus(status,totalAmount,remainingAmount,paymentDate). Uten year/term returneres forrige termin. term = terminnummer i året og følger terminlengden i /vatTermSizeSettings (tomånedlig 1–6, f.eks. 4 = juli–august; månedlig 1–12; årstermin 1). deliveryStatus.status: NOT_STARTED, NOT_SENT, SENDING, WAITING_FOR_REPLY, RECEIPT_RECEIVED (levert), MANUAL_DELIVERY, DELIVERY_FORBIDDEN, FAILED. paymentStatus.status: NOT_STARTED, NOT_PAID, NO_TAX_TO_PAY, AMOUNT_CREDITED (til gode), PAYMENT_REGISTERED. voucherNumber=0 = terminen er ikke lukket. Ikke hent employee-feltene (personopplysninger).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Oversikt over alle MVA-terminer i et år (status, grunnlag og betaling)",
+      "nokkelord": [
+        "mva-oversikt",
+        "alle terminer",
+        "mva hele året",
+        "terminoversikt",
+        "mva-status liste",
+        "mva i år",
+        "leverte mva-meldinger",
+        "vat status list"
+      ],
+      "kall": [
+        "GET /vatReturns/status/list"
+      ],
+      "fremgangsmate": "GET /vatReturns/status/list?startDate=2026-01-01&endDate=2027-01-01&reportType=GENERAL_INDUSTRY&fields=year,term,voucherNumber,totalAmountVatBasis,altinnPaymentAmount,deliveryStatus(status),paymentStatus(status,totalAmount,remainingAmount,paymentDate). startDate inkl., endDate eksklusiv; default = inneværende år. Terminer som slutter før 2022-01-01 utelates (status finnes bare for ny mva-melding fra 2022). Bruk reportType=PRIMARY_INDUSTRY for primærnæringsmeldingen.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "MVA-frister og status på tvers av klienter (hvilke meldinger er ikke levert eller ikke betalt?)",
+      "nokkelord": [
+        "mva-frister",
+        "mva frist",
+        "ikke levert mva",
+        "mangler mva-melding",
+        "alle klienter mva",
+        "klientoversikt mva",
+        "frist 10. april",
+        "frist 10. juni",
+        "frist 31. august",
+        "frist 10. oktober",
+        "frist 10. desember",
+        "frist 10. februar",
+        "oppfølging mva",
+        "vat deadlines",
+        "frist 10. mars",
+        "mva-frist oversikt"
+      ],
+      "kall": [
+        "GET /ledger/vatSettings",
+        "GET /vatReturns/status/list",
+        "GET /vatTermSizeSettings"
+      ],
+      "fremgangsmate": "Bare når brukeren eksplisitt ber om alle (eller navngitte) klienter: hent klientlisten dynamisk (npm run connect / connect()), og for hver klient: GET /ledger/vatSettings?fields=vatRegistrationStatus (hopp over VAT_NOT_REGISTERED), GET /vatTermSizeSettings?fields=reportType,fromDate,termSize, deretter GET /vatReturns/status/list for perioden med fields=year,term,deliveryStatus(status),paymentStatus(status,remainingAmount). Flagg deliveryStatus NOT_STARTED/NOT_SENT/FAILED og paymentStatus NOT_PAID. Frister alminnelig tomånedlig termin: 10.4, 10.6, 31.8, 10.10, 10.12, 10.2; årstermin alminnelig næring: 10.3 året etter; primærnæring (årsmelding): 10.4 året etter – bruk reportType=PRIMARY_INDUSTRY for primærnæringsmeldingen. Kun lesing.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne skyldig/ubetalt mva og restbeløp per termin",
+      "nokkelord": [
+        "skyldig mva",
+        "ubetalt mva",
+        "restbeløp mva",
+        "restbelop mva",
+        "mva til betaling",
+        "mva til gode",
+        "tilgodebeløp",
+        "betalt mva",
+        "skyldig merverdiavgift",
+        "oppgjørskonto mva",
+        "2740"
+      ],
+      "kall": [
+        "GET /vatReturns/status/list",
+        "GET /balanceSheet"
+      ],
+      "fremgangsmate": "1) GET /vatReturns/status/list?startDate&endDate&fields=year,term,altinnPaymentAmount,paymentStatus(status,totalAmount,remainingAmount,paymentDate) – filtrer på paymentStatus.status=NOT_PAID eller remainingAmount≠0. altinnPaymentAmount = beløp ifølge Skatteetaten (null før levering). 2) Kontroller mot saldo på oppgjørskonto for mva: GET /balanceSheet?dateFrom=yyyy-MM-dd&dateTo=yyyy-MM-dd&accountNumberFrom=2740&accountNumberTo=2740&fields=account(number,name),balanceIn,balanceChange,balanceOut (dateFrom/dateTo påkrevd, dateTo eksklusiv; kontonummer kan variere – sjekk kontoplanen).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente mva-oppgjørsbilaget for en avsluttet termin",
+      "nokkelord": [
+        "mva-oppgjør",
+        "mva-oppgjor",
+        "oppgjørsbilag",
+        "mva-bilag",
+        "avsluttet termin",
+        "lukket termin",
+        "bilagsnummer mva",
+        "mva-postering",
+        "overføring til oppgjørskonto"
+      ],
+      "kall": [
+        "GET /vatReturns/status",
+        "GET /ledger/voucher",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "1) GET /vatReturns/status?year&term&fields=voucherNumber,deliveryStatus(status). voucherNumber=0 betyr at terminen ikke er lukket. 2) GET /ledger/voucher?number=<voucherNumber>&dateFrom=<terminstart>&dateTo=<dato etter lukking>&fields=id,number,date,description,postings(account(number,name),amount) – dateFrom/dateTo er påkrevd og bilagsnummer er bare unike innen året, så velg et datointervall som dekker lukkedatoen. 3) Ev. GET /ledger/posting?dateFrom&dateTo&accountNumberFrom=2700&accountNumberTo=2749&fields=voucher(number),date,account(number),amount for posteringene mot mva-kontoene.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Avstemme mva-kontoene mot MVA-meldingen for en termin (mva-avstemming)",
+      "nokkelord": [
+        "mva-avstemming",
+        "mva avstemming",
+        "avstemme mva",
+        "avstemming merverdiavgift",
+        "utgående mva konto",
+        "inngående mva konto",
+        "2700",
+        "2710",
+        "2740",
+        "saldobalanse mva",
+        "differanse mva",
+        "avvik mva",
+        "terminavstemming"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /balanceSheet",
+        "GET /vatReturns/status",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "1) Finn mva-kontoene: GET /ledger/account?number=2700,2701,2702,2703,2710,2711,2712,2713,2740&fields=id,number,name (typisk 27xx – sjekk klientens kontoplan). 2) GET /balanceSheet?dateFrom=<terminstart>&dateTo=<dagen etter terminslutt>&accountNumberFrom=2700&accountNumberTo=2749&fields=account(number,name),balanceIn,balanceChange,balanceOut. 3) Sammenlign med GET /vatReturns/status (totalAmountVatBasis, paymentStatus.totalAmount, altinnPaymentAmount). 4) Ved avvik: GET /ledger/posting?dateFrom&dateTo&accountId=<id>&fields=voucher(number),date,description,amount,vatType(number) for å finne posteringer ført etter lukking eller med feil kode. dateTo er alltid eksklusiv.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Kontrollere mva-grunnlag per kode og finne posteringer med feil mva-kode i en periode",
+      "nokkelord": [
+        "mva-grunnlag",
+        "grunnlag per mva-kode",
+        "feil mva-kode",
+        "kontroll mva",
+        "mva-kontroll",
+        "mva-spesifikasjon",
+        "posteringer med mva",
+        "manglende mva",
+        "mva på kostnad",
+        "fradrag uten rett",
+        "representasjon mva",
+        "vat basis"
+      ],
+      "kall": [
+        "GET /ledger/posting",
+        "GET /ledger/postingByDate",
+        "GET /ledger/vatType"
+      ],
+      "fremgangsmate": "GET /ledger/posting?dateFrom=yyyy-MM-dd&dateTo=yyyy-MM-dd&count=10000&fields=id,date,voucher(number),account(number,name),vatType(number),amount,amountGross,description (dateFrom/dateTo påkrevd, bla med from/count). Grupper på vatType.number for grunnlag per kode og let etter uventede kombinasjoner: salgskonto 3xxx med kode 0, kostnad med fradrag der fradrag ikke er tillatt (representasjon, personbil), utenlandske tjenester uten 86/87. Store datamengder: GET /ledger/postingByDate?dateFrom&dateTo&from&count (raskere, men fields og changes støttes IKKE – hele PostingDTO returneres; krever tilgang til alle bilag (og lønn hvis lønnstilgangskontroll er på), ellers valideringsfeil). Map kodene med GET /ledger/vatType?fields=id,number,name,percentage.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente strukturerte merknader (standardkommentarer) til MVA-meldingen",
+      "nokkelord": [
+        "merknad mva-melding",
+        "strukturerte merknader",
+        "kommentar mva",
+        "forklaring avvik",
+        "tap på krav",
+        "uttak",
+        "justering",
+        "tilbakeføring",
+        "kompensasjon",
+        "merknad per mva-kode",
+        "vat return comments"
+      ],
+      "kall": [
+        "GET /vatReturns/comment/>all",
+        "GET /vatReturns/comment"
+      ],
+      "fremgangsmate": "BETA. GET /vatReturns/comment/>all?fields=title,technicalName,description,vatSpecificationType,expectedSign gir alle tilgjengelige merknader (vatSpecificationType: DEFAULT | LOSS_OF_CLAIM | WITHDRAWAL | ADJUSTMENT | REVERSAL | COMPENSATION; expectedSign: ZERO | POSITIVE | NEGATIVE). GET /vatReturns/comment?fields=vatCode,comments(title,technicalName,vatSpecificationType,expectedSign) gir merknadene gruppert per mva-kode – til tross for summary finnes det ingen vatCode-parameter; filtrer på vatCode i svaret. Kun lesing – API v2 har ikke kall for å knytte merknad til en melding; det gjøres i Tripletex. Stien inneholder '>' (skrives bokstavelig, URL-koding til %3E fungerer også).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke terminlengde for MVA (tomånedlig, månedlig, årstermin)",
+      "nokkelord": [
+        "terminlengde",
+        "hvilken termin",
+        "tomånedlig",
+        "tomanedlig",
+        "månedlig mva",
+        "manedlig mva",
+        "årstermin",
+        "arstermin",
+        "terminvis",
+        "mva-periode",
+        "term size"
+      ],
+      "kall": [
+        "GET /vatTermSizeSettings",
+        "GET /vatTermSizeSettings/{id}"
+      ],
+      "fremgangsmate": "GET /vatTermSizeSettings?sorting=fromDate&fields=id,version,reportType,fromDate,termSize. Gjeldende terminlengde = siste rad med fromDate ≤ aktuell dato for riktig reportType (GENERAL_INDUSTRY = alminnelig næring, PRIMARY_INDUSTRY = primærnæring). termSize: ONE_MONTH, TWO_MONTHS (standard), THREE_MONTHS, FOUR_MONTHS, SIX_MONTHS, YEAR (årstermin), NOT_REGISTERED. Terminnummeret i /vatReturns/status følger denne innstillingen. Én rad: GET /vatTermSizeSettings/{id}.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Endre terminlengde (f.eks. bytte til årstermin eller månedlig fra en dato)",
+      "nokkelord": [
+        "endre termin",
+        "bytte til årstermin",
+        "bytte til arstermin",
+        "søke årstermin",
+        "månedlig termin",
+        "manedlig termin",
+        "tomånedlig termin",
+        "ny terminlengde",
+        "endre terminlengde",
+        "update term size"
+      ],
+      "kall": [
+        "GET /vatTermSizeSettings",
+        "POST /vatTermSizeSettings",
+        "PUT /vatTermSizeSettings/{id}"
+      ],
+      "fremgangsmate": "Forutsetter at endringen er godkjent av Skatteetaten (årstermin: omsetning under 1 mill. kr; månedlig: typisk jevnlig mva til gode). Ny periode: POST /vatTermSizeSettings {reportType:'GENERAL_INDUSTRY', fromDate:'2027-01-01', termSize:'YEAR'} – fromDate bør være første dag i en termin/år. Rette eksisterende rad: GET /vatTermSizeSettings for id+version, så PUT /vatTermSizeSettings/{id} med id, version, reportType, fromDate, termSize. Ikke endre bakover for terminer som allerede er levert. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slette feilregistrert terminlengde-innstilling",
+      "nokkelord": [
+        "slette termininnstilling",
+        "fjerne terminlengde",
+        "feil termin",
+        "delete vat term",
+        "rette termin"
+      ],
+      "kall": [
+        "GET /vatTermSizeSettings",
+        "DELETE /vatTermSizeSettings/{id}"
+      ],
+      "fremgangsmate": "Finn riktig id med GET /vatTermSizeSettings?fields=id,reportType,fromDate,termSize. DELETE /vatTermSizeSettings/{id}. Kun for feilregistrerte rader uten leverte terminer – sletting kan endre terminberegningen bakover i tid. Krever eksplisitt bekreftelse fra bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente MVA-status og terminer for primærnæring (landbruk, skogbruk, fiske)",
+      "nokkelord": [
+        "primærnæring",
+        "primarnaering",
+        "landbruk",
+        "jordbruk",
+        "bonde",
+        "skogbruk",
+        "fiske",
+        "fiskeri",
+        "årstermin primærnæring",
+        "primary industry",
+        "to mva-meldinger"
+      ],
+      "kall": [
+        "GET /vatTermSizeSettings",
+        "GET /vatReturns/status/list",
+        "GET /vatReturns/status",
+        "GET /ledger/postingRules"
+      ],
+      "fremgangsmate": "Sjekk om klienten har flere næringer: GET /ledger/postingRules?fields=multipleIndustries,defaultBusinessActivityTypeId. Terminlengde: GET /vatTermSizeSettings (reportType=PRIMARY_INDUSTRY, vanligvis termSize=YEAR). Status: GET /vatReturns/status/list?startDate&endDate&reportType=PRIMARY_INDUSTRY eller GET /vatReturns/status?year&term&reportType=PRIMARY_INDUSTRY (reportType er case-insensitiv; default GENERAL_INDUSTRY – glem ikke parameteren, ellers får du alminnelig næring). Frist for årsmelding i primærnæring er 10. april året etter.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke eller endre standard mva-kode på en konto (mva-låsing)",
+      "nokkelord": [
+        "mva-kode på konto",
+        "mva pa konto",
+        "standard mva-kode",
+        "låst mva-kode",
+        "last mva-kode",
+        "vatlocked",
+        "lovlige mva-koder",
+        "kontoplan mva",
+        "konto mva-innstilling",
+        "legal vat types"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /ledger/vatType",
+        "PUT /ledger/account/{id}"
+      ],
+      "fremgangsmate": "GET /ledger/account?number=3000&fields=id,version,number,name,vatType(id,number,name),vatLocked,legalVatTypes(number) – legalVatTypes = koder som er tillatt på kontoen. Endre: GET /ledger/vatType?number=3&fields=id for vatType-id, så PUT /ledger/account/{id} med id, version, number, name, vatType:{id}, vatLocked:true/false (vatLocked=true tvinger koden på alle posteringer på kontoen). Skrivende – bekreft før PUT.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre mva-kode på produkter (f.eks. næringsmidler til 15 % eller tjenester til 25 %)",
+      "nokkelord": [
+        "mva på produkt",
+        "mva pa produkt",
+        "produkt mva-kode",
+        "endre mva-sats produkt",
+        "matmoms",
+        "næringsmiddel",
+        "15 %",
+        "25 %",
+        "12 %",
+        "priser inkl. mva",
+        "priser eks. mva",
+        "vare mva"
+      ],
+      "kall": [
+        "GET /ledger/vatType",
+        "GET /product",
+        "PUT /product/{id}",
+        "PUT /product/list"
+      ],
+      "fremgangsmate": "1) Kode-id: GET /ledger/vatType?number=31&typeOfVat=OUTGOING&fields=id,number,name,percentage. 2) Finn produktene: GET /product?vatTypeId=<gammel id>&fields=id,version,number,name,vatType(number),priceExcludingVatCurrency,priceIncludingVatCurrency,isRoundPriceIncVat. 3) PUT /product/{id} med id, version, vatType:{id} (ev. PUT /product/list for mange). Vurder om pris ekskl. eller inkl. mva skal holdes fast. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Føre bilag med mva (manuell postering med mva-kode)",
+      "nokkelord": [
+        "føre bilag med mva",
+        "fore bilag med mva",
+        "postering med mva",
+        "manuelt bilag mva",
+        "inngående mva bilag",
+        "fradrag mva",
+        "bokføre kvittering",
+        "bilag mva-kode",
+        "voucher vat"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /ledger/vatType",
+        "GET /vatReturns/status",
+        "POST /ledger/voucher"
+      ],
+      "fremgangsmate": "1) Konto-id: GET /ledger/account?number=6800,1920&fields=id,number,vatType(number),vatLocked. 2) vatType-id: GET /ledger/vatType?number=1&typeOfVat=INCOMING&vatDate=<bilagsdato>&fields=id,number. 3) Sjekk at terminen er åpen (GET /vatReturns/status → voucherNumber=0). 4) POST /ledger/voucher {date, description, postings:[{row:1, date, account:{id}, amountGross:1250, amountGrossCurrency:1250, vatType:{id}}, {row:2, date, account:{id:<bank/motkonto>}, amountGross:-1250, amountGrossCurrency:-1250}]}. Bare bruttobeløp brukes – Tripletex genererer selv mva-posteringen på 27xx. Sum amountGross = 0, row starter på 1 (row 0 er systemgenerert). Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Føre kjøp av tjenester fra utlandet eller import av varer (snudd avregning / omvendt avgiftsplikt)",
+      "nokkelord": [
+        "snudd avregning",
+        "omvendt avgiftsplikt",
+        "tjenester fra utlandet",
+        "kjøp fra utlandet",
+        "kjop fra utlandet",
+        "import",
+        "innførsel",
+        "innforsel",
+        "innførselsmva",
+        "tollmva",
+        "tolldeklarasjon",
+        "kode 86",
+        "kode 87",
+        "kode 14",
+        "kode 21",
+        "reverse charge",
+        "utenlandsk leverandør",
+        "kode 81",
+        "kode 82",
+        "kode 83",
+        "innførselsmva beregnet selv",
+        "speditør",
+        "tollfaktura"
+      ],
+      "kall": [
+        "GET /ledger/vatSettings",
+        "PUT /ledger/vatSettings",
+        "GET /ledger/vatType",
+        "POST /ledger/voucher"
+      ],
+      "fremgangsmate": "1) Sjekk at kodene er aktivert: GET /ledger/vatSettings (hasVatInHighForeignServices → 86/87, hasVatInLowForeignServices → 88/89, hasVatInImport → 14/15/20/21, hasVatInAndOutReverseDuty → 51/91/92). Aktiver ev. via PUT /ledger/vatSettings (bekreft). 2) GET /ledger/vatType?number=86&typeOfVat=INCOMING&vatDate=<dato>&fields=id,number,name. 3) POST /ledger/voucher med kostnadsposteringen på vatType 86 (med fradrag) eller 87 (uten fradrag) – Tripletex beregner både utgående og inngående mva (netto 0 ved fullt fradrag). Import av varer: mva-registrerte importører beregner normalt innførselsmva selv (SAF-T-kode 81/83 med fradrag, 82/84 uten fradrag, 85 nullsats) på verdien fra tolldeklarasjonen; 14/15 brukes når innførselsmva er betalt til Tolletaten, 20/21 er grunnlagskoder. Tripletex sine kodenummer/navn kan avvike – verifiser med GET /ledger/vatType?number=14,15,20,21,81,82,83,84,85&typeOfVat=INCOMING&vatDate=<dato>&fields=id,number,name,percentage,deductionPercentage. For ikke mva-registrerte kobler hasVatInImport bare kodene 20, 21, 22, 82, 84, 85 og hasVatInHighForeignServices bare kode 87. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Korrigere feil mva-kode på et bokført bilag",
+      "nokkelord": [
+        "korrigere mva",
+        "rette mva-kode",
+        "feil mva-kode",
+        "endre mva på bilag",
+        "tilbakeføre bilag",
+        "reversere bilag",
+        "motpostere",
+        "låst periode",
+        "last periode",
+        "lukket termin",
+        "mva-korreksjon",
+        "korrigert mva-melding"
+      ],
+      "kall": [
+        "GET /vatReturns/status",
+        "GET /ledger/voucher/{id}",
+        "PUT /ledger/voucher/{id}/:reverse",
+        "POST /ledger/voucher",
+        "PUT /supplierInvoice/voucher/{id}/postings"
+      ],
+      "fremgangsmate": "1) Sjekk terminen: GET /vatReturns/status?year&term (voucherNumber>0 = lukket). Posteringer med isVatReadonly/isAmountVatClosed=true kan ikke endres. 2) GET /ledger/voucher/{id}?fields=id,number,date,postings(id,row,account(number),vatType(number),amountGross,isVatReadonly,isAmountVatClosed). 3) Reverser: PUT /ledger/voucher/{id}/:reverse?date=<dato i åpen termin> (date påkrevd; action-endepunkt), og før nytt bilag med riktig vatType via POST /ledger/voucher. Er terminen levert, føres korreksjonen i neste åpne termin (eller korrigert melding i Tripletex-UI). Leverandørfaktura (BETA): PUT /supplierInvoice/voucher/{id}/postings kan erstatte debetlinjene. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Kontrollere utgående mva på kundefakturaer i en periode",
+      "nokkelord": [
+        "utgående mva faktura",
+        "utgaende mva faktura",
+        "mva på faktura",
+        "mva pa faktura",
+        "fakturaer mva",
+        "salg mva",
+        "omsetning mva",
+        "beløp eks mva",
+        "kreditnota mva",
+        "sales vat"
+      ],
+      "kall": [
+        "GET /invoice",
+        "GET /invoice/{id}",
+        "GET /balanceSheet"
+      ],
+      "fremgangsmate": "GET /invoice?invoiceDateFrom=yyyy-MM-dd&invoiceDateTo=yyyy-MM-dd&count=1000&fields=id,invoiceNumber,invoiceDate,isCreditNote,amount,amountExcludingVat,customer(name) (begge datoer påkrevd, To eksklusiv). mva = amount − amountExcludingVat. Per linje: GET /invoice/{id}?fields=orderLines(description,vatType(number,percentage),amountExcludingVatCurrency,amountIncludingVatCurrency). Avstem summen mot utgående mva-konto (2700–2703) i GET /balanceSheet. Kunder som er privatpersoner: ikke vis navn (GDPR).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Kontrollere inngående mva på leverandørfakturaer",
+      "nokkelord": [
+        "inngående mva faktura",
+        "inngaende mva faktura",
+        "leverandørfaktura mva",
+        "leverandorfaktura mva",
+        "fradrag inngående mva",
+        "kjøp mva",
+        "mva-fradrag",
+        "utenlandske leverandører",
+        "purchase vat"
+      ],
+      "kall": [
+        "GET /supplierInvoice",
+        "GET /ledger/voucher/{id}"
+      ],
+      "fremgangsmate": "GET /supplierInvoice?invoiceDateFrom=yyyy-MM-dd&invoiceDateTo=yyyy-MM-dd&fields=id,invoiceNumber,invoiceDate,supplier(name,organizationNumber),amount,amountExcludingVat,isCreditNote,voucher(id,number) (datoer påkrevd). mva = amount − amountExcludingVat. Koder per linje: GET /ledger/voucher/{voucherId}?fields=postings(account(number),vatType(number),amountGross). Let etter utenlandske leverandører uten 86/87, fradrag på kostnader uten fradragsrett (representasjon, personbil, velferd) og fakturaer fra ikke-mva-registrerte leverandører med mva.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Bokføre betaling av mva (oppgjør mot Skatteetaten) og sette opp betalingstype for mva",
+      "nokkelord": [
+        "betale mva",
+        "betaling av mva",
+        "mva-betaling",
+        "innbetaling skatteetaten",
+        "betalt mva",
+        "oppgjør mva",
+        "oppgjor mva",
+        "utbetaling mva til gode",
+        "betalingstype mva",
+        "utgående betaling",
+        "paymenttypeout"
+      ],
+      "kall": [
+        "GET /vatReturns/status",
+        "GET /ledger/paymentTypeOut",
+        "POST /ledger/paymentTypeOut",
+        "GET /ledger/account",
+        "POST /ledger/voucher"
+      ],
+      "fremgangsmate": "Foretrukket: registrer betalingen i MVA-meldingen i Tripletex (oppdaterer paymentStatus) – v2 har ikke eget kall for dette. Betalingstyper: GET /ledger/paymentTypeOut?fields=id,description,creditAccount(number),showVatReturns,isInactive (BETA); typer med showVatReturns=true vises ved mva-betaling. Ny type: POST /ledger/paymentTypeOut {description, creditAccount:{id:<bank>}, showVatReturns:true}. Manuelt bilag: GET /vatReturns/status for beløp (paymentStatus.totalAmount / altinnPaymentAmount), GET /ledger/account?number=2740,1920 for id-er, POST /ledger/voucher med debet 2740 og kredit bank uten vatType. Et manuelt bilag oppdaterer trolig ikke paymentStatus i mva-modulen. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Årsavstemming av merverdiavgift (sum terminer mot regnskapet ved årsoppgjøret)",
+      "nokkelord": [
+        "årsavstemming mva",
+        "arsavstemming mva",
+        "avstemming mva-pliktig omsetning",
+        "årsoppgjør mva",
+        "arsoppgjor mva",
+        "omsetning mot mva-melding",
+        "skyldig mva 31.12",
+        "mva hele året",
+        "revisjon mva",
+        "kontroll mva år"
+      ],
+      "kall": [
+        "GET /vatReturns/status/list",
+        "GET /balanceSheet",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "1) GET /vatReturns/status/list?startDate=<år>-01-01&endDate=<år+1>-01-01&fields=term,totalAmountVatBasis,altinnPaymentAmount,deliveryStatus(status),paymentStatus(status,totalAmount) – alle terminer bør ha RECEIPT_RECEIVED. 2) GET /balanceSheet?dateFrom=<år>-01-01&dateTo=<år+1>-01-01&accountNumberFrom=3000&accountNumberTo=3999 (omsetning) og accountNumberFrom=2700&accountNumberTo=2749 (mva-kontoer). Avstem omsetning mot summen av mva-grunnlag og at skyldig mva pr. 31.12 tilsvarer siste termin. 3) Avvik: GET /ledger/posting?dateFrom&dateTo&accountId=<id>&fields=voucher(number),date,amount,vatType(number).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente posteringsregler som påvirker mva (mva per avdeling, flere næringer)",
+      "nokkelord": [
+        "posteringsregler",
+        "mva per avdeling",
+        "avdeling mva",
+        "flere næringer",
+        "flere naeringer",
+        "næringskode",
+        "business activity",
+        "posting rules",
+        "salg uten mva konto"
+      ],
+      "kall": [
+        "GET /ledger/postingRules"
+      ],
+      "fremgangsmate": "GET /ledger/postingRules?fields=vatPerDepartment,multipleIndustries,defaultBusinessActivityTypeId,accountProductSaleNoVat(number,name). vatPerDepartment=true betyr at systemgenererte mva-posteringer splittes per avdeling; multipleIndustries=true betyr at både alminnelig næring og primærnæring (to mva-meldinger) er i bruk. Kun lesing.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke Altinn-oppsett for innsending av MVA-meldingen",
+      "nokkelord": [
+        "altinn",
+        "altinn-id",
+        "altinn oppsett",
+        "innsending mva",
+        "sende mva-melding",
+        "levere mva",
+        "altinn settings"
+      ],
+      "kall": [
+        "GET /company/settings/altinn"
+      ],
+      "fremgangsmate": "GET /company/settings/altinn?fields=altInnId viser om Altinn-ID er satt for klienten. PUT /company/settings/altinn tar Altinn-passord – det skal assistenten aldri fylle inn; be brukeren gjøre det selv i Tripletex. Selve beregning, innsending og gjenåpning av MVA-meldingen finnes ikke i API v2 – gjøres i Tripletex-UI.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Eksportere SAF-T-fil ved mva-kontroll eller bokettersyn fra Skatteetaten",
+      "nokkelord": [
+        "saf-t",
+        "saft",
+        "saf-t eksport",
+        "mva-kontroll",
+        "bokettersyn",
+        "kontroll skatteetaten",
+        "skatteetaten ber om regnskap",
+        "standard audit file",
+        "eksportere regnskap",
+        "saf-t financial"
+      ],
+      "kall": [
+        "GET /saft/exportSAFT"
+      ],
+      "fremgangsmate": "BETA. GET /saft/exportSAFT?year=<regnskapsår> (year påkrevd; version=1.2 (default) | 1.3 | 1.4 – angi eksplisitt versjon som Skatteetaten ber om). Gir eksportfil for hele året. Filen inneholder mva-kodene som SAF-T-standardkoder (vatType.number) og kan inneholde personopplysninger (ansatte/privatkunder) – lagre bare lokalt og ikke del videre uten at brukeren ber om det. Kun lesing.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Mva-avstemming i avstemmingsmodulen (hovedbok mot mva-melding og Skatteetaten per termin)",
+      "nokkelord": [
+        "mva-avstemming",
+        "mva avstemming",
+        "avstemme mva",
+        "avstemmingsmodul mva",
+        "vat reconciliation",
+        "mva-melding avstemming",
+        "skatteetaten mva",
+        "syncwithtaxadmin",
+        "2740 oppgjørskonto",
+        "mva termin status"
+      ],
+      "kall": [
+        "GET /vatReturns/status",
+        "GET /vatReturns/status/list",
+        "GET /balanceSheet"
+      ],
+      "fremgangsmate": "UDOKUMENTERT – se docs/avstemmingsmodul.md. Byråkontoen (companyId 0): 1) POST /vat/reconciliation/context {customerId, year, term, vatReportType:\"GENERAL_INDUSTRY\"} → reconciliationId (idempotent). 2) GET /vat/reconciliation/{id}/overview → groups[].lines[] med vatTypeId, basis, ledgerData (hovedbok), reportedData (mva-melding), taxAdminData (Skatteetaten), difference. 3) Status: GET /vat/reconciliation/{id}/status (terminen) og GET /vat/reconciliation/statusList/{id} (alle terminer: deliveryStatus, paymentStatus, totalAmountVatBasis, altinnPaymentAmount – ikke vis employee-navn). 4) Skatteetatens tall: POST /vat/reconciliation/{id}/syncWithTaxAdmin {} krever aktiv ID-porten-innlogging (GET /idporten/loginstatus; API-brukeren har active:false) – ikke testet. 5) Blokkeringer: GET /accountingOffice/reconciliations/{id}/validations. 6) Fullfør: PUT /accountingOffice/reconciliations/{id}/:complete (testet OK på en klient T1–T3 2026 når alle linjer hadde ledgerData = reportedData = taxAdminData; skrivende – bekreft). Reell avstemming først når mva-meldingen for terminen er levert (reportedData null før). Kommentar-referanse trolig vatTypeId – verifiser med «test»-metoden.",
+      "skrivende": false
+    }
+  ],
+  "fallgruver": [
+    "API v2 har IKKE kall for å opprette, beregne, sende inn, gjenåpne eller laste ned selve MVA-meldingen (spesifikasjonen). Bare status (/vatReturns/status, /vatReturns/status/list), merknader, innstillinger og terminlengde. Innsending gjøres i Tripletex-UI (Tripletex-MCP-connectoren har vatReturnApi_* men skal bare brukes hvis brukeren ber om det).",
+    "vatType.id (intern id) er ikke det samme som vatType.number (mva-koden/SAF-T-koden). Slå alltid opp id med GET /ledger/vatType?number=<kode> før du setter vatType:{id} på posteringer, produkter eller kontoer.",
+    "GET /ledger/vatType: vatDate brukes bare sammen med typeOfVat (OUTGOING | INCOMING | INCOMING_INVOICE | PROJECT | LEDGER); uten typeOfVat ignoreres datoen. number og id tar kommaseparerte lister.",
+    "Standard SAF-T-koder (verifiser mot klienten med GET /ledger/vatType): 0 ingen mva, 1 inngående 25 %, 11 inngående 15 %, 13 inngående 12 %, 12 råfisk inn, 14/15 fradrag innførselsmva betalt til Tolletaten, 20/21/22 grunnlag innførsel, 81/83 innførsel beregnet selv med fradrag (25/15 %), 82/84 uten fradrag, 85 innførsel nullsats, 3 utgående 25 %, 31 utgående 15 %, 32 råfisk ut, 33 utgående 12 %, 5 fritatt innenfor loven, 51 omvendt avgiftsplikt innenlands (gull/klimakvoter), 52 eksport, 6 utenfor mva-loven, 86/87 tjenester fra utlandet 25 % med/uten fradrag, 88/89 lav sats, 91/92 kjøp av gull/klimakvoter med/uten fradrag.",
+    "Mange mva-koder er bare tilgjengelige når tilsvarende has*-flagg er aktivert i /ledger/vatSettings (f.eks. 86/87 krever hasVatInHighForeignServices, 31 krever hasVatOutMedium). Feil 'ugyldig mva-kode' på bilag betyr ofte at koden ikke er aktivert eller ikke er lovlig på kontoen (legalVatTypes/vatLocked).",
+    "PUT /ledger/vatSettings og PUT /vatTermSizeSettings/{id} skal ha id og version fra en fersk GET; send hele objektet så ikke andre flagg nullstilles. Utdatert version gir konflikt-/valideringsfeil – hent på nytt og prøv igjen.",
+    "PUT /ledger/vatType/createRelativeVatType er et action-endepunkt med tre påkrevde query-parametere (name maks 8 tegn, vatTypeId, percentage) og ingen body.",
+    "/vatReturns/status: uten year/term får du FORRIGE termin, ikke inneværende. term er terminnummer i året og avhenger av terminlengden (tomånedlig 1–6). reportType default GENERAL_INDUSTRY – bruk PRIMARY_INDUSTRY for primærnæring.",
+    "/vatReturns/status/list: endDate er eksklusiv; terminer som slutter før 2022-01-01 utelates (ny mva-melding fra 2022). voucherNumber=0 betyr at terminen ikke er lukket; altinnPaymentAmount er null før levering.",
+    "VatDeliveryStatus/VatPaymentStatus inneholder employee (hvem som leverte/betalte) – hent ikke disse feltene (GDPR); bruk fields=deliveryStatus(status,time),paymentStatus(status,totalAmount,remainingAmount,paymentDate).",
+    "/vatReturns/comment og /vatReturns/comment/>all er BETA og bare lesing. Summary for /vatReturns/comment nevner «a given vatCode», men det finnes ingen vatCode-parameter – filtrer i svaret. Stier med '>' skrives bokstavelig (URL-koding %3E fungerer også).",
+    "Bilag i en lukket/levert mva-termin kan ikke endres (isVatReadonly/isAmountVatClosed=true på posteringen). Korriger med reversering (PUT /ledger/voucher/{id}/:reverse?date=… i åpen termin) og nytt bilag, eller i neste termin.",
+    "POST /ledger/voucher: bare bruttobeløp (amountGross/amountGrossCurrency) brukes – Tripletex lager mva-linjene selv. Ikke før mva-kontoene (27xx) manuelt med mva-kode i tillegg, da blir mva dobbelt.",
+    "/balanceSheet, /ledger/posting, /ledger/voucher, /invoice og /supplierInvoice krever datointervall (dateFrom/dateTo eller invoiceDateFrom/invoiceDateTo) og To-datoen er eksklusiv.",
+    "Mva-kontonumre (2700–2749) er vanlig standard men kan avvike i klientens kontoplan – slå opp med GET /ledger/account før avstemming.",
+    "PUT /company/settings/altinn tar Altinn-passord – skal aldri fylles inn av assistenten. Brukeren må gjøre det selv.",
+    "/ledger/paymentTypeOut er BETA. Registrering av mva-betaling mot en termin finnes ikke i v2; manuelt bilag oppdaterer trolig ikke paymentStatus i mva-modulen.",
+    "403 på /vatReturns/* eller /ledger/vatSettings betyr typisk at tokenet/brukeren mangler tilgang til mva-modulen (eller at klienten ikke er mva-registrert) – ikke at endepunktet mangler.",
+    "Alle skrivende kall (vatSettings, vatTermSizeSettings, createRelativeVatType, konto/produkt-endringer, bilag) krever at brukeren bekrefter først, og klienten må være eksplisitt navngitt.",
+    "GET /ledger/postingByDate støtter ikke fields= eller changes – bruk GET /ledger/posting med fields= når bare noen felt trengs (dataminimering).",
+    "Enum-verdier: termSize = ONE_MONTH | TWO_MONTHS | THREE_MONTHS | FOUR_MONTHS | SIX_MONTHS | YEAR | NOT_REGISTERED; reportType = GENERAL_INDUSTRY | PRIMARY_INDUSTRY; vatRegistrationStatus = VAT_NOT_REGISTERED | VAT_APPLICANT | VAT_REGISTERED | VAT_COMPENSATION. term i /vatReturns/status regnes ut fra gjeldende terminlengde (årstermin: term=1).",
+    "GET /saft/exportSAFT er BETA, krever year, og default version er 1.2 – angi version eksplisitt.",
+    "Avstemmingsmodulen har mva-avstemminger (type VAT_GENERAL_INDUSTRY / VAT_PRIMARY_INDUSTRY; schema VatContextRequest {customerId, year, term, vatReportType}), men spec har ingen mva-context-sti – den udokumenterte POST /vat/reconciliation/context {customerId, year, term, vatReportType:\"GENERAL_INDUSTRY\"} virker (201, i byråkontoen, testet 2026-09-23; skrivende – bekreft). Status per termin: GET /accountingOffice/reconciliations (udokumentert, byråkontoen – se hovedbok). Udokumentert GET /vat/reconciliation/{id}/overview gir {period, groups[].lines[] med vatTypeId, displayName, basis, ledgerData, reportedData, taxAdminData, difference} (200 når kunden er delegert klient, ellers 403). Avstem selv: GET /vatReturns/status(/list) mot GET /balanceSheet 2700–2749.",
+    "Tilbakeføring av fakturaer fra tidligere terminer (reverseVoucher) datert i ny termin tar med mva-koden og reverserer fradraget i den NYE terminen. Symptom: netto negativt grunnlag på kode 1 og positiv fradragslinje i /vat/reconciliation/{id}/overview. Eksempel klient A T4 2026: 11 fakturaer fra T1–T3 tilbakeført 01.07 = 79 555 i tilbakeført fradrag. Feil i tidligere terminer rettes normalt med ny mva-melding for terminen feilen gjelder – avklar årsaken før T4 leveres. Kontroll: GET /ledger/posting med fields=voucher(number,year,reverseVoucher(number,year)) og vatType(number)."
+  ]
+}
