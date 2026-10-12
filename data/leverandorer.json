@@ -3944,7 +3944,7 @@
     "kostnadstype": "skytjenester",
     "fradrag": "fullt, norsk mva på faktura",
     "notat": "Norsk filial, mva-registrert. Fakturerer med norsk mva, altså vanlig fradrag og ikke kode 86.",
-    "kilde": "Brreg + faktura Flip bilag 456 T4 2026",
+    "kilde": "Brreg + faktura T4 2026",
     "sikkerhet": "høy",
     "vurdert_av": "Sjur",
     "vurdert": "2026-09-25"

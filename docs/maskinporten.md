@@ -116,7 +116,7 @@ ti klientene før 31.12.2026. Dette er ikke valgfritt.
 a-meldingsintegrasjon mot Altinn, og MCP-connectoren eksponerer
 `get_amelding_status`. Den returnerer `accrued` og `notPaid` for forskuddstrekk,
 arbeidsgiveravgift, finansskatt og pliktig innskudd per termin – altså det
-Skatteetaten har registrert. På Livity august 2026 ga den 151 064 i påløpt trekk
+Skatteetaten har registrert. På en klient i august 2026 ga den 151 064 i påløpt trekk
 og 66 503 i påløpt AGA, med 0 ubetalt.
 
 Det dekker nøkkeltallene i lønnsavstemmingen, og er faktisk en **bedre kilde** enn

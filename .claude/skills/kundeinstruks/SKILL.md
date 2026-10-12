@@ -94,7 +94,7 @@ Andre skills gjør det samme i sitt steg 1 og bruker seksjonene slik:
 5. Når brukeren har sagt ja: kall igjen med samme argumenter og `confirmation_id`.
 6. Bekreft med `kundeinstruks_historikk` (limit 1) at versjonen er lagret.
 
-Svar fra brukeren som gjelder klienten generelt («Livity bruker mva-kode 0 på Clerk», «1960 tas i årsoppgjøret») skal hit,
+Svar fra brukeren som gjelder klienten generelt («klienten bruker mva-kode 0 på Clerk», «1960 tas i årsoppgjøret») skal hit,
 slik at de ikke må gis på nytt neste måned. Tilby det med én setning når et slikt svar kommer i en annen skill.
 
 ## Kjente avvik
