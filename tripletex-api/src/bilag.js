@@ -196,8 +196,8 @@ async function foer() {
   };
   const kurs = async (kode, dato) => {
     const cur = await slå('/currency', { code: kode, fields: 'id' });
-    const { value } = await c.request(`/currency/${cur.id}/rate`, { query: { date: dato, fields: 'rate,units' } });
-    return value.rate / (value.units || 1);
+    const { value } = await c.request(`/currency/${cur.id}/rate`, { query: { date: dato, fields: 'rate' } });
+    return value.rate;
   };
   const dokFil = (id) => readdirSync(docsDir).find((f) => f.startsWith(`${id}.`) && !f.endsWith('.txt'));
 
