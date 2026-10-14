@@ -25,7 +25,7 @@ Reglene Claude følger står i [CLAUDE.md](CLAUDE.md); malen alle skills følger
 | [`mva-innlevering`](.claude/skills/mva-innlevering/SKILL.md) | «hvem mangler mva for t<n>», «sendt og synkronisert» | MVA-innlevering | Tripletex, Tally (Altinn) | Tally | Opprett, send, lås: regnskapsfører med ID-porten |
 | [`lonnskjoring`](.claude/skills/lonnskjoring/SKILL.md) | «kjør lønn for <måned>», «legg inn lønnsendringen» | Innsamling lønnsgrunnlag, Kjør lønn, Send lønnsslipper, Feriepengeberegning | Tripletex, Missive, Tally | Tripletex (lønnsutkast, arbeidsforhold), Tally | Fullføring av kjøringen: Tripletex-UI |
 | [`a-melding`](.claude/skills/a-melding/SKILL.md) | «er a-meldingen sendt», «hvem mangler a-melding» | A-melding | Tripletex, Tally | Tripletex (send etter ja), Tally | – |
-| [`lonnsavstemming`](.claude/skills/lonnsavstemming/SKILL.md) | «lønnsavstemming termin <n> for <klient>», «årsavslutning lønn» | Avstemming av AGA og forskuddstrekk, Årsavslutning lønn | A07-XML, Tripletex | Tally-dokument (Excel, A07), Tally | `uv` · modul: Tripletex-UI |
+| [`lonnsavstemming`](.claude/skills/lonnsavstemming/SKILL.md) | «lønnsavstemming termin <n> for <klient>», «årsavslutning lønn» | Avstemming av AGA og forskuddstrekk, Årsavslutning lønn | Tally (A07 via Altinn), Tripletex | Tally-dokument (Excel), Tally | `uv` · modul: Tripletex-UI |
 | [`aarsoppgjoer-forberedelse`](.claude/skills/aarsoppgjoer-forberedelse/SKILL.md) | «forbered årsoppgjøret», «hva mangler før årsoppgjøret» | Forberedelse | Tripletex, Tally | Tally (årsoppgjørsstatus, dokument), Missive-utkast | – |
 | [`aksjonaerregister`](.claude/skills/aksjonaerregister/SKILL.md) | «aksjonærregister for <klient>», «RF-1086» | RF-1086 | Tripletex, Brreg, Tally | Tally-dokument (sjekkliste), Tally | Levering: regnskapsfører i Altinn |
 | [`aarsoppgjoer-kontroll`](.claude/skills/aarsoppgjoer-kontroll/SKILL.md) | «kontroller årsoppgjøret» + filer | Skattemelding, Årsregnskap | Opplastede filer, Brreg | Tally-dokument (PDF) | `uv` |
@@ -103,4 +103,4 @@ Skillene bruker felles filer (`silfer-rapport`, `docs/`, `data/`), så last inn 
   Oversende lønnsgrunnlag, Godkjenning av lønn) og onboarding.
 - Retningen er en komplett regnskapsfører: skillene er byggeklosser med en lesedel og en ja-liste, og funn i samme format.
   Neste steg er løpende bokføring per banktransaksjon, kontinuerlige kontroller med funn som avvik i Tally, og én dagsliste per regnskapsfører.
-- [`docs/maskinporten.md`](docs/maskinporten.md) – vurdering av Maskinporten for A07 og brev fra det offentlige.
+- [`docs/maskinporten.md`](docs/maskinporten.md) – bakgrunn for Maskinporten-integrasjonen. Den er nå i bruk via Tally (A07, kvitteringer og brev).

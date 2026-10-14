@@ -1,5 +1,9 @@
 # Maskinporten: kan A07 og offentlige brev hentes automatisk?
 
+> **Status oktober 2026:** Integrasjonen er i bruk via Tally. A07 bestilles og leses med `request_amelding_report` og
+> `hent_amelding_rapport` (summer, ingen persondata), og Altinn-innboksen (kvitteringer og brev) med `list_altinn_innboks` og
+> `les_altinn_melding`. Vurderingen under er bakgrunnen fra september og brukes ikke i drift.
+
 Undersøkt 17.09.2026. Kort svar: **ja, teknisk mulig – men det er et
 integrasjonsprosjekt, ikke en innstilling som skrus på.** Og for A07 spesifikt er
 API-et Skatteetaten bygger ennå ikke ferdig.

@@ -54,7 +54,7 @@ Utkast – kalibreres mot første klient. Følg stegene, men si fra om noe ikke 
 
 ### 6. Etter levering (etter ja)
 - Regnskapsføreren leverer i Altinn eller årsoppgjørsmodulen. Kvitteringen leses med Tally `list_altinn_innboks` (AR8).
-- Etter ja: Tally `update_arsoppgjor` fase `rf1086` = levert, og opplasting av sjekkliste og kvittering.
+- Etter ja: Tally `update_arsoppgjor` fase `rf1086` = levert, og opplasting av sjekklisten (kvitteringen ligger allerede i Altinn-fanen i Tally).
 
 ## Svar
 

@@ -54,7 +54,7 @@ regnskapsføreren har sendt. Kontrollen før innsending og 2740-notatet lages i 
 
 ## Lever
 
-Lever: `silfer-rapport` (spec.json → xlsx/pdf) + `docs/dokumentlagring.md` (kategori `MVA_RAPPORT`, periode `ÅÅÅÅ-T<n>`, samling `Mva ÅÅÅÅ`, oppgave «MVA-innlevering»): det endelige 2740-notatet (PDF) og kvitteringen fra Altinn.
+Lever: `silfer-rapport` (spec.json → xlsx/pdf) + `docs/dokumentlagring.md` (kategori `MVA_RAPPORT`, periode `ÅÅÅÅ-T<n>`, samling `Mva ÅÅÅÅ`, oppgave «MVA-innlevering»): det endelige 2740-notatet (PDF). Kvitteringen ligger allerede i Altinn-fanen i Tally og lastes ikke opp på nytt.
 Fullfør i Tally: se `tally-gjoremal`. «MVA-innlevering» fullføres når kvitteringen er mottatt og betalingen er opprettet eller tilgodebeløpet registrert. Kommentaren inneholder termin, beløp å betale eller til gode, forfall og hva som gjenstår (synk, fullføring i modulen, låsing).
 
 ## Fallgruver

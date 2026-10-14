@@ -1,0 +1,33 @@
+{
+  "klient": "Eksempel AS",
+  "periode": "2026-01 – 2026-02",
+  "avstemt": "2026-03-10T09:12:41.208311",
+  "totalt": { "forskuddstrekk": 100252, "arbeidsgiveravgift": 48165, "finansskattLoenn": 0 },
+  "per_maaned": [
+    { "kalendermaaned": "2026-01", "antallInnsendinger": 1, "forskuddstrekk": 49909, "arbeidsgiveravgift": 23865, "finansskattLoenn": 0 },
+    { "kalendermaaned": "2026-02", "antallInnsendinger": 2, "forskuddstrekk": 50343, "arbeidsgiveravgift": 24300, "finansskattLoenn": 0 }
+  ],
+  "loenn_og_ytelser": [
+    { "fordel": "kontantytelse", "beskrivelse": "fastloenn", "utloeserArbeidsgiveravgift": true, "beloep": 333551.26 },
+    { "fordel": "kontantytelse", "beskrivelse": "overtidsgodtgjoerelse", "utloeserArbeidsgiveravgift": true, "beloep": 1974.37 }
+  ],
+  "innsendinger": [
+    { "kalendermaaned": "2026-01", "status": "GODKJENT", "kildesystem": "Tripletex", "leveringstidspunkt": "2026-01-23T14:05:11.402",
+      "antallInntektsmottakere": 3, "erstattet": false, "forskuddstrekk": 49909, "arbeidsgiveravgift": 23865, "finansskattLoenn": 0,
+      "forfallsdato": null, "kontonummer": "00000000000",
+      "kid": { "forskuddstrekk": "0099999999905260113", "arbeidsgiveravgift": "0099999999906260115", "finansskattLoenn": "0099999999909260116" } },
+    { "kalendermaaned": "2026-02", "status": "GODKJENT", "kildesystem": "Tripletex", "leveringstidspunkt": "2026-02-25T10:41:57.118",
+      "antallInntektsmottakere": 3, "erstattet": true, "forskuddstrekk": 50343, "arbeidsgiveravgift": 23793, "finansskattLoenn": 0,
+      "forfallsdato": null, "kontonummer": "00000000000",
+      "kid": { "forskuddstrekk": "0099999999905260113", "arbeidsgiveravgift": "0099999999906260115", "finansskattLoenn": "0099999999909260116" } },
+    { "kalendermaaned": "2026-02", "status": "GODKJENT", "kildesystem": "Tripletex", "leveringstidspunkt": "2026-03-02T08:30:20.556",
+      "antallInntektsmottakere": 3, "erstattet": false, "forskuddstrekk": 50343, "arbeidsgiveravgift": 24300, "finansskattLoenn": 0,
+      "forfallsdato": null, "kontonummer": "00000000000",
+      "kid": { "forskuddstrekk": "0099999999905260113", "arbeidsgiveravgift": "0099999999906260115", "finansskattLoenn": "0099999999909260116" } }
+  ],
+  "avgiftsgrunnlag": [
+    { "virksomhet": "999999999", "type": "loenn", "sone": "1", "beregningskode": "generelleNaeringer", "grunnlag": 335525.63, "sats": 14.1 },
+    { "virksomhet": "999999999", "type": "pensjon", "sone": "1", "beregningskode": "generelleNaeringer", "grunnlag": 6071, "sats": 14.1 }
+  ],
+  "merknad": "Beløp i kroner fra Skatteetaten, lest nå og ikke lagret. null betyr at kilden ikke oppga beløpet, ikke null kroner. Erstattede a-meldinger er holdt utenfor månedssummene."
+}

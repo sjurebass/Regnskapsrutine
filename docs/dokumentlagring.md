@@ -1,7 +1,8 @@
 # Dokumentlagring i Tally
 
-Alle filer byrået lager eller får (rapporter, kontoutskrifter, A07, notater, mangellister) lagres i **klientens dokumentarkiv i Tally**
-via Tally-MCP-en. Det finnes ingen kundemapper på PC-en. Claudes scratch-mappe brukes bare mens filen lages, og tømmes etterpå.
+Alle filer byrået lager eller får (rapporter, kontoutskrifter, notater, mangellister) lagres i **klientens dokumentarkiv i Tally**
+via Tally-MCP-en. Det som kommer fra Altinn (A07, kvitteringer, brev fra Skatteetaten og andre etater), ligger allerede i Tally via
+byråets Maskinporten-tilgang (Altinn-fanen på klientkortet). Det lastes aldri ned eller opp på nytt; vis til meldingen i kommentaren. Det finnes ingen kundemapper på PC-en. Claudes scratch-mappe brukes bare mens filen lages, og tømmes etterpå.
 
 Skillene viser hit i stedet for å gjenta fremgangsmåten.
 
@@ -14,7 +15,7 @@ Skillene viser hit i stedet for å gjenta fremgangsmåten.
   fra den aktive lista, også for kunden. Si det til brukeren.
 - **Opplasting er skriving.** Vis filnavn, klient, kategori, periode og oppgave, og last opp etter ja. Et ja kan dekke alle filene fra én
   kjøring for én klient.
-- Personvern: kundens egne data (lønn per ansatt i lønnsavstemmingen, kortholder i mangellisten) kan gå i kundens arkiv. Ikke last opp
+- Personvern: kundens egne data (kortholder i mangellisten) kan gå i kundens arkiv. Ikke last opp
   data om andre klienter, og ikke legg personopplysninger i filnavn eller beskrivelser.
 
 ## Slik lastes det opp
@@ -45,12 +46,12 @@ som kan leses som at filen er lagret.
 | Kontoutskrift kundereskontro / leverandørreskontro per motpart (PDF, til kunden) | `BILAG` | `ÅÅÅÅ-MM` | `Reskontro ÅÅÅÅ` | Gjennomgang kunde- og leverandørreskontro |
 | Bilagskontroll (Excel, byråintern – arkiveres rett etter opplasting) | `BILAG` | `ÅÅÅÅ-MM` | `Bilagskontroll ÅÅÅÅ` | Kontroll av bilag |
 | Balanseavstemming per måned (Excel) | `BILAG` | `ÅÅÅÅ-MM` | `Balanseavstemming ÅÅÅÅ` | Avstemming balansekontoer |
-| Mva: 2740-notat, reskontrovurdering, kvittering, betalingsinfo | `MVA_RAPPORT` | `ÅÅÅÅ-T<n>` | `Mva ÅÅÅÅ` | MVA-kontroll / MVA-innlevering |
-| Lønnsavstemming (Excel), A07-XML | `LONN` | `ÅÅÅÅ-T<n>` (år: `ÅÅÅÅ`) | `Lønn ÅÅÅÅ` | Avstemming av AGA og forskuddstrekk / Årsavslutning lønn |
+| Mva: 2740-notat, reskontrovurdering, betalingsinfo | `MVA_RAPPORT` | `ÅÅÅÅ-T<n>` | `Mva ÅÅÅÅ` | MVA-kontroll / MVA-innlevering |
+| Lønnsavstemming (Excel) | `LONN` | `ÅÅÅÅ-T<n>` (år: `ÅÅÅÅ`) | `Lønn ÅÅÅÅ` | Avstemming av AGA og forskuddstrekk / Årsavslutning lønn |
 | Perioderapport (PDF, bare når kunden vil ha fil) | `ANNET` | `ÅÅÅÅ-MM` | `Perioderapporter ÅÅÅÅ` | Ferdigstillelse perioderegnskap |
 | Årsoppgjør forberedelse – sjekkliste (Excel); årsoppgaver, lagerliste, kasseoppgjør 31.12 fra kunden | `ARSOPPGJOR` | `ÅÅÅÅ` | `Årsoppgjør ÅÅÅÅ` | Forberedelse |
 | Balanseavstemming 31.12 (Excel) og balansespesifikasjon (PDF) | `ARSOPPGJOR` | `ÅÅÅÅ` | `Årsoppgjør ÅÅÅÅ` | Balanseavstemming |
-| RF-1086 sjekkliste (Excel, pseudonymisert) og Altinn-kvittering | `ARSOPPGJOR` | `ÅÅÅÅ` | `Årsoppgjør ÅÅÅÅ` | RF-1086 |
+| RF-1086 sjekkliste (Excel, pseudonymisert) | `ARSOPPGJOR` | `ÅÅÅÅ` | `Årsoppgjør ÅÅÅÅ` | RF-1086 |
 | Årsoppgjørskontroll (PDF) | `ARSOPPGJOR` | `ÅÅÅÅ` | `Årsoppgjør ÅÅÅÅ` | Skattemelding / Årsregnskap |
 | Låneavtaler, protokoller, aksjeeierbok, avtaler | `KONTRAKT` | `ÅÅÅÅ` | – | – |
 | Oppdragskontroll (PDF, byråintern – internt arkiv eller arkiveres straks) | `ANNET` | `ÅÅÅÅ` | – | – (kvalitetsgjennomgangen i Tally) |

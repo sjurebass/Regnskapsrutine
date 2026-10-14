@@ -55,7 +55,7 @@ inneværende år; eldre poster blir én samlelinje «vurderes i årsoppgjøret»
 
 | ID | Kontroll | Utslag | Skill | Data (MCP) | Grunnlag |
 |---|---|---|---|---|---|
-| L1 | A07 mot regnskap | Full terminavstemming | `lonnsavstemming` | `tripletex_run_script` + A07-XML | a-opplysningsl. § 4 |
+| L1 | A07 mot regnskap | Full terminavstemming (summer, ikke per ansatt) | `lonnsavstemming` | Tally `hent_amelding_rapport` + `tripletex_run_script` | a-opplysningsl. § 4 |
 | L2 | Skyldig trekk og AGA | 2600/2770 mot termin, forfall den 15.; negativt = for mye innbetalt | `a-melding`, `balanseavstemming` | `get_amelding_status` | sktbetl. § 10-10 |
 | L3 | Feriepengeavsetning | 2940 mot grunnlag × sats | `lonnsavstemming`, `balanseavstemming` | `search_ledger_postings` | ferieloven § 10 |
 | L4 | A-melding levert | Levert innen den 5. | `a-melding` | `get_amelding_status` | a-opplysningsl. § 4 |

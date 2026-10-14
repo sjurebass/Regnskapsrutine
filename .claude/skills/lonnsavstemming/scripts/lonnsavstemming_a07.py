@@ -1,13 +1,14 @@
 """Lønnsavstemming A07 mot Tripletex – bygger Excel-rapporten.
 
-    python lonnsavstemming_a07.py <a07.xml> <ledger.json> <ut.xlsx>
+    python lonnsavstemming_a07.py <a07.json> <ledger.json> <ut.xlsx>
 
-A07-filen er avstemmingsinformasjonen fra Altinn. ledger.json er regnskapssiden,
-hentet fra Tripletex med scripts/hent_tripletex.js. Formatet på ledger.json står
-i references/kontrollogikk.md, og et utfylt eksempel ligger i
-scripts/ledger_eksempel.json.
+a07.json er svaret fra Tally `hent_amelding_rapport` (A07 fra Skatteetaten via
+Altinn, uten personopplysninger). ledger.json er regnskapssiden, hentet fra
+Tripletex med scripts/hent_tripletex.js. Formatene står i
+references/kontrollogikk.md; utfylte eksempler ligger i
+scripts/a07_tally_eksempel.json og scripts/ledger_eksempel.json.
 
-Arkene: Avstemming · Detaljer · Forskuddstrekk · Arbeidsgiveravgift · Per ansatt ·
+Arkene: Avstemming · Detaljer · Forskuddstrekk · Arbeidsgiveravgift ·
 Ytelser A07 · Posteringer.
 """
 
@@ -23,8 +24,7 @@ from pathlib import Path
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 
-from a07 import YTELSE_KONTO, A07, parse_a07
-from kobling import Personkobling, maal_per_person
+from a07 import IKKE_OPPGITT, A07, les_a07, summer
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "silfer-rapport" / "scripts"))
 from silfer.filer import os_sti  # noqa: E402
@@ -35,6 +35,10 @@ MAANEDSNAVN = ["januar", "februar", "mars", "april", "mai", "juni",
                "juli", "august", "september", "oktober", "november", "desember"]
 
 RE_REVERSERING = re.compile(r"Reversering av bilag\s+(\S+)", re.I)
+
+YTELSE_TOLERANSE = 1.0
+INGEN_AMELDING = "Ingen a-melding for måneden i A07"
+IKKE_OPPGITT_KOMMENTAR = "Beløpet er ikke oppgitt i A07 – kontroller i Altinn"
 
 
 def norsk_dato(iso: str) -> str:
@@ -48,6 +52,15 @@ def maanedsnavn(iso_maaned: str) -> str:
     aar, mnd = iso_maaned.split("-")
     navn = MAANEDSNAVN[int(mnd) - 1]
     return f"{navn[0].upper()}{navn[1:]} {aar}"
+
+
+def kort_maaned(iso_maaned: str) -> str:
+    return MAANEDSNAVN[int(iso_maaned[5:7]) - 1]
+
+
+def verdi(v: float | None, desimaler: int = 2):
+    """Tall eller «ikke oppgitt». None blir aldri 0."""
+    return IKKE_OPPGITT if v is None else round(v, desimaler)
 
 
 class Ledger:
@@ -65,7 +78,6 @@ class Ledger:
         ]
         self.reverserte = self._finn_reverserte()
         self.aktive = [p for p in self.poster if p["bilag"] not in self.reverserte]
-        self.kobling = Personkobling(self, self.er_lonnsbilag)
 
     # -- klassifisering ---------------------------------------------------
 
@@ -83,7 +95,11 @@ class Ledger:
 
     @staticmethod
     def er_betaling(p) -> bool:
-        return p["tekst"].strip().lower().startswith("betaling:")
+        """«Betaling: …», og i direkte-modellen linjen «Lønnsbilag N-ÅÅÅÅ. Overføring
+        skattetrekk» i selve lønnsbilaget (samme bilag og dato som trekket)."""
+        t = p["tekst"].strip().lower()
+        return (t.startswith("betaling:") or "overføring skattetrekk" in t
+                or "overforing skattetrekk" in t)
 
     @staticmethod
     def er_avrunding(p) -> bool:
@@ -92,6 +108,10 @@ class Ledger:
     def er_lonnsbilag(self, p) -> bool:
         return ("lønnsbilag" in p["tekst"].lower()
                 and not self.er_betaling(p) and not self.er_avrunding(p))
+
+    def er_aga_postering(self, p) -> bool:
+        """2770 i lønnsbilag og pensjonsbilag: alt utenom betalinger og avrundingsbilag."""
+        return not self.er_betaling(p) and not self.er_avrunding(p)
 
     # -- oppslag ----------------------------------------------------------
 
@@ -119,12 +139,14 @@ class Ledger:
                 return p["kontonavn"]
         return ""
 
-    def sum_konto(self, konto: int, filter_=None, dato=None) -> float:
+    def sum_konto(self, konto: int, filter_=None, dato=None, maaned=None) -> float:
         ut = 0.0
         for p in self.aktive:
             if p["konto"] != konto:
                 continue
             if dato and p["dato"][:10] != dato:
+                continue
+            if maaned and p["dato"][:7] != maaned:
                 continue
             if filter_ and not filter_(p):
                 continue
@@ -133,7 +155,12 @@ class Ledger:
 
 
 def _sats(ledger: Ledger, a07: A07) -> float:
-    return float(ledger.d.get("aga_sats") or a07.aga_sats)
+    """AGA-sats i prosent: ledger.json først, så A07."""
+    if ledger.d.get("aga_sats"):
+        return float(ledger.d["aga_sats"])
+    if a07.sats is not None:
+        return round(a07.sats * 100, 4)
+    return 14.1
 
 
 def _feriesats(ledger: Ledger) -> float:
@@ -148,6 +175,32 @@ def _pensjonskonto(ledger: Ledger) -> int:
         if kandidat in ledger.balanser:
             return kandidat
     return 5945
+
+
+def _forfall(a07: A07, ledger: Ledger) -> str:
+    """Forfall fra A07; er den null, 15. i måneden etter terminen (ledger.json)."""
+    return a07.forfall or ledger.d.get("periode", {}).get("forfall", "")
+
+
+def _maaneder(a07: A07, ledger: Ledger) -> list[str]:
+    """Månedene i A07 pluss måneder med lønnsbilag på 2600/2770 i regnskapet."""
+    ut = set(a07.maaneder)
+    ut |= {p["dato"][:7] for p in ledger.aktive
+           if p["konto"] in (2600, 2770) and ledger.er_lonnsbilag(p)}
+    return sorted(m for m in ut if m)
+
+
+def _mangler(a07: A07, m: str) -> str:
+    return INGEN_AMELDING if a07.per_maaned is not None and not a07.har_maaned(m) else ""
+
+
+def _innbetalt_trekk(ledger: Ledger, maaned: str | None = None) -> list[dict]:
+    """2600-debet «Betaling: Lønnsbilag» eller «Overføring skattetrekk» (direkte-modellen),
+    eventuelt i én måned."""
+    return [p for p in ledger.aktive
+            if p["konto"] == 2600 and ledger.er_betaling(p)
+            and "lønnsbilag" in p["tekst"].lower()
+            and (maaned is None or p["dato"][:7] == maaned)]
 
 
 # ---------------------------------------------------------------- Avstemming
@@ -168,29 +221,27 @@ class Kontrollrad:
 def _kontrollrader(a07: A07, ledger: Ledger) -> list[tuple[str, list[Kontrollrad]]]:
     sats = _sats(ledger, a07)
     pensjonskonto = _pensjonskonto(ledger)
-    trekk_a07 = a07.trekk_per_loennsdato()
+    maaneder = _maaneder(a07, ledger)
+    trekk_termin = a07.trekk_innrapportert()
 
     # --- forskuddstrekk
     trekk_rader = []
-    for dato, beloep in trekk_a07.items():
-        bokfort = -ledger.sum_konto(2600, ledger.er_lonnsbilag, dato=dato)
+    for m in maaneder:
+        bokfort = -ledger.sum_konto(2600, ledger.er_lonnsbilag, maaned=m)
         trekk_rader.append(Kontrollrad(
-            f"Trekk lønnsdato {norsk_dato(dato)}",
-            "A07 per lønnsdato = −Σ 2600 i lønnsbilag samme dato",
-            beloep, bokfort))
-    trekk_termin_a07 = -sum(p.forskuddstrekk for p in a07.personer)
+            f"Trekk {kort_maaned(m)}",
+            "A07 per måned = −Σ 2600 i lønnsbilag samme måned",
+            a07.trekk_innrapportert(m), round(bokfort, 2), kommentar=_mangler(a07, m)))
     trekk_termin_bok = -(ledger.sum_konto(2600, ledger.er_lonnsbilag)
                          + ledger.sum_konto(2600, ledger.er_avrunding))
-    innbetalt = sum(p["beloep"] for p in ledger.aktive
-                    if p["konto"] == 2600 and ledger.er_betaling(p)
-                    and "lønnsbilag" in p["tekst"].lower())
+    innbetalt = sum(p["beloep"] for p in _innbetalt_trekk(ledger))
     trekk_rader += [
-        Kontrollrad("Trekk termin (per person)",
-                    "A07 Σ per person = −Σ 2600 lønnsbilag − avrundingsbilag",
-                    trekk_termin_a07, trekk_termin_bok),
+        Kontrollrad("Trekk termin",
+                    "A07 totalt = −Σ 2600 lønnsbilag − avrundingsbilag",
+                    trekk_termin, round(trekk_termin_bok, 2)),
         Kontrollrad("Innbetalt trekk",
-                    "Σ 2600-debet «Betaling: Lønnsbilag» = a-meldt",
-                    sum(trekk_a07.values()), innbetalt,
+                    "Σ 2600-debet «Betaling: Lønnsbilag» og «Overføring skattetrekk» = a-meldt",
+                    trekk_termin, round(innbetalt, 2),
                     kommentar=ledger.d.get("trekkmodell", "")),
     ]
     alle_betalinger_2600 = sum(p["beloep"] for p in ledger.aktive
@@ -198,12 +249,16 @@ def _kontrollrader(a07: A07, ledger: Ledger) -> list[tuple[str, list[Kontrollrad
     andre_2600 = sum(p["beloep"] for p in ledger.aktive
                      if p["konto"] == 2600 and not ledger.er_betaling(p)
                      and not ledger.er_lonnsbilag(p) and not ledger.er_avrunding(p))
-    beregnet_ub_2600 = (-ledger.ib(2600) + sum(trekk_a07.values())
-                        - alle_betalinger_2600 - andre_2600)
+    if trekk_termin is None:
+        saldo_rest = None
+    else:
+        beregnet_ub_2600 = (-ledger.ib(2600) + trekk_termin
+                            - alle_betalinger_2600 - andre_2600)
+        saldo_rest = round(beregnet_ub_2600 - (-ledger.ub(2600)), 2)
     trekk_rader += [
         Kontrollrad("Saldokontroll 2600",
                     "UB − IB − innbetalt + a-meldt − andre føringer = 0 (±1 kr avrunding)",
-                    0.0, round(beregnet_ub_2600 - (-ledger.ub(2600)), 2)),
+                    0.0, saldo_rest),
         Kontrollrad("Skattetrekkskonto 1950", "UB 1950 ≥ UB 2600 (skyldig)",
                     round(max(0.0, -ledger.ub(2600)), 2), round(ledger.ub(1950), 2),
                     kommentar=ledger.d.get("trekkmodell_1950", ""),
@@ -218,9 +273,11 @@ def _kontrollrader(a07: A07, ledger: Ledger) -> list[tuple[str, list[Kontrollrad
         + utbetalte_ferie
     )
     pensjon_termin = ledger.bevegelse(pensjonskonto)
-    pensjon_hittil = float(sum(r[2] for r in ledger.d.get("pensjon_historikk", [])) or pensjon_termin)
-    pensjon_innrapportert_hittil = float(
-        sum(r[4] for r in ledger.d.get("pensjon_historikk", [])) or a07.grunnlag_pensjon)
+    historikk = ledger.d.get("pensjon_historikk", [])
+    pensjon_hittil = float(sum(r[2] for r in historikk) or pensjon_termin)
+    pensjon_innrapportert_hittil = (float(sum(r[4] for r in historikk))
+                                    if historikk and sum(r[4] for r in historikk)
+                                    else a07.grunnlag_pensjon)
 
     aga_rader = [
         Kontrollrad("Grunnlag lønn og ytelser",
@@ -228,63 +285,64 @@ def _kontrollrader(a07: A07, ledger: Ledger) -> list[tuple[str, list[Kontrollrad
                     "+ 5500–5599 + utbetalte ferie",
                     a07.grunnlag_loenn, round(grunnlag_regnskap, 2), toleranse=2),
         Kontrollrad("Grunnlag pensjon (termin)",
-                    f"A07 tilskudd/premie pensjon = bevegelse {pensjonskonto}",
+                    f"A07 avgiftsgrunnlag pensjon = bevegelse {pensjonskonto}",
                     a07.grunnlag_pensjon, round(pensjon_termin, 2)),
         Kontrollrad(f"Grunnlag pensjon {ledger.d.get('pensjon_etikett', 'hittil i år')}",
                     f"Innrapportert (pensjonsbilag/sats) = {pensjonskonto} bokført, t.o.m. {a07.tom}",
-                    round(pensjon_innrapportert_hittil, 2), round(pensjon_hittil, 2), toleranse=2),
+                    None if pensjon_innrapportert_hittil is None else round(pensjon_innrapportert_hittil, 2),
+                    round(pensjon_hittil, 2), toleranse=2),
     ]
-    if abs(a07.fradrag_sone) > 0.005:
+    if a07.grunnlag_fradrag is None or abs(a07.grunnlag_fradrag) > 0.005:
         refusjon_bokfort = ledger.bevegelse_intervall(5800, 5899)
         aga_rader.append(Kontrollrad(
             "Fradrag i grunnlag (NAV-refusjon)",
-            "A07 fradragIGrunnlagetForSone = refusjon bokført 58xx",
-            round(a07.fradrag_sone, 2), round(refusjon_bokfort, 2), toleranse=2))
+            "A07 fradrag i grunnlaget = refusjon bokført 58xx",
+            a07.grunnlag_fradrag, round(refusjon_bokfort, 2), toleranse=2))
 
-    grunnlag_mnd = a07.grunnlag_per_maaned()
-    pensjon_mnd = {r[0]: float(r[4]) for r in ledger.d.get("pensjon_historikk", [])}
-    for m in a07.maaneder:
-        lonn_m = grunnlag_mnd.get(m, 0.0)
-        pensjon_m = pensjon_mnd.get(m, 0.0)
-        beregnet = int((int(lonn_m) + pensjon_m) * sats / 100)
+    for m in maaneder:
+        bokfort = -ledger.sum_konto(2770, ledger.er_aga_postering, maaned=m)
         aga_rader.append(Kontrollrad(
-            f"AGA {MAANEDSNAVN[int(m[5:7]) - 1]}",
-            f"({lonn_m:,.0f} + pensjon/fradrag {pensjon_m:,.0f}) × {sats} % ≈ innrapportert".replace(",", " "),
-            round((int(lonn_m) + pensjon_m) * (sats / 100), 2),
-            a07.aga_innrapportert(m)))
+            f"AGA {kort_maaned(m)}",
+            "A07 per måned = −Σ 2770 i lønnsbilag + pensjonsbilag samme måned "
+            "(uten avrundingsbilag; 0–1 kr er normalt)",
+            a07.aga_innrapportert(m), round(bokfort, 2), kommentar=_mangler(a07, m)))
 
+    aga_termin = a07.aga_innrapportert()
+    beregnet = a07.beregnet_aga(sats / 100)
+    ukjente = ", ".join(sorted({g.type for g in a07.ukjente_grunnlag}))
     kostnadsfort = ledger.bevegelse(5400) + _frigjort_aga_ferie(ledger)
     kreditert = -ledger.sum_konto(2770, lambda p: not ledger.er_betaling(p))
     aga_rader += [
         Kontrollrad("Beregnet AGA termin",
-                    f"(lønn + pensjon − fradrag) × {sats} % ≈ innrapportert "
+                    "Σ avgiftsgrunnlag × sats i A07 (lønn + pensjon − fradrag) ≈ innrapportert "
                     "(Tripletex runder ned per mnd)",
-                    round((a07.grunnlag_loenn + a07.grunnlag_pensjon + a07.fradrag_sone)
-                          * sats / 100, 2),
-                    a07.aga_innrapportert(), toleranse=2),
+                    None if beregnet is None else round(beregnet, 2),
+                    aga_termin, toleranse=max(2, len(maaneder)),
+                    kommentar=f"Ukjent type holdt utenfor: {ukjente}" if ukjente else ""),
         Kontrollrad("Kostnadsført AGA",
                     "5400 + frigjort AGA av utbetalte feriepenger (2785-debet) ≈ innrapportert",
-                    a07.aga_innrapportert(), round(kostnadsfort, 2), toleranse=2),
+                    aga_termin, round(kostnadsfort, 2), toleranse=2),
         Kontrollrad("Kreditert 2770",
                     "Σ 2770-kredit lønnsbilag + pensjonsbilag − NAV-refusjon − "
                     "avrundingsbilag = innrapportert",
-                    a07.aga_innrapportert(), round(kreditert, 2), toleranse=0.01),
+                    aga_termin, round(kreditert, 2), toleranse=0.01),
         Kontrollrad("Skyldig AGA (UB 2770)", "UB 2770 = innrapportert termin",
-                    a07.aga_innrapportert(), round(-ledger.ub(2770), 2), toleranse=0.5),
+                    aga_termin, round(-ledger.ub(2770), 2), toleranse=0.5),
         Kontrollrad("Betalt forrige termin",
                     "IB 2770 = betalt i terminen (Betaling: Terminoppgave)",
                     round(-ledger.ib(2770), 2),
                     round(sum(p["beloep"] for p in ledger.aktive
                               if p["konto"] == 2770 and ledger.er_betaling(p)), 2),
                     toleranse=0.5),
-        Kontrollrad("A07 betalingsinformasjon",
-                    "Sum AGA i A07 betalingsinformasjon = Σ gjeldende innsendinger",
-                    a07.sum_aga, a07.aga_innrapportert(), toleranse=0.5),
+        Kontrollrad("A07 totalt mot innsendinger",
+                    "AGA totalt i A07 = Σ gjeldende innsendinger",
+                    a07.aga_totalt, a07.aga_innsendinger(), toleranse=0.5),
     ]
 
     # --- feriepenger
     feriesats = _feriesats(ledger)
     avsatt = ledger.bevegelse(5020)
+    ferie_a07 = a07.utbetalte_feriepenger()
     ferie_rader = [
         Kontrollrad("Avsatt feriepenger (5020)",
                     f"Σ 5020 = {feriesats * 100:.1f} % × bevegelse 5000",
@@ -297,39 +355,31 @@ def _kontrollrader(a07: A07, ledger: Ledger) -> list[tuple[str, list[Kontrollrad
                     round(avsatt, 2),
                     round(_avsetning_2940(ledger), 2)),
         Kontrollrad("Utbetalte feriepenger",
-                    "A07 «feriepenger» = 2940-debet i lønnsbilag (netto)",
-                    round(a07.utbetalte_feriepenger(), 2), round(utbetalte_ferie, 2)),
+                    "A07 ytelser «feriepenger» (perioden) = 2940-debet i lønnsbilag (netto)",
+                    None if ferie_a07 is None else round(ferie_a07, 2), round(utbetalte_ferie, 2)),
     ]
 
-    # --- per ansatt (antall linjer som stemmer)
-    ytelse_ok, ytelse_tot = _ytelser_per_ansatt_status(a07, ledger)
-    aga_ok, aga_tot = _aga_per_ansatt_status(a07, ledger)
-    trekk_ok, trekk_tot = _trekk_per_ansatt_status(a07, ledger)
-    person_rader = [
-        Kontrollrad("Ytelser per ansatt",
-                    "Alle A07-beløp per person/konto/måned gjenfunnet i lønnsbilag",
-                    ytelse_tot, ytelse_ok, toleranse=0, antall=True),
-        Kontrollrad("AGA per ansatt",
-                    "2770-kredit i lønnsbilag = AGA-pliktig × sats per person",
-                    aga_tot, aga_ok, toleranse=0, antall=True),
-        Kontrollrad("Trekk per ansatt",
-                    "2600-linjer per person (termin) = A07 forskuddstrekk",
-                    trekk_tot, trekk_ok, toleranse=0, antall=True),
+    # --- ytelser per konto (antall som stemmer)
+    grupper = _ytelsesgrupper(a07, ledger)
+    ok = sum(1 for _, _, a, r in grupper
+             if a is not None and abs(a - r) <= YTELSE_TOLERANSE)
+    ytelse_rader = [
+        Kontrollrad("Ytelser per konto",
+                    "A07 per ytelse for perioden = konto i regnskapet (se «Ytelser A07»)",
+                    len(grupper) if a07.ytelser is not None else None, ok,
+                    toleranse=0, antall=True),
     ]
 
     return [
         ("Forskuddstrekk", trekk_rader),
         ("Arbeidsgiveravgift", aga_rader),
         ("Feriepenger", ferie_rader),
-        ("Per ansatt", person_rader),
+        ("Ytelser", ytelse_rader),
     ]
 
 
 def _utbetalte_feriepenger(ledger: Ledger) -> float:
     """2940-debet i lønnsbilag uten lønnslinjer (5000-serien) på samme bilag."""
-    per_bilag: dict[str, list] = defaultdict(list)
-    for p in ledger.aktive:
-        per_bilag[p["bilag"]].append(p)
     bilag = _feriebilag(ledger)
     return sum(p["beloep"] for p in ledger.aktive
                if p["konto"] == 2940 and p["beloep"] > 0 and p["bilag"] in bilag)
@@ -368,80 +418,22 @@ def _avsetning_2940(ledger: Ledger) -> float:
                 and p["bilag"] not in bilag)
 
 
-def _ytelser_per_ansatt_status(a07: A07, ledger: Ledger):
+def _bokfort_ytelse(ledger: Ledger, konto: int) -> float:
+    """Regnskapet for en ytelseskonto i perioden. 2940: utbetalte feriepenger.
+    5000–5999: bare lønnsbilag. Andre konti (reise 71xx): alle posteringer."""
+    if konto == 2940:
+        return _utbetalte_feriepenger(ledger)
+    # Trekkpliktig del av reise- og bilgodtgjørelse (5500–5599) føres via reiseregning, ikke lønnsbilag: ta med alle posteringer.
+    if 5000 <= konto <= 5999 and not 5500 <= konto <= 5599:
+        return ledger.sum_konto(konto, ledger.er_lonnsbilag)
+    return ledger.sum_konto(konto)
+
+
+def _ytelsesgrupper(a07: A07, ledger: Ledger):
+    """[(konto, ytelser, A07-sum, regnskap)] for perioden, sortert på konto."""
     override = ledger.d.get("ytelse_konto") or {}
-    per_person = a07.ytelser_per_person(override)
-    kontoer = sorted({k for (_, _, k) in per_person})
-    ok = totalt = 0
-    for maaned in a07.maaneder:
-        for konto in kontoer:
-            maal = maal_per_person(per_person, maaned, konto)
-            for p in a07.personer:
-                totalt += 1
-                forventet = per_person.get((p.navn, maaned, konto), 0.0)
-                if abs(forventet) < 0.005:
-                    ok += 1          # ingen ytelse å gjenfinne
-                    continue
-                bokfort = _bokfort_person(ledger, p.navn, maaned, konto, maal)
-                if bokfort is not None and abs(bokfort - forventet) <= 0.02:
-                    ok += 1
-    return ok, totalt
-
-
-def _bokfort_person(ledger: Ledger, navn: str, maaned: str, konto: int,
-                    maal: dict[str, float] | None = None):
-    """Beløp på konto i måneden som tilhører personen, funnet ved beløpsmatching
-    mot A07-målene. Returnerer None når fordelingen ikke går opp."""
-    if not maal:
-        return None
-    return ledger.kobling.bokfort(navn, maaned, konto, maal)
-
-
-def _aga_per_ansatt_status(a07: A07, ledger: Ledger):
-    rader = _aga_per_ansatt(a07, ledger)
-    return sum(1 for r in rader if abs(r[4] - r[5]) <= 0.06), len(rader)
-
-
-def _aga_per_ansatt(a07: A07, ledger: Ledger):
-    """Rekkefølge som i de eksisterende rapportene: måned først, så person."""
-    sats = _sats(ledger, a07)
-    ut = []
-    for m in a07.maaneder:
-        maal = {}
-        for p in a07.personer:
-            grunnlag = p.aga_grunnlag(m)
-            if abs(grunnlag) >= 0.005:
-                maal[p.navn] = -round(grunnlag * sats / 100, 2)
-        for p in a07.personer:
-            grunnlag = p.aga_grunnlag(m)
-            beregnet = round(grunnlag * sats / 100, 2)
-            bokfort = _bokfort_person(ledger, p.navn, m, 2770, maal)
-            bokfort = -bokfort if bokfort is not None else beregnet
-            ut.append((p.navn, m, round(grunnlag, 2), sats, beregnet, round(bokfort, 2)))
-    return ut
-
-
-def _trekk_per_ansatt_status(a07: A07, ledger: Ledger):
-    rader = _trekk_per_ansatt(a07, ledger)
-    return sum(1 for r in rader if abs(r[3]) <= 1), len(rader)
-
-
-def _trekk_per_ansatt(a07: A07, ledger: Ledger):
-    from kobling import fordel
-
-    maal = {p.navn: -p.forskuddstrekk for p in a07.personer}
-    linjer = [p["beloep"] for p in ledger.aktive
-              if p["konto"] == 2600 and ledger.er_lonnsbilag(p)]
-    fordeling = fordel(maal, linjer, toleranse=1.0)
-    ut = []
-    for p in a07.personer:
-        a07_trekk = -p.forskuddstrekk
-        bokfort = fordeling.get(p.navn) if fordeling else None
-        if bokfort is None:
-            bokfort = a07_trekk
-        ut.append((p.navn, round(a07_trekk, 2), round(bokfort, 2),
-                   round(a07_trekk - bokfort, 2)))
-    return ut
+    return [(konto, typer, summer(y.beloep for y in typer), round(_bokfort_ytelse(ledger, konto), 2))
+            for konto, typer in a07.ytelser_per_konto(override).items()]
 
 
 def ark_avstemming(wb: Workbook, a07: A07, ledger: Ledger, undertittel: str) -> None:
@@ -464,21 +456,27 @@ def ark_avstemming(wb: Workbook, a07: A07, ledger: Ledger, undertittel: str) -> 
         rad += 1
         for k in rader:
             nf = ANTALL if k.antall else KRONER
+            ellers = "AVVIK"
+            if any(k.navn.lower().startswith(f) for f in forklart):
+                ellers = "FORKLART"
             celle(ws, rad, 1, k.navn, fet=True)
             celle(ws, rad, 2, k.beregning, farge=GRA)
-            celle(ws, rad, 3, k.a07, nf=nf)
-            celle(ws, rad, 4, k.regnskap, nf=nf)
-            celle(ws, rad, 5, f"=C{rad}-D{rad}", nf=nf)
-            if k.spesial == "1950":
-                formel = f'=IF(D{rad}>=C{rad}-0.5,"OK","AVVIK")'
-            else:
-                ellers = "AVVIK"
-                if any(k.navn.lower().startswith(f) for f in forklart):
-                    ellers = "FORKLART"
-                formel = f'=IF(ABS(E{rad})<={k.toleranse:g},"OK","{ellers}")'
-            c = celle(ws, rad, 6, formel, fet=True)
-            c.alignment = Alignment(vertical="center", horizontal="center")
+            celle(ws, rad, 3, verdi(k.a07, 0 if k.antall else 2), nf=nf)
+            celle(ws, rad, 4, verdi(k.regnskap, 0 if k.antall else 2), nf=nf)
             kommentar = kommentarer.get(k.navn.lower(), k.kommentar)
+            if k.a07 is None or k.regnskap is None:
+                # null i A07 er ikke null kroner: ingen avviksformel, og raden må forklares.
+                celle(ws, rad, 5, None, nf=nf)
+                c = celle(ws, rad, 6, ellers, fet=True)
+                kommentar = kommentar or IKKE_OPPGITT_KOMMENTAR
+            else:
+                celle(ws, rad, 5, f"=C{rad}-D{rad}", nf=nf)
+                if k.spesial == "1950":
+                    formel = f'=IF(D{rad}>=C{rad}-0.5,"OK","AVVIK")'
+                else:
+                    formel = f'=IF(ABS(E{rad})<={k.toleranse:g},"OK","{ellers}")'
+                c = celle(ws, rad, 6, formel, fet=True)
+            c.alignment = Alignment(vertical="center", horizontal="center")
             if kommentar:
                 celle(ws, rad, 7, kommentar)
             forste_status = forste_status or rad
@@ -494,33 +492,46 @@ def ark_avstemming(wb: Workbook, a07: A07, ledger: Ledger, undertittel: str) -> 
 
     seksjon(ws, rad, "Til betaling")
     rad += 1
-    forfall = ledger.d.get("periode", {}).get("forfall", "")
+    forfall = _forfall(a07, ledger)
     konto = a07.kontonummer or ""
+    aga = a07.aga_innrapportert()
     celle(ws, rad, 1, "Arbeidsgiveravgift termin", fet=True)
-    celle(ws, rad, 2, f"Forfall {norsk_dato(forfall)}   KID {a07.kid_aga or ''}   "
+    celle(ws, rad, 2, f"Forfall {norsk_dato(forfall)}   KID {a07.kid_aga or IKKE_OPPGITT}   "
                       f"Konto {konto}", farge=GRA)
-    celle(ws, rad, 3, a07.aga_innrapportert(), nf=KRONER)
+    celle(ws, rad, 3, verdi(aga), nf=KRONER)
     celle(ws, rad, 4, round(-ledger.ub(2770), 2), nf=KRONER)
-    rest = round(-ledger.ub(2770) - a07.aga_innrapportert(), 2)
-    if abs(rest) > 0.5:
-        celle(ws, rad, 7, f"UB 2770 avviker {rest:,.2f} fra a-meldt (se merknad)".replace(",", " "))
+    if aga is None:
+        celle(ws, rad, 7, IKKE_OPPGITT_KOMMENTAR)
+    else:
+        rest = round(-ledger.ub(2770) - aga, 2)
+        if abs(rest) > 0.5:
+            celle(ws, rad, 7, f"UB 2770 avviker {rest:,.2f} fra a-meldt (se merknad)".replace(",", " "))
     rad += 1
-    for dato, beloep in a07.trekk_per_loennsdato().items():
-        celle(ws, rad, 1, f"Forskuddstrekk lønnsdato {norsk_dato(dato)}", fet=True)
-        celle(ws, rad, 2, f"KID {a07.kid_trekk or ''}", farge=GRA)
-        celle(ws, rad, 3, beloep, nf=KRONER)
-        betalt = sum(p["beloep"] for p in ledger.aktive
-                     if p["konto"] == 2600 and ledger.er_betaling(p)
-                     and "lønnsbilag" in p["tekst"].lower() and p["dato"][:10] == dato)
-        if abs(betalt) < 0.005 and beloep < 0:
+    for m in _maaneder(a07, ledger):
+        beloep = a07.trekk_innrapportert(m)
+        celle(ws, rad, 1, f"Forskuddstrekk {maanedsnavn(m).lower()}", fet=True)
+        celle(ws, rad, 2, f"KID {a07.kid_for(m, 'trekk') or a07.kid_trekk or IKKE_OPPGITT}", farge=GRA)
+        celle(ws, rad, 3, verdi(beloep), nf=KRONER)
+        betalt = sum(p["beloep"] for p in _innbetalt_trekk(ledger, m))
+        if abs(betalt) < 0.005 and beloep is not None and beloep < 0:
             # negativ lønnskjøring: trekket betales ikke ut, det motregnes.
-            # Da er bokført 2600 på lønnsdatoen det som gjelder.
-            betalt = -ledger.sum_konto(2600, ledger.er_lonnsbilag, dato=dato)
+            # Da er bokført 2600 i måneden det som gjelder.
+            betalt = -ledger.sum_konto(2600, ledger.er_lonnsbilag, maaned=m)
         celle(ws, rad, 4, round(betalt, 2), nf=KRONER)
-        kommentar = "Betalt på lønnsdato" if abs(betalt - beloep) <= 1 else ""
-        if beloep < 0:
+        if beloep is None:
+            kommentar = IKKE_OPPGITT_KOMMENTAR
+        elif beloep < 0:
             kommentar = "Negativ kjøring – trekk til gode, motregnes"
+        else:
+            kommentar = "Betalt på lønnsdato" if abs(betalt - beloep) <= 1 else _mangler(a07, m)
         celle(ws, rad, 7, kommentar)
+        rad += 1
+    finansskatt = a07.finansskatt_innrapportert()
+    if finansskatt is None or abs(finansskatt) > 0.005:
+        celle(ws, rad, 1, "Finansskatt på lønn termin", fet=True)
+        celle(ws, rad, 2, f"Forfall {norsk_dato(forfall)}   KID {a07.kid_finansskatt or IKKE_OPPGITT}",
+              farge=GRA)
+        celle(ws, rad, 3, verdi(finansskatt), nf=KRONER)
         rad += 1
 
     merknader = ledger.d.get("merknader") or []
@@ -539,24 +550,38 @@ def ark_avstemming(wb: Workbook, a07: A07, ledger: Ledger, undertittel: str) -> 
 def ark_detaljer(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
     ws = wb.create_sheet("Detaljer")
     topp(ws, "Detaljer – innsendinger, betalinger, kilder", undertittel)
-    bredder(ws, {"A": 14, "C": 18, "E": 12, "F": 16, "H": 40})
+    bredder(ws, {"A": 14, "B": 14, "C": 18, "D": 17, "E": 12, "F": 16, "G": 14, "H": 16,
+                 "I": 24, "J": 24})
 
     rad = 7
     seksjon(ws, rad, "A-meldinger (innsendinger i A07)")
     rad += 1
-    tabellhode(ws, rad, [("Måned", "l"), ("MeldingsId", "l"), ("Status", "l"),
-                         ("Levert", "l"), ("Antall", "l"), ("AGA", "r"),
-                         ("Trekk", "r"), ("Gjeldende / erstatter", "l")])
+    tabellhode(ws, rad, [("Måned", "l"), ("Status", "l"), ("Kildesystem", "l"),
+                         ("Levert", "l"), ("Mottakere", "r"), ("AGA", "r"),
+                         ("Trekk", "r"), ("Gjeldende", "l"), ("KID AGA", "l"),
+                         ("KID trekk", "l")])
     rad += 1
-    for i in sorted(a07.innsendinger, key=lambda x: x.maaned):
+    for i in sorted(a07.innsendinger, key=lambda x: (x.maaned, x.levert)):
         celle(ws, rad, 1, i.maaned)
-        celle(ws, rad, 2, i.meldings_id)
-        celle(ws, rad, 3, i.status)
+        celle(ws, rad, 2, i.status)
+        celle(ws, rad, 3, i.kildesystem)
         celle(ws, rad, 4, i.levert)
-        celle(ws, rad, 5, i.antall, nf=ANTALL)
-        celle(ws, rad, 6, i.aga, nf=KRONER)
-        celle(ws, rad, 7, i.trekk, nf=KRONER)
+        celle(ws, rad, 5, i.antall_mottakere if i.antall_mottakere is not None else IKKE_OPPGITT,
+              nf=ANTALL)
+        celle(ws, rad, 6, verdi(i.aga), nf=KRONER)
+        celle(ws, rad, 7, verdi(i.trekk), nf=KRONER)
         celle(ws, rad, 8, i.merknad)
+        celle(ws, rad, 9, i.kid_aga or "")
+        celle(ws, rad, 10, i.kid_trekk or "")
+        rad += 1
+    if not a07.innsendinger:
+        celle(ws, rad, 1, "Ingen innsendinger i A07")
+        rad += 1
+    finansskatt = a07.finansskatt_innrapportert()
+    if finansskatt is None or abs(finansskatt) > 0.005:
+        celle(ws, rad, 1, f"Finansskatt på lønn i perioden: "
+                          f"{IKKE_OPPGITT if finansskatt is None else f'{finansskatt:,.0f} kr'.replace(',', ' ')}",
+              farge=GRA)
         rad += 1
 
     rad += 1
@@ -614,43 +639,61 @@ def ark_detaljer(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
     rad += 1
     seksjon(ws, rad, "Kilder")
     rad += 1
-    for linje in [
-        ledger.d.get("kilde_a07", f"A07: Skatteetaten avstemmingsinformasjon, {a07.fom}–{a07.tom}"),
+    linjer = [
+        ledger.d.get("kilde_a07",
+                     f"A07: Skatteetaten avstemmingsinformasjon via Tally (Altinn), {a07.fom}–{a07.tom}"),
         ledger.d.get("kilde_regnskap", f"Regnskap: Tripletex (selskaps-id {ledger.d.get('tripletex_id','')})"),
         f"AGA-sats {_sats(ledger, a07)} % sone {a07.sone}, "
         f"feriepengesats {_feriesats(ledger) * 100:.1f} %",
-    ]:
+    ]
+    if a07.avstemt:
+        linjer.append(f"A07 hentet fra Tally {norsk_dato(a07.avstemt)}. Ingen personopplysninger; "
+                      "ytelsene gjelder hele perioden.")
+    if a07.ukjente_grunnlag:
+        linjer.append("Ukjent type i avgiftsgrunnlaget (holdt utenfor beregnet AGA): " + ", ".join(
+            f"{g.type} {IKKE_OPPGITT if g.grunnlag is None else f'{g.grunnlag:,.0f}'.replace(',', ' ')}"
+            for g in a07.ukjente_grunnlag))
+    if a07.merknad:
+        linjer.append(f"Tally: {a07.merknad}")
+    for linje in linjer:
         celle(ws, rad, 1, linje)
-        ws.merge_cells(start_row=rad, start_column=1, end_row=rad, end_column=8)
+        ws.merge_cells(start_row=rad, start_column=1, end_row=rad, end_column=10)
         rad += 1
 
 
 def ark_forskuddstrekk(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
     ws = wb.create_sheet("Forskuddstrekk")
     topp(ws, "Forskuddstrekk – konto 2600", undertittel)
-    bredder(ws, {"A": 16, "G": 30})
-    tabellhode(ws, 7, [("Lønnsdato", "l"), ("Bokført 2600 (lønnsbilag)", "r"),
+    bredder(ws, {"A": 16, "B": 22, "C": 16, "F": 16, "G": 30})
+    tabellhode(ws, 7, [("Måned", "l"), ("Bokført 2600 (lønnsbilag)", "r"),
                        ("A-meldt (A07)", "r"), ("Avvik", "r"), ("Innbetalt", "r"),
                        ("Innbetalt dato", "l"), ("Bilag", "l")])
     rad = 8
     forste = rad
-    for dato, a_meldt in a07.trekk_per_loennsdato().items():
-        bokfort = -ledger.sum_konto(2600, ledger.er_lonnsbilag, dato=dato)
-        betalinger = [p for p in ledger.aktive
-                      if p["konto"] == 2600 and ledger.er_betaling(p)
-                      and p["dato"][:10] == dato]
-        celle(ws, rad, 1, norsk_dato(dato))
+    mangler_a07 = False
+    for m in _maaneder(a07, ledger):
+        a_meldt = a07.trekk_innrapportert(m)
+        bokfort = -ledger.sum_konto(2600, ledger.er_lonnsbilag, maaned=m)
+        betalinger = _innbetalt_trekk(ledger, m)
+        celle(ws, rad, 1, maanedsnavn(m))
         celle(ws, rad, 2, round(bokfort, 2), nf=KRONER)
-        celle(ws, rad, 3, a_meldt, nf=KRONER)
-        celle(ws, rad, 4, f"=B{rad}-C{rad}", nf=KRONER)
+        celle(ws, rad, 3, verdi(a_meldt), nf=KRONER)
+        if a_meldt is None:
+            mangler_a07 = True
+            celle(ws, rad, 4, None, nf=KRONER)
+        else:
+            celle(ws, rad, 4, f"=B{rad}-C{rad}", nf=KRONER)
         celle(ws, rad, 5, round(sum(p["beloep"] for p in betalinger), 2), nf=KRONER)
-        celle(ws, rad, 6, norsk_dato(dato) if betalinger else "")
+        celle(ws, rad, 6, ", ".join(sorted({norsk_dato(p["dato"]) for p in betalinger})))
         celle(ws, rad, 7, ", ".join(sorted({p["bilag"] for p in betalinger})))
         rad += 1
     celle(ws, rad, 1, "Sum", fet=True)
     for kol in "BCDE":
-        celle(ws, rad, ord(kol) - 64, f"=SUM({kol}{forste}:{kol}{rad - 1})",
-              fet=True, nf=KRONER)
+        if mangler_a07 and kol in "CD":
+            celle(ws, rad, ord(kol) - 64, IKKE_OPPGITT, fet=True, nf=KRONER)
+        else:
+            celle(ws, rad, ord(kol) - 64, f"=SUM({kol}{forste}:{kol}{rad - 1})",
+                  fet=True, nf=KRONER)
     rad += 2
 
     seksjon(ws, rad, "Saldokontroll 2600")
@@ -660,20 +703,25 @@ def ark_forskuddstrekk(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
     andre = sum(p["beloep"] for p in ledger.aktive
                 if p["konto"] == 2600 and not ledger.er_betaling(p)
                 and not ledger.er_lonnsbilag(p) and not ledger.er_avrunding(p))
+    trekk_termin = a07.trekk_innrapportert()
     start = rad
-    for tekst, verdi in [
+    for tekst, v in [
         ("IB 2600 (skyldig fra forrige termin)", round(-ledger.ib(2600), 2)),
-        ("+ A-meldt trekk termin", round(sum(a07.trekk_per_loennsdato().values()), 2)),
-        ("− Innbetalt i terminen (alle «Betaling:» på 2600)", round(-alle_betalinger, 2)),
+        ("+ A-meldt trekk termin", verdi(trekk_termin)),
+        ("− Innbetalt i terminen («Betaling:» og «Overføring skattetrekk» på 2600)",
+         round(-alle_betalinger, 2)),
         ("− Andre føringer 2600", round(-andre, 2)),
     ]:
         celle(ws, rad, 1, tekst)
         ws.merge_cells(start_row=rad, start_column=1, end_row=rad, end_column=3)
-        celle(ws, rad, 4, verdi, nf=KRONER)
+        celle(ws, rad, 4, v, nf=KRONER)
         rad += 1
     celle(ws, rad, 1, "→ Beregnet UB 2600 (kredit = skyldig, negativ = tilgode)", fet=True)
     ws.merge_cells(start_row=rad, start_column=1, end_row=rad, end_column=3)
-    celle(ws, rad, 4, f"=SUM(D{start}:D{rad - 1})", fet=True, nf=KRONER)
+    if trekk_termin is None:
+        celle(ws, rad, 4, IKKE_OPPGITT, fet=True, nf=KRONER)
+    else:
+        celle(ws, rad, 4, f"=SUM(D{start}:D{rad - 1})", fet=True, nf=KRONER)
     beregnet_rad = rad
     rad += 1
     celle(ws, rad, 1, "UB 2600 iflg. saldobalanse")
@@ -683,67 +731,113 @@ def ark_forskuddstrekk(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
     rad += 1
     celle(ws, rad, 1, "Avvik", fet=True)
     ws.merge_cells(start_row=rad, start_column=1, end_row=rad, end_column=3)
-    celle(ws, rad, 4, f"=D{beregnet_rad}-D{saldo_rad}", fet=True, nf=KRONER)
+    if trekk_termin is None:
+        celle(ws, rad, 4, IKKE_OPPGITT, fet=True, nf=KRONER)
+    else:
+        celle(ws, rad, 4, f"=D{beregnet_rad}-D{saldo_rad}", fet=True, nf=KRONER)
     rad += 2
 
     celle(ws, rad, 1, f"Skattetrekkskonto 1950: IB {ledger.ib(1950):,.2f}  "
                       f"bevegelse {ledger.bevegelse(1950):,.2f}  "
                       f"UB {ledger.ub(1950):,.2f}", farge=GRA)
-    rad += 2
-
-    seksjon(ws, rad, "Trekk per ansatt (termin)")
     rad += 1
-    tabellhode(ws, rad, [("Ansatt", "l"), ("A07 trekk", "r"), ("Bokført 2600", "r"),
-                         ("Avvik", "r"), ("Status", "l")])
-    rad += 1
-    forste_status = rad
-    for navn, a07_trekk, bokfort, _ in _trekk_per_ansatt(a07, ledger):
-        celle(ws, rad, 1, navn)
-        celle(ws, rad, 2, a07_trekk, nf=KRONER)
-        celle(ws, rad, 3, bokfort, nf=KRONER)
-        celle(ws, rad, 4, f"=B{rad}-C{rad}", nf=KRONER)
-        c = celle(ws, rad, 5, f'=IF(ABS(D{rad})<=1,"OK","AVVIK")', fet=True)
-        c.alignment = Alignment(vertical="center", horizontal="center")
-        rad += 1
-    if rad > forste_status:
-        statusregler(ws, f"E{forste_status}:E{rad - 1}")
+    celle(ws, rad, 1, "A07 fra Tally gir trekk per måned, ikke per lønnsdato eller per person.",
+          farge=GRA)
 
 
 def ark_aga(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
     ws = wb.create_sheet("Arbeidsgiveravgift")
     topp(ws, "Arbeidsgiveravgift – Sticos pkt. 1–5", undertittel)
-    bredder(ws, {"A": 44, "B": 18, "E": 14, "G": 30})
+    bredder(ws, {"A": 44, "B": 18, "C": 16, "D": 18, "E": 14, "F": 12, "G": 30})
     sats = _sats(ledger, a07)
     pensjonskonto = _pensjonskonto(ledger)
+    aga_termin = a07.aga_innrapportert()
 
     rad = 7
-    seksjon(ws, rad, "1. Kontroll av beregnet AGA per måned")
+    seksjon(ws, rad, "1. AGA per måned – A07 mot 2770-kredit")
     rad += 1
-    tabellhode(ws, rad, [("Måned", "l"), ("Grunnlag lønn (A07)", "r"),
-                         ("Pensjon − fradrag", "r"), ("Beregnet AGA", "r"),
-                         ("Innrapportert", "r"), ("Avvik", "r"), ("Kommentar", "l")])
+    tabellhode(ws, rad, [("Måned", "l"), ("Innrapportert (A07)", "r"),
+                         ("2770 lønnsbilag", "r"), ("2770 pensjon og annet", "r"),
+                         ("Sum bokført", "r"), ("Avvik", "r"), ("Kommentar", "l")])
     rad += 1
     start = rad
-    grunnlag_mnd = a07.grunnlag_per_maaned()
-    pensjon_mnd = {r[0]: float(r[4]) for r in ledger.d.get("pensjon_historikk", [])}
-    for m in a07.maaneder:
+    mangler_a07 = False
+    for m in _maaneder(a07, ledger):
+        a_meldt = a07.aga_innrapportert(m)
+        lonn = -ledger.sum_konto(2770, ledger.er_lonnsbilag, maaned=m)
+        annet = -ledger.sum_konto(
+            2770, lambda p: ledger.er_aga_postering(p) and not ledger.er_lonnsbilag(p), maaned=m)
         celle(ws, rad, 1, maanedsnavn(m))
-        celle(ws, rad, 2, round(grunnlag_mnd.get(m, 0.0), 2), nf=KRONER)
-        celle(ws, rad, 3, round(pensjon_mnd.get(m, 0.0), 2), nf=KRONER)
-        celle(ws, rad, 4, f"=ROUNDDOWN((INT(B{rad})+C{rad})*{sats / 100},0)", nf=KRONER)
-        celle(ws, rad, 5, a07.aga_innrapportert(m), nf=KRONER)
-        celle(ws, rad, 6, f"=D{rad}-E{rad}", nf=KRONER)
-        celle(ws, rad, 7, "Tripletex runder ned per måned (0–1 kr)", farge=GRA)
+        celle(ws, rad, 2, verdi(a_meldt), nf=KRONER)
+        celle(ws, rad, 3, round(lonn, 2), nf=KRONER)
+        celle(ws, rad, 4, round(annet, 2), nf=KRONER)
+        celle(ws, rad, 5, f"=C{rad}+D{rad}", nf=KRONER)
+        if a_meldt is None:
+            mangler_a07 = True
+            celle(ws, rad, 6, None, nf=KRONER)
+            celle(ws, rad, 7, IKKE_OPPGITT_KOMMENTAR, farge=GRA)
+        else:
+            celle(ws, rad, 6, f"=B{rad}-E{rad}", nf=KRONER)
+            celle(ws, rad, 7, _mangler(a07, m) or "Tripletex runder ned per måned (0–1 kr)", farge=GRA)
         rad += 1
     celle(ws, rad, 1, "Sum termin", fet=True)
     for kol in "BCDEF":
-        celle(ws, rad, ord(kol) - 64, f"=SUM({kol}{start}:{kol}{rad - 1})",
-              fet=True, nf=KRONER)
+        if mangler_a07 and kol in "BF":
+            celle(ws, rad, ord(kol) - 64, IKKE_OPPGITT, fet=True, nf=KRONER)
+        else:
+            celle(ws, rad, ord(kol) - 64, f"=SUM({kol}{start}:{kol}{rad - 1})",
+                  fet=True, nf=KRONER)
+    rad += 2
+
+    celle(ws, rad, 1, "Avgiftsgrunnlag i A07 (hele perioden)", fet=True)
     rad += 1
-    celle(ws, rad, 1, "A07 samlet grunnlag (lønn / pensjon / fradrag)", farge=GRA)
-    celle(ws, rad, 2, a07.grunnlag_loenn, nf=KRONER)
-    celle(ws, rad, 3, a07.grunnlag_pensjon, nf=KRONER)
-    celle(ws, rad, 4, round(a07.fradrag_sone, 2), nf=KRONER)
+    tabellhode(ws, rad, [("Type", "l"), ("Virksomhet", "l"), ("Sone", "l"),
+                         ("Beregningskode", "l"), ("Grunnlag", "r"), ("Sats", "r"),
+                         ("Beregnet AGA", "r")])
+    rad += 1
+    start = rad
+    beregnet_ok = True
+    for g in a07.avgiftsgrunnlag or []:
+        celle(ws, rad, 1, g.type)
+        celle(ws, rad, 2, g.virksomhet)
+        celle(ws, rad, 3, g.sone)
+        celle(ws, rad, 4, g.beregningskode)
+        celle(ws, rad, 5, verdi(g.grunnlag), nf=KRONER)
+        g_sats = g.sats if g.sats is not None else sats / 100
+        celle(ws, rad, 6, g_sats, nf="0.0%")
+        if g.art == "ukjent":
+            celle(ws, rad, 7, "holdt utenfor", farge=GRA)
+        elif g.grunnlag is None:
+            beregnet_ok = False
+            celle(ws, rad, 7, IKKE_OPPGITT, nf=KRONER)
+        elif g.art == "fradrag":
+            celle(ws, rad, 7, f"=-ABS(E{rad})*F{rad}", nf=KRONER)
+        else:
+            celle(ws, rad, 7, f"=E{rad}*F{rad}", nf=KRONER)
+        rad += 1
+    if a07.avgiftsgrunnlag is None:
+        beregnet_ok = False
+        celle(ws, rad, 1, f"Avgiftsgrunnlag: {IKKE_OPPGITT}")
+        rad += 1
+    celle(ws, rad, 1, "Sum beregnet AGA", fet=True)
+    if beregnet_ok and rad > start:
+        celle(ws, rad, 7, f"=SUM(G{start}:G{rad - 1})", fet=True, nf=KRONER)
+    else:
+        celle(ws, rad, 7, IKKE_OPPGITT if not beregnet_ok else 0, fet=True, nf=KRONER)
+    sum_beregnet = rad
+    rad += 1
+    celle(ws, rad, 1, "Innrapportert termin (A07)")
+    celle(ws, rad, 7, verdi(aga_termin), nf=KRONER)
+    innrapportert_rad = rad
+    rad += 1
+    celle(ws, rad, 1, "Avvik (Tripletex runder ned per måned)", fet=True)
+    if beregnet_ok and aga_termin is not None:
+        celle(ws, rad, 7, f"=G{sum_beregnet}-G{innrapportert_rad}", fet=True, nf=KRONER)
+    else:
+        celle(ws, rad, 7, IKKE_OPPGITT, fet=True, nf=KRONER)
+    rad += 1
+    celle(ws, rad, 1, "A07 fra Tally gir grunnlaget for hele perioden; AGA per måned kontrolleres mot 2770.",
+          farge=GRA)
     rad += 2
 
     seksjon(ws, rad, "2. Grunnlag mot regnskapsførte ytelser (bevegelse i terminen)")
@@ -787,20 +881,25 @@ def ark_aga(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
     sum_rad = rad
     rad += 1
     celle(ws, rad, 1, "A07 grunnlag (lønn + pensjon − fradrag)", fet=True)
-    a07_grunnlag = a07.grunnlag_loenn + a07.grunnlag_pensjon + a07.fradrag_sone
-    celle(ws, rad, 2, round(a07_grunnlag, 2), fet=True, nf=KRONER)
+    a07_grunnlag = summer([a07.grunnlag_loenn, a07.grunnlag_pensjon, a07.grunnlag_fradrag])
+    celle(ws, rad, 2, verdi(a07_grunnlag), fet=True, nf=KRONER)
     a07_rad = rad
     rad += 1
     celle(ws, rad, 1, "Differanse")
-    celle(ws, rad, 2, f"=B{sum_rad}-B{a07_rad}", nf=KRONER)
+    if a07_grunnlag is None:
+        celle(ws, rad, 2, IKKE_OPPGITT, nf=KRONER)
+    else:
+        celle(ws, rad, 2, f"=B{sum_rad}-B{a07_rad}", nf=KRONER)
     diff_rad = rad
     rad += 1
     hist = ledger.d.get("pensjon_historikk") or []
     if hist:
         pensjon_periodisering = round(
             sum(float(r[2]) for r in hist) - sum(float(r[4]) for r in hist), 2)
-    else:
+    elif a07.grunnlag_pensjon is not None:
         pensjon_periodisering = round(ledger.bevegelse(pensjonskonto) - a07.grunnlag_pensjon, 2)
+    else:
+        pensjon_periodisering = 0.0
     utenfor = round(sum(
         ledger.bevegelse(k) - sum(p["beloep"] for p in ledger.aktive
                                   if p["konto"] == k and ledger.er_lonnsbilag(p))
@@ -810,19 +909,25 @@ def ark_aga(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
         ("(2) Bevegelse på lønnskonti utenfor lønnsbilag", utenfor),
     ]
     forste_forklaring = rad
-    for tekst, verdi in forklaringer:
+    for tekst, v in forklaringer:
         celle(ws, rad, 1, tekst)
-        celle(ws, rad, 2, verdi, nf=KRONER)
+        celle(ws, rad, 2, v, nf=KRONER)
         rad += 1
     celle(ws, rad, 1, "(3) Avrunding grunnlag (lønn per måned, pensjon per bilag)")
     avrunding_rad = rad
-    celle(ws, rad, 2,
-          f"=ROUND(B{diff_rad}-SUM(B{forste_forklaring}:B{rad - 1}),2)", nf=KRONER)
+    if a07_grunnlag is None:
+        celle(ws, rad, 2, IKKE_OPPGITT, nf=KRONER)
+    else:
+        celle(ws, rad, 2,
+              f"=ROUND(B{diff_rad}-SUM(B{forste_forklaring}:B{rad - 1}),2)", nf=KRONER)
     rad += 1
     celle(ws, rad, 1, "Uforklart differanse", fet=True)
-    celle(ws, rad, 2,
-          f"=ROUND(B{diff_rad}-SUM(B{forste_forklaring}:B{avrunding_rad}),2)",
-          fet=True, nf=KRONER)
+    if a07_grunnlag is None:
+        celle(ws, rad, 2, IKKE_OPPGITT, fet=True, nf=KRONER)
+    else:
+        celle(ws, rad, 2,
+              f"=ROUND(B{diff_rad}-SUM(B{forste_forklaring}:B{avrunding_rad}),2)",
+              fet=True, nf=KRONER)
     rad += 2
 
     historikk = ledger.d.get("pensjon_historikk") or []
@@ -851,16 +956,17 @@ def ark_aga(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
     seksjon(ws, rad, "3. Kostnadsført AGA")
     rad += 1
     frigjort = _frigjort_aga_ferie(ledger)
-    for tekst, verdi, fet in [
+    kostnadsfort = ledger.bevegelse(5400) + frigjort
+    for tekst, v, fet in [
         ("5400 Arbeidsgiveravgift (bevegelse)", round(ledger.bevegelse(5400), 2), False),
         ("+ Frigjort AGA av utbetalte feriepenger (2785-debet mot 5400)", round(frigjort, 2), False),
-        ("→ Kostnadsført", round(ledger.bevegelse(5400) + frigjort, 2), True),
-        ("Innrapportert A07", a07.aga_innrapportert(), False),
+        ("→ Kostnadsført", round(kostnadsfort, 2), True),
+        ("Innrapportert A07", verdi(aga_termin), False),
         ("Avvik (øre-avrunding)",
-         round(ledger.bevegelse(5400) + frigjort - a07.aga_innrapportert(), 2), True),
+         IKKE_OPPGITT if aga_termin is None else round(kostnadsfort - aga_termin, 2), True),
     ]:
         celle(ws, rad, 1, tekst, fet=fet)
-        celle(ws, rad, 2, verdi, fet=fet, nf=KRONER)
+        celle(ws, rad, 2, v, fet=fet, nf=KRONER)
         rad += 1
     rad += 1
 
@@ -868,11 +974,10 @@ def ark_aga(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
     rad += 1
     betalt = sum(p["beloep"] for p in ledger.aktive
                  if p["konto"] == 2770 and ledger.er_betaling(p))
-    kreditert = -ledger.sum_konto(2770, lambda p: not ledger.er_betaling(p)
-                                  and not ledger.er_avrunding(p))
+    kreditert = -ledger.sum_konto(2770, ledger.er_aga_postering)
     avrunding = -ledger.sum_konto(2770, ledger.er_avrunding)
     andre = 0.0
-    for tekst, verdi, fet in [
+    for tekst, v, fet in [
         ("IB 2770", round(-ledger.ib(2770), 2), False),
         ("− Betalt i terminen (Betaling: Terminoppgave)", round(-betalt, 2), False),
         ("+ Kreditert lønnsbilag + pensjonsbilag − NAV-refusjon", round(kreditert, 2), False),
@@ -880,21 +985,22 @@ def ark_aga(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
         ("− Andre føringer 2770", andre, False),
         ("→ Beregnet UB", round(-ledger.ib(2770) - betalt + kreditert + avrunding, 2), True),
         ("UB 2770 saldobalanse", round(-ledger.ub(2770), 2), False),
-        ("Innrapportert termin (A07)", a07.aga_innrapportert(), False),
+        ("Innrapportert termin (A07)", verdi(aga_termin), False),
         ("UB − innrapportert (restsaldo)",
-         round(-ledger.ub(2770) - a07.aga_innrapportert(), 2), True),
+         IKKE_OPPGITT if aga_termin is None else round(-ledger.ub(2770) - aga_termin, 2), True),
     ]:
         celle(ws, rad, 1, tekst, fet=fet)
-        celle(ws, rad, 2, verdi, fet=fet, nf=KRONER)
+        celle(ws, rad, 2, v, fet=fet, nf=KRONER)
         rad += 1
     rad += 1
 
     seksjon(ws, rad, "5. Innbetaling")
     rad += 1
-    forfall = ledger.d.get("periode", {}).get("forfall", "")
+    forfall = _forfall(a07, ledger)
+    belop = IKKE_OPPGITT if aga_termin is None else f"{aga_termin:,.0f} kr".replace(",", " ")
     celle(ws, rad, 1, f"Skyldig AGA termin {ledger.d.get('periode', {}).get('termin', '')}: "
-                      f"{a07.aga_innrapportert():,.0f} kr – forfall {norsk_dato(forfall)} – "
-                      f"KID {a07.kid_aga or ''} – konto {a07.kontonummer or ''}",
+                      f"{belop} – forfall {norsk_dato(forfall)} – "
+                      f"KID {a07.kid_aga or IKKE_OPPGITT} – konto {a07.kontonummer or ''}",
           farge=GRA)
     ws.merge_cells(start_row=rad, start_column=1, end_row=rad, end_column=7)
     rad += 1
@@ -904,122 +1010,98 @@ def ark_aga(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
         celle(ws, rad, 1, f"Betalt {norsk_dato(p['dato'])} bilag {p['bilag']}: {p['tekst']}")
         celle(ws, rad, 2, round(p["beloep"], 2), nf=KRONER)
         rad += 1
-    rad += 1
-
-    seksjon(ws, rad, "AGA per ansatt per måned (2770-kredit i lønnsbilag)")
-    rad += 1
-    tabellhode(ws, rad, [("Ansatt", "l"), ("Måned", "l"), ("AGA-pliktig grunnlag (A07)", "r"),
-                         ("AGA beregnet", "r"), ("Bokført 2770", "r"), ("Avvik", "r"),
-                         ("Status", "l")])
-    rad += 1
-    forste = rad
-    for navn, m, grunnlag, _, beregnet, bokfort in _aga_per_ansatt(a07, ledger):
-        celle(ws, rad, 1, navn)
-        celle(ws, rad, 2, m)
-        celle(ws, rad, 3, grunnlag, nf=KRONER)
-        celle(ws, rad, 4, beregnet, nf=KRONER)
-        celle(ws, rad, 5, bokfort, nf=KRONER)
-        celle(ws, rad, 6, f"=D{rad}-E{rad}", nf=KRONER)
-        c = celle(ws, rad, 7, f'=IF(ABS(F{rad})<=0.06,"OK","AVVIK")', fet=True)
-        c.alignment = Alignment(vertical="center", horizontal="center")
-        rad += 1
-    if rad > forste:
-        statusregler(ws, f"G{forste}:G{rad - 1}")
-
-
-def ark_per_ansatt(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
-    ws = wb.create_sheet("Per ansatt")
-    topp(ws, "Ytelser per ansatt – A07 mot lønnsbilag", undertittel)
-    bredder(ws, {"A": 26, "B": 10, "D": 16, "F": 12, "G": 24})
-    tabellhode(ws, 7, [("Ansatt", "l"), ("Måned", "l"), ("Konto", "l"), ("A07", "r"),
-                       ("Regnskap", "r"), ("Avvik", "r"), ("Status", "l")])
-    rad = 8
-    forste = rad
-    override = ledger.d.get("ytelse_konto") or {}
-    per_person = a07.ytelser_per_person(override)
-    for (navn, maaned, konto), beloep in sorted(per_person.items()):
-        bokfort = _bokfort_person(ledger, navn, maaned, konto,
-                                  maal_per_person(per_person, maaned, konto))
-        celle(ws, rad, 1, navn)
-        celle(ws, rad, 2, maaned)
-        celle(ws, rad, 3, str(konto))
-        celle(ws, rad, 4, round(beloep, 2), nf=KRONER)
-        if bokfort is None:
-            celle(ws, rad, 5, "Koblingsproblemer", farge="FFC0392B")
-            celle(ws, rad, 6, "", nf=KRONER)
-            c = celle(ws, rad, 7, "AVVIK", fet=True)
-        else:
-            celle(ws, rad, 5, round(bokfort, 2), nf=KRONER)
-            celle(ws, rad, 6, f"=D{rad}-E{rad}", nf=KRONER)
-            c = celle(ws, rad, 7, f'=IF(ABS(F{rad})<=0.02,"OK","AVVIK")', fet=True)
-        c.alignment = Alignment(vertical="center", horizontal="center")
-        rad += 1
-    if rad > forste:
-        statusregler(ws, f"G{forste}:G{rad - 1}")
-
-    rad += 1
-    seksjon(ws, rad, "Sum per ansatt (termin, AGA-pliktige ytelser)")
-    rad += 1
-    tabellhode(ws, rad, [("Ansatt", "l"), ("Ansattnr", "l"), ("", "l"),
-                         ("AGA-pliktig A07", "r"), ("Trekk A07", "r"),
-                         ("Trekk bokført", "r"), ("Status", "l")])
-    rad += 1
-    forste_sum = rad
-    trekk = {r[0]: (r[1], r[2]) for r in _trekk_per_ansatt(a07, ledger)}
-    for p in a07.personer:
-        a07_trekk, bokfort = trekk.get(p.navn, (0.0, 0.0))
-        celle(ws, rad, 1, p.navn)
-        celle(ws, rad, 2, p.ansattnummer or "")
-        celle(ws, rad, 4, round(p.aga_grunnlag(), 2), nf=KRONER)
-        celle(ws, rad, 5, a07_trekk, nf=KRONER)
-        celle(ws, rad, 6, bokfort, nf=KRONER)
-        c = celle(ws, rad, 7, f'=IF(ABS(E{rad}-F{rad})<=1,"OK","AVVIK")', fet=True)
-        c.alignment = Alignment(vertical="center", horizontal="center")
-        rad += 1
-    if rad > forste_sum:
-        statusregler(ws, f"G{forste_sum}:G{rad - 1}")
 
 
 def ark_ytelser(wb, a07: A07, ledger: Ledger, undertittel: str) -> None:
     ws = wb.create_sheet("Ytelser A07")
-    topp(ws, "Ytelser i A07 per måned – kontomapping", undertittel)
-    bredder(ws, {"A": 10, "B": 34, "C": 18, "D": 8, "F": 14})
-    tabellhode(ws, 7, [("Måned", "l"), ("Ytelse (A07)", "l"), ("Fordel", "l"),
-                       ("AGA", "l"), ("Konto", "l"), ("A07 beløp", "r"),
-                       ("Sum konto A07", "r"), ("Sum konto regnskap", "r")])
+    topp(ws, "Ytelser i A07 for perioden – mot konto", undertittel)
+    bredder(ws, {"A": 44, "B": 12, "C": 10, "D": 16, "E": 16, "F": 14, "G": 12})
+    tabellhode(ws, 7, [("Ytelse (A07)", "l"), ("AGA-pliktig", "l"), ("Konto", "l"),
+                       ("A07", "r"), ("Regnskap", "r"), ("Avvik", "r"), ("Status", "l")])
     rad = 8
     forste = rad
-    override = ledger.d.get("ytelse_konto") or {}
-    samlet: dict[tuple[str, str, str, bool, int], float] = defaultdict(float)
-    for p in a07.personer:
-        for y in p.ytelser:
-            konto = override.get(y.beskrivelse) or YTELSE_KONTO.get(y.beskrivelse, 5260)
-            samlet[(y.maaned, y.beskrivelse, y.fordel, y.aga_pliktig, konto)] += y.beloep
-    per_konto = a07.ytelser_per_maaned_konto(override)
-    for (maaned, beskrivelse, fordel, aga, konto), beloep in sorted(samlet.items()):
-        celle(ws, rad, 1, maaned)
-        celle(ws, rad, 2, beskrivelse[0].upper() + beskrivelse[1:])
-        celle(ws, rad, 3, fordel)
-        celle(ws, rad, 4, "ja" if aga else "nei")
-        celle(ws, rad, 5, str(konto))
-        celle(ws, rad, 6, round(beloep, 2), nf=KRONER)
-        celle(ws, rad, 7, round(per_konto.get((maaned, konto), 0.0), 2), nf=KRONER)
-        bokfort = sum(p["beloep"] for p in ledger.aktive
-                      if p["konto"] == konto and p["dato"][:7] == maaned
-                      and ledger.er_lonnsbilag(p))
-        celle(ws, rad, 8, round(abs(bokfort) if konto == 2940 else bokfort, 2), nf=KRONER)
+
+    def status(r: int, a07_verdi) -> None:
+        if a07_verdi is None:
+            celle(ws, r, 6, None, nf=KRONER)
+            c = celle(ws, r, 7, "AVVIK", fet=True)
+        else:
+            celle(ws, r, 6, f"=D{r}-E{r}", nf=KRONER)
+            c = celle(ws, r, 7, f'=IF(ABS(F{r})<={YTELSE_TOLERANSE:g},"OK","AVVIK")', fet=True)
+        c.alignment = Alignment(vertical="center", horizontal="center")
+
+    def ytelsesrad(r: int, y, konto: int) -> None:
+        navn = y.beskrivelse[0].upper() + y.beskrivelse[1:]
+        celle(ws, r, 1, f"{navn} ({y.fordel})" if y.fordel else navn)
+        celle(ws, r, 2, IKKE_OPPGITT if y.aga_pliktig is None else ("ja" if y.aga_pliktig else "nei"))
+        celle(ws, r, 3, str(konto))
+        celle(ws, r, 4, verdi(y.beloep), nf=KRONER)
+
+    for konto, typer, a07_sum, regnskap in _ytelsesgrupper(a07, ledger):
+        if len(typer) == 1:
+            ytelsesrad(rad, typer[0], konto)
+            celle(ws, rad, 5, regnskap, nf=KRONER)
+            status(rad, a07_sum)
+            rad += 1
+            continue
+        start = rad
+        for y in typer:
+            ytelsesrad(rad, y, konto)
+            rad += 1
+        celle(ws, rad, 1, f"Sum konto {konto}", fet=True)
+        if a07_sum is None:
+            celle(ws, rad, 4, IKKE_OPPGITT, fet=True, nf=KRONER)
+        else:
+            celle(ws, rad, 4, f"=SUM(D{start}:D{rad - 1})", fet=True, nf=KRONER)
+        celle(ws, rad, 5, regnskap, fet=True, nf=KRONER)
+        status(rad, a07_sum)
         rad += 1
-    celle(ws, rad, 1, "Sum AGA-pliktig", fet=True)
-    celle(ws, rad, 6, f'=SUMIF(D{forste}:D{rad - 1},"ja",F{forste}:F{rad - 1})',
-          fet=True, nf=KRONER)
+    if a07.ytelser is None:
+        celle(ws, rad, 1, f"Lønn og ytelser: {IKKE_OPPGITT}")
+        rad += 1
+    elif not a07.ytelser:
+        celle(ws, rad, 1, "Ingen ytelser i A07")
+        rad += 1
+    if rad > forste:
+        statusregler(ws, f"G{forste}:G{rad - 1}")
+
+    rad += 1
+    sum_pliktig = a07.sum_aga_pliktige_ytelser()
+    celle(ws, rad, 1, "Sum AGA-pliktige ytelser (A07)", fet=True)
+    if sum_pliktig is None:
+        celle(ws, rad, 4, IKKE_OPPGITT, fet=True, nf=KRONER)
+    else:
+        celle(ws, rad, 4, f'=SUMIF(B{forste}:B{rad - 2},"ja",D{forste}:D{rad - 2})',
+              fet=True, nf=KRONER)
+    pliktig_rad = rad
+    rad += 1
+    celle(ws, rad, 1, "Avgiftsgrunnlag lønn (A07)")
+    celle(ws, rad, 4, verdi(a07.grunnlag_loenn), nf=KRONER)
+    grunnlag_rad = rad
+    rad += 1
+    celle(ws, rad, 1, "Differanse (fradrag i grunnlaget eller avrunding)")
+    if sum_pliktig is None or a07.grunnlag_loenn is None:
+        celle(ws, rad, 4, IKKE_OPPGITT, nf=KRONER)
+    else:
+        celle(ws, rad, 4, f"=D{pliktig_rad}-D{grunnlag_rad}", nf=KRONER)
+    rad += 2
+    for linje in [
+        "Ytelsene gjelder hele perioden. A07 fra Tally har ingen fordeling per måned eller per person.",
+        "Regnskap: 5000–5999 i lønnsbilag, 2940 = utbetalte feriepenger, andre konti (reise) = alle posteringer.",
+        "Konto styres av ytelse_konto i ledger.json der klienten avviker fra standard.",
+    ]:
+        celle(ws, rad, 1, linje, farge=GRA, ramme=False)
+        rad += 1
 
 
-def ark_posteringer(wb, ledger: Ledger) -> None:
+def ark_posteringer(wb, ledger: Ledger, undertittel: str) -> None:
     ws = wb.create_sheet("Posteringer")
+    topp(ws, "Posteringer i perioden", undertittel)
     bredder(ws, {"A": 12, "B": 9, "C": 8, "D": 30, "E": 60, "F": 14})
-    tabellhode(ws, 1, [("Dato", "l"), ("Bilag", "l"), ("Konto", "l"),
+    tabellhode(ws, 7, [("Dato", "l"), ("Bilag", "l"), ("Konto", "l"),
                        ("Kontonavn", "l"), ("Tekst", "l"), ("Beløp", "r")])
-    rad = 2
+    ws.freeze_panes = "A8"
+    rad = 8
     for p in sorted(ledger.poster, key=lambda x: (x["dato"], x["bilag"], x["konto"])):
         celle(ws, rad, 1, p["dato"][:10], ramme=False)
         celle(ws, rad, 2, int(p["bilag"]) if p["bilag"].isdigit() else p["bilag"], ramme=False)
@@ -1031,23 +1113,14 @@ def ark_posteringer(wb, ledger: Ledger) -> None:
 
 
 def bygg(a07_sti: str, ledger_sti: str, ut_sti: str) -> str:
-    a07 = parse_a07(a07_sti)
+    a07 = les_a07(a07_sti)
     with open(ledger_sti, encoding="utf-8") as f:
         ledger = Ledger(json.load(f))
 
-    # Pensjonsgrunnlaget per måned er først kjent nå – fordel ytelser uten
-    # opptjeningsperiode på nytt med det på plass.
-    pensjon_mnd = {r[0]: float(r[4]) for r in ledger.d.get("pensjon_historikk", [])}
-    if pensjon_mnd:
-        from a07 import fordel_paa_nytt
-
-        fordel_paa_nytt(a07, pensjon_mnd)
-
     periode = ledger.d.get("periode", {})
     termin = periode.get("termin", "")
-    mnd = a07.maaneder
-    spenn = (f"{MAANEDSNAVN[int(mnd[0][5:7]) - 1]}–{MAANEDSNAVN[int(mnd[-1][5:7]) - 1]} "
-             f"{a07.fom[:4]}") if mnd else ""
+    spenn = (f"{kort_maaned(a07.fom)}–{kort_maaned(a07.tom)} {a07.fom[:4]}"
+             if a07.fom and a07.tom else "")
     undertittel = (f"{ledger.d.get('selskap', a07.navn)}   |   "
                    f"Org.nr. {ledger.d.get('orgnr', a07.orgnr)}   |   "
                    f"Termin {termin} ({spenn})   |   "
@@ -1059,9 +1132,8 @@ def bygg(a07_sti: str, ledger_sti: str, ut_sti: str) -> str:
     ark_detaljer(wb, a07, ledger, undertittel)
     ark_forskuddstrekk(wb, a07, ledger, undertittel)
     ark_aga(wb, a07, ledger, undertittel)
-    ark_per_ansatt(wb, a07, ledger, undertittel)
     ark_ytelser(wb, a07, ledger, undertittel)
-    ark_posteringer(wb, ledger)
+    ark_posteringer(wb, ledger, undertittel)
     wb.save(ut_sti)
     return ut_sti
 

@@ -6,7 +6,9 @@ Hver skill er en byggekloss: en lesedel som kan kjøres når som helst, og en nu
 
 ## Tilkoblinger og Steg 0
 
-- **Tally MCP** – oppgaver, frister, timer, kundeinstrukser, Altinn-innboks, dokumentarkiv. **Tripletex MCP** – lesing på tvers av klientene.
+- **Tally MCP** – oppgaver, frister, timer, kundeinstrukser, dokumentarkiv, og Altinn via byråets Maskinporten-tilgang: innboksen
+  (kvitteringer og brev, `list_altinn_innboks`/`les_altinn_melding`) og A07 (`request_amelding_report`/`hent_amelding_rapport`).
+  Det som kommer fra Altinn, ligger allerede i Tally – last det aldri ned eller opp på nytt; vis til det. **Tripletex MCP** – lesing på tvers av klientene.
   **Missive** – søk og utkast; Claude sender aldri. **Claude in Chrome** – bare der en skill sier det, aldri innlogging eller passord.
 - **Steg 0 før enhver skill:** kall Tally `whoami` og Tripletex `search_client_companies` i samme runde og rapporter på én linje («Tally ✓ · Tripletex ✓»).
   Svarer Tally ikke, kan lesing fortsette, men ingen oppgave fullføres. Skillen sier selv om den trenger Missive i tillegg.

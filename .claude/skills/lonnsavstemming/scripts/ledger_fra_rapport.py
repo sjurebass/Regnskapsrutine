@@ -99,8 +99,9 @@ for rad in av.iter_rows(min_col=1, max_col=1):
 
 # --- posteringer
 poster = []
+# Gammel layout har tabellhodet i rad 1, ny har topp med logo og hodet i rad 7: les bare rader med dato.
 for rad in wb["Posteringer"].iter_rows(min_row=2, values_only=True):
-    if not rad or rad[0] is None:
+    if not rad or not re.match(r"\d{4}-\d{2}-\d{2}", str(rad[0] or "")):
         continue
     poster.append([str(rad[0]), str(rad[1]), int(rad[2]), rad[3] or "", rad[4] or "",
                    float(rad[5] or 0)])
@@ -118,7 +119,12 @@ for rad in det.iter_rows(values_only=True):
 
 d["posteringer"] = poster
 
-# kontomapping for ytelser leses av Per ansatt-arket (f.eks. EK på 5390)
+# kontomapping for ytelser leses av «Ytelser A07» (f.eks. EK på 5390).
+# Gammel layout (før Tally-A07): Måned · Ytelse · Fordel · AGA · Konto i kolonne A–E.
+# Ny layout: Ytelse (fordel) · AGA-pliktig · Konto i kolonne A–C; sumrader har ikke konto.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from a07 import YTELSE_KONTO  # noqa: E402
+
 VISNING = {
     "fastlønn": "fastloenn", "timelønn": "timeloenn",
     "fri telefon (ek)": "elektroniskKommunikasjon",
@@ -126,13 +132,18 @@ VISNING = {
     "feriepenger": "feriepenger", "bonus": "bonus", "bil": "bil",
     "sykepenger": "sykepenger", "overtid": "overtidsgodtgjoerelse",
 }
+VISNING.update({k.lower(): k for k in YTELSE_KONTO})
 ytelse_konto = {}
 if "Ytelser A07" in wb.sheetnames:
-    for rad in wb["Ytelser A07"].iter_rows(min_row=8, values_only=True):
-        if rad[1] and rad[4]:
-            kode = VISNING.get(str(rad[1]).strip().lower())
-            if kode:
-                ytelse_konto[kode] = int(rad[4])
+    ark = wb["Ytelser A07"]
+    gammel = str(ark["A7"].value or "").strip() == "Måned"
+    kol_ytelse, kol_konto = (1, 4) if gammel else (0, 2)
+    for rad in ark.iter_rows(min_row=8, values_only=True):
+        if len(rad) > kol_konto and rad[kol_ytelse] and rad[kol_konto]:
+            navn = str(rad[kol_ytelse]).strip().lower()
+            kode = VISNING.get(navn) or VISNING.get(re.sub(r"\s*\(.*\)$", "", navn))
+            if kode and str(rad[kol_konto]).strip().isdigit():
+                ytelse_konto[kode] = int(rad[kol_konto])
 d["ytelse_konto"] = ytelse_konto
 
 # merknader
