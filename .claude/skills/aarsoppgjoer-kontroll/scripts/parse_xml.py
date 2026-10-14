@@ -508,6 +508,11 @@ def bygg_rapport_data_direkte(skattemelding_xml, naeringsspesifikasjon_xml):
 
 
 if __name__ == "__main__":
+    # Claudes scratch-mapper kan gi stier over Windows' grense på 260 tegn – bruk utvidet form.
+    import os as _os
+    sys.path.insert(0, _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "..", "..", "silfer-rapport", "scripts"))
+    from silfer.filer import os_sti
+    sys.argv[1:] = [a if a.startswith("-") else os_sti(a) for a in sys.argv[1:]]
     if len(sys.argv) < 2:
         print("Bruk: python parse_xml.py <sti/til/skattemelding.xml>", file=sys.stderr)
         print("  eller: python parse_xml.py <Skattemelding.xml> <Naeringsspesifikasjon.xml>  (direkte format)", file=sys.stderr)

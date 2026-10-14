@@ -27,6 +27,7 @@ from a07 import YTELSE_KONTO, A07, parse_a07
 from kobling import Personkobling, maal_per_person
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "silfer-rapport" / "scripts"))
+from silfer.filer import os_sti  # noqa: E402
 from silfer.stil import (ANTALL, GRA, KRONER, MORK, SVART, bredder, celle, seksjon,  # noqa: E402
                          statusregler, tabellhode, topp)
 
@@ -1069,4 +1070,6 @@ if __name__ == "__main__":
     if len(sys.argv) != 4:
         print(__doc__)
         sys.exit(1)
-    print(bygg(sys.argv[1], sys.argv[2], sys.argv[3]))
+    # os_sti: Claudes scratch-mapper kan gi stier over Windows' grense på 260 tegn.
+    bygg(*(os_sti(a) for a in sys.argv[1:4]))
+    print(sys.argv[3])

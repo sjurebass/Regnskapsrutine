@@ -9,10 +9,14 @@ sammenlign med sammenlign.py. Da vet du at en endring i skriptene ikke har
 """
 
 import json, re, sys, io
+from pathlib import Path
 import openpyxl
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "silfer-rapport" / "scripts"))
+from silfer.filer import os_sti  # noqa: E402  (stier over 260 tegn i Claudes scratch)
+
 sys.stdout.reconfigure(encoding="utf-8")
-sti, ut = sys.argv[1], sys.argv[2]
+sti, ut = os_sti(sys.argv[1]), os_sti(sys.argv[2])
 wb = openpyxl.load_workbook(sti, data_only=True)
 
 d = {}

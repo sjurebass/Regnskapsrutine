@@ -8,9 +8,13 @@ radetikettene og de faste tallene.
 """
 
 import sys, openpyxl
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "silfer-rapport" / "scripts"))
+from silfer.filer import os_sti  # noqa: E402  (stier over 260 tegn i Claudes scratch)
 
 sys.stdout.reconfigure(encoding="utf-8")
-fasit_sti, ny_sti = sys.argv[1], sys.argv[2]
+fasit_sti, ny_sti = os_sti(sys.argv[1]), os_sti(sys.argv[2])
 f = openpyxl.load_workbook(fasit_sti, data_only=True)
 n = openpyxl.load_workbook(ny_sti, data_only=True)
 
