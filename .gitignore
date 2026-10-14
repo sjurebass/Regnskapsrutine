@@ -1,0 +1,33 @@
+# Repoet inneholder verktøy, skills og indekser – aldri regnskap eller kundedata.
+# Kundedokumenter hører hjemme i Tally og Tripletex, og arbeidsfiler i Claudes scratch-mappe.
+
+# Hemmeligheter
+.env
+.env.*
+
+# Leveranser og uttrekk (lages i scratch, aldri her)
+*.xlsx
+*.xls
+*.pdf
+*.zip
+*.csv
+*.xml
+!.claude/skills/**/assets/**
+
+# Python / uv
+.venv/
+uv.lock
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Personlige Claude-innstillinger (tillatelser)
+.claude/settings.local.json
+
+# Diverse
+*.new
+*.bak
+.DS_Store
+Thumbs.db

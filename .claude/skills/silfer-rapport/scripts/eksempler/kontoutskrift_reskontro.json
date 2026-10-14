@@ -1,0 +1,70 @@
+{
+  "versjon": 1,
+  "dokument": {
+    "hva": "Kontoutskrift kundereskontro",
+    "tittel": "Kontoutskrift kundereskontro",
+    "klient": "Eksempel AS",
+    "orgnr": "123 456 789",
+    "under": ["Kunde: Eksempel Kunde AS (kundenr. 10023)"],
+    "periode": "2026-09",
+    "periode_tekst": "01.01.2026–30.09.2026",
+    "utarbeidet": "14.10.2026",
+    "utarbeidet_av": "AB"
+  },
+  "seksjoner": [
+    {
+      "id": "bevegelser",
+      "ark": "Kontoutskrift",
+      "overskrift": "Bevegelser 01.01.2026–30.09.2026",
+      "tabell": {
+        "kolonner": [
+          {"id": "dato", "tekst": "Dato", "type": "dato", "bredde": 12},
+          {"id": "bilag", "tekst": "Bilag", "type": "heltall", "bredde": 11},
+          {"id": "tekst", "tekst": "Tekst", "type": "tekst", "bredde": 40},
+          {"id": "fakturert", "tekst": "Fakturert", "type": "belop", "bredde": 14},
+          {"id": "innbetalt", "tekst": "Innbetalt", "type": "belop", "bredde": 14},
+          {"id": "saldo", "tekst": "Saldo", "type": "belop", "bredde": 14,
+           "lopende": {"start": 12500.00, "pluss": "fakturert", "minus": "innbetalt"}}
+        ],
+        "ib": {"dato": "2026-01-01", "tekst": "Inngående saldo (faktura 2025-0188)"},
+        "rader": [
+          {"dato": "2026-01-15", "bilag": 1012, "tekst": "Faktura 2026-0012", "fakturert": 8750.00},
+          {"dato": "2026-02-02", "bilag": 1044, "tekst": "Innbetaling faktura 2026-0012", "innbetalt": 8750.00},
+          {"dato": "2026-03-01", "bilag": 1102, "tekst": "Faktura 2026-0031", "fakturert": 6250.00},
+          {"dato": "2026-03-28", "bilag": 1150, "tekst": "Innbetaling faktura 2025-0188", "innbetalt": 12500.00},
+          {"dato": "2026-04-15", "bilag": 1176, "tekst": "Innbetaling faktura 2026-0031", "innbetalt": 6250.00},
+          {"dato": "2026-06-10", "bilag": 1240, "tekst": "Faktura 2026-0058", "fakturert": 11875.00},
+          {"dato": "2026-06-30", "bilag": 1262, "tekst": "Kreditnota 2026-0059 til faktura 2026-0058", "fakturert": -1875.00},
+          {"dato": "2026-07-05", "bilag": 1290, "tekst": "Innbetaling faktura 2026-0058", "innbetalt": 10000.00},
+          {"dato": "2026-09-10", "bilag": 1388, "tekst": "Faktura 2026-0097", "fakturert": 4200.00},
+          {"dato": "2026-09-22", "bilag": 1401, "tekst": "Faktura 2026-0103", "fakturert": 2500.00}
+        ],
+        "sum": {"etikett": "Sum i perioden ({n} transaksjoner)", "kolonner": ["fakturert", "innbetalt"]},
+        "ub": {"dato": "2026-09-30", "tekst": "Utgående saldo", "verdi": 6700.00},
+        "kontrollsum": {
+          "tekst": "**Kontrollert:** inngående saldo {ib} + fakturert {pluss} − innbetalt {minus} = utgående saldo {ub}, som stemmer på øret med kundereskontroen per 30.09.2026."
+        }
+      }
+    },
+    {
+      "id": "aapne",
+      "ark": "Kontoutskrift",
+      "overskrift": "Åpne poster per 30.09.2026",
+      "tabell": {
+        "kolonner": [
+          {"id": "dato", "tekst": "Dato", "type": "dato"},
+          {"id": "forfall", "tekst": "Forfall", "type": "dato", "bredde": 11},
+          {"id": "tekst", "tekst": "Tekst", "type": "tekst", "bredde": 40},
+          {"id": "dager", "tekst": "Dager forfalt", "type": "antall", "bredde": 14},
+          {"id": "belop", "tekst": "Beløp", "type": "belop", "bredde": 14}
+        ],
+        "rader": [
+          {"dato": "2026-09-10", "forfall": "2026-09-24", "tekst": "Faktura 2026-0097", "dager": 6, "belop": 4200.00},
+          {"dato": "2026-09-22", "forfall": "2026-10-06", "tekst": "Faktura 2026-0103", "dager": 0, "belop": 2500.00}
+        ],
+        "sum": {"etikett": "Sum åpne poster", "kolonner": ["belop"], "skal_vaere": 6700.00}
+      },
+      "merknad": "Sum åpne poster skal være lik utgående saldo. Kundenavn vises; ingen personopplysninger."
+    }
+  ]
+}

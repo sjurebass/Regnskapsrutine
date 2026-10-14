@@ -1,0 +1,66 @@
+{
+  "versjon": 1,
+  "dokument": {
+    "hva": "Bankavstemming åpne poster",
+    "tittel": "Åpne poster i bankavstemming 2026",
+    "klient": "Eksempel AS",
+    "orgnr": "123 456 789",
+    "periode": "2026-09",
+    "periode_tekst": "Januar–September 2026",
+    "utarbeidet": "14.10.2026"
+  },
+  "seksjoner": [
+    {
+      "id": "sammendrag",
+      "ark": "Sammendrag",
+      "overskrift": "Sammendrag – åpne poster per konto",
+      "sammendrag": {
+        "av": "poster",
+        "gruppe": "konto",
+        "kolonner": [
+          {"id": "konto", "tekst": "Konto", "type": "heltall", "bredde": 8},
+          {"id": "navn", "tekst": "Kontonavn", "type": "tekst", "bredde": 24},
+          {"id": "antall", "tekst": "Åpne poster", "type": "antall", "tell": "tekst", "bredde": 13},
+          {"id": "sum", "tekst": "Sum beløp (kr)", "type": "belop", "summer": "belop", "bredde": 15},
+          {"id": "merknad", "tekst": "Merknad", "type": "tekst", "bredde": 52}
+        ],
+        "rader": [
+          {"konto": 1920, "navn": "Driftskonto"},
+          {"konto": 1931, "navn": "Kort", "merknad": "Ingen bankfeed – send kontoutskrift for januar–juli 2026."}
+        ],
+        "sum": {"etikett": "Totalt", "kolonner": ["antall", "sum"]},
+        "zebra": true
+      },
+      "merknad": "Kilde: Automatisk bankavstemming i Tripletex. Åpne (uavstemte) poster Januar–September 2026. Kun bankside-poster er tatt med (i bank, mangler bilag). Konto for skattetrekk (typ. 1950) er holdt utenfor. «Fylt på» (kortpåfyll) og bank-/kortgebyr er utelatt – disse krever ingen dokumentasjon."
+    },
+    {
+      "id": "poster",
+      "ark": "Åpne poster",
+      "sideskift": true,
+      "overskrift": "Åpne poster i bankavstemming 2026",
+      "tabell": {
+        "kolonner": [
+          {"id": "konto", "tekst": "Konto", "type": "heltall", "bredde": 8},
+          {"id": "kontonavn", "tekst": "Kontonavn", "type": "tekst", "bredde": 24},
+          {"id": "maaned", "tekst": "Måned", "type": "tekst", "bredde": 10},
+          {"id": "dato", "tekst": "Dato", "type": "dato", "bredde": 12},
+          {"id": "tekst", "tekst": "Tekst", "type": "tekst", "bredde": 34},
+          {"id": "belop", "tekst": "Beløp (kr)", "type": "belop", "bredde": 13},
+          {"id": "kilde", "tekst": "Kilde", "type": "tekst", "bredde": 14},
+          {"id": "dokumentasjon", "tekst": "Dokumentasjon", "type": "tekst", "bredde": 26, "vis": "excel"},
+          {"id": "status", "tekst": "Status", "type": "status", "bredde": 14, "vis": "excel"}
+        ],
+        "rader": [
+          {"konto": 1920, "kontonavn": "Driftskonto", "maaned": "August", "dato": "2026-08-14", "tekst": "Eksempel Leverandør AS", "belop": -12450.00, "kilde": "Bankside"},
+          {"konto": 1920, "kontonavn": "Driftskonto", "maaned": "September", "dato": "2026-09-03", "tekst": "Vercel 36,24 USD", "belop": -347.08, "kilde": "Bankside"},
+          {"konto": 1920, "kontonavn": "Driftskonto", "maaned": "September", "dato": "2026-09-12", "tekst": "Google Workspace 126,50 EUR", "belop": -1395.97, "kilde": "Bankside"},
+          {"konto": 1920, "kontonavn": "Driftskonto", "maaned": "September", "dato": "2026-09-25", "tekst": "Innbetaling Eksempel Kunde AS", "belop": 6700.00, "kilde": "Bankside"}
+        ],
+        "sum": {"etikett": "Sum åpne poster", "kolonner": ["belop"], "tell": "tekst"},
+        "filter": true,
+        "frys": true,
+        "zebra": true
+      }
+    }
+  ]
+}

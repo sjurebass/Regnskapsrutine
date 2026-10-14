@@ -1,0 +1,1191 @@
+{
+  "group": "produkt",
+  "tags": [
+    {
+      "tag": "inventory",
+      "beskrivelse": "Lagre (varelager/warehouse): søke opp, opprette, endre, deaktivere og slette lagre, inkludert hovedlager.",
+      "nokkelord": [
+        "lager",
+        "lagre",
+        "varelager",
+        "hovedlager",
+        "filiallager",
+        "nytt lager",
+        "lagersted",
+        "lageroversikt",
+        "warehouse",
+        "inventory",
+        "logistikk",
+        "lagerstyring",
+        "lageradresse",
+        "deaktivere lager",
+        "lagerlokale",
+        "sentrallager",
+        "inventory list"
+      ]
+    },
+    {
+      "tag": "inventory/inventories",
+      "beskrivelse": "Lagerbeholdning per produkt og lager for en periode: inngående beholdning, endring i perioden og utgående beholdning.",
+      "nokkelord": [
+        "lagerbeholdning",
+        "beholdning",
+        "lagerstatus",
+        "lagersaldo",
+        "varebeholdning",
+        "inngående beholdning",
+        "inngaende beholdning",
+        "utgående beholdning",
+        "utgaende beholdning",
+        "lagerbevegelse",
+        "lagerendring",
+        "varelagerendring",
+        "lagerverdi",
+        "varelagerverdi",
+        "antall på lager",
+        "lagerliste",
+        "beholdningsliste",
+        "opening stock",
+        "closing stock",
+        "stock level",
+        "beholdningsendring",
+        "varelager 31.12",
+        "lagerbeholdning per dato",
+        "stock movement"
+      ]
+    },
+    {
+      "tag": "inventory/location",
+      "beskrivelse": "Lagerplasser (hylle, reol, bin) innenfor et lager – krever Logistics Basic og at lagerplasser er slått på.",
+      "nokkelord": [
+        "lagerplass",
+        "lagerplasser",
+        "lagerlokasjon",
+        "lokasjon",
+        "hylle",
+        "hylleplass",
+        "reol",
+        "bin",
+        "plassering",
+        "lagerplassering",
+        "warehouse location",
+        "inventory location",
+        "reolplass"
+      ]
+    },
+    {
+      "tag": "inventory/stocktaking",
+      "beskrivelse": "Varetellinger (lageropptelling/inventering) per lager: opprette, søke opp, fullføre og slette, med lagerverdi og avvikssum.",
+      "nokkelord": [
+        "varetelling",
+        "vareopptelling",
+        "opptelling",
+        "telling",
+        "lagertelling",
+        "inventering",
+        "telleliste",
+        "årstelling",
+        "arstelling",
+        "varetelling 31.12",
+        "lagerkontroll",
+        "svinn",
+        "årsoppgjør",
+        "arsoppgjor",
+        "stocktaking",
+        "stock count",
+        "inventory count",
+        "lagerverdi",
+        "telleavvik",
+        "telledifferanse",
+        "lageropptelling"
+      ]
+    },
+    {
+      "tag": "inventory/stocktaking/productline",
+      "beskrivelse": "Linjene i en varetelling (ett produkt per linje) med opptalt antall, kostpris, kommentar og lagerplass.",
+      "nokkelord": [
+        "tellelinje",
+        "varetellingslinje",
+        "tellingslinje",
+        "opptalt antall",
+        "telt antall",
+        "antall",
+        "ikke opptalt",
+        "opptalte varer",
+        "kostpris",
+        "enhetskost",
+        "flytte lagerplass",
+        "productline",
+        "product line",
+        "count",
+        "stocktaking line"
+      ]
+    },
+    {
+      "tag": "product/external",
+      "beskrivelse": "[BETA] Oppslag i grossistenes produktkataloger (EFO/NELFO) på elnummer, NRF-nummer eller navn, typisk for el- og VVS-bransjen.",
+      "nokkelord": [
+        "grossist",
+        "grossistkatalog",
+        "varekatalog",
+        "efo",
+        "nelfo",
+        "elnummer",
+        "el-nummer",
+        "nrf",
+        "nrf-nummer",
+        "vvs",
+        "elektro",
+        "elektriker",
+        "rørlegger",
+        "rorlegger",
+        "ahlsell",
+        "onninen",
+        "solar",
+        "sonepar",
+        "brødrene dahl",
+        "brodrene dahl",
+        "elektroskandia",
+        "external product",
+        "eksternt produkt",
+        "prisfil"
+      ]
+    },
+    {
+      "tag": "product",
+      "beskrivelse": "Produktregisteret (varer og tjenester): søke, opprette, endre, deaktivere og slette produkter samt produktbilder, med salgspris, kostpris, MVA-kode, inntektskonto og enhet.",
+      "nokkelord": [
+        "produkt",
+        "produkter",
+        "vare",
+        "varer",
+        "varenummer",
+        "artikkel",
+        "artikkelnummer",
+        "tjeneste",
+        "vareregister",
+        "produktregister",
+        "varekartotek",
+        "product",
+        "sku",
+        "ean",
+        "strekkode",
+        "salgspris",
+        "utpris",
+        "kostpris",
+        "innpris",
+        "innkjøpspris",
+        "innkjopspris",
+        "mva-kode",
+        "lagervare",
+        "vareliste",
+        "prisliste"
+      ]
+    },
+    {
+      "tag": "product/supplierProduct",
+      "beskrivelse": "Leverandørprodukter: leverandørens varenummer og innkjøpspris knyttet til et eget produkt som videreselges.",
+      "nokkelord": [
+        "leverandørprodukt",
+        "leverandorprodukt",
+        "leverandørvare",
+        "leverandørens varenummer",
+        "bestillingsnummer",
+        "innkjøpspris",
+        "innkjopspris",
+        "innpris",
+        "hovedleverandør",
+        "videresalg",
+        "resale",
+        "supplier product",
+        "leverandørpris",
+        "leverandørs varenummer",
+        "innkjøpsvare",
+        "efo-vare"
+      ]
+    },
+    {
+      "tag": "product/discountGroup",
+      "beskrivelse": "Rabattgrupper (typisk grossistens/EFO-NELFOs rabattgrupper) som produkter kan tilhøre – kun lesbare via API; kunderabatt på ordre/faktura hører til salg-gruppen.",
+      "nokkelord": [
+        "rabattgruppe",
+        "rabattgrupper",
+        "rabattkode",
+        "grossistrabatt",
+        "nettopris",
+        "discount group",
+        "efo rabattgruppe",
+        "nelfo rabattgruppe",
+        "grossistavtale",
+        "rabattgruppenummer"
+      ]
+    },
+    {
+      "tag": "product/inventoryLocation",
+      "beskrivelse": "Kobling mellom produkt og lager/lagerplass (hvor varen står), med hovedplassering og beholdning per plass – krever Logistics Basic.",
+      "nokkelord": [
+        "produktplassering",
+        "varelokasjon",
+        "produkt lagerplass",
+        "hovedplassering",
+        "hovedlagerplass",
+        "hvor ligger varen",
+        "beholdning per lagerplass",
+        "plassering",
+        "hylleplass",
+        "main location",
+        "product inventory location"
+      ]
+    },
+    {
+      "tag": "product/logisticsSettings",
+      "beskrivelse": "Firmaets logistikkinnstillinger: lagerplasser av/på, foreslått varenummer, standardkommentar på innkjøpsordre og Bring-modul.",
+      "nokkelord": [
+        "logistikkinnstillinger",
+        "lagerinnstillinger",
+        "logistics settings",
+        "lagerplasser på",
+        "foreslått varenummer",
+        "foreslatt varenummer",
+        "varenummerserie",
+        "innkjøpsordre kommentar",
+        "bring",
+        "rackbeat",
+        "aktivere lagerplasser",
+        "neste varenummer",
+        "bring-modul",
+        "logistikkoppsett"
+      ]
+    },
+    {
+      "tag": "product/group",
+      "beskrivelse": "Produktgrupper/varegrupper i et hierarki med overordnet gruppe – krever Logistics Basic.",
+      "nokkelord": [
+        "produktgruppe",
+        "produktgrupper",
+        "varegruppe",
+        "varegrupper",
+        "varekategori",
+        "produktkategori",
+        "kategori",
+        "hovedgruppe",
+        "undergruppe",
+        "sortiment",
+        "product group"
+      ]
+    },
+    {
+      "tag": "product/groupRelation",
+      "beskrivelse": "Koblinger mellom produkter og produktgrupper (et produkt kan ligge i flere grupper) – krever Logistics Basic.",
+      "nokkelord": [
+        "gruppetilknytning",
+        "koble produkt til gruppe",
+        "varegruppe kobling",
+        "produkt i varegruppe",
+        "gruppemedlemskap",
+        "product group relation",
+        "flytte produkt til varegruppe",
+        "produkter i varegruppe",
+        "varegruppetilknytning"
+      ]
+    },
+    {
+      "tag": "product/productPrice",
+      "beskrivelse": "Prishistorikk for et produkt (innkjøpspris, kostpris og salgspris eks./inkl. MVA per periode) – krever Logistics Basic.",
+      "nokkelord": [
+        "prishistorikk",
+        "prisendring",
+        "prisendringer",
+        "historiske priser",
+        "siste pris",
+        "salgspris",
+        "innkjøpspris",
+        "innkjopspris",
+        "kostpris",
+        "prisutvikling",
+        "product price",
+        "price history"
+      ]
+    },
+    {
+      "tag": "product/unit",
+      "beskrivelse": "Firmaets egne produktenheter (stk, timer, kg, m osv.) med kortnavn og standard enhetskode.",
+      "nokkelord": [
+        "enhet",
+        "enheter",
+        "måleenhet",
+        "maleenhet",
+        "salgsenhet",
+        "stk",
+        "stykk",
+        "kg",
+        "meter",
+        "liter",
+        "unit",
+        "product unit",
+        "enhetskode",
+        "common code",
+        "enhet time",
+        "timeenhet",
+        "pakke",
+        "eske"
+      ]
+    },
+    {
+      "tag": "product/unit/master",
+      "beskrivelse": "Tripletex sin felles hovedliste over standardenheter med UN/ECE- og PEPPOL-koder, brukt bl.a. i EHF.",
+      "nokkelord": [
+        "standardenhet",
+        "enhetsliste",
+        "peppol",
+        "ehf",
+        "e-faktura",
+        "efaktura",
+        "unece",
+        "rec 20",
+        "common code",
+        "enhetskode",
+        "peppol-symbol",
+        "unit master",
+        "masterenhet"
+      ]
+    },
+    {
+      "tag": "pickupPoint",
+      "beskrivelse": "[DEPRECATED] Hentesteder/utleveringssteder hos grossist eller transportør, brukt på innkjøpsordre.",
+      "nokkelord": [
+        "hentested",
+        "hentepunkt",
+        "utleveringssted",
+        "avhenting",
+        "henting",
+        "pickup point",
+        "grossist",
+        "hentested grossist",
+        "deprecated"
+      ]
+    },
+    {
+      "tag": "transportType",
+      "beskrivelse": "[BETA] Transporttyper/leveringsmåter (f.eks. henting eller levering) per grossist, brukt på innkjøpsordre.",
+      "nokkelord": [
+        "transporttype",
+        "leveringsmåte",
+        "leveringsmate",
+        "fraktmåte",
+        "fraktmate",
+        "frakt",
+        "forsendelse",
+        "henting",
+        "transport type",
+        "grossist",
+        "hente selv",
+        "grossistlevering"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Søke opp produkter/varer på navn, varenummer eller EAN",
+      "nokkelord": [
+        "finn produkt",
+        "søk vare",
+        "sok vare",
+        "varenummer",
+        "artikkelnummer",
+        "produktliste",
+        "vareliste",
+        "ean",
+        "strekkode",
+        "product search",
+        "hent produkt",
+        "vareregister",
+        "eksportere vareliste",
+        "produkter fra leverandør",
+        "fakturalinje",
+        "tjenester"
+      ],
+      "kall": [
+        "GET /product",
+        "GET /product/{id}"
+      ],
+      "fremgangsmate": "GET /product med name= (inneholder), productNumber= (liste med varenumre; parameteren number er DEPRECATED), ean= (eksakt), isInactive=false, isStockItem=, supplierId=, vatTypeId=, accountId=, departmentId= eller prisintervall (priceExcludingVatCurrencyFrom/To, fra og med / til men ikke med). Bruk fields=id,number,name,priceExcludingVatCurrency,costExcludingVatCurrency,vatType(id,number),account(number),productUnit(nameShort),isStockItem,isInactive. count er 1000 som standard – paginer med from/count. Merk: priceExcludingVatCurrency = salgspris (spec-teksten sier misvisende «price of purchase»), costExcludingVatCurrency = innkjøps-/kostpris; costPrice er skrivebeskyttet. Detaljer: GET /product/{id}.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette nytt produkt (vare eller tjeneste)",
+      "nokkelord": [
+        "nytt produkt",
+        "ny vare",
+        "opprett vare",
+        "registrere vare",
+        "legge inn produkt",
+        "ny tjeneste",
+        "create product",
+        "vareregistrering",
+        "salgspris",
+        "mva-kode",
+        "inntektskonto"
+      ],
+      "kall": [
+        "GET /ledger/vatType",
+        "GET /ledger/account",
+        "GET /product/unit",
+        "POST /product"
+      ],
+      "fremgangsmate": "1) MVA-kode: GET /ledger/vatType (f.eks. utgående 25 % = vatType number 3; 15 % mat = 31; fritatt = 5/6). 2) Inntektskonto: GET /ledger/account?number=3000. 3) Enhet: GET /product/unit?nameShort=stk. 4) Sjekk dublett: GET /product?productNumber=<nr>. 5) POST /product med name, number (varenummer som streng, må være unikt), priceExcludingVatCurrency (salgspris eks. mva) eller priceIncludingVatCurrency, costExcludingVatCurrency (kostpris), vatType{id}, account{id}, productUnit{id}, ev. currency{id}, department{id}, supplier{id}, ean, description, orderLineDescription, isStockItem=true for lagervare, minStockLevel, weight/weightUnit (kg|g|hg), volume/volumeUnit (cm3|dm3|m3). elNumber/nrfNumber, costPrice og lagerfeltene er skrivebeskyttet. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Importere mange produkter på én gang (vareliste fra Excel/CSV)",
+      "nokkelord": [
+        "import produkter",
+        "importere vareliste",
+        "masseopprettelse",
+        "bulk",
+        "mange varer",
+        "vareimport",
+        "produktimport",
+        "csv",
+        "excel",
+        "product list"
+      ],
+      "kall": [
+        "GET /product",
+        "POST /product/list"
+      ],
+      "fremgangsmate": "Les filen lokalt, slå opp id-er for vatType/account/productUnit én gang og gjenbruk. Sjekk eksisterende varenumre med GET /product?productNumber=...&fields=id,number. POST /product/list med en JSON-array av Product-objekter (samme felt som POST /product, uten id/version). Én ugyldig rad kan stoppe hele kallet – send i batcher (f.eks. 50–100) og logg feil per batch. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre pris eller opplysninger på produkt (prisjustering, masseprisendring)",
+      "nokkelord": [
+        "endre pris",
+        "prisendring",
+        "prisjustering",
+        "prisøkning",
+        "prisokning",
+        "oppdatere produkt",
+        "endre vare",
+        "ny salgspris",
+        "ny kostpris",
+        "indeksregulering",
+        "update product"
+      ],
+      "kall": [
+        "GET /product/{id}",
+        "GET /product",
+        "PUT /product/{id}",
+        "PUT /product/list"
+      ],
+      "fremgangsmate": "Enkeltvare: GET /product/{id}?fields=id,version,priceExcludingVatCurrency,costExcludingVatCurrency, deretter PUT /product/{id} med id, version og endrede felt (priceExcludingVatCurrency, costExcludingVatCurrency, vatType, account, name, discountGroup …). Masseendring (f.eks. +3 %): GET /product med filter og fields=id,version,priceExcludingVatCurrency, beregn ny pris lokalt, PUT /product/list med [{id,version,priceExcludingVatCurrency}]. Feil version gir konflikt – hent på nytt. Endringen gjelder nye ordrelinjer, ikke eksisterende ordre/fakturaer. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Deaktivere eller slette et produkt",
+      "nokkelord": [
+        "slett produkt",
+        "slette vare",
+        "deaktivere vare",
+        "inaktiv vare",
+        "arkivere produkt",
+        "utgått vare",
+        "rydde vareregister",
+        "delete product",
+        "inactive",
+        "ubrukt produkt"
+      ],
+      "kall": [
+        "GET /product/{id}",
+        "PUT /product/{id}",
+        "DELETE /product/{id}"
+      ],
+      "fremgangsmate": "Produkter som er brukt på ordre, faktura, bilag eller lager kan ikke slettes. Standard: PUT /product/{id} med id, version og isInactive=true. DELETE /product/{id} bare for ubrukte produkter (feltet isDeletable er deprecated og returnerer alltid false, så det kan ikke brukes til å sjekke på forhånd – ved feil, deaktiver i stedet). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Laste opp bilde eller dokumenter (datablad) på et produkt",
+      "nokkelord": [
+        "produktbilde",
+        "varebilde",
+        "bilde",
+        "last opp bilde",
+        "slette bilde",
+        "datablad",
+        "produktdokument",
+        "sertifikat",
+        "fdv",
+        "vedlegg produkt",
+        "image",
+        "document archive"
+      ],
+      "kall": [
+        "POST /product/{id}/image",
+        "DELETE /product/{id}/image",
+        "GET /documentArchive/product/{id}",
+        "POST /documentArchive/product/{id}"
+      ],
+      "fremgangsmate": "Bilde: POST /product/{id}/image som multipart/form-data med feltet file (erstatter eksisterende bilde); fjern med DELETE /product/{id}/image. Andre dokumenter (datablad, FDV, sertifikater): POST /documentArchive/product/{id} (BETA, multipart med file); list med GET /documentArchive/product/{id} (periodDateFrom/periodDateTo valgfritt). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se lagerbeholdning for en vare nå (på lager, tilgjengelig, innkommende, utgående)",
+      "nokkelord": [
+        "lagerbeholdning",
+        "hvor mange på lager",
+        "antall på lager",
+        "tilgjengelig",
+        "disponibelt",
+        "reservert",
+        "innkommende",
+        "utgående",
+        "lagerstatus",
+        "stock",
+        "available stock",
+        "beholdning per lagerplass"
+      ],
+      "kall": [
+        "GET /product",
+        "GET /product/{id}",
+        "GET /product/inventoryLocation"
+      ],
+      "fremgangsmate": "GET /product?isStockItem=true&productNumber=<nr>&fields=id,number,name,stockOfGoods,availableStock,incomingStock,outgoingStock,minStockLevel. Beholdningsfeltene er 'available only on demand' og kommer KUN med når de står eksplisitt i fields=. Per lager/lagerplass (Logistics Basic): GET /product/inventoryLocation?productId=<id>&fields=inventory(name),inventoryLocation(name),isMainLocation,stockOfGoods. stockOfGoods = fysisk beholdning; availableStock = disponibel beholdning etter reservasjoner.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente lagerbeholdning og lagerbevegelser for en periode (inngående/utgående beholdning per lager)",
+      "nokkelord": [
+        "lagerbevegelser",
+        "lagerendring",
+        "inngående beholdning",
+        "utgående beholdning",
+        "beholdning per dato",
+        "lagerliste",
+        "lagerrapport",
+        "beholdningsrapport",
+        "varelager 31.12",
+        "stock movement",
+        "inventories"
+      ],
+      "kall": [
+        "GET /inventory/inventories",
+        "GET /inventory"
+      ],
+      "fremgangsmate": "GET /inventory/inventories med påkrevd dateFrom og dateTo (yyyy-MM-dd, begge inkludert), ev. productId=, inventoryId= (fra GET /inventory) og onlyProductWithChangedStatus=true for kun varer med bevegelse. Respons per produkt: product + stock[] med inventory, inventoryId, openingStock, changesInPeriod, closingStock. Bruk fields=product(id,number,name,costExcludingVatCurrency),stock(*) og paginer med from/count.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Beregne varelagerverdi og avstemme varelager mot hovedbok (1460) ved årsoppgjør",
+      "nokkelord": [
+        "varelagerverdi",
+        "lagerverdi",
+        "avstemme varelager",
+        "varelager 1460",
+        "1460",
+        "4290",
+        "varelagerendring",
+        "beholdningsendring",
+        "årsoppgjør",
+        "arsoppgjor",
+        "ukurans",
+        "nedskrivning varelager",
+        "saldobalanse",
+        "inventory valuation"
+      ],
+      "kall": [
+        "GET /inventory/inventories",
+        "GET /product",
+        "GET /inventory/stocktaking",
+        "GET /balanceSheet",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "1) GET /inventory/inventories?dateFrom=<år>-01-01&dateTo=<år>-12-31 → closingStock per vare og lager. 2) Kostpris: GET /product?ids=...&fields=id,number,costExcludingVatCurrency,costPrice, eller bruk siste fullførte varetelling: GET /inventory/stocktaking?isCompleted=true&fields=id,date,warehouseValue,discrepancySum. 3) Lagerverdi = sum(closingStock × kostpris). 4) Saldo i hovedbok: GET /balanceSheet?dateFrom=<år>-01-01&dateTo=<år+1>-01-01&accountNumberFrom=1400&accountNumberTo=1499 (dateTo er eksklusiv). Detaljer: GET /ledger/posting?dateFrom=&dateTo=&accountNumberFrom=1400&accountNumberTo=1499. 5) Differanse/ukurans føres som bilag mot 1460/4290 (se hovedbok-gruppen) – skrivende og krever bekreftelse.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette og administrere lagre (hovedlager, filiallager)",
+      "nokkelord": [
+        "nytt lager",
+        "opprett lager",
+        "endre lager",
+        "slett lager",
+        "hovedlager",
+        "filiallager",
+        "lageradresse",
+        "deaktivere lager",
+        "warehouse",
+        "inventory"
+      ],
+      "kall": [
+        "GET /inventory",
+        "GET /inventory/{id}",
+        "POST /inventory",
+        "PUT /inventory/{id}",
+        "DELETE /inventory/{id}"
+      ],
+      "fremgangsmate": "Finn lagre: GET /inventory?isMainInventory=true | name= | query= | isInactive=false, fields=id,version,number,name,isMainInventory,status,lastStocking,hasLocations. Opprett: POST /inventory med name, number, isMainInventory, description, address. Endre/deaktivere: PUT /inventory/{id} med id, version og f.eks. isInactive=true. DELETE /inventory/{id} bare når deletable=true (ingen beholdning/bevegelser). Krever bekreftelse ved skriving.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Opprette og vedlikeholde lagerplasser (hylle/reol) i et lager",
+      "nokkelord": [
+        "lagerplass",
+        "ny lagerplass",
+        "hylle",
+        "reol",
+        "lokasjon",
+        "lagerlokasjon",
+        "plassering",
+        "bin",
+        "slette lagerplass",
+        "warehouse location"
+      ],
+      "kall": [
+        "GET /product/logisticsSettings",
+        "PUT /product/logisticsSettings",
+        "GET /inventory/location",
+        "GET /inventory/location/{id}",
+        "POST /inventory/location",
+        "POST /inventory/location/list",
+        "PUT /inventory/location/{id}",
+        "PUT /inventory/location/list",
+        "DELETE /inventory/location/{id}",
+        "DELETE /inventory/location/list"
+      ],
+      "fremgangsmate": "Krever Logistics Basic og at lagerplasser er aktivert (GET /product/logisticsSettings → hasWarehouseLocation; slå på med PUT hvis nødvendig). Søk: GET /inventory/location?warehouseId=<lager-id>&name=&isInactive=false. Opprett: POST /inventory/location {inventory:{id}, name}; mange: POST /inventory/location/list. Endre: PUT /inventory/location/{id} eller /list (id+version). Slett: DELETE /inventory/location/{id} eller DELETE /inventory/location/list?ids=1,2,3. Plass med beholdning kan ikke slettes – sjekk canDeactivate og sett isInactive=true. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Knytte et produkt til lager/lagerplass (hovedplassering)",
+      "nokkelord": [
+        "plassere vare",
+        "produktplassering",
+        "hovedplassering",
+        "hovedlagerplass",
+        "flytte vare",
+        "hvor ligger varen",
+        "vare på hylle",
+        "product location",
+        "main location"
+      ],
+      "kall": [
+        "GET /product/inventoryLocation",
+        "GET /product/inventoryLocation/{id}",
+        "POST /product/inventoryLocation",
+        "POST /product/inventoryLocation/list",
+        "PUT /product/inventoryLocation/{id}",
+        "PUT /product/inventoryLocation/list",
+        "DELETE /product/inventoryLocation/{id}"
+      ],
+      "fremgangsmate": "Logistics Basic. Se eksisterende: GET /product/inventoryLocation?productId=<id>&inventoryId=&isMainLocation=true. Ny kobling: POST /product/inventoryLocation {product:{id}, inventory:{id}, inventoryLocation:{id}, isMainLocation:true}; mange: POST /product/inventoryLocation/list. Bytte hovedplassering/deaktivere: PUT /product/inventoryLocation/{id} (id+version, isMainLocation/isInactive). Fjern kobling: DELETE /product/inventoryLocation/{id} (ikke mulig med beholdning på plassen). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Starte en varetelling (lageropptelling) for et lager",
+      "nokkelord": [
+        "ny varetelling",
+        "start varetelling",
+        "opprett telling",
+        "lagertelling",
+        "inventering",
+        "årstelling",
+        "varetelling 31.12",
+        "telleliste",
+        "stocktaking",
+        "stock count"
+      ],
+      "kall": [
+        "GET /inventory",
+        "GET /inventory/stocktaking",
+        "POST /inventory/stocktaking"
+      ],
+      "fremgangsmate": "Finn lager-id: GET /inventory. Sjekk at det ikke finnes åpen telling: GET /inventory/stocktaking?inventoryId=<id>&isCompleted=false. Opprett: POST /inventory/stocktaking?typeOfStocktaking=ALL_PRODUCTS_WITH_INVENTORIES (standard: alle varer med beholdning) | INCLUDE_PRODUCTS (alle lagervarer) | NO_PRODUCTS (tom liste, legg til linjer selv); body: date (telledato, f.eks. 2025-12-31), inventory{id}, comment. typeOfStocktaking i body er deprecated – bruk query-parameteren. Returnert id brukes mot productline-kallene. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere opptalt antall på varetellingen",
+      "nokkelord": [
+        "registrere telling",
+        "opptalt antall",
+        "telt antall",
+        "tellelinje",
+        "ikke opptalte varer",
+        "legge til vare i telling",
+        "korrigere telling",
+        "flytte lagerplass",
+        "count",
+        "product line"
+      ],
+      "kall": [
+        "GET /inventory/stocktaking/productline",
+        "GET /inventory/stocktaking/productline/{id}",
+        "PUT /inventory/stocktaking/productline/{id}",
+        "POST /inventory/stocktaking/productline",
+        "DELETE /inventory/stocktaking/productline/{id}",
+        "PUT /inventory/stocktaking/productline/{id}/:changeLocation"
+      ],
+      "fremgangsmate": "Hent linjer: GET /inventory/stocktaking/productline?stocktakingId=<id> (påkrevd) &productLineStatus=NOT_COUNTED_PRODUCTS|COUNTED_PRODUCTS|ALL_PRODUCTS, ev. query=, productGroupIds=, locationIds= (count er 10000 som standard); fields=id,version,product(number,name),count,unitCostCurrency,location(name),comment (unngå counter – det er en ansatt, GDPR). Registrer: PUT /inventory/stocktaking/productline/{id} med id, version, count (opptalt antall), ev. unitCostCurrency (kostpris eks. mva) og comment. Vare som mangler på listen: POST /inventory/stocktaking/productline {stocktaking:{id}, product:{id}, count, location:{id}}. Feil linje: DELETE .../{id}. Annen lagerplass: PUT .../{id}/:changeLocation?warehouseLocationId=<id> (BETA). Det finnes ingen /productline/list i spesifikasjonen selv om beskrivelsen nevner det – POST én og én. Krever bekreftelse. Feltene counted, dateCounted og expectedStock er merket «internal use» – bruk productLineStatus-filteret for status.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se status, fullføre eller slette en varetelling (lagerverdi og avvik)",
+      "nokkelord": [
+        "fullføre varetelling",
+        "fullfore varetelling",
+        "avslutte telling",
+        "godkjenne telling",
+        "varetellingsliste",
+        "avvik varetelling",
+        "differanse",
+        "svinn",
+        "lagerverdi",
+        "slette varetelling",
+        "åpne varetellinger",
+        "stocktaking completed"
+      ],
+      "kall": [
+        "GET /inventory/stocktaking",
+        "GET /inventory/stocktaking/{id}",
+        "GET /inventory/stocktaking/productline",
+        "PUT /inventory/stocktaking/{id}",
+        "DELETE /inventory/stocktaking/{id}",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "Liste: GET /inventory/stocktaking?inventoryId=&isCompleted=false|true&fields=id,version,number,date,inventory(name),isCompleted,warehouseValue,discrepancySum. Før fullføring: GET /inventory/stocktaking/productline?stocktakingId=<id>&productLineStatus=NOT_COUNTED_PRODUCTS skal være tom. Fullfør: PUT /inventory/stocktaking/{id} med id, version, isCompleted=true – setter lagerbeholdningen lik opptalt antall (i praksis irreversibelt, krever bekreftelse). Deretter kontroller bokført varelagerendring: GET /ledger/posting?dateFrom=&dateTo=&accountNumberFrom=1400&accountNumberTo=1499 (og 4000–4299). Åpen telling som skal forkastes: DELETE /inventory/stocktaking/{id} (krever bekreftelse).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere leverandørprodukt og leverandørens innkjøpspris for en vare",
+      "nokkelord": [
+        "leverandørprodukt",
+        "leverandorprodukt",
+        "leverandørens varenummer",
+        "innkjøpspris",
+        "innkjopspris",
+        "innpris",
+        "hovedleverandør",
+        "bestillingsnummer",
+        "supplier product",
+        "vendor",
+        "videresalg"
+      ],
+      "kall": [
+        "GET /supplier",
+        "GET /product/supplierProduct",
+        "GET /product/supplierProduct/{id}",
+        "POST /product/supplierProduct/getSupplierProductsByIds",
+        "POST /product/supplierProduct",
+        "POST /product/supplierProduct/list",
+        "PUT /product/supplierProduct/{id}",
+        "PUT /product/supplierProduct/list",
+        "DELETE /product/supplierProduct/{id}"
+      ],
+      "fremgangsmate": "Leverandør-id: GET /supplier?organizationNumber=. Søk: GET /product/supplierProduct (NB: fields er som standard bare id,name,number – angi f.eks. fields=id,version,name,number,supplier(name),costExcludingVatCurrency,currency(code),resaleProduct(number,name),isMainSupplierProduct,isInactive) med productId=|vendorId=|query=|productGroupId=, ev. targetCurrencyId= for omregnet pris (priceInTargetCurrency). Mange id-er: POST /product/supplierProduct/getSupplierProductsByIds med array [{id}] – lesende selv om det er POST. Opprett: POST /product/supplierProduct med name, number (leverandørens varenr.), supplier{id}, costExcludingVatCurrency (innkjøpspris i produktets valuta), currency{id}, productUnit{id}, vatType{id}, resaleProduct{id} (eget produkt det videreselges som), isMainSupplierProduct (pilot). Endre: PUT (id+version), mange: /list. Slett: DELETE /product/supplierProduct/{id}. Krever bekreftelse ved skriving.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne produkter i grossistkatalog (EFO/NELFO, elnummer, NRF-nummer)",
+      "nokkelord": [
+        "grossist",
+        "elnummer",
+        "el-nummer",
+        "nrf",
+        "nrf-nummer",
+        "efo",
+        "nelfo",
+        "grossistkatalog",
+        "ahlsell",
+        "onninen",
+        "solar",
+        "sonepar",
+        "brødrene dahl",
+        "elektroskandia",
+        "external product"
+      ],
+      "kall": [
+        "GET /product/external",
+        "GET /product/external/{id}"
+      ],
+      "fremgangsmate": "BETA. GET /product/external med wholesaler= (AHLSELL, BROEDRENE_DAHL, ELEKTROSKANDIA, HEIDENREICH, ONNINEN, SONEPAR, SOLAR, BERGAARD_AMUNDSEN, WURTH, …) eller organizationNumber= (påkrevd hvis wholesaler ikke er satt), pluss name=, elNumber= eller nrfNumber=. sorting brukes ikke på dette endepunktet. Resultatet er katalogdata, ikke eget vareregister – opprett eget produkt med POST /product ved behov. Detaljer: GET /product/external/{id}.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette og vedlikeholde produktgrupper/varegrupper",
+      "nokkelord": [
+        "varegruppe",
+        "produktgruppe",
+        "ny varegruppe",
+        "kategori",
+        "produktkategori",
+        "undergruppe",
+        "hovedgruppe",
+        "slette varegruppe",
+        "product group"
+      ],
+      "kall": [
+        "GET /product/group",
+        "GET /product/group/{id}",
+        "GET /product/group/query",
+        "POST /product/group",
+        "POST /product/group/list",
+        "PUT /product/group/{id}",
+        "PUT /product/group/list",
+        "DELETE /product/group/{id}",
+        "DELETE /product/group/list"
+      ],
+      "fremgangsmate": "Logistics Basic. Søk: GET /product/group?name=|query= eller wildcard GET /product/group/query?query=. Opprett: POST /product/group {name, parentGroup:{id}} (parentGroup for undergruppe); mange: POST /product/group/list. Endre: PUT /product/group/{id} eller /list (id+version). Slett: DELETE /product/group/{id} eller DELETE /product/group/list?ids=1,2 (kun når isDeletable=true). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Plassere produkter i varegrupper",
+      "nokkelord": [
+        "koble vare til varegruppe",
+        "legge produkt i gruppe",
+        "gruppetilknytning",
+        "fjerne fra varegruppe",
+        "produkter i varegruppe",
+        "group relation"
+      ],
+      "kall": [
+        "GET /product/groupRelation",
+        "GET /product/groupRelation/{id}",
+        "POST /product/groupRelation",
+        "POST /product/groupRelation/list",
+        "DELETE /product/groupRelation/{id}",
+        "DELETE /product/groupRelation/list"
+      ],
+      "fremgangsmate": "Logistics Basic. Se koblinger: GET /product/groupRelation?productId=|productGroupId=&fields=id,product(number,name),productGroup(name). Koble: POST /product/groupRelation {product:{id}, productGroup:{id}}; mange: POST /product/groupRelation/list. Fjern: DELETE /product/groupRelation/{id}, eller DELETE /product/groupRelation/list med JSON-array av id-er i BODY (ikke ?ids= som på /product/group/list). Relasjoner kan ikke endres – slett og opprett ny. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se prishistorikk og siste innkjøps-/salgspris for et produkt",
+      "nokkelord": [
+        "prishistorikk",
+        "historiske priser",
+        "siste pris",
+        "prisendringer",
+        "når endret prisen",
+        "innkjøpspris",
+        "salgspris",
+        "kostpris",
+        "price history"
+      ],
+      "kall": [
+        "GET /product",
+        "GET /product/productPrice"
+      ],
+      "fremgangsmate": "Logistics Basic. Finn produkt-id med GET /product?productNumber=. GET /product/productPrice?productId=<id> (påkrevd) &fromDate=&toDate= (toDate eksklusiv) eller showOnlyLastPrice=true (da ignoreres datoene). fields=fromDate,toDate,purchasePrice,purchasePriceCurrency,costPrice,salesPriceExcludingVat,salesPriceIncludingVat,vatType(number).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Administrere produktenheter (stk, timer, kg, meter)",
+      "nokkelord": [
+        "enhet",
+        "ny enhet",
+        "måleenhet",
+        "maleenhet",
+        "stk",
+        "kg",
+        "meter",
+        "liter",
+        "salgsenhet",
+        "product unit",
+        "timeenhet",
+        "enhet time",
+        "pakke"
+      ],
+      "kall": [
+        "GET /product/unit",
+        "GET /product/unit/{id}",
+        "GET /product/unit/query",
+        "POST /product/unit",
+        "POST /product/unit/list",
+        "PUT /product/unit/{id}",
+        "PUT /product/unit/list",
+        "DELETE /product/unit/{id}"
+      ],
+      "fremgangsmate": "Søk: GET /product/unit?name=|nameShort=|commonCode= eller wildcard GET /product/unit/query?query=. Opprett: POST /product/unit {name, nameShort, nameEN, nameShortEN, commonCode} (commonCode = UN/ECE-kode, se product/unit/master); mange: /list. Endre: PUT (id+version). Slett: DELETE /product/unit/{id} kun når isDeletable=true (ikke brukt på produkter). Enheten settes på produktet via productUnit{id}. Krever bekreftelse ved skriving.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne riktig standard enhetskode for EHF/PEPPOL",
+      "nokkelord": [
+        "ehf enhet",
+        "peppol enhet",
+        "enhetskode",
+        "unece",
+        "rec 20",
+        "common code",
+        "c62",
+        "hur",
+        "kgm",
+        "e-faktura enhet",
+        "unit master"
+      ],
+      "kall": [
+        "GET /product/unit/master",
+        "GET /product/unit/master/{id}",
+        "GET /product/unit"
+      ],
+      "fremgangsmate": "GET /product/unit/master?name=|nameShort=|commonCode=|peppolName=|peppolSymbol=&isInactive=false (count er 2400 som standard, så hele listen kommer i ett kall) &fields=id,name,nameShort,commonCode,peppolName,peppolSymbol. Typiske koder: C62/EA = stk, HUR = time, KGM = kg, MTR = meter, LTR = liter. Masterlisten er skrivebeskyttet – sjekk at firmaets egne enheter (GET /product/unit) har riktig commonCode før EHF-fakturering.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Se rabattgrupper og knytte produkt til rabattgruppe",
+      "nokkelord": [
+        "rabattgruppe",
+        "grossistrabatt",
+        "rabattkode",
+        "nettopris",
+        "discount group",
+        "efo rabattgruppe",
+        "grossistavtale"
+      ],
+      "kall": [
+        "GET /product/discountGroup",
+        "GET /product/discountGroup/{id}",
+        "PUT /product/{id}"
+      ],
+      "fremgangsmate": "GET /product/discountGroup?name=|number=&fields=id,name,number,nameAndNumber. Rabattgrupper kan kun leses via API (ingen POST/PUT). Knytt til produkt med PUT /product/{id} {id, version, discountGroup:{id}} – skrivende, krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se eller endre logistikkinnstillinger (lagerplasser, foreslått varenummer, Bring)",
+      "nokkelord": [
+        "logistikkinnstillinger",
+        "lagerinnstillinger",
+        "slå på lagerplasser",
+        "foreslått varenummer",
+        "automatisk varenummer",
+        "innkjøpsordre standardkommentar",
+        "bring",
+        "logistics settings"
+      ],
+      "kall": [
+        "GET /product/logisticsSettings",
+        "PUT /product/logisticsSettings"
+      ],
+      "fremgangsmate": "GET /product/logisticsSettings (for innlogget firma/klient) gir hasWarehouseLocation, moduleSuggestedProductNumber, suggestedProductNumber, purchaseOrderDefaultComment, moduleBring, rackbeatAgreementNumber (skrivebeskyttet). Endre med PUT /product/logisticsSettings med id, version og endrede felt. Firmainnstilling – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne transporttyper og hentesteder for bestilling fra grossist",
+      "nokkelord": [
+        "transporttype",
+        "leveringsmåte",
+        "fraktmåte",
+        "hentested",
+        "henting",
+        "levering",
+        "grossistbestilling",
+        "innkjøpsordre frakt",
+        "pickup point",
+        "transport type"
+      ],
+      "kall": [
+        "GET /transportType",
+        "GET /transportType/{id}",
+        "GET /pickupPoint",
+        "GET /pickupPoint/{id}"
+      ],
+      "fremgangsmate": "GET /transportType?supplier= (påkrevd enum: DEFAULT_SUPPLIER, AHLSELL, SONEPAR, ONNINEN, SOLAR, ELEKTROSKANDIA, BERGAARD_AMUNDSEN, BROEDRENE_DAHL, HEIDENREICH, ELEKTROIMPORTOEREN) – BETA. NB: count er bare 3 som standard – sett f.eks. count=100; standard fields er id,nameKey,code,isPickUp (isPickUp=true betyr henting). Hentesteder: GET /pickupPoint?supplierId=&transportTypeId=&code=&name= (DEPRECATED). Id-ene brukes som transportType{id}/pickupPoint{id} på POST /purchaseOrder (innkjøp-gruppen).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Se omsetning, varekostnad og bruttofortjeneste per produkt i en periode",
+      "nokkelord": [
+        "salg per vare",
+        "omsetning per produkt",
+        "varesalg",
+        "produktsalg",
+        "bruttofortjeneste",
+        "dekningsbidrag",
+        "db",
+        "varekostnad",
+        "solgte varer",
+        "hovedbok per produkt",
+        "sales by product"
+      ],
+      "kall": [
+        "GET /product",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "Produkt-id: GET /product?productNumber=. GET /ledger/posting?dateFrom=&dateTo= (påkrevd, dateTo eksklusiv) &productId=<id>&accountNumberFrom=3000&accountNumberTo=3999&fields=date,amount,account(number),voucher(number),product(number,name),quantityAmount1 (antall der det er ført). Summer amount (inntekt er kredit/negativ). Varekostnad: samme kall med accountNumberFrom=4000&accountNumberTo=4999. For alle produkter: utelat productId og grupper lokalt på product.id.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Selge lagervare på ordre og plukke den fra lager",
+      "nokkelord": [
+        "ordrelinje",
+        "selge vare",
+        "plukke",
+        "plukkliste",
+        "plukk",
+        "angre plukk",
+        "lagervare ordre",
+        "trekke fra lager",
+        "pick line",
+        "salgsordre"
+      ],
+      "kall": [
+        "GET /order/orderline/orderLineTemplate",
+        "POST /order/orderline",
+        "PUT /order/orderline/{id}/:pickLine",
+        "PUT /order/orderline/{id}/:unpickLine"
+      ],
+      "fremgangsmate": "Ordren må finnes (se salg-gruppen, POST /order). Forslag til linje med pris/mva: GET /order/orderline/orderLineTemplate?orderId=&productId= (begge påkrevd, BETA). Opprett: POST /order/orderline {order:{id}, product:{id}, count, inventory:{id}, inventoryLocation:{id}}. Plukk: PUT /order/orderline/{id}/:pickLine?inventoryId=&inventoryLocationId=&pickDate= (BETA; krever Logistics og aktivert funksjon for tilgjengelig lager; standardlager brukes hvis inventoryId mangler). Angre: PUT /order/orderline/{id}/:unpickLine. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Ta varer inn på lager (varemottak med eller uten innkjøpsordre)",
+      "nokkelord": [
+        "varemottak",
+        "motta varer",
+        "innkjøp til lager",
+        "innkjøpsordre",
+        "bestilling",
+        "øke lagerbeholdning",
+        "goods receipt",
+        "purchase order",
+        "mottakskontroll"
+      ],
+      "kall": [
+        "POST /purchaseOrder",
+        "POST /purchaseOrder/orderline",
+        "PUT /purchaseOrder/goodsReceipt/{id}/:receiveAndConfirm",
+        "POST /purchaseOrder/goodsReceipt",
+        "GET /purchaseOrder/goodsReceipt"
+      ],
+      "fremgangsmate": "Logistics Basic; detaljer i innkjøp-gruppen. Med innkjøpsordre: POST /purchaseOrder {supplier:{id}, deliveryDate, ourContact …} + POST /purchaseOrder/orderline {purchaseOrder:{id}, product:{id}, count, unitCostCurrency}. Ved mottak av alt: PUT /purchaseOrder/goodsReceipt/{id}/:receiveAndConfirm?receivedDate=<dato> (påkrevd; id = innkjøpsordre-id; inventoryId= valgfritt, hovedlager er standard). Uten innkjøpsordre: POST /purchaseOrder/goodsReceipt {registrationDate, comment, goodsReceiptLines:[{product:{id}, quantityReceived, inventory:{id}, inventoryLocation:{id}}]} – status er STATUS_OPEN til mottaket er bekreftet. Oversikt: GET /purchaseOrder/goodsReceipt?receivedDateFrom=&receivedDateTo= (begge inkludert) &status=STATUS_OPEN|STATUS_CONFIRMED&withoutPurchase=true|false. Øker lagerbeholdningen. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne varer under minimumsbeholdning (bestillingsforslag) og sette minstebeholdning",
+      "nokkelord": [
+        "lavt lager",
+        "minimumsbeholdning",
+        "minstebeholdning",
+        "bestillingspunkt",
+        "bestillingsforslag",
+        "tomt på lager",
+        "utsolgt",
+        "påfyll",
+        "reorder",
+        "min stock level"
+      ],
+      "kall": [
+        "GET /product",
+        "PUT /product/{id}",
+        "PUT /product/list"
+      ],
+      "fremgangsmate": "Finn: GET /product?isStockItem=true&isInactive=false&fields=id,number,name,availableStock,incomingStock,minStockLevel,supplier(name),mainSupplierProduct(number,costExcludingVatCurrency) og filtrer lokalt der availableStock+incomingStock < minStockLevel (det finnes ikke eget lavt-lager-endepunkt i v2). Sett minstebeholdning: PUT /product/{id} {id, version, minStockLevel} eller PUT /product/list (gjelder kun lagervarer i Logistics Basic) – skrivende, krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se resultatbudsjett for et produkt",
+      "nokkelord": [
+        "budsjett per produkt",
+        "produktbudsjett",
+        "salgsbudsjett",
+        "resultatbudsjett",
+        "budsjett vare",
+        "budget"
+      ],
+      "kall": [
+        "GET /product",
+        "GET /resultbudget/product/{id}"
+      ],
+      "fremgangsmate": "Produkt-id: GET /product?productNumber=. GET /resultbudget/product/{id}?year=<åååå> (1900–2100, standard inneværende år). Sammenlign med faktisk: GET /ledger/posting med productId (se oppgaven om omsetning per produkt).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke om klienten har logistikkmodulen (feilsøke 403 på lager-/produktgruppekall)",
+      "nokkelord": [
+        "logistikkmodul",
+        "logistics basic",
+        "modul",
+        "403",
+        "ikke tilgang",
+        "salgsmoduler",
+        "abonnement",
+        "lagermodul",
+        "sales modules"
+      ],
+      "kall": [
+        "GET /company/salesmodules",
+        "GET /product/logisticsSettings"
+      ],
+      "fremgangsmate": "GET /company/salesmodules (BETA) og se etter LOGISTICS i listen over aktive moduler. Kall merket 'Only available for Logistics Basic' (lagerplasser, produktgrupper, prishistorikk, innkjøpsordre, varemottak) gir 403/422 uten modulen. GET /product/logisticsSettings viser om lagerplasser er slått på (hasWarehouseLocation).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette eget produkt fra grossistkatalog (EFO/NELFO-vare) med innkjøpspris",
+      "nokkelord": [
+        "efo-vare",
+        "nelfo-vare",
+        "importere fra grossist",
+        "elnummer til vare",
+        "nrf til vare",
+        "opprette vare fra katalog",
+        "grossistpris",
+        "innkjøpspris grossist",
+        "vvs-vare",
+        "elektrovare"
+      ],
+      "kall": [
+        "GET /product/external",
+        "GET /product",
+        "POST /product",
+        "POST /product/supplierProduct"
+      ],
+      "fremgangsmate": "BETA. 1) GET /product/external?wholesaler=<enum>&elNumber=<nr> (eller nrfNumber=/name=; organizationNumber= påkrevd hvis wholesaler ikke er satt) &fields=id,name,elNumber,nrfNumber,costExcludingVatCurrency,priceExcludingVatCurrency,productUnit(id,nameShort),vatType(id). 2) Sjekk dublett: GET /product?name=<navn>&fields=id,number,name,elNumber,nrfNumber (elNumber/nrfNumber er skrivebeskyttet på Product og kan ikke settes via POST). 3) Opprett eget produkt: POST /product {name, number, priceExcludingVatCurrency, costExcludingVatCurrency, vatType{id}, productUnit{id}, account{id}}. 4) Ev. leverandørpris: POST /product/supplierProduct {name, number (grossistens varenr.), supplier{id}, costExcludingVatCurrency, resaleProduct{id}}. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Liste varelageret med beholdning og lagerverdi per vare nå (lagerliste til kunde/revisor)",
+      "nokkelord": [
+        "lagerliste",
+        "lagerverdi nå",
+        "varelagerliste",
+        "beholdningsliste",
+        "verdi på lager",
+        "lagerverdi per vare",
+        "revisor lagerliste",
+        "stock list",
+        "inventory value"
+      ],
+      "kall": [
+        "GET /product",
+        "GET /product/inventoryLocation",
+        "GET /inventory/inventories"
+      ],
+      "fremgangsmate": "GET /product?isStockItem=true&isInactive=false&fields=id,number,name,stockOfGoods,availableStock,costExcludingVatCurrency,productUnit(nameShort) (lagerfeltene må stå eksplisitt i fields=; count=1000 standard – paginer). Lagerverdi per vare = stockOfGoods × costExcludingVatCurrency, summer lokalt. Per lager/lagerplass (Logistics Basic): GET /product/inventoryLocation?inventoryId=<id>&fields=product(number,name),inventoryLocation(name),stockOfGoods. For en historisk dato (f.eks. 31.12) bruk GET /inventory/inventories?dateFrom=&dateTo= (closingStock) – stockOfGoods er alltid dagens beholdning.",
+      "skrivende": false
+    }
+  ],
+  "fallgruver": [
+    "Mange endepunkter krever modulen Logistics Basic (inventory/location, product/inventoryLocation, product/group, product/groupRelation, product/productPrice, samt purchaseOrder/goodsReceipt i innkjøp-gruppen). 403 eller valideringsfeil betyr som regel at modulen mangler – sjekk GET /company/salesmodules (LOGISTICS).",
+    "Lagerfeltene på produkt (stockOfGoods, availableStock, incomingStock, outgoingStock) er 'available only on demand' – de returneres bare når de står eksplisitt i fields=.",
+    "GET /inventory/inventories krever dateFrom og dateTo (begge inkludert), mens GET /ledger/posting og GET /balanceSheet har dateTo eksklusiv – vær nøye ved periodeavgrensning (f.eks. 31.12 vs 01.01).",
+    "GET /product: parameteren number er DEPRECATED – bruk productNumber (liste). Product.number er en streng og må være unik.",
+    "Product.isDeletable er deprecated og alltid false; prøv DELETE /product/{id} og deaktiver (isInactive=true) hvis produktet er i bruk.",
+    "Alle PUT krever id og version; feil version gir konflikt. PUT /product/list og andre /list-kall tar en JSON-array, og én ugyldig rad kan stoppe hele kallet.",
+    "Sletting av mange: DELETE /product/group/list og DELETE /inventory/location/list tar ?ids=1,2,3 i query, mens DELETE /product/groupRelation/list tar en JSON-array av id-er i body.",
+    "POST /inventory/stocktaking: typeOfStocktaking (ALL_PRODUCTS_WITH_INVENTORIES standard | INCLUDE_PRODUCTS | NO_PRODUCTS) sendes som query-parameter; feltet i body er deprecated.",
+    "GET /inventory/stocktaking/productline krever stocktakingId. Beskrivelsen nevner en /list-variant for POST, men den finnes ikke i spesifikasjonen – opprett linjer én og én.",
+    "Å fullføre en varetelling (PUT /inventory/stocktaking/{id} isCompleted=true) justerer lagerbeholdningen og er i praksis irreversibelt – krev bekreftelse og kontroller bokføringen mot 1460/4290 etterpå.",
+    "Tellelinjer har feltet counter (ansatt) – ikke hent eller vis det unødig (GDPR).",
+    "Action-endepunkter med kolon: PUT /inventory/stocktaking/productline/{id}/:changeLocation (BETA, warehouseLocationId påkrevd), PUT /order/orderline/{id}/:pickLine og :unpickLine (BETA).",
+    "POST /product/supplierProduct/getSupplierProductsByIds er et lesekall via POST (for lange id-lister); body er en array av objekter med id.",
+    "product/external og transportType er BETA; pickupPoint er DEPRECATED. GET /product/external krever wholesaler eller organizationNumber, og sorting ignoreres. GET /transportType krever supplier (enum).",
+    "Produktbilde (POST /product/{id}/image) og dokumentarkiv (POST /documentArchive/product/{id}) er multipart/form-data med feltet file; nytt bilde erstatter det gamle.",
+    "Prisendring på produkt påvirker ikke eksisterende ordrelinjer/fakturaer. Priser sendes enten eks. eller inkl. mva – den andre beregnes ut fra vatType.",
+    "Varelagerverdi i API-et er beholdning × kostpris; ukurans/nedskrivning og varelagerendring må vurderes og føres manuelt som bilag (skrivende).",
+    "Avvikende standardverdier: GET /transportType har count=3 som standard (sett count eksplisitt), GET /product/supplierProduct returnerer bare fields=id,name,number som standard, GET /inventory/stocktaking/productline har count=10000 og GET /product/unit/master count=2400; øvrige lister har count=1000 – paginer med from.",
+    "product/discountGroup og product/unit/master er skrivebeskyttet via API – kun GET. Rabattgrupper er grossistrabattgrupper, ikke kunderabatt (den settes på ordrelinje/kunde i salg-gruppen).",
+    "Product-feltnavn er forvirrende i spec: priceExcludingVatCurrency/priceIncludingVatCurrency er SALGSpris (beskrevet som «price of purchase»), costExcludingVatCurrency er innkjøps-/kostpris. costPrice, profit, elNumber, nrfNumber og lagerfeltene er skrivebeskyttet.",
+    "PUT /purchaseOrder/goodsReceipt/{id}/:receiveAndConfirm tar innkjøpsordre-id (ikke varemottak-id) i stien og krever receivedDate; GET /purchaseOrder/goodsReceipt har receivedDateFrom/To begge inkludert.",
+    "GET /product/productPrice krever productId; toDate er eksklusiv, og showOnlyLastPrice=true overstyrer datoene.",
+    "SupplierProduct.isMainSupplierProduct er kun tilgjengelig i pilot – kan ignoreres eller gi feil hos vanlige klienter."
+  ]
+}

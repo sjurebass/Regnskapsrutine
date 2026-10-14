@@ -1,0 +1,1224 @@
+{
+  "group": "lonn",
+  "tags": [
+    {
+      "tag": "financeTax/reconciliation",
+      "beskrivelse": "Avstemming av finansskatt på lønn (kun finansforetak) per termin: hovedbok mot a-melding og Skatteetaten, pluss innbetalinger hittil i år.",
+      "nokkelord": [
+        "finansskatt",
+        "finansskatt på lønn",
+        "finansskatt pa lonn",
+        "avstemming finansskatt",
+        "finansforetak",
+        "a-melding",
+        "amelding",
+        "termin",
+        "hovedbok mot a-melding",
+        "avvik",
+        "innbetaling",
+        "betalingsoversikt",
+        "finance tax",
+        "reconciliation",
+        "skatteetaten",
+        "bankvirksomhet",
+        "forsikringsselskap",
+        "finansnæring",
+        "finansnaering",
+        "finansskatt termin"
+      ]
+    },
+    {
+      "tag": "salary/holidayAllowance/reconciliation",
+      "beskrivelse": "Avstemming av feriepenger: skyldige feriepenger og arbeidsgiveravgift av feriepenger i hovedbok mot feriepengelisten, med opptjent/utbetalt/skyldig per sats.",
+      "nokkelord": [
+        "feriepenger",
+        "feriepengeavstemming",
+        "avstemme feriepenger",
+        "skyldige feriepenger",
+        "skyldig feriepenger",
+        "2940",
+        "aga av feriepenger",
+        "arbeidsgiveravgift av feriepenger",
+        "2785",
+        "feriepengeliste",
+        "feriepengegrunnlag",
+        "opptjent feriepenger",
+        "utbetalt feriepenger",
+        "feriepengesats",
+        "holiday allowance",
+        "vacation pay",
+        "reconciliation",
+        "lonnsavstemming",
+        "lønnsavstemming",
+        "feriepenger avstemming",
+        "feriepengeavsetning",
+        "avsetning feriepenger",
+        "feriepengegjeld",
+        "avstemme feriepengegjeld"
+      ]
+    },
+    {
+      "tag": "salary/mandatoryDeduction/reconciliation",
+      "beskrivelse": "Avstemming av påleggstrekk (utleggstrekk, bidragstrekk o.l.) per termin: hovedbok mot a-melding per periode, pluss innbetalinger hittil i år.",
+      "nokkelord": [
+        "påleggstrekk",
+        "paleggstrekk",
+        "trekkpålegg",
+        "trekkpalegg",
+        "utleggstrekk",
+        "bidragstrekk",
+        "trekk i lønn",
+        "trekk i lonn",
+        "nav innkreving",
+        "namsmann",
+        "skyldig trekk",
+        "mandatory deduction",
+        "a-melding",
+        "avstemming",
+        "termin",
+        "avvik",
+        "lonnsavstemming",
+        "utlegg",
+        "barnebidrag",
+        "skyldig påleggstrekk",
+        "skyldig paleggstrekk",
+        "lønnstrekk",
+        "lonnstrekk"
+      ]
+    },
+    {
+      "tag": "salary/payrollTax/reconciliation",
+      "beskrivelse": "Avstemming av arbeidsgiveravgift per termin: hovedbok mot a-melding og Skatteetaten, fordelt på avgiftssoner, pluss innbetalinger hittil i år.",
+      "nokkelord": [
+        "arbeidsgiveravgift",
+        "aga",
+        "avstemme aga",
+        "skyldig arbeidsgiveravgift",
+        "2770",
+        "2780",
+        "5400",
+        "avgiftssone",
+        "grunnlag aga",
+        "termin",
+        "a-melding",
+        "payroll tax",
+        "employer contribution",
+        "innbetaling aga",
+        "lonnsavstemming",
+        "arbeidsgiver avgift",
+        "aga termin",
+        "arbeidsgiveravgift termin",
+        "aga-sone",
+        "sone 1a",
+        "fribeløp",
+        "fribelop",
+        "aga av pensjon",
+        "lønnsavstemming",
+        "a07-avstemming"
+      ]
+    },
+    {
+      "tag": "salary/taxDeduction/reconciliation",
+      "beskrivelse": "Avstemming av forskuddstrekk per termin: hovedbok (2600) mot a-melding og Skatteetaten per måned, pluss registrerte innbetalinger hittil i år.",
+      "nokkelord": [
+        "forskuddstrekk",
+        "skattetrekk",
+        "avstemme skattetrekk",
+        "avstemme forskuddstrekk",
+        "forskuddstrekk termin",
+        "2600",
+        "skyldig skattetrekk",
+        "a-melding",
+        "amelding",
+        "a07",
+        "termin",
+        "tax deduction",
+        "withholding tax",
+        "reconciliation",
+        "innbetaling skattetrekk",
+        "avvik",
+        "lonnsavstemming",
+        "lønnsavstemming",
+        "skattetrekk termin",
+        "trekk termin",
+        "skyldig forskuddstrekk",
+        "a07-avstemming",
+        "a-melding mot hovedbok"
+      ]
+    },
+    {
+      "tag": "salary/reconciliation/tax-deduction",
+      "beskrivelse": "Saldo og skyldig beløp for forskuddstrekk i en avstemming – brukes til å sjekke at skattetrekkskontoen dekker skyldig trekk.",
+      "nokkelord": [
+        "skattetrekkskonto",
+        "skattetrekk konto",
+        "saldo skattetrekk",
+        "skyldig forskuddstrekk",
+        "dekning skattetrekk",
+        "underdekning skattetrekk",
+        "bankgaranti skattetrekk",
+        "1950",
+        "2600",
+        "tax deduction balance",
+        "owed amount",
+        "forskuddstrekk",
+        "skattetrekk",
+        "skattetrekksmidler",
+        "skattetrekkskonto dekning",
+        "balanceandowedamount"
+      ]
+    },
+    {
+      "tag": "company/settings/altinn",
+      "beskrivelse": "Firmaets Altinn-oppsett (Altinn-ID og passord) som Tripletex bruker ved innsending av a-melding og henting av skattekort.",
+      "nokkelord": [
+        "altinn",
+        "altinn-id",
+        "altinn id",
+        "altinn innlogging",
+        "altinn passord",
+        "a-melding innsending",
+        "sende a-melding",
+        "skattekort",
+        "altinn settings",
+        "innsending",
+        "altinnoppsett",
+        "altinn-oppsett",
+        "systembruker",
+        "altinn-bruker"
+      ]
+    },
+    {
+      "tag": "salary/type",
+      "beskrivelse": "Lønnsarter med nummer, navn, a-meldingskode, skatte-/AGA-/feriepengeplikt og debet-/kreditkonto (kun lesing i API-et).",
+      "nokkelord": [
+        "lønnsart",
+        "lonnsart",
+        "lønnsarter",
+        "lonnsarter",
+        "wage type",
+        "salary type",
+        "fastlønn",
+        "fastlonn",
+        "timelønn",
+        "timelonn",
+        "overtid",
+        "a-melding kode",
+        "inntektsbeskrivelse",
+        "skattepliktig",
+        "aga-pliktig",
+        "feriepengepliktig",
+        "lønnskonto",
+        "5000",
+        "lønnsartnummer",
+        "lonnsartnummer",
+        "ytelse",
+        "a-melding ytelse",
+        "lønnsart konto",
+        "bilgodtgjørelse",
+        "naturalytelse"
+      ]
+    },
+    {
+      "tag": "salary/compilation",
+      "beskrivelse": "Sammenstillingsoppgave (tidligere lønns- og trekkoppgave) per ansatt og år: lønn, utgiftsgodtgjørelser, forskuddstrekk og påleggstrekk, også som PDF.",
+      "nokkelord": [
+        "sammenstillingsoppgave",
+        "lønns- og trekkoppgave",
+        "lonns og trekkoppgave",
+        "lønnsoppgave",
+        "lonnsoppgave",
+        "årsoppgave lønn",
+        "arsoppgave lonn",
+        "lønnsoppstilling",
+        "salary compilation",
+        "årslønn",
+        "feriepengegrunnlag",
+        "forskuddstrekk hittil i år",
+        "trekkoppgave",
+        "pdf",
+        "lto",
+        "sammenstilling",
+        "arsoppgave",
+        "årsoppgave",
+        "lønnsoppgave ansatt"
+      ]
+    },
+    {
+      "tag": "salary/payslip",
+      "beskrivelse": "Lønnsslipper per ansatt og periode med lønnslinjer (spesifikasjoner), brutto, netto og feriepenger, også som PDF.",
+      "nokkelord": [
+        "lønnsslipp",
+        "lonnsslipp",
+        "lønnsslipper",
+        "lønnsspesifikasjon",
+        "lonnsspesifikasjon",
+        "payslip",
+        "pay slip",
+        "brutto",
+        "netto",
+        "utbetalt lønn",
+        "lønnslinjer",
+        "lønnsspesifikasjoner",
+        "lønnshistorikk",
+        "lønn per måned",
+        "pdf lønnsslipp",
+        "lonn",
+        "lønnsseddel",
+        "lonnsseddel",
+        "lønnsspes",
+        "lonnsspes",
+        "lønnskostnad per måned",
+        "feriepenger utbetalt",
+        "lønnsstatistikk"
+      ]
+    },
+    {
+      "tag": "salary/settings",
+      "beskrivelse": "Firmaets lønnsinnstillinger: kommune/sone for arbeidsgiveravgift og beregningsregel (AA, BB, CC, DD, EE, GG osv.).",
+      "nokkelord": [
+        "lønnsinnstillinger",
+        "lonnsinnstillinger",
+        "innstillinger lønn",
+        "beregningsregel aga",
+        "beregningsmetode arbeidsgiveravgift",
+        "kommune aga",
+        "sone",
+        "avgiftssone",
+        "generelle næringer",
+        "salary settings",
+        "payroll tax method",
+        "arbeidsgiveravgift",
+        "aga",
+        "beregningskode aga",
+        "aga-sone",
+        "aga sone",
+        "aga-kommune",
+        "næringskode aga",
+        "lonnsoppsett",
+        "lønnsoppsett"
+      ]
+    },
+    {
+      "tag": "salary/settings/holiday",
+      "beskrivelse": "Feriepengeinnstillinger per år: antall feriedager, feriepengesats (10,2/12 %), sats for 60+ og 6G-begrensning.",
+      "nokkelord": [
+        "feriepengesats",
+        "feriepengeprosent",
+        "feriepenger innstilling",
+        "feriedager",
+        "ferie",
+        "5 uker ferie",
+        "10,2",
+        "12 prosent",
+        "over 60",
+        "60 år",
+        "6g",
+        "tilleggsferie",
+        "ferieinnstillinger",
+        "holiday settings",
+        "vacation pay percentage",
+        "feriepengesats 12",
+        "feriepenger 10,2",
+        "feriepenger over 60",
+        "feriepengeinnstillinger"
+      ]
+    },
+    {
+      "tag": "pension",
+      "beskrivelse": "Global oppslagsliste over pensjonsinnretninger/-leverandører som brukes når firmaets pensjonsordning registreres.",
+      "nokkelord": [
+        "pensjon",
+        "pensjonsinnretning",
+        "pensjonsleverandør",
+        "pensjonsleverandor",
+        "pensjonsselskap",
+        "otp-leverandør",
+        "livselskap",
+        "pension provider",
+        "global pension",
+        "pensjonsordning oppslag",
+        "pensjonsselskap oppslag",
+        "pensjonsleverandør liste",
+        "otp-leverandor"
+      ]
+    },
+    {
+      "tag": "salary/settings/pensionScheme",
+      "beskrivelse": "Firmaets pensjonsordninger (OTP) med avtalenummer og gyldighetsperiode, som rapporteres i a-meldingen.",
+      "nokkelord": [
+        "pensjonsordning",
+        "pensjonsordninger",
+        "otp",
+        "obligatorisk tjenestepensjon",
+        "tjenestepensjon",
+        "innskuddspensjon",
+        "pensjonsavtale",
+        "avtalenummer",
+        "pensjon a-melding",
+        "pension scheme",
+        "pensjonsinnretning",
+        "pensjon",
+        "otp-avtale",
+        "pensjonsordning a-melding",
+        "tjenestepensjonsordning",
+        "pensjonsordningsnummer"
+      ]
+    },
+    {
+      "tag": "salary/settings/standardTime",
+      "beskrivelse": "Firmaets normalarbeidstid (timer per dag fra en gitt dato), brukt i timeliste, fleksitid og stillingsberegning.",
+      "nokkelord": [
+        "normalarbeidstid",
+        "normaltid",
+        "arbeidstid",
+        "standard arbeidstid",
+        "timer per dag",
+        "7,5 timer",
+        "37,5 timer",
+        "standard time",
+        "fleksitid",
+        "full stilling",
+        "arbeidstid firma",
+        "normalarbeidstid firma",
+        "arbeidstimer per dag",
+        "normaltimer"
+      ]
+    },
+    {
+      "tag": "salary/transaction",
+      "beskrivelse": "Lønnskjøringer (lønnsutkast/lønnsbilag) med lønnsslipper og lønnslinjer, inkl. historisk lønn og vedlegg.",
+      "nokkelord": [
+        "lønnskjøring",
+        "lonnskjoring",
+        "kjøre lønn",
+        "kjore lonn",
+        "lønnsutkast",
+        "lonnsutkast",
+        "lønnsbilag",
+        "lonnsbilag",
+        "lønnsutbetaling",
+        "salary transaction",
+        "payroll run",
+        "payroll",
+        "lønn",
+        "lonn",
+        "historisk lønn",
+        "lønnsvedlegg",
+        "generer skattetrekk",
+        "faste lønnslinjer",
+        "lønnsperiode",
+        "lønnsavregning",
+        "lonnsavregning",
+        "lønnsbehandling",
+        "lønnsutkast med faste linjer",
+        "slette lønnsutkast"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Lage lønnsutkast / kjøre lønn for en måned med faste lønnslinjer",
+      "nokkelord": [
+        "lønnsutkast",
+        "lonnsutkast",
+        "kjøre lønn",
+        "kjore lonn",
+        "lønnskjøring",
+        "lonnskjoring",
+        "faste lønnslinjer",
+        "månedslønn",
+        "lønn for måned",
+        "payroll",
+        "salary transaction",
+        "forskuddstrekk",
+        "skattetrekk"
+      ],
+      "kall": [
+        "GET /employee",
+        "GET /employee/employment",
+        "GET /employee/employment/details",
+        "GET /salary/payslip",
+        "GET /salary/type",
+        "POST /salary/transaction",
+        "GET /ledger/voucher"
+      ],
+      "fremgangsmate": "Krever navngitt klient og bekreftelse (brukerens bestilling av utkastet regnes som bekreftelse). 1) Aktive ansatte: GET /employee?fields=id (ikke navn i output). 2) Faste linjer utledes fra historikk: GET /salary/payslip?employeeId=..&yearFrom=..&yearTo=..&monthFrom=..&monthTo=.. (To er EKSKLUSIV) &fields=employee(id),year,month,specifications(salaryType(id,number),rate,count,amount,description). Månedslønn: GET /employee/employment?employeeId=..&fields=id,startDate,endDate → GET /employee/employment/details?employmentId=<id>&fields=date,monthlySalary,hourlyWage,percentageOfFullTimeEquivalent (bruk siste date). Hopp over engangslinjer/korrigeringer. 3) Lønnsart-id: GET /salary/type?fields=id,number,name. 4) POST /salary/transaction?generateTaxDeduction=true med body {date: utbetalingsdato, year, month, isHistorical:false, payslips:[{employee:{id}, specifications:[{salaryType:{id}, rate, count, amount, description:'<Måned> <år>'}]}]}. Ugyldig dato (f.eks. 31.09) → bruk siste dag i måneden. 5) Transaksjonen lagres IKKE-godkjent og uten bilag – verifiser med GET /ledger/voucher?dateFrom=<dato>&dateTo=<dato+1>&fields=id,number,voucherType(name) at det ikke finnes lønnsbilag. Brukeren godkjenner selv i Tripletex → Lønn. Aldri godkjenn, aldri send a-melding. 6) Rapporter pseudonymisert (ansatt 1/2): linjer, skattetrekk, netto; si at linjene er utledet fra historikk.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente lønnsslipper for en måned eller periode",
+      "nokkelord": [
+        "lønnsslipp",
+        "lonnsslipp",
+        "lønnsslipper",
+        "lønn forrige måned",
+        "hva ble utbetalt",
+        "brutto",
+        "netto",
+        "lønnshistorikk",
+        "payslip",
+        "utbetalt lønn",
+        "lønn hittil i år"
+      ],
+      "kall": [
+        "GET /salary/payslip"
+      ],
+      "fremgangsmate": "GET /salary/payslip med yearFrom/yearTo og monthFrom/monthTo – To-parameterne er EKSKLUSIVE (september 2026 = yearFrom=2026&yearTo=2027&monthFrom=9&monthTo=10), eller voucherDateFrom/voucherDateTo (til eksklusiv). Valgfritt employeeId, wageTransactionId (lønnskjøring), activityId, comment. fields=id,year,month,date,grossAmount,amount,vacationAllowanceAmount,employee(id),transaction(id) – ikke navn/fødselsnr. Paginer med from/count. GDPR: vis summer eller «ansatt 1/2», bruk redact() på utskrift.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Se lønnslinjer på én lønnsslipp eller laste ned lønnsslipp som PDF",
+      "nokkelord": [
+        "lønnsslipp pdf",
+        "lonnsslipp pdf",
+        "lønnsspesifikasjon",
+        "lønnslinjer",
+        "lønnsarter på slipp",
+        "payslip pdf",
+        "skrive ut lønnsslipp",
+        "detaljer lønnsslipp"
+      ],
+      "kall": [
+        "GET /salary/payslip",
+        "GET /salary/payslip/{id}",
+        "GET /salary/payslip/{id}/pdf"
+      ],
+      "fremgangsmate": "Finn id via GET /salary/payslip (se oppgaven over). Detaljer: GET /salary/payslip/{id}?fields=id,year,month,grossAmount,amount,vacationAllowanceAmount,specifications(salaryType(number,name),rate,count,amount,description). PDF: GET /salary/payslip/{id}/pdf returnerer binær (application/octet-stream). PDF-en inneholder full persondata – lagre kun lokalt når brukeren ber om det, aldri del/send videre.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Lage aggregert lønnsoversikt per måned (brutto, netto, feriepenger, antall lønnsslipper)",
+      "nokkelord": [
+        "lønnsoversikt",
+        "lonnsoversikt",
+        "lønnskostnad per måned",
+        "lønnsstatistikk",
+        "sum brutto lønn",
+        "lønn hittil i år",
+        "lønnsrapport",
+        "feriepenger per måned",
+        "payroll summary"
+      ],
+      "kall": [
+        "GET /salary/payslip",
+        "GET /balanceSheet"
+      ],
+      "fremgangsmate": "GET /salary/payslip?yearFrom=<år>&yearTo=<år+1>&monthFrom=1&monthTo=13 (To eksklusiv)&fields=year,month,grossAmount,amount,vacationAllowanceAmount,department(id,name)&count=1000 – summer per måned/avdeling i koden, ikke per person. Sjekk fullResultSize mot antall mottatte rader og paginer med from/count. Avstem mot regnskapet med GET /balanceSheet?dateFrom=<år>-01-01&dateTo=<dag etter periodeslutt>&accountNumberFrom=5000&accountNumberTo=5999&fields=account(number,name),balanceChange. Rapporter kun aggregater.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente en lønnskjøring (lønnsbilag) med alle lønnsslipper og sjekke om den er bokført",
+      "nokkelord": [
+        "lønnskjøring",
+        "lonnskjoring",
+        "lønnsbilag",
+        "lonnsbilag",
+        "lønnstransaksjon",
+        "salary transaction",
+        "er lønn bokført",
+        "godkjent lønn",
+        "lønnsutkast status"
+      ],
+      "kall": [
+        "GET /salary/payslip",
+        "GET /salary/transaction/{id}",
+        "GET /ledger/voucher"
+      ],
+      "fremgangsmate": "Det finnes ingen liste-/søkeendepunkt for /salary/transaction. Finn id via GET /salary/payslip?yearFrom..&monthFrom..&fields=transaction(id) (eller filtrer payslips med wageTransactionId). Deretter GET /salary/transaction/{id}?fields=id,date,year,month,isHistorical,paySlipsAvailableDate,payslips(id,grossAmount,amount). Bokført? GET /ledger/voucher?dateFrom=<dato>&dateTo=<dato+1>&fields=id,number,description,voucherType(name) – et ikke-godkjent lønnsutkast har ikke bilag.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Slette et lønnsutkast (ikke-godkjent lønnskjøring)",
+      "nokkelord": [
+        "slette lønnsutkast",
+        "slette lonnsutkast",
+        "slette lønnskjøring",
+        "fjerne lønn",
+        "angre lønnskjøring",
+        "delete salary transaction",
+        "feil lønnskjøring"
+      ],
+      "kall": [
+        "GET /salary/transaction/{id}",
+        "DELETE /salary/transaction/{id}"
+      ],
+      "fremgangsmate": "Krever eksplisitt bekreftelse. Verifiser først riktig transaksjon: GET /salary/transaction/{id}?fields=id,date,year,month,payslips(id) og at den ikke er godkjent/bokført (ingen lønnsbilag på datoen). DELETE /salary/transaction/{id} → 204. Godkjente/bokførte lønnskjøringer kan normalt ikke slettes via API-et – må tilbakestilles i Tripletex → Lønn (og ev. korrigeres i a-melding).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Laste opp eller fjerne vedlegg på en lønnskjøring",
+      "nokkelord": [
+        "vedlegg lønn",
+        "lønnsvedlegg",
+        "laste opp lønnsgrunnlag",
+        "timeliste vedlegg",
+        "attachment salary",
+        "fjerne vedlegg",
+        "flytte vedlegg til bilagsmottak"
+      ],
+      "kall": [
+        "POST /salary/transaction/{id}/attachment",
+        "POST /salary/transaction/{id}/attachment/list",
+        "PUT /salary/transaction/{id}/deleteAttachment"
+      ],
+      "fremgangsmate": "Opplasting: multipart/form-data med feltet file (én fil) til /attachment, eller flere file-felt til /attachment/list. Fjerne: PUT /salary/transaction/{id}/deleteAttachment; sendToVoucherInbox=true flytter vedlegget til bilagsmottak i stedet for å slette, split=true deler det i ett bilag per side. Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere historisk lønn (lønn før åpningsbalanse / bytte av lønnssystem midt i året)",
+      "nokkelord": [
+        "historisk lønn",
+        "historisk lonn",
+        "lønn fra tidligere system",
+        "systembytte lønn",
+        "oppstart midt i året",
+        "hittil i år lønn",
+        "importere lønn",
+        "ishistorical",
+        "feriepengegrunnlag fra tidligere"
+      ],
+      "kall": [
+        "GET /employee",
+        "GET /salary/type",
+        "POST /salary/transaction",
+        "POST /ledger/voucher/historical/employee"
+      ],
+      "fremgangsmate": "POST /salary/transaction med isHistorical=true, date, year/month for perioden og payslips med specifications (salaryType{id}, amount, count, rate). Historiske lønnsbilag oppdaterer lønnssystemet (feriepengegrunnlag, sammenstillingsoppgave, hittil i år) med data datert før åpningsbalansen. Send generateTaxDeduction=false (eller utelat) og legg inn faktisk forskuddstrekk som egne linjer med trekk-lønnsart. Finnes ikke den ansatte i Tripletex: POST /ledger/voucher/historical/employee [BETA] oppretter ansatt med mindre streng validering (avdeling ikke påkrevd) – persondata, kun felter som trengs. Skrivende – bekreft.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne lønnsarter (nummer, a-meldingskode, skatte-/AGA-/feriepengeplikt, konto)",
+      "nokkelord": [
+        "lønnsart",
+        "lonnsart",
+        "lønnsarter",
+        "wage type",
+        "salary type",
+        "a-meldingskode",
+        "inntektsbeskrivelse",
+        "hvilken konto lønn",
+        "fastlønn lønnsart",
+        "overtid lønnsart",
+        "trekk lønnsart"
+      ],
+      "kall": [
+        "GET /salary/type",
+        "GET /salary/type/{id}"
+      ],
+      "fremgangsmate": "GET /salary/type?isInactive=false&fields=id,number,name,ameldingWageCode,isTaxable,isPayrollTaxable,isVacationPayable,isSickPayable,accountNumberDebit(number,name),accountNumberCredit(number,name). number/name/description er «inneholder»-søk (number=10 treffer også 1000/2100 – filtrer eksakt i koden). employeeIds og showInTimesheet kan også filtrere. Lønnsarter kan bare leses via API-et – opprettelse/endring gjøres i Tripletex.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente sammenstillingsoppgave (lønns- og trekkoppgave) for en ansatt og et år",
+      "nokkelord": [
+        "sammenstillingsoppgave",
+        "lønns- og trekkoppgave",
+        "lonns og trekkoppgave",
+        "lønnsoppgave",
+        "årsoppgave",
+        "arsoppgave",
+        "årslønn",
+        "trekk hittil i år",
+        "salary compilation"
+      ],
+      "kall": [
+        "GET /employee",
+        "GET /salary/compilation",
+        "GET /salary/compilation/pdf"
+      ],
+      "fremgangsmate": "employeeId er påkrevd; year (1900–2100) er valgfri og er som standard FORRIGE år. GET /salary/compilation?employeeId=..&year=..&fields=year,vacationPayBasis,wages(description,amount,taxable),expenses(description,amount),taxDeductions(description,amount),mandatoryTaxDeductions(description,amount). PDF: GET /salary/compilation/pdf?employeeId=..&year=.. (binær). Persondata – vis bare nødvendige summer, pseudonymiser, PDF lagres kun lokalt på forespørsel.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Se eller endre lønnsinnstillinger (beregningsregel og kommune/sone for arbeidsgiveravgift)",
+      "nokkelord": [
+        "lønnsinnstillinger",
+        "lonnsinnstillinger",
+        "beregningsregel aga",
+        "sone arbeidsgiveravgift",
+        "avgiftssone",
+        "kommune aga",
+        "aga-sats",
+        "hvilken sone",
+        "payroll tax zone",
+        "salary settings"
+      ],
+      "kall": [
+        "GET /salary/settings",
+        "PUT /salary/settings",
+        "GET /municipality"
+      ],
+      "fremgangsmate": "GET /salary/settings?fields=payrollTaxCalcMethod,municipality(id,number,name,payrollTaxZone). payrollTaxCalcMethod: AA generelle næringer, BB statsforvaltning/helseforetak, CC unntatte næringer (og foretak i økonomiske vansker), DD jordbruk/skogbruk/fiske, EE kun rapportering av forskuddstrekk, GG godstransport på vei (C2 og JJ finnes også i enum, uten forklaring i spec). Kommune/sone: GET /municipality?includePayrollTaxZones=true&fields=id,number,name,payrollTaxZone. Endring: PUT /salary/settings med {municipality:{id}, payrollTaxCalcMethod} (objektet har ikke id/version). Merk at AGA-kommune også kan settes per arbeidsforhold (employment/details.payrollTaxMunicipalityId). Skrivende – bekreft; påvirker AGA i fremtidige lønnskjøringer.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se feriepengeinnstillinger (feriepengesats og feriedager) for et år",
+      "nokkelord": [
+        "feriepengesats",
+        "feriepengeprosent",
+        "10,2 prosent",
+        "12 prosent",
+        "5 uker ferie",
+        "feriedager",
+        "over 60",
+        "6g",
+        "ferieinnstillinger",
+        "holiday settings"
+      ],
+      "kall": [
+        "GET /salary/settings/holiday"
+      ],
+      "fremgangsmate": "GET /salary/settings/holiday?fields=id,version,year,days,vacationPayPercentage1,vacationPayPercentage2,isMaxPercentage2Amount6G. vacationPayPercentage1 = ordinær sats (10,2 %, eller 12 % ved 5 ukers ferie), vacationPayPercentage2 = sats for ansatte over 60, isMaxPercentage2Amount6G = tillegget for 60+ begrenses til grunnlag opp til 6G. NB: helligdager/fridager ligger i /timesheet/companyHoliday, ikke her.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette, endre eller slette feriepengeinnstillinger",
+      "nokkelord": [
+        "endre feriepengesats",
+        "sette feriepengesats",
+        "5 uker ferie",
+        "ny feriepengeinnstilling",
+        "slette feriepengeinnstilling",
+        "feriedager",
+        "vacation pay settings"
+      ],
+      "kall": [
+        "GET /salary/settings/holiday",
+        "POST /salary/settings/holiday",
+        "PUT /salary/settings/holiday/{id}",
+        "POST /salary/settings/holiday/list",
+        "PUT /salary/settings/holiday/list",
+        "DELETE /salary/settings/holiday/list"
+      ],
+      "fremgangsmate": "Opprett: POST /salary/settings/holiday {year, days, vacationPayPercentage1, vacationPayPercentage2, isMaxPercentage2Amount6G}; flere år samtidig: POST /salary/settings/holiday/list med array (uten id/version). Endre: hent id+version med GET, deretter PUT /salary/settings/holiday/{id} eller PUT .../list (array med id+version). Slette: DELETE /salary/settings/holiday/list?ids=1,2 (ingen DELETE på enkelt-id). Skrivende – bekreft; påvirker feriepengeberegningen.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se firmaets pensjonsordninger (OTP) og pensjonsleverandør",
+      "nokkelord": [
+        "pensjonsordning",
+        "otp",
+        "obligatorisk tjenestepensjon",
+        "tjenestepensjon",
+        "pensjonsleverandør",
+        "pensjonsinnretning",
+        "avtalenummer pensjon",
+        "pensjon a-melding",
+        "pension scheme"
+      ],
+      "kall": [
+        "GET /salary/settings/pensionScheme",
+        "GET /salary/settings/pensionScheme/{id}",
+        "GET /pension"
+      ],
+      "fremgangsmate": "GET /salary/settings/pensionScheme?fields=id,version,pensionSchemeId,number,startDate,endDate (number = avtale-/ordningsnummer; filteret number= er eksakt). Slå opp leverandør med GET /pension?query=<navn>&fields=id,displayName,number,fromDate,toDate (spec-summary sier feilaktig «Find countries» – den gir pensjonsinnretninger). pensionSchemeId peker trolig på id i /pension – verifiser. Brukes til å kontrollere at OTP er registrert før a-melding.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Registrere, endre eller avslutte pensjonsordning (OTP)",
+      "nokkelord": [
+        "registrere otp",
+        "ny pensjonsordning",
+        "endre pensjonsordning",
+        "avslutte pensjonsordning",
+        "bytte pensjonsleverandør",
+        "pensjonsavtale",
+        "slette pensjonsordning"
+      ],
+      "kall": [
+        "GET /pension",
+        "POST /salary/settings/pensionScheme",
+        "POST /salary/settings/pensionScheme/list",
+        "PUT /salary/settings/pensionScheme/{id}",
+        "PUT /salary/settings/pensionScheme/list",
+        "DELETE /salary/settings/pensionScheme/{id}",
+        "DELETE /salary/settings/pensionScheme/list"
+      ],
+      "fremgangsmate": "Finn leverandør med GET /pension?query=... Opprett: POST /salary/settings/pensionScheme {pensionSchemeId, number (avtalenummer), startDate, endDate?}; flere: POST .../list (array). Avslutte/bytte leverandør: PUT /salary/settings/pensionScheme/{id} med endDate (+ version) og opprett ny ordning – foretrekk dette fremfor sletting så historikken bevares. Slette: DELETE /{id} eller DELETE /list?ids=... Skrivende – bekreft.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se normalarbeidstid for firmaet (og per ansatt)",
+      "nokkelord": [
+        "normalarbeidstid",
+        "normaltid",
+        "arbeidstid",
+        "timer per dag",
+        "7,5 timer",
+        "37,5 timer",
+        "standard arbeidstid",
+        "fleksitid grunnlag",
+        "standard time"
+      ],
+      "kall": [
+        "GET /salary/settings/standardTime/byDate",
+        "GET /salary/settings/standardTime",
+        "GET /salary/settings/standardTime/{id}",
+        "GET /employee/standardTime/byDate"
+      ],
+      "fremgangsmate": "Gjeldende for firmaet: GET /salary/settings/standardTime/byDate?date=yyyy-MM-dd (standard i dag)&fields=id,fromDate,hoursPerDay. Historikk: GET /salary/settings/standardTime?fields=id,version,fromDate,hoursPerDay. Avvik for én ansatt: GET /employee/standardTime/byDate?employeeId=..&date=.. (persondata – minimalt med fields).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Registrere ny eller endre normalarbeidstid for firmaet",
+      "nokkelord": [
+        "endre normalarbeidstid",
+        "ny arbeidstid",
+        "kortere arbeidstid",
+        "timer per dag",
+        "sette normaltid",
+        "standard time update"
+      ],
+      "kall": [
+        "GET /salary/settings/standardTime",
+        "POST /salary/settings/standardTime",
+        "PUT /salary/settings/standardTime/{id}"
+      ],
+      "fremgangsmate": "Ny arbeidstid fra en dato: POST /salary/settings/standardTime {fromDate, hoursPerDay} (f.eks. 7.5). Rette en eksisterende rad: GET for id+version, deretter PUT /salary/settings/standardTime/{id}. Foretrekk ny rad med fromDate fremfor å endre historikk (påvirker timeliste/fleksitid bakover). Skrivende – bekreft.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Avstemme forskuddstrekk for en termin (hovedbok mot a-melding og Skatteetaten)",
+      "nokkelord": [
+        "avstemme forskuddstrekk",
+        "avstemme skattetrekk",
+        "forskuddstrekk termin",
+        "skattetrekk avstemming",
+        "2600",
+        "a07",
+        "a-melding mot hovedbok",
+        "avvik skattetrekk",
+        "tax deduction reconciliation"
+      ],
+      "kall": [
+        "POST /salary/taxDeduction/reconciliation/context",
+        "GET /salary/taxDeduction/reconciliation/{reconciliationId}/overview",
+        "GET /salary/taxDeduction/reconciliation/{reconciliationId}/paymentsOverview",
+        "GET /salary/taxDeduction/reconciliation/{reconciliationId}/balanceAndOwedAmount",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "1) POST /salary/taxDeduction/reconciliation/context {customerId, year, term} → value.reconciliationId (oppretter bare en avstemmingskontekst, ingen bilag – men er en POST, så bekreft). 2) GET .../{reconciliationId}/overview: account, startDate/endDate, registeredPayments per måned (ledgerSum, ameldingSum, taxAuthoritiesSum, discrepancy, epochDays) og aggregert avvik. 3) GET .../paymentsOverview: innbetalinger hittil i år (ledgerSum, ameldingSum, paidAmount, restAmount, paymentDate). 4) GET .../balanceAndOwedAmount: saldo vs skyldig trekk. 5) Avvik ≠ 0 → drill ned med GET /ledger/posting?dateFrom&dateTo&accountNumberFrom=2600&accountNumberTo=2600. Rapporter kun aggregater.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Avstemme arbeidsgiveravgift for en termin (per sone)",
+      "nokkelord": [
+        "avstemme arbeidsgiveravgift",
+        "avstemme aga",
+        "aga termin",
+        "skyldig arbeidsgiveravgift",
+        "aga per sone",
+        "grunnlag arbeidsgiveravgift",
+        "2770",
+        "5400",
+        "a07",
+        "payroll tax reconciliation"
+      ],
+      "kall": [
+        "POST /salary/payrollTax/reconciliation/context",
+        "GET /salary/payrollTax/reconciliation/{reconciliationId}/overview",
+        "GET /salary/payrollTax/reconciliation/{reconciliationId}/paymentsOverview",
+        "GET /balanceSheet"
+      ],
+      "fremgangsmate": "1) POST /salary/payrollTax/reconciliation/context {customerId, year, term} → reconciliationId. 2) GET .../overview: ledgerSum, ameldingSum, taxAuthoritiesSum, discrepancy, ledgerUri og aggregatedZones (zone, displayName, taxPercentage, amountBasisSum, reimbursementSum, pensionSum, payrollTaxSum) – kontroller grunnlag × sats per sone. 3) GET .../paymentsOverview: innbetalt/rest per termin hittil i år. 4) Avvik → GET /balanceSheet?dateFrom&dateTo&accountNumberFrom=2770&accountNumberTo=2789 og 5400–5499.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Avstemme feriepenger (skyldige feriepenger og AGA av feriepenger)",
+      "nokkelord": [
+        "avstemme feriepenger",
+        "feriepengeavstemming",
+        "skyldige feriepenger",
+        "2940",
+        "aga av feriepenger",
+        "feriepengeliste mot hovedbok",
+        "opptjent feriepenger",
+        "holiday allowance reconciliation"
+      ],
+      "kall": [
+        "POST /salary/holidayAllowance/reconciliation/context",
+        "GET /salary/holidayAllowance/reconciliation/{reconciliationId}/holidayAllowanceDetails",
+        "GET /salary/holidayAllowance/reconciliation/{reconciliationId}/holidayAllowanceSummary"
+      ],
+      "fremgangsmate": "1) POST /salary/holidayAllowance/reconciliation/context {customerId, year, term} → reconciliationId. 2) GET .../holidayAllowanceDetails: outstandingVacationPayGeneralLedger vs outstandingVacationPayHolidayAllowanceReport (skyldige feriepenger hovedbok vs feriepengeliste) og payrollTaxVacationPayGeneralLedger vs payrollTaxVacationPayHolidayAllowanceReport (AGA av feriepenger). 3) GET .../holidayAllowanceSummary: rates og per sats creditPrevYearsByRate, earnedThisYearByRate, earnedAndPaidThisYearByRate, creditThisYearByRate + totaler. Differanse → sjekk konto 2940/2785 i hovedbok.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Avstemme påleggstrekk (utleggstrekk/bidragstrekk) for en termin",
+      "nokkelord": [
+        "påleggstrekk",
+        "paleggstrekk",
+        "utleggstrekk",
+        "bidragstrekk",
+        "trekkpålegg",
+        "trekk i lønn",
+        "avstemme trekk",
+        "mandatory deduction reconciliation"
+      ],
+      "kall": [
+        "POST /salary/mandatoryDeduction/reconciliation/context",
+        "GET /salary/mandatoryDeduction/reconciliation/{reconciliationId}/overview",
+        "GET /salary/mandatoryDeduction/reconciliation/{reconciliationId}/paymentsOverview"
+      ],
+      "fremgangsmate": "1) POST /salary/mandatoryDeduction/reconciliation/context {customerId, year, term} → reconciliationId. 2) GET .../overview: account, ledgerSum, ameldingSum, discrepancy og periodOverviews (epochDays = dager siden 1970-01-01 → måned, ledgerSum, ameldingSum, discrepancy, ledgerUri). 3) GET .../paymentsOverview: innbetalt til kreditor/NAV hittil i år (paidAmount, restAmount). Persondata – ikke vis hvem som har trekk.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Avstemme finansskatt på lønn for en termin",
+      "nokkelord": [
+        "finansskatt",
+        "finansskatt på lønn",
+        "finansskatt pa lonn",
+        "finansforetak",
+        "avstemme finansskatt",
+        "finance tax reconciliation"
+      ],
+      "kall": [
+        "POST /salary/financeTax/reconciliation/context",
+        "GET /salary/financeTax/reconciliation/{reconciliationId}/overview",
+        "GET /salary/financeTax/reconciliation/{reconciliationId}/paymentsOverview"
+      ],
+      "fremgangsmate": "Kun relevant for finansforetak som betaler finansskatt på lønn (ellers tomt/0). 1) POST /salary/financeTax/reconciliation/context {customerId, year, term} → reconciliationId. 2) GET .../overview: ledgerSum, ameldingSum, taxAuthoritiesSum, discrepancy, financeTaxBasisSum, financeTaxSum, ledgerUri. 3) GET .../paymentsOverview: innbetalinger hittil i år.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sjekke at skattetrekkskontoen dekker skyldig forskuddstrekk",
+      "nokkelord": [
+        "skattetrekkskonto",
+        "saldo skattetrekkskonto",
+        "dekning skattetrekk",
+        "underdekning skattetrekk",
+        "skyldig forskuddstrekk",
+        "1950",
+        "2600",
+        "bankgaranti"
+      ],
+      "kall": [
+        "POST /salary/taxDeduction/reconciliation/context",
+        "GET /salary/taxDeduction/reconciliation/{reconciliationId}/balanceAndOwedAmount",
+        "GET /balanceSheet"
+      ],
+      "fremgangsmate": "1) POST /salary/taxDeduction/reconciliation/context {customerId, year, term} → reconciliationId. 2) GET .../balanceAndOwedAmount: taxDeductionBalance (saldo), taxDeductionOwedAmount (skyldig), taxDeductionAccountNumber/Name. Saldo < skyldig → underdekning; skattetrekksmidler skal stå på egen konto (eller bankgaranti). 3) Kontroll i hovedbok: GET /balanceSheet?dateFrom&dateTo&accountNumberFrom=1950&accountNumberTo=1950 og 2600 (kontonummer kan variere – sjekk kontoplan).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Full lønnsavstemming / A07-avstemming for en termin og hittil i år",
+      "nokkelord": [
+        "lønnsavstemming",
+        "lonnsavstemming",
+        "avstemme lønn",
+        "avstem lønnsområdet",
+        "a07",
+        "a-melding avstemming",
+        "terminavstemming lønn",
+        "lønn mot hovedbok",
+        "årsoppgjør lønn",
+        "arsoppgjor lonn"
+      ],
+      "kall": [
+        "POST /salary/taxDeduction/reconciliation/context",
+        "GET /salary/taxDeduction/reconciliation/{reconciliationId}/overview",
+        "POST /salary/payrollTax/reconciliation/context",
+        "GET /salary/payrollTax/reconciliation/{reconciliationId}/overview",
+        "POST /salary/holidayAllowance/reconciliation/context",
+        "GET /salary/holidayAllowance/reconciliation/{reconciliationId}/holidayAllowanceDetails",
+        "POST /salary/mandatoryDeduction/reconciliation/context",
+        "GET /salary/mandatoryDeduction/reconciliation/{reconciliationId}/overview",
+        "GET /balanceSheet",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "Opprett kontekst for hver type (taxDeduction, payrollTax, holidayAllowance, mandatoryDeduction, ev. financeTax) med samme {customerId, year, term}; hent overview/paymentsOverview/holidayAllowanceDetails. Supplér med GET /balanceSheet (dateTo eksklusiv; accountNumberFrom/To 2600–2999 og 5000–5999; fields=account(number,name),balanceIn,balanceChange,balanceOut) og GET /ledger/posting?type=WAGE for drill-down. Mot A07 fra Skatteetaten: bruk skillen lonnsavstemming-a07 (Excel/PDF). Rapporter aggregert (per ytelse/konto), aldri navngitte ansatte.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Markere lønnsavstemming som avstemt, be om kontroll eller merke som kontrollert",
+      "nokkelord": [
+        "markere avstemt",
+        "avstemt",
+        "kontrollert",
+        "be om kontroll",
+        "godkjenne avstemming",
+        "avstemmingskontroll",
+        "reconcile",
+        "request control",
+        "regnskapsfører kontroll"
+      ],
+      "kall": [
+        "GET /accountingOffice/reconciliations/{reconciliationId}/control",
+        "PUT /accountingOffice/reconciliations/{reconciliationId}/control/:reconcile",
+        "PUT /accountingOffice/reconciliations/{reconciliationId}/control/:requestControl",
+        "PUT /accountingOffice/reconciliations/{reconciliationId}/control/:controlReconciliation"
+      ],
+      "fremgangsmate": "reconciliationId kommer fra context-POST i lønnsavstemmingen. :reconcile markerer som avstemt; :requestControl tar body = array med ansatt-id-er (kontrollører); :controlReconciliation markerer som kontrollert. GET .../control viser historikk (employee, timestamp, type). Regnskapsførerfunksjon – 403 hvis brukeren mangler regnskapskontor-tilgang. Skrivende – bekreft.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne lønnsposteringer og lønnsbilag i hovedboken",
+      "nokkelord": [
+        "lønnsposteringer",
+        "lonnsposteringer",
+        "lønnsbilag",
+        "lonnsbilag",
+        "lønn i hovedbok",
+        "lønnskostnad",
+        "5000",
+        "wage postings",
+        "lønnsbilag nummer"
+      ],
+      "kall": [
+        "GET /ledger/posting",
+        "GET /ledger/voucherType",
+        "GET /ledger/voucher"
+      ],
+      "fremgangsmate": "GET /ledger/posting?dateFrom=..&dateTo=.. (begge påkrevd, dateTo eksklusiv)&type=WAGE&fields=id,date,amount,description,account(number,name),voucher(id,number) – ev. accountNumberFrom/To (5000–5999, 2600, 2770). employeeId-filter bare når oppgaven krever det. Lønnsbilag: finn bilagstype-id med GET /ledger/voucherType?name=Lønn, deretter GET /ledger/voucher?dateFrom&dateTo&typeId=..&fields=id,number,date,description.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente saldo på lønnsrelaterte kontoer (skyldig skattetrekk, AGA, feriepenger, lønnskostnad)",
+      "nokkelord": [
+        "saldo skattetrekk",
+        "saldo aga",
+        "skyldig feriepenger saldo",
+        "2600",
+        "2770",
+        "2780",
+        "2940",
+        "lønnskostnad",
+        "saldobalanse lønn",
+        "balance lønnskontoer"
+      ],
+      "kall": [
+        "GET /balanceSheet"
+      ],
+      "fremgangsmate": "GET /balanceSheet?dateFrom=yyyy-01-01&dateTo=<dag etter periodeslutt> (eksklusiv)&accountNumberFrom=2600&accountNumberTo=2999&fields=account(number,name),balanceIn,balanceChange,balanceOut. Typisk 2600 forskuddstrekk, 2770 skyldig AGA, 2780/2785 påløpt AGA (feriepenger), 2940 skyldige feriepenger; lønnskostnad 5000–5999 (kjør eget kall). Kontonummer kan avvike – sjekk kontoplanen.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Bokføre betaling av forskuddstrekk/arbeidsgiveravgift eller manuell lønnskorrigering",
+      "nokkelord": [
+        "betale skattetrekk",
+        "betale aga",
+        "bokføre skattetrekk",
+        "bokføre arbeidsgiveravgift",
+        "innbetaling skatteetaten",
+        "lønnskorrigering",
+        "manuell lønnspostering",
+        "periodisering lønn",
+        "avsetning feriepenger"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "POST /ledger/voucher"
+      ],
+      "fremgangsmate": "Finn konto-id: GET /ledger/account?number=2600&fields=id,number,name (tilsvarende 2770, 1920). POST /ledger/voucher med date, description og postings som balanserer til 0 (f.eks. debet 2600/2770, kredit bank 1920; bruttobeløp, 2 desimaler). Ordinær lønn skal bokføres via lønnskjøringen (salary/transaction), ikke manuelt. Skrivende – bekreft konto, beløp og dato først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se eller oppdatere Altinn-oppsett for a-melding",
+      "nokkelord": [
+        "altinn",
+        "altinn-id",
+        "altinn passord",
+        "altinn oppsett",
+        "a-melding innsending",
+        "kan ikke sende a-melding",
+        "skattekort altinn"
+      ],
+      "kall": [
+        "GET /company/settings/altinn",
+        "PUT /company/settings/altinn"
+      ],
+      "fremgangsmate": "Lesing: GET /company/settings/altinn?fields=altInnId (hent/vis aldri passord). PUT /company/settings/altinn oppdaterer altInnId og altInnPassword – Claude skal ALDRI skrive inn eller sette passord; be brukeren gjøre endringen selv i Tripletex. Innsending av a-melding og henting av skattekort finnes ikke i det offentlige API-et.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere lønnstillegg (lønnsart) via timelisten for neste lønnskjøring",
+      "nokkelord": [
+        "lønnstillegg",
+        "lonnstillegg",
+        "tillegg timeliste",
+        "overtid",
+        "kveldstillegg",
+        "lønnsart timeliste",
+        "variable tillegg",
+        "salary type specification",
+        "registrere tillegg"
+      ],
+      "kall": [
+        "GET /salary/type",
+        "GET /timesheet/salaryTypeSpecification",
+        "GET /timesheet/salaryTypeSpecification/{id}",
+        "POST /timesheet/salaryTypeSpecification",
+        "PUT /timesheet/salaryTypeSpecification/{id}",
+        "DELETE /timesheet/salaryTypeSpecification/{id}"
+      ],
+      "fremgangsmate": "[BETA]-endepunkter. Lønnsart-id: GET /salary/type?showInTimesheet=true&fields=id,number,name. Registrer: POST /timesheet/salaryTypeSpecification {employee:{id}, salaryType:{id}, date, count, description} – kun ÉN per ansatt/dato/lønnsart (duplikat gir feil; endre heller eksisterende). Kontroll: GET /timesheet/salaryTypeSpecification?dateFrom&dateTo (til eksklusiv)&employeeId&fields=id,version,date,count,salaryType(number). Endre: PUT /timesheet/salaryTypeSpecification/{id} med id+version. Feil: DELETE /timesheet/salaryTypeSpecification/{id}. Skrivende – bekreft.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sjekke arbeidsforhold og lønnsgrunnlag før lønnskjøring (månedslønn, stillingsprosent, skattetrekkskode, AGA-kommune)",
+      "nokkelord": [
+        "arbeidsforhold",
+        "månedslønn",
+        "manedslonn",
+        "årslønn",
+        "stillingsprosent",
+        "timelønn",
+        "skattetrekkskode",
+        "hovedarbeidsgiver",
+        "lønnsgrunnlag",
+        "employment details",
+        "aga-kommune",
+        "aga sone ansatt",
+        "avlønningstype",
+        "arbeidsforholdstype"
+      ],
+      "kall": [
+        "GET /employee/employment",
+        "GET /employee/employment/details"
+      ],
+      "fremgangsmate": "GET /employee/employment?employeeId=..&fields=id,startDate,endDate,isMainEmployer,taxDeductionCode (loennFraHovedarbeidsgiver|loennFraBiarbeidsgiver|pensjon|…; tom = ikke satt). GET /employee/employment/details?employmentId=<employment.id>&fields=date,monthlySalary,annualSalary,hourlyWage,percentageOfFullTimeEquivalent,remunerationType,employmentType,employmentForm,payrollTaxMunicipalityId(number,name,payrollTaxZone) – flere rader per arbeidsforhold, siste date gjelder. monthlySalary er skrivebeskyttet (endres via annualSalary). Persondata – bruk fields minimalt og vis aggregert/pseudonymisert. Endringer gjøres med PUT /employee/employment/details/{id} (ansatte-gruppen).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Bestille og lese A07 fra Skatteetaten (avstemmingsmodulen, via Altinn-systembruker)",
+      "nokkelord": [
+        "a07",
+        "bestille a07",
+        "hente a07",
+        "hent a07",
+        "a07 skatteetaten",
+        "a07-rapport",
+        "amelding reconciliation report",
+        "altinn a07",
+        "skatteetaten lønn",
+        "avstemme mot a07",
+        "taxauthority"
+      ],
+      "kall": [
+        "GET /salary/taxDeduction/reconciliation/{reconciliationId}/overview",
+        "GET /salary/payrollTax/reconciliation/{reconciliationId}/overview"
+      ],
+      "fremgangsmate": "UDOKUMENTERT/INTERNT (tskinternal), funnet i UI-koden (altinn-sync-widget), testet OK 2026-09-23 på klient A T4. KALL FRA KLIENTENS KONTEKST: Basic-auth companyId = klient-id fra /company/>withLoginAccess (eksempel: <kunde-id>); contextId = session-companyId fra GET /token/session/>whoAmI?fields=companyId (eksempel: <company-id> – bekreft org.nr. med GET /company/{companyId}). 0) Forutsetning: GET /altinn/systemuser/hasSystemUser?isAgent=false = true i klientkonteksten. 1) Bestill: POST /salary/tskinternal/amelding/reconciliation/reports?contextId=<id> body {year, monthFrom, monthTo} (termin 4 = 7–8) → 204. Asynkront (SSE amelding_reconciliation_report); spør GET .../latest hvert 5. sek til ny id (tok ~10–30 sek). 2) Les: GET /salary/tskinternal/amelding/reconciliation/reports/latest?contextId=<id>&fromYearMonth=2026-07&toYearMonth=2026-08 → {id, reconciliationTimestamp, from, to, details{paymentInformation{sumWithholdingTax,sumPayrollTax,sumFinanceTax}, submissions[] (month, deliveryTimestamp, taxAndWithholdingTotal), businesses[].payrollTax (sone, grunnlag, sats)}} – kun aggregater. Rapporter lagres per foretakskontekst: fra klientkonteksten ses også rapporter hentet i UI. ⚠️ ALDRI bestill fra byråkontoen (companyId 0) med contextId=klient: da hentes BYRÅETS EGEN A07 (Silfer AS, rapport 12595) og contextId ignoreres. Kontroller alltid A07-tall mot ameldingSum før bruk. Bestilling sender forespørsel til Skatteetaten – krever bekreftelse. Relatert: GET /salary/tskinternal/amelding/ameldingStatus?date=&contextId=, GET /salary/reconciliation/{kunde-id}/aggregatedContext?year&term, GET /accountingOffice/reconciliations/permissions/{kunde-id}.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Lønnsavstemming i avstemmingsmodulen – full arbeidsflyt (opprette, A07, kommentere, fullføre)",
+      "nokkelord": [
+        "lønnsavstemming",
+        "avstemmingsmodul lønn",
+        "fullføre lønnsavstemming",
+        "avstemme lønn termin",
+        "skattetrekk avstemming",
+        "aga avstemming",
+        "feriepenger avstemming",
+        "utleggstrekk",
+        "finansskatt",
+        "a07 avstemming",
+        "aggregatedcontext"
+      ],
+      "kall": [
+        "POST /salary/taxDeduction/reconciliation/context",
+        "POST /salary/payrollTax/reconciliation/context",
+        "POST /salary/holidayAllowance/reconciliation/context",
+        "POST /salary/mandatoryDeduction/reconciliation/context",
+        "POST /salary/financeTax/reconciliation/context",
+        "GET /salary/taxDeduction/reconciliation/{reconciliationId}/overview",
+        "GET /salary/payrollTax/reconciliation/{reconciliationId}/overview",
+        "GET /salary/holidayAllowance/reconciliation/{reconciliationId}/holidayAllowanceDetails",
+        "GET /accountingOffice/reconciliations/{reconciliationId}/control"
+      ],
+      "fremgangsmate": "Testet OK på klient A termin 4 2026 (alle 5 fullført). Se docs/avstemmingsmodul.md. Byråkontoen (companyId 0). 1) POST context for taxDeduction, payrollTax, holidayAllowance, mandatoryDeduction, financeTax {customerId, year, term}. Oversikt: GET /salary/reconciliation/{kunde-id}/aggregatedContext?year&term&fields=reconciliations(id,type,status). 2) A07 fra KLIENTENS kontekst (oppgaven «Bestille og lese A07»); taxAuthoritiesSum fylles etterpå. 3) Les overview/holidayAllowanceDetails; ledgerSum = hovedbok, ameldingSum = a-melding, taxAuthoritiesSum = A07. 4) Avvik: finn bilaget, kommenter riktig referenceId (feriepenger = kontonummer 2940/2785, trekk = epochDays for måneden). 5) PUT /accountingOffice/reconciliations/{id}/:complete → COMPLETED, låst, PDF i document. 422 nevner referenceId som mangler kommentar. Uten avvik går :complete rett gjennom. Skrivende – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se status på a-melding for en måned (levert, avvist, ikke sendt, påløpt/ubetalt trekk og AGA)",
+      "nokkelord": [
+        "a-melding status",
+        "amelding status",
+        "status a-melding",
+        "a-melding levert",
+        "er a-meldingen sendt",
+        "avvist a-melding",
+        "tilbakemelding a-melding",
+        "ameldingstatus",
+        "oversikt a-meldinger"
+      ],
+      "kall": [],
+      "fremgangsmate": "INTERNT KALL (fra GET /v2/openapi.json?internal=true – ikke i offentlig spec, kan endres uten varsel). Kalles fra KLIENTENS kontekst (Basic-auth companyId = klient-id) – ALDRI fra byråkontoen, da gjelder det byråets egen a-melding. Skript: npm run amelding -- status --client \"klient\" --maned ÅÅÅÅ-MM (og: oversikt --ar ÅÅÅÅ). Kall: GET /salary/tskinternal/amelding/ameldingStatus?date=ÅÅÅÅ-MM-01&fields=ameldingSummaryStatus,ameldingDetailedStatus,lastAmeldingActionTime,taxPeriodName,taxDeductionAccrued,payrollTaxAccrued,taxDeductionNotPaid,payrollTaxNotPaid (hent aldri ameldingActorEmployee – persondata). ameldingDetailedStatus: noAmeldingExists, ameldingExistsNotSent, ameldingRejected, nonReportedWageinfo m.fl. Liste over a-meldinger: GET /tsk/salaryv2/overview/amessage?startMonth=ÅÅÅÅ-MM&endMonth=ÅÅÅÅ-MM (id, period, date, status, voucherId). Spør alltid hvilken måned – a-meldingen for en måned har frist den 5. i måneden etter.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sende a-melding for en måned til Skatteetaten",
+      "nokkelord": [
+        "send a-melding",
+        "sende a-melding",
+        "send amelding",
+        "levere a-melding",
+        "innsending a-melding",
+        "a-melding innsending",
+        "rapportere lønn skatteetaten",
+        "kun arbeidsforhold a-melding",
+        "kan ikke sende a-melding"
+      ],
+      "kall": [],
+      "fremgangsmate": "INTERNT KALL (fra GET /v2/openapi.json?internal=true – ikke i offentlig spec, kan endres uten varsel). Kalles fra KLIENTENS kontekst (Basic-auth companyId = klient-id) – ALDRI fra byråkontoen, da gjelder det byråets egen a-melding. Skript: npm run amelding -- send --client \"klient\" --maned ÅÅÅÅ-MM [--kun-arbeidsforhold] [--bilagsdato ÅÅÅÅ-MM-DD] --bekreft (uten --bekreft: bare status og hva som ville blitt sendt). Kall: POST /salary/tskinternal/amelding/send body {date:\"ÅÅÅÅ-MM-01\", voucherDate?, employmentInformationOnly?} → 201 {year, month, kind (WAGE|EMPLOYMENT_ONLY|NOTHING_TO_SEND), ameldingId, ameldingNumber, ameldingWageId, ameldingWageRegisteredNow, employmentCount, voucherCreated, voucherId, voucherNumber, largeFileUploadInProgress}. Registrerer a-meldingen fra månedens lønnskjøringer (og pensjon) hvis det ikke er gjort, og sender. Kan lage bilag (avrunding trekk / AGA-korreksjon) datert voucherDate (standard siste dag i måneden). Avvist forrige gang → sendes som ny innsending; rett feilen først. Krever lønnsmodul og lønnsadmin-rolle. LOVPÅLAGT INNLEVERING SOM IKKE KAN TREKKES TILBAKE: sjekk status først, fortell brukeren hva som sendes, og få eksplisitt ja i chat for den klienten og måneden før --bekreft. IKKE TESTET (2026-09-23). Flyten i Tripletex-UI: opprett a-meldingen først, send etter ID-porten-innlogging hos brukeren. API-tokenet har ingen ID-porten-økt (GET /salary/tskinternal/systemuser/loginstatus = 403), så send-kallet kan feile eller bare registrere – les status etterpå.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Pensjon (OTP): bokført på 5940–5949 mot pensjon rapportert i a-meldingene og A07, per termin",
+      "nokkelord": [
+        "pensjon a-melding",
+        "otp a-melding",
+        "5940",
+        "pensjon 5940",
+        "tilskudd og premie til pensjon",
+        "pensjon betalt i perioden",
+        "registrere pensjon",
+        "pensjonsbilag",
+        "avstemme pensjon",
+        "obligatorisk tjenestepensjon",
+        "rapportert pensjon"
+      ],
+      "kall": [
+        "GET /ledger/posting",
+        "GET /accountingOffice/reconciliations",
+        "GET /salary/payrollTax/reconciliation/{reconciliationId}/overview"
+      ],
+      "fremgangsmate": "Skript (kun lesing, testet 2026-09-23 på klient C – der er kontoen 5945): npm run pensjon -- --client \"klient\" --ar ÅÅÅÅ [--konto 5945] → per termin: bokført (per måned), pensjon i a-meldingen, pensjon i A07, avvik. Kilder: 1) GET /ledger/posting?accountNumberFrom=5940&accountNumberTo=5949. 2) A-melding: eksisterende PAYROLL_TAX-avstemminger i byråkontoen (GET /accountingOffice/reconciliations, companyId 0) → GET /salary/payrollTax/reconciliation/{id}/overview → sum aggregatedZones[].pensionSum (null/tom før a-meldingen er sendt). Skriptet oppretter ingen avstemminger. 3) A07: INTERNT GET /salary/tskinternal/amelding/reconciliation/reports/latest?contextId=<whoAmI.companyId>&fromYearMonth&toYearMonth fra klientkonteksten → details.businesses[].payrollTax.pensionContributionsAndPremiums[].basisAmount. Pensjon rapporteres i hele kroner – øreavvik < 1 kr er likt. Pensjonsbilag i lønn (INTERNT GET /tsk/salaryv2/overview/pension) gir 403 med API-token – alle /tsk/salaryv2/* krever nettleserinnlogging. REGISTRERE pensjon (Lønn → Pensjon, /execute/reimbursementMenu#obligatoryPension, JSON-RPC ObligatoryPensionForm.store) finnes ikke i API-et; /execute-sider sender API-tokenet til innlogging (302). Må gjøres i Tripletex-UI (brukeren, eller Claude i Chrome hvis brukeren ber om det).",
+      "skrivende": false
+    }
+  ],
+  "fallgruver": [
+    "Alle lønnsendepunkter er merket PERSONDATA: bruk alltid fields= minimalt, hent aldri navn/fødselsnr./kontonr. unødig, bruk redact() på utskrift og rapporter aggregert eller som «ansatt 1/2». PDF-er (lønnsslipp, sammenstillingsoppgave) inneholder full persondata – lagre kun lokalt på forespørsel, aldri del.",
+    "Avstemmingsendepunktene ({reconciliationId}/overview, paymentsOverview, holidayAllowanceDetails/Summary, balanceAndOwedAmount) krever en reconciliationId som hentes med POST .../reconciliation/context {customerId, year, term}. Context-POST lager bare en avstemmingskontekst (ingen bilag), men er teknisk et skrivekall.",
+    "customerId i context-body = klientselskapet (Tripletex kaller klienten «customer»), trolig company-id fra GET /token/session/>whoAmI eller GET /company/>withLoginAccess – ikke en kunde fra kundereskontroen. Verifiser med ett testkall første gang. term = terminnummer (normalt 1–6, tomånedlige terminer).",
+    "Avstemming markeres som avstemt/kontrollert via /accountingOffice/reconciliations/{reconciliationId}/control/:reconcile, :requestControl og :controlReconciliation (action-endepunkter med kolon). Krever regnskapskontor-tilgang (403 ellers).",
+    "GET /salary/payslip: yearTo og monthTo er EKSKLUSIVE (én måned = monthFrom=9&monthTo=10, yearFrom=2026&yearTo=2027). voucherDateTo er også eksklusiv.",
+    "Det finnes ingen liste/søk for /salary/transaction – finn transaksjons-id via GET /salary/payslip (fields=transaction(id)).",
+    "POST /salary/transaction lagrer en IKKE-godkjent lønnskjøring uten bilag (lønnsutkast). Godkjenning/bokføring gjøres av brukeren i Tripletex. A-melding kan sendes med npm run amelding -- send, men bare etter eksplisitt ja.",
+    "Det offentlige API-et bruker IKKE ansattes «faste lønnslinjer»: en payslip uten specifications blir tom. Linjene må sendes eksplisitt (utledes fra tidligere lønnsslipper og employment/details) og vises i UI som manuelle tillegg/trekk.",
+    "generateTaxDeduction=true beregner skattetrekk ut fra skattekortet som allerede ligger i Tripletex; spec angir ingen default – send parameteren eksplisitt. Det finnes ikke noe skattekort-endepunkt i det offentlige API-et – brukeren må trykke «Hent skattekort» i Tripletex → Lønn. Tripletex MCP-connectoren (fetch_taxcards/order_taxcards/get_taxcard_status) brukes bare hvis brukeren ber om det.",
+    "A-melding (status, oversikt, innsending) og A07 finnes ikke i den OFFENTLIGE specen, men som interne kall i GET /v2/openapi.json?internal=true (1900+ stier mot 550 offentlige – sjekk den før du sier at noe ikke finnes). Bruk npm run amelding (status/oversikt/send). Innsending er lovpålagt og kan ikke trekkes tilbake – send aldri uten eksplisitt ja for klient og måned.",
+    "Godkjente/bokførte lønnskjøringer kan normalt ikke slettes med DELETE /salary/transaction/{id}; de må tilbakestilles i Tripletex. Slett kun lønnsutkast etter bekreftelse.",
+    "Ugyldige datoer i lønnskjøring (f.eks. 31.09) gir feil – bruk siste dag i måneden.",
+    "GET /salary/type: number/name/description er «inneholder»-filtre, ikke eksakte. Lønnsarter kan kun leses i API-et.",
+    "GET /salary/compilation(/pdf): employeeId er påkrevd og year er som standard FORRIGE år.",
+    "GET /pension har feil summary i specen («Find countries») – den returnerer pensjonsinnretninger (GlobalPension: displayName, number, fromDate, toDate).",
+    "/salary/settings/holiday gjelder feriepengesats og feriedager – helligdager/fridager ligger i /timesheet/companyHoliday. Firmaets normalarbeidstid ligger i /salary/settings/standardTime, per ansatt i /employee/standardTime.",
+    "/list-endepunkter (holiday, pensionScheme) tar arrays: POST uten id/version, PUT med id+version; DELETE .../list bruker ids=1,2,3. Enkeltvis DELETE finnes ikke for holiday.",
+    "PUT /salary/settings: SalarySettings har ikke id/version – send bare municipality{id} og payrollTaxCalcMethod (AA|BB|CC|C2|DD|EE|GG|JJ). Sone/kommune finnes via GET /municipality?includePayrollTaxZones=true.",
+    "PUT /company/settings/altinn tar Altinn-passord – Claude skal aldri skrive inn passord/legitimasjon; brukeren må gjøre det selv.",
+    "Vedlegg til lønnskjøring sendes som multipart/form-data (felt file). deleteAttachment med sendToVoucherInbox=true flytter vedlegget til bilagsmottak i stedet for å slette det.",
+    "403 på lønnsendepunkter betyr som regel at klienten mangler lønnsmodul eller brukeren mangler lønnsrettigheter – ikke at endepunktet mangler. Finansskatt-avstemming er bare relevant for finansforetak.",
+    "/timesheet/salaryTypeSpecification og /ledger/voucher/historical/employee er [BETA].",
+    "Avstemmingsresponsene: epochDays = antall dager siden 1970-01-01 (konverter til måned: new Date(epochDays*86400000)). I paymentsOverview er payments[].endDate EKSKLUSIV. ledgerUri/uri er lenker til Tripletex-UI, ikke API-kall. For forskuddstrekk er aggregatedDiscrepancy avviket mellom hovedbok og Skatteetaten (ikke a-melding), mens discrepancy per måned er hovedbok mot a-melding.",
+    "PUT på settings-objekter med id (salary/settings/holiday/{id}, pensionScheme/{id}, standardTime/{id}, timesheet/salaryTypeSpecification/{id}) krever gjeldende version – hent med GET først, ellers feiler kallet.",
+    "Liste-endepunktene (payslip, salary/type, pensionScheme, holiday, standardTime) pagineres med from/count – sjekk fullResultSize og hent resten ved behov i stedet for å anta at alt kom med.",
+    "/ledger/posting og /balanceSheet krever dateFrom og dateTo (dateTo EKSKLUSIV). Lønnsposteringer kan filtreres med type=WAGE på /ledger/posting.",
+    "Lønnsavstemming i modulen (testet 2026-09-23): /salary/*/reconciliation/{id}/* = 200 når kunden også er delegert klient for tokenet, 403 ellers, og 500 med en BALANCE-id. taxAuthoritiesSum/aggregatedTaxAuthoritiesSum er null til A07 er hentet fra Skatteetaten. A07 bestilles/leses via interne tskinternal-kall – se oppgaven «Bestille og lese A07». taxAuthoritiesSum i overview-kallene forble null selv etter henting i UI. GET /salary/transaction ga 403; GET /salary/payslip krever yearFrom/yearTo OG monthFrom/monthTo samlet (ellers 422). Context-POST (201) returnerer {year, term, reconciliationId}; oppretter avstemmingen som DRAFT i byråkontoen. Idempotent: ny POST for samme kunde/år/termin gir samme reconciliationId og lager ingen duplikat (testet 2026-09-23). A07 hentet i Tripletex-UI ble IKKE synlig i taxAuthoritiesSum via API, heller ikke etter ny context-POST – avstem mot A07-filen med skillen lonnsavstemming-a07.",
+    "SALARY-avstemming (udokumentert, testet 2026-09-23): POST /salary/reconciliation/context {customerId, year, term} → reconciliationId. GET /salary/reconciliation/{id}/overview gir PLASSHOLDER-/testdata (Group 1…, accountId 1001…) – aldri bruk tallene. GET /salary/reconciliation/{id}/vacationPay gir ekte feriepengetall hittil i år (vacationPayBasis, vacationPayRateAmounts, prevYearOwedVacationPay, prevYearSettledVacationPay). Sjekk alltid om svar fra udokumenterte kall ser ekte ut før de rapporteres.",
+    "Pensjon (OTP) til a-meldingen registreres under Lønn → Pensjon (legacy-side, JSON-RPC ObligatoryPensionForm) – ikke i API-et. Alle /tsk/salaryv2/*-kall og /execute/*-sider krever nettleserinnlogging (403/302 med API-token). Pensjonskostnaden kan være bokført som leverandørfaktura (f.eks. 5945 hos klient C) uten noen kobling til lønn – sammenlign derfor per termin mot pensionSum i AGA-avstemmingen og A07 (npm run pensjon). Testet 2026-09-23: «Registrer pensjon» i lønnsmodulen åpner /execute/reimbursementMenu#obligatoryPension (ingen React-side). Den lagrer via POST https://tripletex.no/JSON-RPC {method:\"ObligatoryPensionForm.store\"}. JSON-RPC krever cookie-innlogging: med API-token gir kall i klientkontekst NotLoggedInException (bare system.listMethods svarer). Registrering må derfor gjøres i innlogget nettleser (Claude i Chrome ved behov)."
+  ]
+}

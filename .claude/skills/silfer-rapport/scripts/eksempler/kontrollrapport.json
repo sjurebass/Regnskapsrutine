@@ -1,0 +1,65 @@
+{
+  "versjon": 1,
+  "dokument": {
+    "hva": "Lønnsavstemming",
+    "tittel": "Avstemming av AGA og forskuddstrekk termin 4 2026",
+    "klient": "Eksempel AS",
+    "orgnr": "123 456 789",
+    "periode": "2026-T4",
+    "periode_tekst": "Termin 4 (juli–august 2026)",
+    "utarbeidet": "14.10.2026",
+    "utarbeidet_av": "AB"
+  },
+  "seksjoner": [
+    {
+      "id": "trekk",
+      "ark": "Avstemming",
+      "overskrift": "Forskuddstrekk",
+      "kontroller": {
+        "etiketter": {"a": "A07 / beregnet", "b": "Regnskap"},
+        "rader": [
+          {"navn": "Forskuddstrekk a-meldt", "beregning": "A07 sum trekk mot kredit 2600 i terminen", "a": 61240.00, "b": 61240.00},
+          {"navn": "Trekk betalt", "beregning": "Debet 2600 (betaling 15.09) mot a-meldt trekk", "a": 61240.00, "b": 61240.00},
+          {"navn": "Skattetrekkskonto 1950", "beregning": "Saldo 1950 mot UB 2600", "a": 30620.00, "b": 30620.00}
+        ],
+        "antall_avvik": false
+      }
+    },
+    {
+      "id": "aga",
+      "ark": "Avstemming",
+      "overskrift": "Arbeidsgiveravgift",
+      "kontroller": {
+        "etiketter": {"a": "A07 / beregnet", "b": "Regnskap"},
+        "rader": [
+          {"navn": "AGA-grunnlag", "beregning": "A07 grunnlag mot lønnskontoer 5000–5999 med AGA-plikt", "a": 412300.00, "b": 413900.00, "toleranse": 1, "forklart": true, "kommentar": "Styrehonorar bokført i august, a-meldt i september."},
+          {"navn": "Beregnet AGA 14,1 %", "beregning": "Grunnlag × sats mot kredit 2770", "a": 58134.30, "b": 58134.30},
+          {"navn": "AGA kostnadsført", "beregning": "Debet 5400 mot kredit 2770", "a": 58134.30, "b": 57134.30, "kommentar": "Mangler bokføring av AGA på feriepenger i august."},
+          {"navn": "Antall inntektsmottakere", "beregning": "A07 mot lønnsslipper", "a": 7, "b": 7, "antall": true}
+        ]
+      },
+      "merknad": "A07 er hentet fra Skatteetaten 14.10.2026. Beløp per ansatt vises ikke i denne rapporten."
+    },
+    {
+      "id": "betaling",
+      "ark": "Til betaling",
+      "overskrift": "Til betaling 15.09.2026",
+      "tabell": {
+        "kolonner": [
+          {"id": "post", "tekst": "Post", "type": "tekst", "bredde": 34},
+          {"id": "forfall", "tekst": "Forfall", "type": "dato", "bredde": 12},
+          {"id": "a07", "tekst": "A-meldt", "type": "belop", "bredde": 16},
+          {"id": "regnskap", "tekst": "Bokført", "type": "belop", "bredde": 16},
+          {"id": "status", "tekst": "Status", "type": "status", "bredde": 14}
+        ],
+        "rader": [
+          {"post": "Forskuddstrekk termin 4", "forfall": "2026-09-15", "a07": 61240.00, "regnskap": 61240.00, "status": "OK"},
+          {"post": "Arbeidsgiveravgift termin 4", "forfall": "2026-09-15", "a07": 58134.30, "regnskap": 57134.30, "status": "AVVIK"}
+        ],
+        "sum": {"etikett": "Sum til betaling", "kolonner": ["a07", "regnskap"]},
+        "uthev_avvik": true
+      },
+      "boks": {"type": "varsel", "tekst": "**Tiltak:** Bokfør AGA på feriepenger for august (1 000,00) før terminen lukkes."}
+    }
+  ]
+}

@@ -1,0 +1,807 @@
+{
+  "group": "arsoppgjor",
+  "tags": [
+    {
+      "tag": "asset",
+      "beskrivelse": "Anleggsregisteret: opprette, endre, duplisere, slette, importere og avstemme anleggsmidler (driftsmidler) med kostpris, levetid, avskrivningsmetode, salgsdato og tilknyttede posteringer.",
+      "nokkelord": [
+        "anleggsmiddel",
+        "anleggsmidler",
+        "anleggsregister",
+        "driftsmiddel",
+        "driftsmidler",
+        "avskrivning",
+        "avskrivninger",
+        "avskriving",
+        "saldoavskrivning",
+        "lineær avskrivning",
+        "avskrivningsplan",
+        "levetid",
+        "kostpris",
+        "anskaffelseskost",
+        "bokført verdi",
+        "restverdi",
+        "avgang",
+        "realisasjon",
+        "salg av driftsmiddel",
+        "aktivering",
+        "saldogruppe",
+        "fixed asset",
+        "asset register",
+        "depreciation",
+        "anleggsmiddler"
+      ]
+    },
+    {
+      "tag": "penneo",
+      "beskrivelse": "Digital signering av årsregnskap/årsberetning via Penneo i årsoppgjørsmodulen: saksmapper (case files), PDF-dokumenter, signaturlinjer, signatarer, kopimottakere, status og synkronisering.",
+      "nokkelord": [
+        "penneo",
+        "signering",
+        "signere årsregnskap",
+        "signert årsregnskap",
+        "e-signering",
+        "elektronisk signatur",
+        "bankid",
+        "signatar",
+        "signaturlinje",
+        "styret signerer",
+        "styreleder",
+        "daglig leder",
+        "saksmappe",
+        "case file",
+        "kopimottaker",
+        "signeringslenke",
+        "purre signatur",
+        "signeringsstatus",
+        "årsregnskap",
+        "arsregnskap",
+        "aarsregnskap",
+        "årsberetning",
+        "generalforsamlingsprotokoll",
+        "signing",
+        "signer"
+      ]
+    },
+    {
+      "tag": "saft",
+      "beskrivelse": "SAF-T Financial (BETA): eksport av regnskapsdata som zip/XML (Skatteetaten, revisor, systembytte) og import av SAF-T fra et annet regnskapssystem, med importstatus og reversering av siste import.",
+      "nokkelord": [
+        "saf-t",
+        "saft",
+        "saf t",
+        "saf-t financial",
+        "saf-t 1.30",
+        "saf-t eksport",
+        "saf-t import",
+        "saft export",
+        "saft import",
+        "standard audit file",
+        "saft skatteetaten",
+        "saft til revisor",
+        "bokettersyn",
+        "kontrollfil",
+        "regnskapsfil",
+        "systembytte",
+        "konvertering",
+        "migrering",
+        "overføre regnskap",
+        "importere regnskap fra annet system",
+        "inngående balanse fra saft",
+        "kontoplan mapping",
+        "grupperingskode",
+        "reversere import",
+        "saft status"
+      ]
+    },
+    {
+      "tag": "yearEnd/enumType",
+      "beskrivelse": "Oppslagsverdier for årsoppgjørsmodulen: næringstyper (business activity types) som brukes for å skille næringer/skattekategorier, bl.a. på avdelinger.",
+      "nokkelord": [
+        "årsoppgjør",
+        "arsoppgjor",
+        "aarsoppgjoer",
+        "næringstype",
+        "naeringstype",
+        "næring",
+        "virksomhetstype",
+        "business activity type",
+        "næringsspesifikasjon",
+        "skattekategori",
+        "oppslagsverdier",
+        "jordbruk",
+        "primærnæring",
+        "naeringsspesifikasjon",
+        "naering",
+        "business activity",
+        "annen næring",
+        "skogbruk",
+        "fiske"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Liste/søke opp anleggsmidler i anleggsregisteret",
+      "nokkelord": [
+        "anleggsregister",
+        "anleggsmidler",
+        "liste anleggsmidler",
+        "driftsmidler",
+        "eiendeler",
+        "finn anleggsmiddel",
+        "asset list",
+        "oversikt anleggsmidler",
+        "anleggsregister i bruk",
+        "har klienten anleggsregister",
+        "asset register"
+      ],
+      "kall": [
+        "GET /asset",
+        "GET /asset/assetsExist"
+      ],
+      "fremgangsmate": "GET /asset med valgfritt name=/description= (inneholder-søk) eller id= (kommaseparert). Ingen dato- eller kontofilter. Bruk fields=id,name,dateOfAcquisition,acquisitionCost,lifetime,depreciationMethod,status,account(number,name),depreciationAccount(number),balanceOut,saleDate. Paginer med from/count (sett høy count eller paginer). Saldotall (balanceIn/balanceOut/annualDepreciation) er beregnet av Tripletex og read-only. GET /asset/assetsExist gir kun en boolsk verdi (summary: «Get if AssetOverview details is empty») – tolk varsomt og bekreft med GET /asset?count=1.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente ett anleggsmiddel med saldo og avskrivningsgrunnlag",
+      "nokkelord": [
+        "anleggsmiddel detaljer",
+        "saldo anleggsmiddel",
+        "bokført verdi",
+        "restverdi",
+        "årlig avskrivning",
+        "akkumulert avskrivning",
+        "avskrivningsgrunnlag",
+        "status avskrivning"
+      ],
+      "kall": [
+        "GET /asset/{id}",
+        "GET /asset"
+      ],
+      "fremgangsmate": "Finn id med GET /asset?name=... og hent GET /asset/{id}?fields=*. Read-only beregnede felt: startingBalance, balanceIn, balanceOut, balanceChange, depreciationBasis, numberOfMonths, annualDepreciation, depreciationAmount, totalDepreciationAmount, depreciationDiscrepancy, improvements, newHires (tilgang), salesAndOtherRealizations, accountingRelatedProfitOrLoss og status (READY_TO_DEPRECIATE, CORRECTION_NEEDED, COMPLETED, MISSING_INFO, REST_VALUE, NOTHING_TO_DEPRECIATE osv.). Skrivbare felt: acquisitionCost, incomingBalance, accumulatedDepreciation, depreciationRemainingValue, lifetime, depreciationMethod, depreciationRate, saleDate.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Registrere et nytt anleggsmiddel (driftsmiddel)",
+      "nokkelord": [
+        "nytt anleggsmiddel",
+        "registrere driftsmiddel",
+        "aktivere",
+        "aktivering",
+        "kjøp av maskin",
+        "inventar",
+        "opprette asset",
+        "levetid",
+        "avskrivningsmetode",
+        "ny bil",
+        "firmabil",
+        "kjøp av driftsmiddel",
+        "create asset"
+      ],
+      "kall": [
+        "POST /asset",
+        "GET /ledger/account"
+      ],
+      "fremgangsmate": "1) Finn balansekonto (11xx/12xx) og avskrivningskonto (60xx) med GET /ledger/account?number=1230&fields=id,number,name. 2) POST /asset med name, description, dateOfAcquisition (yyyy-MM-dd), acquisitionCost, account{id}, depreciationAccount{id}, lifetime (i MÅNEDER, 60 = 5 år), depreciationMethod (STRAIGHT_LINE | TAX_RELATED | MANUAL | CUSTOMIZED_AMOUNT | NO_DEPRECIATION), depreciationFrom (yyyy-MM-dd), evt. depreciationRate, depreciationRemainingValue (restverdi), incomingBalance, department{id}/project{id}. Historikk fra annet system: hasHistoryFromExternalSystem=true + externalLastDepreciation (dato), externalLastAccountedValue, externalAccumulatedDepreciation. Selve kjøpsbilaget kobles via posting.asset{id} (se oppgaven om å bokføre avskrivning/koble kjøp). Krever bekreftelse (skrivende).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere mange anleggsmidler samtidig",
+      "nokkelord": [
+        "flere anleggsmidler",
+        "masseregistrering",
+        "bulk",
+        "opprette anleggsregister",
+        "batch",
+        "post asset list",
+        "mange driftsmidler"
+      ],
+      "kall": [
+        "POST /asset/list",
+        "GET /ledger/account"
+      ],
+      "fremgangsmate": "POST /asset/list med en JSON-array av Asset-objekter (samme felt som POST /asset; lifetime i måneder). Slå opp konto-id-er først med GET /ledger/account?number=... Kontroller etterpå med GET /asset. For mange rader fra Excel: POST /asset/upload (BETA, se egen oppgave). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre et anleggsmiddel (levetid, avskrivningsmetode, konto, avdeling)",
+      "nokkelord": [
+        "endre anleggsmiddel",
+        "oppdatere levetid",
+        "endre avskrivningsmetode",
+        "korrigere anleggsmiddel",
+        "update asset",
+        "avskrivningssats"
+      ],
+      "kall": [
+        "GET /asset/{id}",
+        "PUT /asset/{id}"
+      ],
+      "fremgangsmate": "Hent GET /asset/{id}?fields=* for gjeldende version. Send PUT /asset/{id} med id, version og feltene som endres (lifetime i måneder, depreciationMethod, depreciationRate, depreciationFrom, depreciationRemainingValue, acquisitionCost, account{id}, depreciationAccount{id}, department{id}, project{id}). Manglende/utdatert version gir konflikt. Beregnede saldofelt kan ikke settes. Sjekk status etterpå (CORRECTION_NEEDED/MISSING_INFO viser at noe mangler). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere salg eller utrangering av et anleggsmiddel (avgang/realisasjon)",
+      "nokkelord": [
+        "salg av anleggsmiddel",
+        "avgang",
+        "realisasjon",
+        "utrangering",
+        "avhending",
+        "gevinst",
+        "tap",
+        "gevinst- og tapskonto",
+        "saledate",
+        "solgt bil"
+      ],
+      "kall": [
+        "GET /asset/{id}",
+        "PUT /asset/{id}",
+        "POST /ledger/voucher",
+        "GET /ledger/account"
+      ],
+      "fremgangsmate": "1) GET /asset/{id}?fields=id,version,balanceOut. 2) PUT /asset/{id} med id, version og saleDate=yyyy-MM-dd. 3) Bokfør salgsbilaget med POST /ledger/voucher der posteringen mot anleggskontoen har asset{id} satt (Posting.asset kobler posteringen til anleggsmiddelet); finn konto-id-er med GET /ledger/account. 4) Kontroller GET /asset/{id}?fields=salesAndOtherRealizations,accountingRelatedProfitOrLoss,balanceOut,status. Skattemessig gevinst- og tapskonto/saldoavskrivning har ikke eget API. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Bokføre avskrivning manuelt eller koble et kjøp til et anleggsmiddel",
+      "nokkelord": [
+        "bokføre avskrivning",
+        "avskrivningsbilag",
+        "månedlig avskrivning",
+        "årlig avskrivning",
+        "koble postering til anleggsmiddel",
+        "tilgang",
+        "aktivering",
+        "6010",
+        "6000",
+        "depreciation voucher",
+        "periodisering"
+      ],
+      "kall": [
+        "POST /ledger/voucher",
+        "GET /ledger/account",
+        "GET /ledger/voucherType",
+        "GET /asset"
+      ],
+      "fremgangsmate": "Det finnes ikke et eget 'kjør avskrivninger'-endepunkt. Bokfør med POST /ledger/voucher {date, description, voucherType{id} (fra GET /ledger/voucherType), postings[]}: debet avskrivningskonto (f.eks. 6010) og kredit anleggskonto (12xx) – sett asset{id} på posteringen mot anleggskontoen slik at den havner i anleggsregisteret. Tilsvarende for kjøp (tilgang): asset{id} på debetposteringen mot 12xx. Bare bruttobeløp brukes (amountGross, og amountGrossCurrency likt for NOK), avrund til 2 desimaler, row fra 1 (0 er systemreservert), summen må gå i null. Beløpsforslag: annualDepreciation/depreciationAmount fra GET /asset/{id}. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se posteringer knyttet til et anleggsmiddel",
+      "nokkelord": [
+        "posteringer anleggsmiddel",
+        "avskrivningshistorikk",
+        "bilag anleggsmiddel",
+        "tilganger",
+        "hovedbok anleggsmiddel",
+        "asset postings"
+      ],
+      "kall": [
+        "GET /asset/{id}/postings"
+      ],
+      "fremgangsmate": "GET /asset/{id}/postings?dateFrom=2025-01-01&dateToExclusive=2026-01-01&fields=id,date,description,amount,account(number),voucher(number,year). OBS: dateFrom og dateToExclusive har begge standardverdi = i dag, så uten dem blir listen tom – sett alltid periode (dateToExclusive er eksklusiv). Paginer med from/count.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Avstemme anleggsregisteret mot hovedboken (saldobalanse 12xx)",
+      "nokkelord": [
+        "avstemme anleggsmidler",
+        "anleggsavstemming",
+        "differanse anleggsregister",
+        "saldo 1200",
+        "balansekontoer",
+        "balanceaccountssum",
+        "kontroll anleggsmidler",
+        "årsavstemming"
+      ],
+      "kall": [
+        "GET /asset/balanceAccountsSum",
+        "GET /balanceSheet",
+        "GET /asset"
+      ],
+      "fremgangsmate": "1) GET /asset/balanceAccountsSum gir ett tall (ResponseWrapperNumber, ingen parametre, ikke nærmere dokumentert – antagelig sum saldo på balansekontoene anleggsregisteret bruker). 2) GET /balanceSheet?dateFrom=2025-01-01&dateTo=2026-01-01&accountNumberFrom=1000&accountNumberTo=1299&fields=account(number,name),balanceIn,balanceChange,balanceOut (dateFrom/dateTo påkrevd, dateTo eksklusiv). 3) Summer balanceOut fra GET /asset?fields=account(number),balanceOut per konto og sammenlign; differanser tyder på posteringer uten asset-kobling eller feil inngående saldo.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Importere anleggsregister (inngående saldo) fra Excel",
+      "nokkelord": [
+        "importere anleggsmidler",
+        "excel import",
+        "anleggsregister import",
+        "inngående saldo anleggsmidler",
+        "startsaldo",
+        "oppstart ny klient",
+        "asset upload",
+        "konvertering"
+      ],
+      "kall": [
+        "POST /asset/upload",
+        "GET /asset"
+      ],
+      "fremgangsmate": "[BETA] POST /asset/upload som multipart/form-data med feltet file (Excel i Tripletex' standardformat) og query isPreview* og startDate* (skal være 1. januar, f.eks. 2025-01-01). Kjør ALLTID først isPreview=true og vis resultatet (ListResponseAssetAccountRow: accountNumber, accountName, assets, balanceDifference = beløp på kontoen som ikke er knyttet til et anleggsmiddel etter import). Deretter isPreview=false etter bekreftelse. Kontroller med GET /asset. Angre med DELETE /asset/deleteImport.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Angre siste anleggsimport eller slette inngående saldo i anleggsregisteret",
+      "nokkelord": [
+        "angre import",
+        "slette import anleggsmidler",
+        "slette startsaldo",
+        "tilbakestille anleggsregister",
+        "delete import",
+        "starting balance"
+      ],
+      "kall": [
+        "DELETE /asset/deleteImport",
+        "DELETE /asset/deleteStartingBalance",
+        "GET /asset"
+      ],
+      "fremgangsmate": "[BETA] DELETE /asset/deleteImport sletter den siste Excel-importen av anleggsmidler. DELETE /asset/deleteStartingBalance sletter startsaldoen for anleggsregisteret. Ingen parametre – virker på hele klientens anleggsregister. Destruktive – krever eksplisitt bekreftelse. Kontroller etterpå med GET /asset.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slette eller duplisere et anleggsmiddel",
+      "nokkelord": [
+        "slette anleggsmiddel",
+        "fjerne anleggsmiddel",
+        "kopiere anleggsmiddel",
+        "duplisere",
+        "duplicate asset",
+        "delete asset"
+      ],
+      "kall": [
+        "DELETE /asset/{id}",
+        "POST /asset/duplicate/{id}",
+        "PUT /asset/{id}",
+        "GET /asset"
+      ],
+      "fremgangsmate": "Finn id med GET /asset?name=... DELETE /asset/{id} sletter (kan feile hvis anleggsmiddelet har tilknyttede posteringer – vurder heller saleDate ved avgang). POST /asset/duplicate/{id} (ingen body) lager en kopi, nyttig for like maskiner/PC-er; juster kopien med PUT /asset/{id} (hent version først). Begge krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Laste opp eller hente dokumentasjon (faktura, kontrakt) på et anleggsmiddel",
+      "nokkelord": [
+        "dokumentasjon anleggsmiddel",
+        "vedlegg anleggsmiddel",
+        "kjøpekontrakt",
+        "faktura driftsmiddel",
+        "dokumentarkiv",
+        "document archive asset"
+      ],
+      "kall": [
+        "GET /documentArchive/asset/{id}",
+        "POST /documentArchive/asset/{id}"
+      ],
+      "fremgangsmate": "[BETA] GET /documentArchive/asset/{id} (valgfritt periodDateFrom inkl./periodDateTo eksl.) lister arkiverte dokumenter for anleggsmiddelet. POST /documentArchive/asset/{id} laster opp fil som multipart/form-data (felt file). Opplasting krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Eksportere SAF-T regnskapsfil for et år",
+      "nokkelord": [
+        "saf-t eksport",
+        "eksportere saft",
+        "saft fil",
+        "skatteetaten saft",
+        "revisor saft",
+        "saft xml",
+        "saft 1.3",
+        "export saft",
+        "regnskapsfil",
+        "bokettersyn",
+        "kontrollfil",
+        "saft zip",
+        "saf-t 1.30"
+      ],
+      "kall": [
+        "GET /saft/exportSAFT"
+      ],
+      "fremgangsmate": "[BETA] GET /saft/exportSAFT?year=2025&version=1.3. year* (heltall) er påkrevd. version: \"1.2\" (standard hvis utelatt), \"1.3\" eller \"1.4\". SAF-T Financial 1.30 er gjeldende krav fra Skatteetaten fra 2025 – sett version eksplisitt. Svaret er application/octet-stream (zip), ikke JSON – lagre til fil (f.eks. saft_2025.zip). Kan ta tid for store klienter; kun lesende.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Importere SAF-T fra et annet regnskapssystem (konvertering/oppstart)",
+      "nokkelord": [
+        "saf-t import",
+        "importere saft",
+        "bytte regnskapssystem",
+        "konvertering",
+        "migrering",
+        "flytte regnskap til tripletex",
+        "overføre historikk",
+        "inngående balanse fra saft",
+        "import saft"
+      ],
+      "kall": [
+        "POST /saft/importSAFT",
+        "GET /saft/status",
+        "GET /ledger/account"
+      ],
+      "fremgangsmate": "[BETA] POST /saft/importSAFT som multipart/form-data. Påkrevde deler (18): saftFile (XML; 1.2/1.3/1.4 autodetekteres), mappingFile (Excel med kontoplanmapping, mal: tripletex.no/resources/examples/saft_account_mapping.xls) og alle 16 boolske flagg: importCustomerVendors, createMissingAccounts, importStartBalanceFromOpening, importStartBalanceFromClosing, importVouchers, importDepartments, importProjects, tripletexGeneratesCustomerNumbers, createCustomerIB, updateAccountNames, createVendorIB, overrideVoucherDateOnDiscrepancy, overwriteCustomersContacts, onlyActiveCustomers, onlyActiveAccounts, updateStartBalance. Velg enten åpnings- eller utgående saldo som IB, ikke begge. Følg opp med GET /saft/status (status STARTED/COMPLETED/FAILED, failureErrorMessage, importLog). Svært inngripende – krever eksplisitt bekreftelse, helst testet på tom klient/sandbox først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sjekke status på siste SAF-T-import",
+      "nokkelord": [
+        "saft status",
+        "status import",
+        "importstatus",
+        "er saft importert",
+        "saft feil"
+      ],
+      "kall": [
+        "GET /saft/status"
+      ],
+      "fremgangsmate": "[BETA] GET /saft/status uten parametre. Returnerer SaftImportLog for siste import: importNumber, status (STARTED, COMPLETED, FAILED, BEING_REVERSED, UNKNOWN), failureErrorMessage og importLog (HTML). Tomt svar = ingen import er kjørt for selskapet. Gjelder kun import, ikke eksport.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Reversere (angre) siste SAF-T-import",
+      "nokkelord": [
+        "reversere saft",
+        "angre saft import",
+        "rulle tilbake import",
+        "slette saft import",
+        "reverse saft"
+      ],
+      "kall": [
+        "POST /saft/reverse",
+        "GET /saft/status"
+      ],
+      "fremgangsmate": "[BETA] Sjekk først GET /saft/status (importNumber, status). POST /saft/reverse (ingen body/parametre) reverserer kun den SISTE importen og returnerer hvilket importNumber som ble reversert (status REVERSED). Destruktivt – krever eksplisitt bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente saldobalanse for årsoppgjøret",
+      "nokkelord": [
+        "saldobalanse",
+        "råbalanse",
+        "årsoppgjør",
+        "arsoppgjor",
+        "balanse 31.12",
+        "resultat",
+        "balansekontoer",
+        "trial balance",
+        "utgående saldo",
+        "aarsoppgjoer",
+        "årsregnskap",
+        "resultatregnskap",
+        "balanse",
+        "saldoliste",
+        "kontrollbalanse"
+      ],
+      "kall": [
+        "GET /balanceSheet",
+        "GET /ledger/annualAccount"
+      ],
+      "fremgangsmate": "GET /balanceSheet?dateFrom=2025-01-01&dateTo=2026-01-01 (dateTo er EKSKLUSIV – bruk 1. januar året etter for helt år). Valgfritt accountNumberFrom/To (f.eks. 1000-2999 balanse, 3000-8999 resultat), includeActiveAccountsWithoutMovements=true, departmentId/projectId. fields=account(number,name),balanceIn,balanceChange,balanceOut. Bekreft regnskapsårets start/slutt med GET /ledger/annualAccount?yearFrom=2025&yearTo=2026.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke regnskapsår og om perioder er låst/lukket",
+      "nokkelord": [
+        "regnskapsår",
+        "regnskapsperiode",
+        "låst periode",
+        "lukket periode",
+        "periodelåsing",
+        "avslutte år",
+        "annual account",
+        "accounting period",
+        "avstemt periode"
+      ],
+      "kall": [
+        "GET /ledger/annualAccount",
+        "GET /ledger/annualAccount/{id}",
+        "GET /ledger/accountingPeriod"
+      ],
+      "fremgangsmate": "GET /ledger/annualAccount?yearFrom=2025&yearTo=2026 (yearTo eksklusiv) gir regnskapsårets id, year, start og end; GET /ledger/annualAccount/{id} for ett år. GET /ledger/accountingPeriod?startFrom=2025-01-01&startTo=2026-01-01&fields=name,number,start,end,isClosed viser hvilke perioder som er lukket. Låsing/lukking av perioder og årsavslutning finnes ikke som offentlig endepunkt.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Registrere eller kontrollere åpningsbalanse (inngående balanse)",
+      "nokkelord": [
+        "åpningsbalanse",
+        "inngående balanse",
+        "ib",
+        "startbalanse",
+        "oppstart",
+        "korreksjonsbilag",
+        "opening balance",
+        "ny klient"
+      ],
+      "kall": [
+        "GET /ledger/voucher/openingBalance",
+        "GET /ledger/voucher/openingBalance/>correctionVoucher",
+        "POST /ledger/voucher/openingBalance",
+        "DELETE /ledger/voucher/openingBalance",
+        "GET /ledger/account"
+      ],
+      "fremgangsmate": "Les: GET /ledger/voucher/openingBalance og korreksjonsbilaget med GET /ledger/voucher/openingBalance/>correctionVoucher. Opprett: POST /ledger/voucher/openingBalance med voucherDate (MÅ være 1. i en måned, helst 1. januar), balancePostings [{account{id}, amount}], samt customerPostings/supplierPostings/employeePostings for reskontro. Alle bevegelser før datoen nulles i et eget korreksjonsbilag; ubalanse føres automatisk på en hjelpekonto. DELETE /ledger/voucher/openingBalance sletter også korreksjonsbilaget. Finn konto-id-er med GET /ledger/account. employeePostings gjelder ansatte – bruk minimalt (GDPR). Skrivende kall krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Kontrollere åpne poster i reskontro per 31.12",
+      "nokkelord": [
+        "åpne poster",
+        "apne poster",
+        "reskontro",
+        "kundereskontro",
+        "leverandørreskontro",
+        "avstemme reskontro",
+        "uoppgjorte poster",
+        "årsavstemming",
+        "open post",
+        "lukkede poster"
+      ],
+      "kall": [
+        "GET /ledger/posting/openPost",
+        "GET /ledger/closeGroup"
+      ],
+      "fremgangsmate": "GET /ledger/posting/openPost?date=2026-01-01 (date* er eksklusiv, dvs. åpne poster per 31.12.2025) med accountId eller accountNumberFrom/To (f.eks. 1500 kunder, 2400 leverandører), customerId/supplierId. Sett sorted=false for raskere svar på store kontoer. fields=date,description,amount,customer(name),supplier(name),voucher(number). Se avstemte/lukkede postgrupper med GET /ledger/closeGroup?dateFrom=...&dateTo=... (begge påkrevd).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette årsavstemmings-kontekst (balanseavstemming) for en klient",
+      "nokkelord": [
+        "årsavstemming",
+        "balanseavstemming",
+        "avstemming balanse",
+        "annual balance reconciliation",
+        "avstemmingskontekst"
+      ],
+      "kall": [
+        "POST /balance/reconciliation/annual/context"
+      ],
+      "fremgangsmate": "POST /balance/reconciliation/annual/context med body {customerId, year} (begge writeOnly). Summary: «Create a annualBalance reconciliation context for a customer» – lite dokumentert; customerId er trolig regnskapsbyråets kunde/klient avstemmingen gjelder. Eksisterende: udokumentert GET /accountingOffice/reconciliations i byråkontoen (se hovedbok). Test i sandbox først. Skrivende, krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slå opp næringstyper (business activity types) for årsoppgjøret",
+      "nokkelord": [
+        "næringstype",
+        "naeringstype",
+        "virksomhetstype",
+        "næringsspesifikasjon",
+        "skattekategori",
+        "primærnæring",
+        "jordbruk",
+        "business activity type",
+        "avdeling næring"
+      ],
+      "kall": [
+        "GET /yearEnd/enumType/businessActivityTypes"
+      ],
+      "fremgangsmate": "GET /yearEnd/enumType/businessActivityTypes?query=... (valgfritt id=, from/count) gir id og displayName. Brukes til å skille næringer/skattekategorier (f.eks. jordbruk vs. annen næring), bl.a. via Department.businessActivityTypeId. Kun oppslag.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke signeringsstatus for årsregnskapet (Penneo)",
+      "nokkelord": [
+        "signeringsstatus",
+        "er årsregnskapet signert",
+        "signert",
+        "penneo status",
+        "signing status",
+        "signering aktivert"
+      ],
+      "kall": [
+        "GET /yearEnd/penneo/signingStatus"
+      ],
+      "fremgangsmate": "GET /yearEnd/penneo/signingStatus?year=2025 (year* påkrevd) gir value.signingActivated (saksmappe opprettet for året) og value.signingComplete (alle har signert), basert på Tripletex' egen DB-post – kan ligge etter Penneo. Virker statusen utdatert, se oppgaven «Synkronisere signeringsstatus med Penneo» (skrivende).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Synkronisere signeringsstatus med Penneo",
+      "nokkelord": [
+        "synkronisere penneo",
+        "oppdatere signeringsstatus",
+        "penneo sync",
+        "status stemmer ikke",
+        "signert men vises ikke",
+        "refresh signing"
+      ],
+      "kall": [
+        "POST /yearEnd/penneo/sync",
+        "GET /yearEnd/penneo/signingStatus"
+      ],
+      "fremgangsmate": "POST /yearEnd/penneo/sync (ingen body/parametre) oppdaterer Tripletex' database med gjeldende tilstand i Penneo (svar: ResponseWrapperString). Kontroller deretter GET /yearEnd/penneo/signingStatus?year=. Endrer lagret status i Tripletex – be om bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Liste Penneo-saksmapper for årsregnskapet",
+      "nokkelord": [
+        "penneo saksmapper",
+        "case files",
+        "casefiles",
+        "hente saksmappe",
+        "signeringsoppdrag",
+        "penneo session"
+      ],
+      "kall": [
+        "GET /yearEnd/penneo/session",
+        "GET /yearEnd/penneo/casefiles"
+      ],
+      "fremgangsmate": "GET /yearEnd/penneo/session?year=2025 autentiserer mot Penneo og returnerer saksmappene for året; deretter kan GET /yearEnd/penneo/casefiles?year=2025 brukes. year er formelt valgfri, men angi den alltid. Svaret er ResponseWrapperString – value er en rå JSON-streng fra Penneo som må parses (caseFileId, dokument-id-er, signer-id-er). Kan inneholde navn/e-post på signatarer – vis aldri disse (GDPR).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sende årsregnskapet til signering i Penneo (opprette saksmappe, dokument og signaturlinjer)",
+      "nokkelord": [
+        "sende til signering",
+        "signere årsregnskap",
+        "opprette saksmappe",
+        "laste opp årsregnskap",
+        "signaturlinje",
+        "aktivere signering",
+        "styret signerer",
+        "bankid signering",
+        "penneo"
+      ],
+      "kall": [
+        "GET /yearEnd/penneo/session",
+        "POST /yearEnd/penneo/casefiles",
+        "POST /yearEnd/penneo/documents",
+        "POST /yearEnd/penneo/signature-lines",
+        "POST /yearEnd/penneo/casefiles/{caseFileId}/activate",
+        "GET /yearEnd/penneo/signingStatus"
+      ],
+      "fremgangsmate": "1) GET /yearEnd/penneo/session?year= for autentisering. 2) POST /yearEnd/penneo/casefiles {title, year} → caseFileId (parse value-strengen). 3) POST /yearEnd/penneo/documents {caseFileId, title, pdfBase64} (PDF base64-kodet) → documentId. 4) Per signatar: POST /yearEnd/penneo/signature-lines {documentId, role, signerId, year} (lager signaturlinje, kobler signatar og konfigurerer e-post i ett); signerId = signatar registrert i årsoppgjørsmodulen (styreleder/styremedlem/daglig leder). 5) POST /yearEnd/penneo/casefiles/{caseFileId}/activate?year= – kobler signatarer, konfigurerer e-post og aktiverer (signeringsforespørsler sendes). 6) Følg opp med GET /yearEnd/penneo/signingStatus?year=. Trinn 2-5 er skrivende og aktivering sender e-post – krever eksplisitt bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Oppdatere, erstatte eller fjerne et dokument i en Penneo-saksmappe",
+      "nokkelord": [
+        "erstatte dokument",
+        "ny versjon årsregnskap",
+        "oppdatere pdf",
+        "slette dokument penneo",
+        "feil i årsregnskap",
+        "update document"
+      ],
+      "kall": [
+        "PUT /yearEnd/penneo/documents/{documentId}",
+        "DELETE /yearEnd/penneo/documents/{documentId}",
+        "GET /yearEnd/penneo/casefiles"
+      ],
+      "fremgangsmate": "Finn documentId i GET /yearEnd/penneo/casefiles?year= (parse value). PUT /yearEnd/penneo/documents/{documentId} med body {documentId, title, pdfBase64} erstatter innholdet. DELETE /yearEnd/penneo/documents/{documentId} fjerner dokumentet fra saksmappen. Endring er i praksis bare mulig før mappen er aktivert/signert – ellers slett saksmappen og start på nytt. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Laste ned signert årsregnskap fra Penneo",
+      "nokkelord": [
+        "laste ned signert",
+        "signert pdf",
+        "signert årsregnskap",
+        "download document",
+        "hente signert dokument"
+      ],
+      "kall": [
+        "GET /yearEnd/penneo/documents/{documentId}/download",
+        "GET /yearEnd/penneo/casefiles"
+      ],
+      "fremgangsmate": "Finn documentId via GET /yearEnd/penneo/casefiles?year= (parse value-strengen). GET /yearEnd/penneo/documents/{documentId}/download returnerer application/pdf (binært – lagre til fil, ikke JSON). 404 = dokumentet finnes ikke (text/plain), 500 = feil mot Penneo.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Administrere signatarer i Penneo: purre (sende lenke på nytt), reaktivere eller fjerne",
+      "nokkelord": [
+        "purre signatur",
+        "sende lenke på nytt",
+        "resend",
+        "påminnelse signering",
+        "reaktivere signatar",
+        "ikke signert",
+        "signeringslenke",
+        "fjerne signatar",
+        "slette signatar",
+        "feil signatar",
+        "bytte styremedlem"
+      ],
+      "kall": [
+        "POST /yearEnd/penneo/casefiles/{caseFileId}/signers/{signerId}/resend",
+        "POST /yearEnd/penneo/casefiles/{caseFileId}/signers/{signerId}/reactivate",
+        "GET /yearEnd/penneo/casefiles",
+        "DELETE /yearEnd/penneo/casefiles/{caseFileId}/signers/{signerId}",
+        "POST /yearEnd/penneo/signature-lines"
+      ],
+      "fremgangsmate": "Finn caseFileId og signerId i GET /yearEnd/penneo/casefiles?year= (parse value-strengen). Purre: POST .../signers/{signerId}/resend sender signeringslenken på nytt (e-post). Reaktivere avvist/deaktivert signatar: POST .../signers/{signerId}/reactivate. Fjerne feil signatar: DELETE /yearEnd/penneo/casefiles/{caseFileId}/signers/{signerId}, og legg evt. til riktig med POST /yearEnd/penneo/signature-lines {documentId, role, signerId, year}. Alle er skrivende og resend/reactivate sender e-post – krever bekreftelse. Vis aldri signatarens navn/e-post i svar (GDPR) – bruk rolle eller «signatar 1».",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Administrere kopimottakere (f.eks. revisor) på en Penneo-saksmappe",
+      "nokkelord": [
+        "kopimottaker",
+        "kopi til revisor",
+        "mottaker",
+        "recipient",
+        "legge til mottaker",
+        "fjerne mottaker"
+      ],
+      "kall": [
+        "GET /yearEnd/penneo/recipients",
+        "POST /yearEnd/penneo/recipients",
+        "DELETE /yearEnd/penneo/recipients/{id}"
+      ],
+      "fremgangsmate": "Les: GET /yearEnd/penneo/recipients?caseFileId= (påkrevd; svar er ResponseWrapperString som må parses). Legg til: POST /yearEnd/penneo/recipients {caseFileId, name, email, storeAsContact (standard false)}. Fjern: DELETE /yearEnd/penneo/recipients/{id}?caseFileId= (caseFileId påkrevd også her). Navn/e-post er personopplysninger – ikke vis dem i svar; skrivende kall krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Avbryte signering ved å slette en Penneo-saksmappe",
+      "nokkelord": [
+        "slette saksmappe",
+        "avbryte signering",
+        "trekke tilbake",
+        "starte signering på nytt",
+        "delete case file"
+      ],
+      "kall": [
+        "DELETE /yearEnd/penneo/casefiles/{caseFileId}",
+        "GET /yearEnd/penneo/casefiles",
+        "POST /yearEnd/penneo/sync",
+        "GET /yearEnd/penneo/signingStatus"
+      ],
+      "fremgangsmate": "Finn caseFileId via GET /yearEnd/penneo/casefiles?year=. DELETE /yearEnd/penneo/casefiles/{caseFileId} sletter hele saksmappen i Penneo (dokumenter og signaturlinjer følger med). Kjør POST /yearEnd/penneo/sync og kontroller GET /yearEnd/penneo/signingStatus?year= etterpå. Irreversibelt – krever eksplisitt bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Bokføre årsoppgjørsposteringer (skattekostnad, utbytte, disponering av resultat)",
+      "nokkelord": [
+        "årsoppgjørsposteringer",
+        "arsoppgjorsposteringer",
+        "skattekostnad",
+        "betalbar skatt",
+        "utsatt skatt",
+        "utbytte",
+        "avsatt utbytte",
+        "disponering",
+        "overføring annen egenkapital",
+        "årsavslutning",
+        "tilleggsposteringer",
+        "year-end entries",
+        "8300",
+        "8800",
+        "2800"
+      ],
+      "kall": [
+        "POST /ledger/voucher",
+        "GET /ledger/account",
+        "GET /ledger/voucherType",
+        "GET /balanceSheet",
+        "GET /ledger/accountingPeriod"
+      ],
+      "fremgangsmate": "Det finnes ikke egne endepunkter for skatteberegning eller resultatdisponering. 1) Hent resultat før skatt med GET /balanceSheet?dateFrom=2025-01-01&dateTo=2026-01-01&accountNumberFrom=3000&accountNumberTo=8999. 2) Finn konto-id-er (f.eks. 8300 betalbar skatt, 8320 endring utsatt skatt, 2500 betalbar skatt, 2120 utsatt skatt, 8800/8960 overføringer, 2800 avsatt utbytte, 2050 annen egenkapital) med GET /ledger/account?number=...&fields=id,number,name. 3) Sjekk at perioden ikke er lukket (GET /ledger/accountingPeriod, isClosed). 4) POST /ledger/voucher med date=2025-12-31, description, voucherType{id} (GET /ledger/voucherType) og balanserte postings (amountGross/amountGrossCurrency, 2 desimaler, row fra 1). Krever bekreftelse.",
+      "skrivende": true
+    }
+  ],
+  "fallgruver": [
+    "Asset.lifetime er i MÅNEDER, ikke år (5 år = 60).",
+    "depreciationMethod-enum: MANUAL | TAX_RELATED | STRAIGHT_LINE | CUSTOMIZED_AMOUNT | NO_DEPRECIATION. status er read-only (UNKNOWN, MANUAL, NO_DEPRECIATION, INVALID_DATE, MISSING_TRANS_TYPE, MISSING_INFO, READY_TO_DEPRECIATE, CORRECTION_NEEDED, COMPLETED, REST_VALUE, NOTHING_TO_DEPRECIATE).",
+    "Saldo-/avskrivningsfelt på Asset (balanceIn, balanceOut, annualDepreciation, depreciationAmount, accountingRelatedProfitOrLoss m.fl.) er read-only – kan ikke settes via PUT.",
+    "GET /asset/{id}/postings: dateFrom og dateToExclusive har standardverdi i dag – angi alltid periode ellers blir listen tom.",
+    "POST /asset/upload, DELETE /asset/deleteImport, DELETE /asset/deleteStartingBalance og alle /saft/*-kall er BETA – kan endre seg og gi 403 hvis ikke aktivert for klienten.",
+    "POST /asset/upload: startDate skal være 1. januar, og isPreview=true bør alltid kjøres først; balanceDifference viser beløp på kontoen som ikke dekkes av anleggsmidler.",
+    "GET /saft/exportSAFT returnerer application/octet-stream (zip), ikke JSON; year* er påkrevd og version er valgfri med standard 1.2 – sett version=1.3 (eller 1.4) eksplisitt for gjeldende SAF-T-krav.",
+    "POST /saft/importSAFT krever multipart med saftFile, mappingFile og samtlige 16 boolske flagg; den er svært inngripende (oppretter kontoer, kunder/leverandører, bilag, IB). Bare siste import kan reverseres med POST /saft/reverse.",
+    "Penneo-endepunktene returnerer ResponseWrapperString: value er en rå JSON-streng fra Penneo som må parses for å få caseFileId, documentId og signerId.",
+    "Penneo krever at klienten har Penneo-integrasjon/årsoppgjørsmodul aktivert; kall GET /yearEnd/penneo/session først for å autentisere. 403/401 betyr typisk manglende modul, tilgang eller Penneo-kobling.",
+    "Signatarer (styreleder, styremedlemmer, daglig leder) må være registrert i Tripletex' årsoppgjørsmodul – det finnes ikke offentlig API for å opprette dem; POST .../activate?year= og POST /yearEnd/penneo/signature-lines (year i body) finner dem for angitt år.",
+    "POST /yearEnd/penneo/casefiles/{caseFileId}/activate og .../resend sender e-post til signatarer – regn dem som utsending og få eksplisitt bekreftelse.",
+    "GET /yearEnd/penneo/recipients og DELETE /yearEnd/penneo/recipients/{id} krever query caseFileId.",
+    "GET /yearEnd/penneo/signingStatus krever year og leser Tripletex' egen DB-post; POST /yearEnd/penneo/sync (skrivende) oppdaterer den fra Penneo.",
+    "Penneo-mottakere og signatarer inneholder navn og e-post (personopplysninger) – vis aldri disse i svar, bruk rolle eller «signatar 1/2».",
+    "GET /balanceSheet og GET /ledger/posting/openPost bruker eksklusiv sluttdato (dateTo/date): for hele 2025 bruk dateTo=2026-01-01.",
+    "GET /ledger/closeGroup krever både dateFrom og dateTo.",
+    "POST /ledger/voucher/openingBalance: voucherDate må være 1. i en måned; alt før datoen nulles i et korreksjonsbilag, og DELETE sletter også korreksjonsbilaget.",
+    "Det finnes ikke et offentlig endepunkt for å 'kjøre avskrivninger'; avskrivning bokføres som vanlig bilag (POST /ledger/voucher) med posting.asset{id} satt på anleggskontoposteringen – ellers havner den ikke i anleggsregisteret og gir differanse mot hovedboken.",
+    "Skattemessige avskrivninger, saldoskjema (RF-1084), gevinst- og tapskonto, skattemelding og næringsspesifikasjon har ingen offentlige endepunkter i API v2.",
+    "PUT /asset/{id} krever id og gjeldende version i body (hent med GET /asset/{id} først).",
+    "Penneo-kallene (session, casefiles, recipients og alle skrivende) returnerer ResponseWrapperString; year er formelt valgfri på session/casefiles/activate, men angi den alltid.",
+    "Penneo-dokumenter lastes opp som base64-PDF i pdfBase64; GET /yearEnd/penneo/documents/{documentId}/download returnerer application/pdf (binært).",
+    "GET /saft/status gjelder bare siste SAF-T-import (SaftImportLog: importNumber, status STARTED/COMPLETED/FAILED/BEING_REVERSED/UNKNOWN); tomt svar betyr ingen import.",
+    "POST /asset/upload, POST /saft/importSAFT og POST /documentArchive/asset/{id} er multipart/form-data – ikke JSON.",
+    "DELETE /asset/deleteImport og DELETE /asset/deleteStartingBalance tar ingen parametre og virker på hele klientens anleggsregister.",
+    "POST /balance/reconciliation/annual/context er lite dokumentert (body {customerId, year}) og har ingen tilhørende GET – test i sandbox."
+  ]
+}

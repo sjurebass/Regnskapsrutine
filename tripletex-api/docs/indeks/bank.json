@@ -1,0 +1,911 @@
+{
+  "group": "bank",
+  "tags": [
+    {
+      "tag": "bank",
+      "beskrivelse": "Oppslag i bankregisteret (banknavn, registernummer, støttede kontoutskriftsformater, autopay/ZTL-støtte) – brukes for å finne bankId før import av kontoutskrift.",
+      "nokkelord": [
+        "bank",
+        "banker",
+        "bankregister",
+        "registernummer",
+        "banknavn",
+        "bankid",
+        "bank id",
+        "dnb",
+        "nordea",
+        "sparebank1",
+        "danske bank",
+        "handelsbanken",
+        "sbanken",
+        "eika",
+        "autopay",
+        "ztl",
+        "bankintegrasjon",
+        "filformat",
+        "kontoutskriftsformat",
+        "bankforbindelse",
+        "hvilken bank",
+        "bank lookup",
+        "sparebanken",
+        "støttede formater",
+        "stottede formater"
+      ]
+    },
+    {
+      "tag": "bank/reconciliation",
+      "beskrivelse": "Bankavstemminger per hovedbokskonto og regnskapsperiode: opprette, hente, oppdatere saldo, lukke/gjenåpne, slette og eksportere uavstemte transaksjoner.",
+      "nokkelord": [
+        "bankavstemming",
+        "bankavstemning",
+        "avstemming",
+        "avstemning",
+        "automatisk bankavstemming",
+        "manuell bankavstemming",
+        "bank reconciliation",
+        "manedsavstemming",
+        "avstemme bank",
+        "lukke avstemming",
+        "avstemt til og med",
+        "gjenapne",
+        "utgående saldo",
+        "saldo iflg bank",
+        "uavstemte poster",
+        "åpne poster bank",
+        "apne poster",
+        "uavstemt",
+        "differanse bank",
+        "1920",
+        "bankkonto",
+        "månedsavstemming",
+        "avstemme",
+        "bank rec",
+        "bankrec"
+      ]
+    },
+    {
+      "tag": "bank/reconciliation/match",
+      "beskrivelse": "Matcher mellom banktransaksjoner og hovedbokposteringer i en bankavstemming: forslag (auto-match), manuell matching, godkjenning, oppheving og telling.",
+      "nokkelord": [
+        "match",
+        "matching",
+        "matche",
+        "koble",
+        "koble transaksjon",
+        "avstemme transaksjon",
+        "automatch",
+        "auto-match",
+        "automatisk matching",
+        "forslag",
+        "matchforslag",
+        "suggest",
+        "godkjenne forslag",
+        "avvise forslag",
+        "manuell match",
+        "oppheve match",
+        "fjerne kobling",
+        "justering",
+        "adjustment",
+        "direkteføring",
+        "direct posting",
+        "reconciliation match",
+        "avstemt",
+        "matchet"
+      ]
+    },
+    {
+      "tag": "bank/reconciliation/matches/counter",
+      "beskrivelse": "[BETA] Teller for antall auto-matchede og foreslåtte matcher siden avstemmingssiden sist ble åpnet (UI-varsel), med mulighet for nullstilling.",
+      "nokkelord": [
+        "teller",
+        "counter",
+        "antall matcher",
+        "nye matcher",
+        "nye forslag",
+        "automatchet",
+        "auto matched",
+        "nullstille teller",
+        "reset counter",
+        "varsel bankavstemming",
+        "beta"
+      ]
+    },
+    {
+      "tag": "bank/reconciliation/paymentType",
+      "beskrivelse": "Betalingstyper/posteringstyper som brukes i bankavstemmingen (med debet- og kreditkonto), f.eks. til å føre gebyr, renter og differanser direkte fra avstemmingen.",
+      "nokkelord": [
+        "betalingstype",
+        "betalingstyper avstemming",
+        "payment type",
+        "posteringstype",
+        "bankgebyr",
+        "gebyr",
+        "renteinntekt",
+        "rentekostnad",
+        "renter bank",
+        "avrunding",
+        "debetkonto",
+        "kreditkonto",
+        "direkteføring",
+        "justeringspostering",
+        "motkonto",
+        "bank fee",
+        "interest",
+        "posteringstyper avstemming"
+      ]
+    },
+    {
+      "tag": "bank/reconciliation/settings",
+      "beskrivelse": "Selskapets innstillinger for bankavstemming, i praksis antall matcher per side i avstemmingsbildet.",
+      "nokkelord": [
+        "innstillinger bankavstemming",
+        "avstemmingsinnstillinger",
+        "settings",
+        "reconciliation settings",
+        "antall per side",
+        "numberofmatchesperpage",
+        "sidestørrelse",
+        "oppsett bankavstemming",
+        "konfigurasjon bank"
+      ]
+    },
+    {
+      "tag": "bank/statement",
+      "beskrivelse": "Kontoutskrifter (bankfiler) importert til en bankkonto: importere fil, liste, hente inngående/utgående saldo og slette feilimport.",
+      "nokkelord": [
+        "kontoutskrift",
+        "kontoutskrifter",
+        "bankutskrift",
+        "bank statement",
+        "statement",
+        "bankfil",
+        "importere bankfil",
+        "import kontoutskrift",
+        "laste opp kontoutskrift",
+        "telepay",
+        "psd2",
+        "inngående saldo",
+        "utgående saldo",
+        "slette kontoutskrift",
+        "feilimport",
+        "dobbeltimport",
+        "kontoutdrag",
+        "bankutdrag",
+        "bankimport",
+        "transferwise",
+        "wise",
+        "ztl",
+        "folio",
+        "inngaende saldo",
+        "utgaende saldo"
+      ]
+    },
+    {
+      "tag": "bank/statement/transaction",
+      "beskrivelse": "Enkelttransaksjoner på en importert kontoutskrift (dato, beløp, tekst, matchstatus) med mulighet for ekstra detaljer per transaksjon.",
+      "nokkelord": [
+        "banktransaksjon",
+        "banktransaksjoner",
+        "bankposter",
+        "bankpost",
+        "transaksjon",
+        "transaction",
+        "bevegelser",
+        "kontobevegelser",
+        "innbetaling",
+        "utbetaling",
+        "transaksjonsdetaljer",
+        "betalingsreferanse",
+        "kid",
+        "umatchet",
+        "uavstemt transaksjon",
+        "mangler bilag",
+        "mangler dokumentasjon",
+        "bankbevegelse",
+        "banklinje",
+        "ukjent innbetaling",
+        "ukjent beløp"
+      ]
+    },
+    {
+      "tag": "ledger/paymentTypeOut",
+      "beskrivelse": "[BETA] Betalingstyper for utgående betalinger (kontoinnstillinger 'Utgående betalinger') som brukes ved betaling av leverandørfaktura, MVA-melding, lønnsutbetaling og skattetrekk/forskuddsskatt.",
+      "nokkelord": [
+        "utbetaling",
+        "utbetalinger",
+        "utgående betaling",
+        "utgående betalinger",
+        "betalingstype",
+        "betalingstyper",
+        "payment type out",
+        "paymenttypeout",
+        "betale leverandørfaktura",
+        "leverandørbetaling",
+        "leverandorbetaling",
+        "lønnsutbetaling",
+        "lonnsutbetaling",
+        "mva betaling",
+        "nettbank",
+        "remittering",
+        "betalingsmåte",
+        "kredittkort",
+        "firmakort",
+        "utbetalingstype",
+        "betalingsmetode",
+        "forskuddsskatt",
+        "skattetrekk"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Finne bankkontoene (hovedbokskontoer) til en klient",
+      "nokkelord": [
+        "bankkonto",
+        "bankkontoer",
+        "1920",
+        "1900",
+        "hovedbokskonto bank",
+        "kontoplan bank",
+        "isbankaccount",
+        "account id",
+        "kontonummer bank",
+        "driftskonto",
+        "skattetrekkskonto",
+        "sparekonto"
+      ],
+      "kall": [
+        "GET /ledger/account"
+      ],
+      "fremgangsmate": "GET /ledger/account?isBankAccount=true&isInactive=false&fields=id,number,name,isBankAccount,requireReconciliation,currency(code),bankName. Bruk 'id' (ikke kontonummeret) som accountId i alle /bank/*-kall. Alternativt number=1920 for én konto. bankAccountNumber/IBAN er kontonummer – ikke ta med i fields med mindre det trengs, og masker ved utskrift.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Slå opp en bank i bankregisteret (bankId, støttede filformater, autopay)",
+      "nokkelord": [
+        "bank",
+        "bankid",
+        "registernummer",
+        "clearingnummer",
+        "hvilken bank",
+        "filformat",
+        "støttede formater",
+        "autopay",
+        "ztl",
+        "bankintegrasjon"
+      ],
+      "kall": [
+        "GET /bank",
+        "GET /bank/{id}"
+      ],
+      "fremgangsmate": "GET /bank?registerNumbers=<de fire første sifrene i bankkontonummeret>&fields=id,name,registerNumbers,bankStatementFileFormatSupport,platform,autoPaySupport eller GET /bank?query=DNB. Filtrer ev. med isBankReconciliationSupport=true / isAutoPaySupported=true / isZtlSupported=true. bankStatementFileFormatSupport viser hvilke fileFormat-verdier banken støtter ved import. GET /bank/{id} for én bank.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Importere kontoutskrift (bankfil) til en bankkonto",
+      "nokkelord": [
+        "importere kontoutskrift",
+        "laste opp bankfil",
+        "import bankfil",
+        "kontoutskrift",
+        "bank statement import",
+        "csv",
+        "telepay",
+        "dnb csv",
+        "nordea csv",
+        "danske bank",
+        "sbanken",
+        "psd2"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /bank",
+        "POST /bank/statement/import"
+      ],
+      "fremgangsmate": "1) accountId fra GET /ledger/account?isBankAccount=true. 2) bankId fra GET /bank?registerNumbers=xxxx (sjekk bankStatementFileFormatSupport). 3) POST /bank/statement/import som multipart/form-data med feltet 'file', og query: bankId*, accountId*, fromDate* (inkl.), toDate* (EKSKL. – bruk dagen etter siste dato), fileFormat* (DNB_CSV|NORDEA_CSV|DANSKE_BANK_CSV|SBANKEN_BEDRIFT_CSV|SBANKEN_PRIVAT_CSV|HAUGESUND_SPAREBANK_CSV|EIKA_TELEPAY|SPAREBANK1_TELEPAY|HANDELSBANKEN_TELEPAY|SPAREBANKEN_VEST_TELEPAY|SPAREBANKEN_SOR_TELEPAY|SPAREBANKEN_OST_TELEPAY|CULTURA_BANK_TELEPAY|LANDKREDITT_TELEPAY|VISMA_ACCOUNT_STATEMENT|VISMA_ACCOUNT_STATEMENT_PSD2|..._PLATFORM_AGNOSTIC|TRANSFERWISE|ZTL|EXTERNAL_PSD2|FOLIO), valgfri externalId. Sjekk først GET /bank/statement?accountId= for overlappende perioder (dobbeltimport). Krever bekreftelse fra bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Liste importerte kontoutskrifter for en bankkonto med inngående og utgående saldo",
+      "nokkelord": [
+        "kontoutskrifter",
+        "bankutskrifter",
+        "importerte bankfiler",
+        "inngående saldo",
+        "utgående saldo",
+        "saldo bank",
+        "hvilke perioder er importert",
+        "mangler kontoutskrift"
+      ],
+      "kall": [
+        "GET /bank/statement",
+        "GET /bank/statement/{id}"
+      ],
+      "fremgangsmate": "GET /bank/statement?accountId=<id> (kan være kommaseparert liste)&fields=id,fileName,fromDate,toDate,openingBalanceCurrency,closingBalanceCurrency,bank(name)&count=1000. Sorter på fromDate og se etter hull mellom toDate og neste fromDate for å finne manglende perioder. Kan filtrere på fileFormats. GET /bank/statement/{id} for én utskrift (fields=transactions(id,postedDate,amountCurrency,matched) gir også transaksjonene). Alle felt på BankStatement er skrivebeskyttet – feil kan kun rettes ved å slette og importere på nytt.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente banktransaksjoner fra en kontoutskrift",
+      "nokkelord": [
+        "banktransaksjoner",
+        "bankposter",
+        "transaksjoner",
+        "kontobevegelser",
+        "innbetalinger",
+        "utbetalinger",
+        "bank transactions",
+        "transaksjonsliste"
+      ],
+      "kall": [
+        "GET /bank/statement",
+        "GET /bank/statement/transaction",
+        "GET /bank/statement/transaction/{id}"
+      ],
+      "fremgangsmate": "1) Finn bankStatementId via GET /bank/statement?accountId=. 2) GET /bank/statement/transaction?bankStatementId=<id> (PÅKREVD) &fields=id,postedDate,description,amountCurrency,matched,matchType,paymentId&from=0&count=1000 – bla videre med from ved flere. matched=false = uavstemt. Beskrivelser kan inneholde navn på privatpersoner – masker med redact() ved visning.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Se detaljer/betalingsreferanse (KID, avsender) for en banktransaksjon",
+      "nokkelord": [
+        "transaksjonsdetaljer",
+        "detaljer banktransaksjon",
+        "kid",
+        "referanse",
+        "remittering",
+        "avsender",
+        "mottaker",
+        "betalingsinfo",
+        "hvem har betalt"
+      ],
+      "kall": [
+        "GET /bank/statement/transaction/{id}",
+        "GET /bank/statement/transaction/{id}/details"
+      ],
+      "fremgangsmate": "GET /bank/statement/transaction/{id}?fields=id,postedDate,description,amountCurrency,paymentId,matched,groupedPostings,sourceVoucher(id,number) og deretter GET /bank/statement/transaction/{id}/details (returnerer et fritt objekt fra bankfilen, f.eks. KID, motpart, kontonummer). Detaljer kan inneholde personopplysninger (navn/kontonummer) – vis kun det som trengs, masker resten.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Slette en feilimportert kontoutskrift",
+      "nokkelord": [
+        "slette kontoutskrift",
+        "feil bankfil",
+        "dobbeltimport",
+        "importert to ganger",
+        "angre import",
+        "fjerne bankfil"
+      ],
+      "kall": [
+        "GET /bank/statement",
+        "DELETE /bank/statement/{id}"
+      ],
+      "fremgangsmate": "Finn riktig id med GET /bank/statement?accountId=&fields=id,fileName,fromDate,toDate. Bekreft med bruker (fil, periode, konto). Hvis transaksjonene er matchet eller avstemmingen er lukket: gjenåpne avstemmingen og slett matcher (DELETE /bank/reconciliation/match/{id}) først. Deretter DELETE /bank/statement/{id}. Irreversibelt.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne bankavstemmingen for en bankkonto og måned",
+      "nokkelord": [
+        "bankavstemming",
+        "avstemming for måned",
+        "avstemming periode",
+        "regnskapsperiode",
+        "accounting period",
+        "hent avstemming",
+        "avstemmingsstatus"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /ledger/accountingPeriod",
+        "GET /bank/reconciliation",
+        "GET /bank/reconciliation/{id}"
+      ],
+      "fremgangsmate": "1) accountId fra GET /ledger/account?isBankAccount=true. 2) accountingPeriodId fra GET /ledger/accountingPeriod?startFrom=2026-08-01&startTo=2026-08-02&fields=id,number,start,end. 3) GET /bank/reconciliation?accountId=<id>&accountingPeriodId=<id>&fields=id,type,isClosed,closedDate,bankAccountClosingBalanceCurrency,account(number,name),accountingPeriod(start,end),approvable,autoPayReconciliation. GET /bank/reconciliation/{id} for én. Tomt resultat = avstemming ikke opprettet for perioden.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente siste bankavstemming eller siste lukkede avstemming for en konto",
+      "nokkelord": [
+        "siste avstemming",
+        "sist avstemt",
+        "siste lukkede avstemming",
+        "hvor langt er banken avstemt",
+        "avstemt til og med",
+        "last reconciliation"
+      ],
+      "kall": [
+        "GET /bank/reconciliation/>last",
+        "GET /bank/reconciliation/>lastClosed"
+      ],
+      "fremgangsmate": "GET \"/bank/reconciliation/>last\"?accountId=<id>* (sist opprettede) eller GET \"/bank/reconciliation/>lastClosed\"?accountId=<id>*&after=yyyy-MM-dd (sist lukkede, ev. etter dato). fields=id,isClosed,closedDate,accountingPeriod(start,end),bankAccountClosingBalanceCurrency. Sitér stien i skallet – '>' tolkes ellers som omdirigering.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Status for bankavstemming på alle bankkontoer (månedskontroll per klient)",
+      "nokkelord": [
+        "avstemmingsstatus",
+        "status bankavstemming",
+        "hvilke kontoer er avstemt",
+        "ikke avstemt",
+        "månedskontroll",
+        "manedskontroll",
+        "periodeavslutning",
+        "kontroll bank",
+        "oversikt avstemminger"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /ledger/accountingPeriod",
+        "GET /bank/reconciliation",
+        "GET /bank/reconciliation/>lastClosed"
+      ],
+      "fremgangsmate": "1) GET /ledger/account?isBankAccount=true&isInactive=false&fields=id,number,name,requireReconciliation. 2) Periode-id(er) fra GET /ledger/accountingPeriod. 3) GET /bank/reconciliation?accountId=<id1,id2,..>&accountingPeriodId=<id>&fields=id,account(number),accountingPeriod(start),isClosed,closedDate. Kontoer uten treff eller isClosed=false er ikke ferdig avstemt. For 'avstemt til og med' per konto: GET \"/bank/reconciliation/>lastClosed\"?accountId=.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette bankavstemming for en periode",
+      "nokkelord": [
+        "opprette bankavstemming",
+        "ny avstemming",
+        "starte avstemming",
+        "create reconciliation",
+        "automatisk bankavstemming",
+        "manuell avstemming"
+      ],
+      "kall": [
+        "GET /ledger/accountingPeriod",
+        "GET /bank/reconciliation",
+        "POST /bank/reconciliation"
+      ],
+      "fremgangsmate": "Sjekk først at den ikke finnes (GET /bank/reconciliation?accountId=&accountingPeriodId=). POST /bank/reconciliation med body {\"account\":{\"id\":<kontoId>},\"accountingPeriod\":{\"id\":<periodeId>},\"type\":\"AUTOMATIC\" (automatisk bankavstemming med importerte transaksjoner) eller \"MANUAL\",\"bankAccountClosingBalanceCurrency\":<saldo iflg. kontoutskrift>}. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere/endre saldo iflg. bankutskrift på en avstemming",
+      "nokkelord": [
+        "saldo iflg bank",
+        "utgående saldo",
+        "bankens saldo",
+        "sluttsaldo",
+        "closing balance",
+        "oppdatere saldo",
+        "saldo kontoutskrift"
+      ],
+      "kall": [
+        "GET /bank/reconciliation/{id}",
+        "PUT /bank/reconciliation/{id}"
+      ],
+      "fremgangsmate": "GET /bank/reconciliation/{id}?fields=id,version,bankAccountClosingBalanceCurrency,isClosed. PUT /bank/reconciliation/{id} med {\"id\":..,\"version\":..,\"bankAccountClosingBalanceCurrency\":<beløp>}. Må være åpen (isClosed=false). Utgående saldo kan hentes fra GET /bank/statement (closingBalanceCurrency). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Kontrollere bankkontoens saldo i hovedboken mot kontoutskriften",
+      "nokkelord": [
+        "saldo hovedbok bank",
+        "saldo 1920",
+        "saldobalanse bank",
+        "avstemme saldo",
+        "differanse bank",
+        "bankdifferanse",
+        "saldokontroll",
+        "stemmer banken"
+      ],
+      "kall": [
+        "GET /balanceSheet",
+        "GET /bank/statement",
+        "GET /bank/reconciliation/{id}"
+      ],
+      "fremgangsmate": "1) Hovedbok: GET /balanceSheet?dateFrom=<periodestart>&dateTo=<dagen etter periodeslutt, EKSKL.>&accountNumberFrom=1920&accountNumberTo=1920&fields=account(number,name),balanceIn,balanceChange,balanceOut. 2) Bank: GET /bank/statement?accountId=&fields=toDate,closingBalanceCurrency (siste utskrift i perioden) eller bankAccountClosingBalanceCurrency på avstemmingen. 3) Differansen forklares av uavstemte transaksjoner/posteringer (se oppgaven om åpne poster).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Liste åpne (uavstemte) poster på bankkonto – transaksjoner og posteringer uten match",
+      "nokkelord": [
+        "åpne poster bank",
+        "apne poster",
+        "uavstemte poster",
+        "uavstemt",
+        "umatchet",
+        "mangler bilag",
+        "mangler dokumentasjon",
+        "bankavstemmingsliste",
+        "liste til kunden",
+        "unmatched",
+        "differanse avstemming"
+      ],
+      "kall": [
+        "GET /bank/reconciliation",
+        "GET /bank/statement",
+        "GET /bank/statement/transaction",
+        "GET /ledger/posting",
+        "GET /bank/reconciliation/match"
+      ],
+      "fremgangsmate": "1) Finn avstemmingen (GET /bank/reconciliation?accountId=&accountingPeriodId=). 2) Banksiden: for hver kontoutskrift i perioden GET /bank/statement/transaction?bankStatementId=&fields=id,postedDate,description,amountCurrency,matched – behold matched=false. 3) Hovedboksiden: GET /ledger/posting?accountId=<bankkonto-id>&dateFrom=&dateTo=(ekskl.)&fields=id,date,description,amount,voucher(number,year),matched – behold matched=false. 4) Kontroll: GET /bank/reconciliation/match?bankReconciliationId=&approved=true viser hva som er avstemt. Lever som tabell per konto/måned; masker personnavn i tekstene. For lukkede perioder med hengende poster: GET /bank/reconciliation/closedWithUnmatchedTransactions?accountId=. Alternativt CSV via PUT /bank/reconciliation/transactions/unmatched:csv?reconciliationId=. Husk at dateTo er ekskl. og at count er 1000 som standard (bla med from).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Eksportere uavstemte banktransaksjoner til CSV",
+      "nokkelord": [
+        "eksport uavstemte",
+        "csv uavstemte",
+        "last ned uavstemte",
+        "unmatched csv",
+        "excel åpne poster",
+        "liste uavstemte transaksjoner"
+      ],
+      "kall": [
+        "GET /bank/reconciliation",
+        "PUT /bank/reconciliation/transactions/unmatched:csv"
+      ],
+      "fremgangsmate": "1) Finn avstemmings-id med GET /bank/reconciliation?accountId=&accountingPeriodId=&fields=id. 2) PUT /bank/reconciliation/transactions/unmatched:csv?reconciliationId=<avstemmings-id> – parameteren er ikke merket påkrevd i spec, men må sendes. Svaret er en CSV-fil (text/csv, UTF-8 eller ISO-8859-1), ikke JSON – les som tekst/binær og sjekk tegnsett. Selv om metoden er PUT endrer kallet ingenting. Masker personnavn før deling.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Finne siste lukkede avstemming som fortsatt har uavstemte transaksjoner",
+      "nokkelord": [
+        "lukket med uavstemte",
+        "uavstemte i lukket periode",
+        "hengende poster",
+        "gamle åpne poster",
+        "closed with unmatched",
+        "etterslep bankavstemming"
+      ],
+      "kall": [
+        "GET /bank/reconciliation/closedWithUnmatchedTransactions"
+      ],
+      "fremgangsmate": "GET /bank/reconciliation/closedWithUnmatchedTransactions?accountId=<id>*&start=yyyy-MM-dd&fields=id,accountingPeriod(start,end),closedDate,transactions(id,postedDate,amountCurrency,description,matched). Nyttig i årsoppgjør/kvalitetskontroll for å finne perioder som ble lukket med poster som ikke er avstemt.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Kjøre automatisk matching (forslag) på en bankavstemming",
+      "nokkelord": [
+        "automatisk matching",
+        "automatch",
+        "foreslå matcher",
+        "matchforslag",
+        "suggest",
+        "kjør avstemming",
+        "auto avstem",
+        "forslag bankavstemming"
+      ],
+      "kall": [
+        "PUT /bank/reconciliation/match/:suggest",
+        "GET /bank/reconciliation/match"
+      ],
+      "fremgangsmate": "PUT /bank/reconciliation/match/:suggest?bankReconciliationId=<id>* – returnerer liste med foreslåtte matcher (type PENDING_SUGGESTION). Se dem med GET /bank/reconciliation/match?bankReconciliationId=<id>&approved=false&fields=id,type,transactions(id,postedDate,amountCurrency,description),postings(id,date,amount,voucher(number)). Oppretter forslag i avstemmingen – be om bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Manuelt matche banktransaksjon(er) mot hovedbokspostering(er)",
+      "nokkelord": [
+        "manuell match",
+        "matche manuelt",
+        "koble transaksjon",
+        "koble bank mot bilag",
+        "avstemme post",
+        "en til mange",
+        "mange til en",
+        "match transaction posting"
+      ],
+      "kall": [
+        "GET /bank/statement/transaction",
+        "GET /ledger/posting",
+        "POST /bank/reconciliation/match"
+      ],
+      "fremgangsmate": "1) Transaksjons-id(er) fra GET /bank/statement/transaction?bankStatementId= (matched=false). 2) Posterings-id(er) på bankkontoen fra GET /ledger/posting?accountId=<bankkonto>&dateFrom=&dateTo=&fields=id,date,amount,description,matched. 3) Sjekk at summene er like. 4) POST /bank/reconciliation/match med {\"bankReconciliation\":{\"id\":..},\"type\":\"MANUAL\",\"transactions\":[{\"id\":..}],\"postings\":[{\"id\":..}]}. Kun MANUAL og ADJUSTMENT kan settes ved opprettelse. Avstemmingen må være åpen. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Godkjenne eller avvise matchforslag",
+      "nokkelord": [
+        "godkjenne forslag",
+        "godkjenn match",
+        "avvise forslag",
+        "approve suggestion",
+        "reject suggestion",
+        "bekrefte match",
+        "pending suggestion"
+      ],
+      "kall": [
+        "GET /bank/reconciliation/match",
+        "GET /bank/reconciliation/match/{id}",
+        "PUT /bank/reconciliation/match/{id}",
+        "DELETE /bank/reconciliation/match/{id}",
+        "POST /bank/reconciliation/match"
+      ],
+      "fremgangsmate": "Hent forslag: GET /bank/reconciliation/match?bankReconciliationId=<id>&approved=false&fields=id,version,type,transactions(id,postedDate,amountCurrency),postings(id,date,amount) (type PENDING_SUGGESTION). Spec: type kan bare settes til MANUAL eller ADJUSTMENT ved opprettelse; øvrige typer (APPROVED_SUGGESTION, REJECTED_SUGGESTION osv.) er systemsatte og skrivebeskyttet. Sikreste vei for å godkjenne er derfor å slette forslaget (DELETE /bank/reconciliation/match/{id}) og opprette en MANUAL match med samme transactions/postings (POST /bank/reconciliation/match). PUT /bank/reconciliation/match/{id} (id+version) kan brukes til å endre transactions/postings i en match – verifiser resultatet med GET /bank/reconciliation/match/{id}. Avvise = DELETE. Avstemmingen må være åpen. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Oppheve (slette) en match i bankavstemmingen",
+      "nokkelord": [
+        "oppheve match",
+        "slette match",
+        "fjerne kobling",
+        "angre avstemming",
+        "feil match",
+        "unmatch",
+        "løsne transaksjon"
+      ],
+      "kall": [
+        "GET /bank/reconciliation/match",
+        "DELETE /bank/reconciliation/match/{id}"
+      ],
+      "fremgangsmate": "Finn match-id: GET /bank/reconciliation/match?bankReconciliationId=&fields=id,type,transactions(id,amountCurrency,postedDate),postings(id,amount). Avstemmingen må være åpen (gjenåpne med PUT /bank/reconciliation/{id} isClosed=false om nødvendig). DELETE /bank/reconciliation/match/{id}. Transaksjon og postering blir da uavstemte igjen. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Telle matcher og nye auto-matcher i en avstemming",
+      "nokkelord": [
+        "antall matcher",
+        "hvor mange avstemt",
+        "telle matcher",
+        "nye automatcher",
+        "nye forslag",
+        "match count",
+        "counter",
+        "fremdrift avstemming"
+      ],
+      "kall": [
+        "GET /bank/reconciliation/match/count",
+        "GET /bank/reconciliation/matches/counter"
+      ],
+      "fremgangsmate": "GET /bank/reconciliation/match/count?bankReconciliationId=<id>* gir totalt antall matcher (heltall). [BETA] GET /bank/reconciliation/matches/counter?bankReconciliationId=<id>* gir antall auto-matchede og foreslåtte matcher siden avstemmingssiden sist ble åpnet (UI-teller). For fremdrift: sammenlign med antall transaksjoner med matched=false (GET /bank/statement/transaction?bankStatementId=).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Nullstille telleren for nye matcher i bankavstemmingen",
+      "nokkelord": [
+        "nullstille teller",
+        "reset counter",
+        "nullstill varsel",
+        "nye matcher sett"
+      ],
+      "kall": [
+        "POST /bank/reconciliation/matches/counter"
+      ],
+      "fremgangsmate": "[BETA] POST /bank/reconciliation/matches/counter?bankReconciliationId=<id>* nullstiller telleren slik UI gjør når siden åpnes. Påvirker bare varselet, ikke regnskapet – men er et skrivende kall og krever bekreftelse. Sjelden nødvendig.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Føre bankgebyr, renter eller annen differanse fra bankavstemmingen",
+      "nokkelord": [
+        "bankgebyr",
+        "gebyr",
+        "renteinntekt",
+        "rentekostnad",
+        "renter",
+        "føre differanse",
+        "fore differanse",
+        "manglende bilag bank",
+        "direkteføring",
+        "justering",
+        "adjustment",
+        "7770",
+        "8050",
+        "8150"
+      ],
+      "kall": [
+        "GET /bank/reconciliation/paymentType",
+        "GET /ledger/account",
+        "POST /ledger/voucher",
+        "GET /ledger/posting",
+        "POST /bank/reconciliation/match"
+      ],
+      "fremgangsmate": "1) Se tilgjengelige posteringstyper med konti: GET /bank/reconciliation/paymentType?fields=id,description,debitAccount(number,name),creditAccount(number,name). 2) Før bilag: POST /ledger/voucher med date, description og postings (row fra 1, account{id}, amountGross/amountGrossCurrency – kun bruttobeløp brukes, summen må bli 0): f.eks. debet 7770 Bankgebyr og kredit bankkonto (amountGross negativ på bank), eller renteinntekt 8050 mot bank. 3) Hent den nye bankposteringen (GET /ledger/posting?accountId=&dateFrom=&dateTo=) og match den mot banktransaksjonen med POST /bank/reconciliation/match (type MANUAL, eller ADJUSTMENT for justering). Krever bekreftelse før bilag føres.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente betalingstyper for bankavstemmingen",
+      "nokkelord": [
+        "betalingstyper avstemming",
+        "posteringstyper",
+        "payment types reconciliation",
+        "debetkonto",
+        "kreditkonto",
+        "gebyrtype"
+      ],
+      "kall": [
+        "GET /bank/reconciliation/paymentType",
+        "GET /bank/reconciliation/paymentType/{id}"
+      ],
+      "fremgangsmate": "GET /bank/reconciliation/paymentType?description=<tekst>&fields=id,description,debitAccount(number,name),creditAccount(number,name),isInactive,sequence. GET /bank/reconciliation/paymentType/{id} for én. Kun lesing – typene vedlikeholdes i Tripletex-UI.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Lukke (ferdigstille) en bankavstemming",
+      "nokkelord": [
+        "lukke avstemming",
+        "ferdigstille avstemming",
+        "godkjenne avstemming",
+        "avslutte bankavstemming",
+        "close reconciliation",
+        "periode ferdig avstemt"
+      ],
+      "kall": [
+        "GET /bank/reconciliation/{id}",
+        "PUT /bank/reconciliation/transactions/unmatched:csv",
+        "PUT /bank/reconciliation/{id}"
+      ],
+      "fremgangsmate": "1) GET /bank/reconciliation/{id}?fields=id,version,isClosed,approvable,bankAccountClosingBalanceCurrency. 2) Kontroller uavstemte (CSV-eksport eller åpne poster-oppgaven) og at saldo stemmer. 3) PUT /bank/reconciliation/{id} med {\"id\":..,\"version\":..,\"isClosed\":true}. approvable=false betyr at avstemmingen ikke kan lukkes ennå. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Gjenåpne en lukket bankavstemming",
+      "nokkelord": [
+        "gjenåpne avstemming",
+        "gjenapne",
+        "åpne lukket avstemming",
+        "reopen reconciliation",
+        "rette avstemming",
+        "endre lukket periode"
+      ],
+      "kall": [
+        "GET /bank/reconciliation/{id}",
+        "PUT /bank/reconciliation/{id}"
+      ],
+      "fremgangsmate": "GET /bank/reconciliation/{id}?fields=id,version,isClosed. PUT /bank/reconciliation/{id} med {\"id\":..,\"version\":..,\"isClosed\":false}. Nødvendig før matcher kan endres/slettes. Vær obs på at senere perioder kan bygge på denne; lukk igjen etter retting. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slette en bankavstemming som er opprettet feil",
+      "nokkelord": [
+        "slette avstemming",
+        "fjerne avstemming",
+        "feil avstemming",
+        "delete reconciliation",
+        "feil periode avstemming"
+      ],
+      "kall": [
+        "GET /bank/reconciliation",
+        "DELETE /bank/reconciliation/{id}"
+      ],
+      "fremgangsmate": "Finn id med GET /bank/reconciliation?accountId=&accountingPeriodId=&fields=id,isClosed,accountingPeriod(start). Bekreft konto/periode med bruker. Gjenåpne og fjern matcher først om nødvendig. DELETE /bank/reconciliation/{id}. Irreversibelt.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se eller endre innstillinger for bankavstemming",
+      "nokkelord": [
+        "innstillinger bankavstemming",
+        "antall per side",
+        "avstemmingsoppsett",
+        "reconciliation settings",
+        "sidestørrelse"
+      ],
+      "kall": [
+        "GET /bank/reconciliation/settings",
+        "POST /bank/reconciliation/settings",
+        "PUT /bank/reconciliation/settings/{id}"
+      ],
+      "fremgangsmate": "GET /bank/reconciliation/settings?fields=id,version,numberOfMatchesPerPage. Finnes de: PUT /bank/reconciliation/settings/{id} med {\"id\",\"version\",\"numberOfMatchesPerPage\":\"ITEMS_10|ITEMS_50|ITEMS_100|ITEMS_500|ITEMS_1000|ITEMS_5000|ITEMS_10000\"}. Finnes de ikke: POST /bank/reconciliation/settings. Påvirker kun visningen. Krever bekreftelse ved endring.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Liste betalingstyper for utgående betalinger",
+      "nokkelord": [
+        "utgående betalinger",
+        "betalingstyper",
+        "utbetalingstyper",
+        "hvordan betales leverandørfaktura",
+        "betalingsmåte",
+        "payment type out",
+        "nettbank",
+        "autopay",
+        "kreditkonto betaling"
+      ],
+      "kall": [
+        "GET /ledger/paymentTypeOut",
+        "GET /ledger/paymentTypeOut/{id}"
+      ],
+      "fremgangsmate": "[BETA] GET /ledger/paymentTypeOut?isInactive=false&fields=id,description,creditAccount(number,name),showIncomingInvoice,showVatReturns,showWagePayment,showWagePeriodTransaction,requiresSeparateVoucher,sequence,currencyCode. showIncomingInvoice=true = tilgjengelig på leverandørfaktura, showVatReturns = MVA-melding, showWagePayment = lønn. id brukes som paymentType ved leverandørbetaling.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette, endre eller deaktivere betalingstyper for utgående betalinger",
+      "nokkelord": [
+        "ny betalingstype",
+        "opprette utbetalingstype",
+        "endre betalingstype",
+        "deaktivere betalingstype",
+        "slette betalingstype",
+        "firmakort betaling",
+        "kredittkort",
+        "kontant",
+        "valutakonto betaling"
+      ],
+      "kall": [
+        "POST /ledger/paymentTypeOut",
+        "POST /ledger/paymentTypeOut/list",
+        "PUT /ledger/paymentTypeOut/{id}",
+        "PUT /ledger/paymentTypeOut/list",
+        "DELETE /ledger/paymentTypeOut/{id}"
+      ],
+      "fremgangsmate": "[BETA] POST /ledger/paymentTypeOut med {\"description\":\"Firmakort\",\"creditAccount\":{\"id\":<konto-id, f.eks. 1920/2400-konto>},\"showIncomingInvoice\":true,\"showVatReturns\":false,\"showWagePayment\":false,\"requiresSeparateVoucher\":false,\"sequence\":n,\"currencyCode\":\"NOK\"}. Flere samtidig: POST/PUT /ledger/paymentTypeOut/list (array). Endre: PUT /ledger/paymentTypeOut/{id} med id+version. Foretrekk isInactive=true fremfor DELETE hvis typen er brukt. showWagePayment/showWagePeriodTransaction krever lønnsmodul, isBruttoWageDeduction krever PROVISIONSALARY. Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere betaling av leverandørfaktura",
+      "nokkelord": [
+        "betale leverandørfaktura",
+        "registrere betaling leverandør",
+        "leverandørbetaling",
+        "leverandorbetaling",
+        "betalt faktura",
+        "kid",
+        "remittering",
+        "delbetaling",
+        "add payment",
+        "utbetaling leverandør"
+      ],
+      "kall": [
+        "GET /ledger/paymentTypeOut",
+        "GET /supplierInvoice",
+        "POST /supplierInvoice/{invoiceId}/:addPayment"
+      ],
+      "fremgangsmate": "1) Finn fakturaen: GET /supplierInvoice?invoiceDateFrom=*&invoiceDateTo=* (ekskl.) &supplierId=/invoiceNumber=/kid= (innkjøp-gruppen). 2) paymentType-id fra GET /ledger/paymentTypeOut?isInactive=false (showIncomingInvoice=true), eller paymentType=0 / useDefaultPaymentType=true for sist brukte type for leverandøren. 3) POST /supplierInvoice/{invoiceId}/:addPayment?paymentType=<id>*&amount=&paymentDate=yyyy-MM-dd&kidOrReceiverReference=&bban=&partialPayment=true (ved delbetaling). Metoden krever oppsett gjort av Tripletex. Krever bekreftelse; betalinger kan gå til bank (autopay). bban = mottakers kontonummer – personopplysning hvis mottaker er privatperson; ikke logg eller vis det.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere innbetaling på kundefaktura (fra bankavstemming)",
+      "nokkelord": [
+        "innbetaling kunde",
+        "registrere innbetaling",
+        "kunde har betalt",
+        "betalt kundefaktura",
+        "kundereskontro",
+        "innbetalingstype",
+        "invoice payment",
+        "kid innbetaling"
+      ],
+      "kall": [
+        "GET /invoice",
+        "GET /invoice/paymentType",
+        "PUT /invoice/{id}/:payment"
+      ],
+      "fremgangsmate": "1) Finn fakturaen: GET /invoice?invoiceDateFrom=*&invoiceDateTo=* (ekskl.) &kid=<KID fra banktransaksjonen> eller &invoiceNumber=, gjerne med status=OUTSTANDING (salg-gruppen); amountOutstanding viser restbeløp. 2) paymentTypeId fra GET /invoice/paymentType?fields=id,description,debitAccount(number). 3) PUT /invoice/{id}/:payment?paymentDate=*&paymentTypeId=*&paidAmount=* (+ paidAmountCurrency for valutafaktura). Innbetalingen gir en postering på bankkontoen som deretter kan matches mot banktransaksjonen (auto-match eller POST /bank/reconciliation/match). Krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente posteringer på bankkontoen i en periode (hovedbokssiden av avstemmingen)",
+      "nokkelord": [
+        "posteringer bank",
+        "hovedbok bank",
+        "kontoutskrift hovedbok",
+        "bevegelser 1920",
+        "bilag på bankkonto",
+        "ledger postings bank"
+      ],
+      "kall": [
+        "GET /ledger/account",
+        "GET /ledger/posting"
+      ],
+      "fremgangsmate": "GET /ledger/posting?accountId=<bankkonto-id>&dateFrom=yyyy-MM-dd*&dateTo=yyyy-MM-dd* (EKSKL.)&fields=id,date,description,amount,amountCurrency,voucher(number,year),matched&from=0&count=1000. matched viser om posteringen er avstemt mot bank. Bruk accountNumberFrom/To=1920 hvis id ikke er kjent.",
+      "skrivende": false
+    }
+  ],
+  "fallgruver": [
+    "accountId i alle /bank/*-kall er hovedbokskontoens interne id (fra GET /ledger/account?isBankAccount=true), IKKE kontonummeret 1920.",
+    "GET /bank/statement/transaction krever bankStatementId – man kan ikke søke transaksjoner direkte på konto/dato; gå via GET /bank/statement?accountId=.",
+    "POST /bank/statement/import er multipart/form-data (felt 'file') med påkrevde query-parametere bankId, accountId, fromDate, toDate og fileFormat (enum). toDate er EKSKLUSIV – bruk dagen etter siste transaksjonsdato. Sjekk overlapp mot eksisterende kontoutskrifter for å unngå dobbeltimport.",
+    "POST /bank/statement/import støtter bare fileFormat-enumen (bankspesifikke CSV/Telepay-formater, VISMA_ACCOUNT_STATEMENT*, EXTERNAL_PSD2, ZTL, TRANSFERWISE, FOLIO) – ikke generisk CAMT.053/MT940. Sjekk bankStatementFileFormatSupport på GET /bank først.",
+    "Stier med '>' (GET /bank/reconciliation/>last og />lastClosed) må siteres i skallet (ellers tolkes '>' som omdirigering) og ev. URL-kodes som %3E i enkelte klienter. Begge krever accountId.",
+    "PUT /bank/reconciliation/transactions/unmatched:csv er et lesekall selv om metoden er PUT, og returnerer CSV (text/csv) – ikke JSON.",
+    "PUT /bank/reconciliation/match/:suggest er et action-endepunkt som oppretter matchforslag (PENDING_SUGGESTION) – regnes som skrivende.",
+    "Ved POST /bank/reconciliation/match kan type kun være MANUAL eller ADJUSTMENT; PENDING_SUGGESTION, APPROVED_SUGGESTION, AUTO_MATCHED, DIRECT_POSTING, AUTOPOSTING_* m.fl. settes av systemet. Godkjente typer (del av avstemmingen): MANUAL, APPROVED_SUGGESTION, DIRECT_POSTING, ADJUSTMENT, AUTO_MATCHED, AUTOPOSTING_APPROVED.",
+    "Lukket avstemming (isClosed=true) må gjenåpnes med PUT /bank/reconciliation/{id} isClosed=false før matcher kan endres/slettes eller kontoutskrifter fjernes. Lukking/gjenåpning skjer via PUT med isClosed – det finnes ingen egen :close-action.",
+    "PUT-kall krever id og gjeldende version (optimistisk låsing); 409/RevisionException betyr at objektet er endret siden det ble hentet – hent på nytt.",
+    "BankReconciliation.type: AUTOMATIC = 'Automatisk bankavstemming' (importerte/PSD2-transaksjoner), MANUAL = manuell avstemming. autoPayReconciliation og approvable er skrivebeskyttet.",
+    "GET /ledger/posting og GET /balanceSheet krever dateFrom og dateTo, og dateTo er EKSKLUSIV. Posteringer har feltet 'matched' (skrivebeskyttet) – bruk det til å finne uavstemte posteringer på bankkontoen.",
+    "Fortegn: på bankkontoen er innskudd positive både i BankTransaction.amountCurrency og Posting.amount (debet), uttak negative – sammenlign summer med samme fortegn ved manuell matching.",
+    "GET /bank/reconciliation/matches/counter og POST (nullstilling) er BETA og gjelder bare UI-varsler om nye matcher. GET /bank/reconciliation/match/query er INTERNAL – ikke bruk.",
+    "Alle /ledger/paymentTypeOut-endepunkter er BETA. showWagePayment/showWagePeriodTransaction krever lønnsmodul og isBruttoWageDeduction krever modulen PROVISIONSALARY – ellers 403/valideringsfeil. Deaktiver (isInactive=true) heller enn å slette brukte typer.",
+    "Det finnes tre ulike sett betalingstyper: /bank/reconciliation/paymentType (posteringstyper i avstemmingen), /ledger/paymentTypeOut (utgående betalinger: leverandør, MVA, lønn, skatt) og /invoice/paymentType (innbetalinger på kundefaktura). Ikke bland id-ene.",
+    "POST /supplierInvoice/{invoiceId}/:addPayment krever oppsett gjort av Tripletex; paymentType=0 eller useDefaultPaymentType=true velger sist brukte type for leverandøren. Betalinger kan sendes til nettbank/autopay – alltid bekreftelse.",
+    "403 betyr normalt at token/bruker mangler rettighet til bankavstemming/regnskap eller at klienten ikke har modulen (f.eks. bankintegrasjon/autopay). Tomt svar/404 på >last/>lastClosed tyder på at det ikke finnes (lukket) avstemming for kontoen.",
+    "Alle skrivende kall (import, opprette/lukke/gjenåpne/slette avstemming, match/:suggest, opprette/slette matcher, bilag for gebyr, betalingstyper, betalinger) krever eksplisitt bekreftelse fra bruker, og klient må være navngitt.",
+    "GDPR: banktransaksjonstekster og /bank/statement/transaction/{id}/details kan inneholde navn og kontonummer til privatpersoner (Vipps, lønn, utlegg). Bruk minimale fields=, masker med redact() og vis aggregater/initialer i rapporter. Bankkontonummer (bankAccountNumber/IBAN) skal ikke deles.",
+    "Listekall har count=1000 som standard – bla med from/count ved store kontoutskrifter eller mange posteringer.",
+    "Påkrevde id-parametere: GET /bank/statement/transaction (bankStatementId), GET /bank/reconciliation/closedWithUnmatchedTransactions, >last og >lastClosed (accountId), GET /bank/reconciliation/match/count og matches/counter (bankReconciliationId), PUT /bank/reconciliation/match/:suggest (bankReconciliationId). reconciliationId på unmatched:csv er ikke merket påkrevd, men må sendes.",
+    "BankStatement (saldo, datoer, filnavn) og BankReconciliationPaymentType er skrivebeskyttet via API: kontoutskrifter opprettes kun via import og kan bare slettes; avstemmingens betalingstyper kan bare leses.",
+    "En bankavstemming hører til én hovedbokskonto + én regnskapsperiode (månedsperiode fra GET /ledger/accountingPeriod). Finn periode-id med startFrom/startTo (startTo ekskl.).",
+    "GET /bank/statement/transaction/{id}/details returnerer et fritt objekt (ResponseWrapperObject) fra bankfilen – feltene varierer mellom banker og formater."
+  ]
+}

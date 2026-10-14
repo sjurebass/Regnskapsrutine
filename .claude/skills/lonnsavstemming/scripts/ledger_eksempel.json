@@ -1,0 +1,619 @@
+{
+ "selskap": "Eksempel AS",
+ "orgnr": "999999999",
+ "periode": {
+  "termin": 1,
+  "forfall": "2026-03-15"
+ },
+ "kilde_a07": "A07: Skatteetaten avstemmingsinformasjon, 2026-01–2026-02",
+ "tripletex_id": "12345678",
+ "kilde_regnskap": "Regnskap: Tripletex, posteringer 2026-01-01–2026-03-01 (eksklusiv)",
+ "aga_sats": 14.1,
+ "feriepenger_sats": 0.12,
+ "balanser": [
+  {
+   "a": 1950,
+   "n": "Bankinnskudd for skattetrekk",
+   "ib": 69649,
+   "ch": -69649,
+   "ub": 0
+  },
+  {
+   "a": 2600,
+   "n": "Forskuddstrekk",
+   "ib": -69649,
+   "ch": 69649,
+   "ub": 0
+  },
+  {
+   "a": 2770,
+   "n": "Skyldig arbeidsgiveravgift",
+   "ib": -39703,
+   "ch": -5739,
+   "ub": -45442
+  },
+  {
+   "a": 2785,
+   "n": "Påløpt arbeidsgiveravgift på ferielønn",
+   "ib": -24156.39,
+   "ch": -5677.09,
+   "ub": -29833.48
+  },
+  {
+   "a": 2940,
+   "n": "Skyldig feriepenger",
+   "ib": -171322,
+   "ch": -40263.08,
+   "ub": -211585.08
+  },
+  {
+   "a": 5000,
+   "n": "Lønn til ansatte",
+   "ib": 0,
+   "ch": 335525.63,
+   "ub": 335525.63
+  },
+  {
+   "a": 5020,
+   "n": "Feriepenger",
+   "ib": 0,
+   "ch": 40263.08,
+   "ub": 40263.08
+  },
+  {
+   "a": 5400,
+   "n": "Arbeidsgiveravgift",
+   "ib": 0,
+   "ch": 48165.09,
+   "ub": 48165.09
+  },
+  {
+   "a": 5401,
+   "n": "Arbeidsgiveravgift av opptjente feriepenger",
+   "ib": 0,
+   "ch": 5677.09,
+   "ub": 5677.09
+  },
+  {
+   "a": 5945,
+   "n": "Pensjonsforsikring for ansatte",
+   "ib": 0,
+   "ch": 6070.81,
+   "ub": 6070.81
+  }
+ ],
+ "pensjon_historikk": [
+  [
+   "2026-01",
+   "",
+   2480.16,
+   "",
+   2480
+  ],
+  [
+   "2026-02",
+   "",
+   3590.65,
+   "",
+   3591
+  ]
+ ],
+ "posteringer": [
+  [
+   "2026-01-13",
+   "2",
+   5945,
+   "Pensjonsforsikring for ansatte",
+   "OTP innskuddspensjon",
+   2480.16
+  ],
+  [
+   "2026-01-15",
+   "500006",
+   2770,
+   "Skyldig arbeidsgiveravgift",
+   "Betaling: Terminoppgave november-desember 2025",
+   42426.0
+  ],
+  [
+   "2026-01-15",
+   "500007",
+   1950,
+   "Bankinnskudd for skattetrekk",
+   "Betaling: Terminoppgave november-desember 2025",
+   -69649.0
+  ],
+  [
+   "2026-01-15",
+   "500007",
+   2600,
+   "Forskuddstrekk",
+   "Betaling: Terminoppgave november-desember 2025",
+   69649.0
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   2600,
+   "Forskuddstrekk",
+   "Lønnsbilag 1-2026",
+   -17250.0
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   2600,
+   "Forskuddstrekk",
+   "Lønnsbilag 1-2026",
+   -11482.0
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   2600,
+   "Forskuddstrekk",
+   "Lønnsbilag 1-2026",
+   -21177.0
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   2770,
+   "Skyldig arbeidsgiveravgift",
+   "Lønnsbilag 1-2026",
+   -6756.25
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   2770,
+   "Skyldig arbeidsgiveravgift",
+   "Lønnsbilag 1-2026",
+   -7359.11
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   2770,
+   "Skyldig arbeidsgiveravgift",
+   "Lønnsbilag 1-2026",
+   -9400.0
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   2785,
+   "Påløpt arbeidsgiveravgift på ferielønn",
+   "Lønnsbilag 1-2026",
+   -810.75
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   2785,
+   "Påløpt arbeidsgiveravgift på ferielønn",
+   "Lønnsbilag 1-2026",
+   -883.09
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   2785,
+   "Påløpt arbeidsgiveravgift på ferielønn",
+   "Lønnsbilag 1-2026",
+   -1128.0
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   2940,
+   "Skyldig feriepenger",
+   "Lønnsbilag 1-2026",
+   -5750.0
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   2940,
+   "Skyldig feriepenger",
+   "Lønnsbilag 1-2026",
+   -6263.08
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   2940,
+   "Skyldig feriepenger",
+   "Lønnsbilag 1-2026",
+   -8000.0
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   5000,
+   "Lønn til ansatte",
+   "Lønnsbilag 1-2026",
+   47916.66
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   5000,
+   "Lønn til ansatte",
+   "Lønnsbilag 1-2026",
+   52192.3
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   5000,
+   "Lønn til ansatte",
+   "Lønnsbilag 1-2026",
+   66666.67
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   5020,
+   "Feriepenger",
+   "Lønnsbilag 1-2026",
+   5750.0
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   5020,
+   "Feriepenger",
+   "Lønnsbilag 1-2026",
+   6263.08
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   5020,
+   "Feriepenger",
+   "Lønnsbilag 1-2026",
+   8000.0
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   5400,
+   "Arbeidsgiveravgift",
+   "Lønnsbilag 1-2026",
+   6756.25
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   5400,
+   "Arbeidsgiveravgift",
+   "Lønnsbilag 1-2026",
+   7359.11
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   5400,
+   "Arbeidsgiveravgift",
+   "Lønnsbilag 1-2026",
+   9400.0
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   5401,
+   "Arbeidsgiveravgift av opptjente feriepenger",
+   "Lønnsbilag 1-2026",
+   810.75
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   5401,
+   "Arbeidsgiveravgift av opptjente feriepenger",
+   "Lønnsbilag 1-2026",
+   883.09
+  ],
+  [
+   "2026-01-23",
+   "500008",
+   5401,
+   "Arbeidsgiveravgift av opptjente feriepenger",
+   "Lønnsbilag 1-2026",
+   1128.0
+  ],
+  [
+   "2026-01-23",
+   "500016",
+   2600,
+   "Forskuddstrekk",
+   "Betaling: Lønnsbilag 1-2026",
+   49909.0
+  ],
+  [
+   "2026-01-31",
+   "22",
+   2770,
+   "Skyldig arbeidsgiveravgift",
+   "Pensjon januar EKSEMPEL AS (Oslo)",
+   -349.7
+  ],
+  [
+   "2026-01-31",
+   "22",
+   5400,
+   "Arbeidsgiveravgift",
+   "Pensjon januar EKSEMPEL AS (Oslo)",
+   349.7
+  ],
+  [
+   "2026-01-31",
+   "500024",
+   2770,
+   "Skyldig arbeidsgiveravgift",
+   "A-melding lønn januar 2026",
+   0.06
+  ],
+  [
+   "2026-01-31",
+   "500024",
+   7740,
+   "Øreavrunding",
+   "A-melding lønn januar 2026",
+   -0.06
+  ],
+  [
+   "2026-02-14",
+   "34",
+   5945,
+   "Pensjonsforsikring for ansatte",
+   "Faktura nummer F0004511038 fra DNB Livsforsikring AS",
+   3590.65
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   2600,
+   "Forskuddstrekk",
+   "Lønnsbilag 2-2026",
+   -17250.0
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   2600,
+   "Forskuddstrekk",
+   "Lønnsbilag 2-2026",
+   -11916.0
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   2600,
+   "Forskuddstrekk",
+   "Lønnsbilag 2-2026",
+   -21177.0
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   2770,
+   "Skyldig arbeidsgiveravgift",
+   "Lønnsbilag 2-2026",
+   -6756.25
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   2770,
+   "Skyldig arbeidsgiveravgift",
+   "Lønnsbilag 2-2026",
+   -7637.5
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   2770,
+   "Skyldig arbeidsgiveravgift",
+   "Lønnsbilag 2-2026",
+   -9400.0
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   2785,
+   "Påløpt arbeidsgiveravgift på ferielønn",
+   "Lønnsbilag 2-2026",
+   -810.75
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   2785,
+   "Påløpt arbeidsgiveravgift på ferielønn",
+   "Lønnsbilag 2-2026",
+   -916.5
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   2785,
+   "Påløpt arbeidsgiveravgift på ferielønn",
+   "Lønnsbilag 2-2026",
+   -1128.0
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   2940,
+   "Skyldig feriepenger",
+   "Lønnsbilag 2-2026",
+   -5750.0
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   2940,
+   "Skyldig feriepenger",
+   "Lønnsbilag 2-2026",
+   -6500.0
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   2940,
+   "Skyldig feriepenger",
+   "Lønnsbilag 2-2026",
+   -8000.0
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   5000,
+   "Lønn til ansatte",
+   "Lønnsbilag 2-2026",
+   47916.66
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   5000,
+   "Lønn til ansatte",
+   "Lønnsbilag 2-2026",
+   54166.67
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   5000,
+   "Lønn til ansatte",
+   "Lønnsbilag 2-2026",
+   66666.67
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   5020,
+   "Feriepenger",
+   "Lønnsbilag 2-2026",
+   5750.0
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   5020,
+   "Feriepenger",
+   "Lønnsbilag 2-2026",
+   6500.0
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   5020,
+   "Feriepenger",
+   "Lønnsbilag 2-2026",
+   8000.0
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   5400,
+   "Arbeidsgiveravgift",
+   "Lønnsbilag 2-2026",
+   6756.25
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   5400,
+   "Arbeidsgiveravgift",
+   "Lønnsbilag 2-2026",
+   7637.5
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   5400,
+   "Arbeidsgiveravgift",
+   "Lønnsbilag 2-2026",
+   9400.0
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   5401,
+   "Arbeidsgiveravgift av opptjente feriepenger",
+   "Lønnsbilag 2-2026",
+   810.75
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   5401,
+   "Arbeidsgiveravgift av opptjente feriepenger",
+   "Lønnsbilag 2-2026",
+   916.5
+  ],
+  [
+   "2026-02-25",
+   "500030",
+   5401,
+   "Arbeidsgiveravgift av opptjente feriepenger",
+   "Lønnsbilag 2-2026",
+   1128.0
+  ],
+  [
+   "2026-02-25",
+   "500031",
+   2600,
+   "Forskuddstrekk",
+   "Betaling: Lønnsbilag 2-2026",
+   50343.0
+  ],
+  [
+   "2026-02-28",
+   "40",
+   2770,
+   "Skyldig arbeidsgiveravgift",
+   "Pensjon februar EKSEMPEL AS (Oslo)",
+   -506.28
+  ],
+  [
+   "2026-02-28",
+   "40",
+   5400,
+   "Arbeidsgiveravgift",
+   "Pensjon februar EKSEMPEL AS (Oslo)",
+   506.28
+  ],
+  [
+   "2026-02-28",
+   "500041",
+   2770,
+   "Skyldig arbeidsgiveravgift",
+   "A-melding lønn februar 2026",
+   0.03
+  ],
+  [
+   "2026-02-28",
+   "500041",
+   7740,
+   "Øreavrunding",
+   "A-melding lønn februar 2026",
+   -0.03
+  ]
+ ],
+ "merknader": [
+  "Eksempel på merknad: IB 2770 er 2 723 lavere enn betalt terminoppgave – debetrest fra 2025."
+ ],
+ "merknader_kort": [
+  "IB 2770 2 723 lavere enn betalt forrige termin – rest fra 2025, ryddes ved årsslutt."
+ ],
+ "forklart": [
+  "Skyldig AGA",
+  "Betalt forrige termin"
+ ],
+ "trekkmodell": "Direkte-modell: trekk betales på lønnsdato",
+ "trekkmodell_1950": "Direkte-modell – 1950 ubrukt"
+}

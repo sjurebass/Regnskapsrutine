@@ -1,0 +1,82 @@
+{
+  "versjon": 1,
+  "dokument": {
+    "hva": "Avstemming 2740",
+    "tittel": "Avstemming 2740 Oppgjørskonto merverdiavgift",
+    "klient": "Eksempel AS",
+    "orgnr": "123 456 789",
+    "periode": "2026-T4",
+    "periode_tekst": "Termin 4 (juli–august 2026)",
+    "utarbeidet": "14.10.2026",
+    "utarbeidet_av": "AB"
+  },
+  "seksjoner": [
+    {
+      "id": "konklusjon",
+      "ark": "Avstemming 2740",
+      "boks": {
+        "type": "konkl",
+        "tekst": "**Konklusjon:** Saldo på 2740 per 31.08.2026 er -42 456,60, som er mva for termin 4. Tidligere terminer er betalt. Mva-meldingen for termin 4 stemmer med hovedboken bortsett fra en kjent avrundingsdifferanse på 1,60."
+      }
+    },
+    {
+      "id": "bevegelser",
+      "ark": "Avstemming 2740",
+      "overskrift": "Bevegelser på 2740 i 2026",
+      "tabell": {
+        "kolonner": [
+          {"id": "dato", "tekst": "Dato", "type": "dato", "bredde": 12},
+          {"id": "bilag", "tekst": "Bilag", "type": "heltall", "bredde": 10},
+          {"id": "tekst", "tekst": "Tekst", "type": "tekst", "bredde": 42},
+          {"id": "belop", "tekst": "Beløp", "type": "belop", "bredde": 15},
+          {"id": "saldo", "tekst": "Saldo", "type": "belop", "bredde": 15,
+           "lopende": {"start": -38215.00, "pluss": "belop"}}
+        ],
+        "ib": {"dato": "2026-01-01", "tekst": "Inngående saldo (mva termin 6 2025)"},
+        "rader": [
+          {"dato": "2026-02-10", "bilag": 1031, "tekst": "Betaling mva termin 6 2025", "belop": 38215.00},
+          {"dato": "2026-02-28", "bilag": 1068, "tekst": "Mva termin 1", "belop": -41980.00},
+          {"dato": "2026-04-10", "bilag": 1159, "tekst": "Betaling mva termin 1", "belop": 41980.00},
+          {"dato": "2026-04-30", "bilag": 1188, "tekst": "Mva termin 2", "belop": -45230.00},
+          {"dato": "2026-06-10", "bilag": 1234, "tekst": "Betaling mva termin 2", "belop": 45230.00},
+          {"dato": "2026-06-30", "bilag": 1270, "tekst": "Mva termin 3", "belop": -39875.00},
+          {"dato": "2026-08-31", "bilag": 1365, "tekst": "Betaling mva termin 3", "belop": 39875.00},
+          {"dato": "2026-08-31", "bilag": 1366, "tekst": "Mva termin 4", "belop": -42456.60}
+        ],
+        "sum": {"etikett": "Sum bevegelser ({n} posteringer)", "kolonner": ["belop"]},
+        "ub": {"dato": "2026-08-31", "tekst": "Utgående saldo per hovedbok", "verdi": -42456.60},
+        "kontrollsum": {
+          "tekst": "**Kontrollert:** inngående saldo {ib} + bevegelser {pluss} = utgående saldo {ub}, som stemmer med saldobalansen per 31.08.2026."
+        }
+      }
+    },
+    {
+      "id": "melding",
+      "ark": "Avstemming 2740",
+      "overskrift": "Kontroll av mva-melding termin 4 mot hovedbok",
+      "tabell": {
+        "kolonner": [
+          {"id": "post", "tekst": "Post", "type": "tekst", "bredde": 42},
+          {"id": "hovedbok", "tekst": "Hovedbok", "type": "belop", "bredde": 15},
+          {"id": "melding", "tekst": "Melding", "type": "belop", "bredde": 15},
+          {"id": "avvik", "tekst": "Avvik", "type": "belop", "bredde": 13},
+          {"id": "status", "tekst": "Status", "type": "status", "bredde": 12}
+        ],
+        "rader": [
+          ["Utgående mva 25 % (kode 3)", 52500.00, 52500.00, 0.00, "OK"],
+          ["Utgående mva 15 % (kode 31)", 1830.00, 1830.00, 0.00, "OK"],
+          ["Inngående mva 25 % (kode 1)", -11625.00, -11625.00, 0.00, "OK"],
+          ["Inngående mva 15 % (kode 11)", -248.40, -250.00, 1.60, "KJENT"]
+        ],
+        "sum": {"etikett": "Mva å betale termin 4", "kolonner": ["hovedbok", "melding", "avvik"]},
+        "uthev_avvik": true
+      },
+      "punkter": [
+        "Mva-melding termin 4 er sendt og synkronisert 10.10.2026.",
+        "Avrundingsdifferansen på kode 11 (1,60) er kjent fra tidligere terminer og uendret.",
+        "Skattekontoen per 14.10.2026: ingen utestående krav."
+      ],
+      "merknad": "Kilde: Tripletex hovedbok og mva-melding, Skatteetatens skattekonto. Ingen personopplysninger."
+    }
+  ]
+}

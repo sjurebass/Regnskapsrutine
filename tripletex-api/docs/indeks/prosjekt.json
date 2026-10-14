@@ -1,0 +1,1326 @@
+{
+  "group": "prosjekt",
+  "tags": [
+    {
+      "tag": "project",
+      "beskrivelse": "Kjerneressursen for prosjekter: søke, hente, opprette, oppdatere, lukke, slette og importere prosjekter og delprosjekter (timepris, fastpris, tilbud, internprosjekt).",
+      "nokkelord": [
+        "prosjekt",
+        "prosjekter",
+        "delprosjekt",
+        "underprosjekt",
+        "hovedprosjekt",
+        "prosjektnummer",
+        "prosjektleder",
+        "tilbud",
+        "internprosjekt",
+        "lukke prosjekt",
+        "avslutte prosjekt",
+        "opprette prosjekt",
+        "prosjektimport",
+        "project",
+        "mainproject",
+        "fixed price",
+        "prosjektoversikt",
+        "oppdrag",
+        "prosjektnr",
+        "prosjektstyring",
+        "byggeprosjekt",
+        "kundeoppdrag",
+        "prosjekttilbud",
+        "fastprisprosjekt",
+        "prosjektansvarlig"
+      ]
+    },
+    {
+      "tag": "project/{id}/actionList",
+      "beskrivelse": "Handlingsliste for ett prosjekt: hva som mangler eller må følges opp, blant annet ansatte som mangler personlig timepris.",
+      "nokkelord": [
+        "handlingsliste",
+        "oppfølging prosjekt",
+        "mangler timepris",
+        "manglende timesats",
+        "action list",
+        "todo prosjekt",
+        "gjøremål prosjekt",
+        "employees with missing hourly rate",
+        "sjekkliste prosjekt",
+        "varsler prosjekt",
+        "oppfolging prosjekt",
+        "gjoremal prosjekt",
+        "mangler fastpris",
+        "mangler budsjett",
+        "mangler fakturaplan",
+        "mangler internkost",
+        "missing hourly rate"
+      ]
+    },
+    {
+      "tag": "project/capacityPlan",
+      "beskrivelse": "Kapasitetsplan: budsjetterte mot faktisk førte timer per aktivitet og ansatt for et prosjekt i en periode.",
+      "nokkelord": [
+        "kapasitetsplan",
+        "kapasitetsplanlegging",
+        "ressursplan",
+        "bemanning",
+        "budsjetterte timer",
+        "planlagte timer",
+        "timebudsjett",
+        "belegg",
+        "capacity plan",
+        "capacityplan",
+        "resource planning",
+        "utnyttelse",
+        "timer mot budsjett"
+      ]
+    },
+    {
+      "tag": "project/resourcePlanBudget",
+      "beskrivelse": "Utgått (deprecated) ressursplan-endepunkt for planlagte timer per periode; bruk project/capacityPlan/budget i stedet.",
+      "nokkelord": [
+        "ressursplan",
+        "ressursplanlegging",
+        "resource plan",
+        "resourceplanbudget",
+        "planlagte timer",
+        "deprecated",
+        "utgått",
+        "bemanningsplan",
+        "utgatt"
+      ]
+    },
+    {
+      "tag": "project/category",
+      "beskrivelse": "Prosjektkategorier for å gruppere og rapportere prosjekter (f.eks. service, nybygg, rådgivning).",
+      "nokkelord": [
+        "prosjektkategori",
+        "prosjektkategorier",
+        "prosjekttype",
+        "kategori",
+        "gruppering prosjekter",
+        "project category",
+        "projectcategory",
+        "prosjektgruppe",
+        "klassifisering prosjekt"
+      ]
+    },
+    {
+      "tag": "project/dynamicControlForm",
+      "beskrivelse": "Dynamiske (egendefinerte) kontrollskjema på prosjekt, med action for å kopiere feltverdier fra sist redigerte skjema.",
+      "nokkelord": [
+        "kontrollskjema",
+        "dynamisk kontrollskjema",
+        "egenkontroll",
+        "sja",
+        "sikker jobbanalyse",
+        "sjekkliste",
+        "hms",
+        "dokumentasjon utført arbeid",
+        "control form",
+        "dynamic control form",
+        "kopier feltverdier",
+        "fdv",
+        "dokumentasjon utfort arbeid",
+        "forhåndsutfylle skjema",
+        "forhandsutfylle skjema"
+      ]
+    },
+    {
+      "tag": "project/orderline",
+      "beskrivelse": "Prosjektordrelinjer: varer, materiell, utlegg og budsjettlinjer knyttet til prosjektet som senere viderefaktureres til kunden.",
+      "nokkelord": [
+        "prosjektordrelinje",
+        "ordrelinje prosjekt",
+        "viderefakturering",
+        "videresalg",
+        "utlegg",
+        "materiell",
+        "varelinjer",
+        "påslag",
+        "fakturerbar",
+        "budsjettlinje",
+        "project order line",
+        "orderline",
+        "tilleggskostnader",
+        "merarbeid",
+        "vareforbruk prosjekt",
+        "paslag",
+        "utlegg viderefakturering",
+        "varekost prosjekt",
+        "prosjektvarer",
+        "materialer",
+        "materialforbruk"
+      ]
+    },
+    {
+      "tag": "project/participant",
+      "beskrivelse": "Prosjektdeltakere: hvilke ansatte som er med på prosjektet og om de har admin-tilgang (styrer også hvem som kan føre timer når prosjektet er kun for deltakere).",
+      "nokkelord": [
+        "prosjektdeltaker",
+        "prosjektdeltakere",
+        "deltaker",
+        "prosjektmedlem",
+        "prosjektteam",
+        "team",
+        "tilgang prosjekt",
+        "adminaccess",
+        "participant",
+        "legge til ansatt på prosjekt",
+        "fjerne ansatt fra prosjekt",
+        "prosjektmedarbeider",
+        "legge til ansatt pa prosjekt",
+        "medarbeider prosjekt",
+        "hvem er på prosjektet",
+        "hvem er pa prosjektet"
+      ]
+    },
+    {
+      "tag": "project/batchPeriod",
+      "beskrivelse": "Samlet (batch) uthenting av budsjettstatus og fakturareserve for mange prosjekter i én spørring.",
+      "nokkelord": [
+        "fakturareserve",
+        "budsjettstatus",
+        "alle prosjekter",
+        "batch",
+        "flere prosjekter",
+        "opptjent ikke fakturert",
+        "igangværende arbeid",
+        "varer i arbeid",
+        "wip",
+        "work in progress",
+        "periodisering",
+        "månedsavslutning",
+        "invoicing reserve",
+        "budget status",
+        "ufakturert",
+        "igangvaerende arbeid",
+        "manedsavslutning",
+        "opptjent inntekt",
+        "opptjent ikke fakturert inntekt",
+        "1530",
+        "årsoppgjør",
+        "arsoppgjor",
+        "periodiseringsgrunnlag",
+        "alle prosjekter samlet"
+      ]
+    },
+    {
+      "tag": "project/period",
+      "beskrivelse": "Periodetall for ett prosjekt: inntekt/kostnad (prosjektregnskap), månedsstatus, timelisterapport, fakturert, fakturareserve og budsjettstatus.",
+      "nokkelord": [
+        "prosjektregnskap",
+        "prosjektøkonomi",
+        "prosjektstatus",
+        "dekningsbidrag",
+        "db",
+        "lønnsomhet",
+        "utestående",
+        "fakturareserve",
+        "fakturerbare timer",
+        "ikke godkjente timer",
+        "månedsstatus",
+        "budsjettstatus",
+        "overall status",
+        "hourlist report",
+        "etterkalkyle",
+        "prosjektrapport",
+        "prosjektresultat",
+        "prosjektokonomi",
+        "lonnsomhet",
+        "utestaende",
+        "manedsstatus",
+        "faktureringsgrad",
+        "fakturerte timer",
+        "prosjektmargin",
+        "margin"
+      ]
+    },
+    {
+      "tag": "project/projectActivity",
+      "beskrivelse": "Kobling mellom prosjekt og aktivitet (prosjektaktivitet), med budsjett-timer, budsjettert timepris/honorar og start/slutt.",
+      "nokkelord": [
+        "prosjektaktivitet",
+        "aktivitet på prosjekt",
+        "knytte aktivitet",
+        "budsjett timer",
+        "budsjetthonorar",
+        "budsjettert timepris",
+        "prosjektspesifikk aktivitet",
+        "project activity",
+        "projectactivity",
+        "fase",
+        "arbeidspakke",
+        "lukke aktivitet",
+        "aktivitet pa prosjekt"
+      ]
+    },
+    {
+      "tag": "project/controlForm",
+      "beskrivelse": "Lesetilgang [BETA] til kontrollskjema registrert på et prosjekt (tittel, kommentar, utfylt, signaturkrav og signert).",
+      "nokkelord": [
+        "kontrollskjema",
+        "egenkontroll",
+        "sjekkliste",
+        "signert",
+        "utfylt",
+        "ferdigmelding",
+        "samsvarserklæring",
+        "control form",
+        "controlform",
+        "hms",
+        "dokumentasjon",
+        "samsvarserklaering",
+        "fg-skjema",
+        "sluttkontroll"
+      ]
+    },
+    {
+      "tag": "project/controlFormType",
+      "beskrivelse": "Typer kontrollskjema som finnes i selskapet (kan kreves før fakturering eller timeføring).",
+      "nokkelord": [
+        "kontrollskjematype",
+        "skjematype",
+        "kontrollskjema",
+        "maler kontrollskjema",
+        "control form type",
+        "controlformtype",
+        "påkrevd skjema",
+        "sjekklistetyper",
+        "pakrevd skjema"
+      ]
+    },
+    {
+      "tag": "project/hourlyRates",
+      "beskrivelse": "Timepriser på prosjekt: timeprismodell (forhåndsdefinerte, prosjektspesifikke eller fast timepris) med gyldighet fra dato.",
+      "nokkelord": [
+        "timepris",
+        "timesats",
+        "timepriser",
+        "honorar",
+        "fast timepris",
+        "prosjektspesifikke timepriser",
+        "forhåndsdefinerte timepriser",
+        "timeprismodell",
+        "hourly rate",
+        "hourlyrates",
+        "fixedrate",
+        "prisendring",
+        "fakturasats",
+        "timerate",
+        "timepris prosjekt",
+        "forhandsdefinerte timepriser",
+        "timeprisregulering",
+        "indeksregulering",
+        "prisregulering",
+        "timepris fra dato",
+        "timepriser prosjekt"
+      ]
+    },
+    {
+      "tag": "project/hourlyRates/projectSpecificRates",
+      "beskrivelse": "Prosjektspesifikke timepriser per ansatt og/eller aktivitet, inkl. kostprosent, under en prosjekttimepris med modellen TYPE_PROJECT_SPECIFIC_HOURLY_RATES.",
+      "nokkelord": [
+        "personlig timepris",
+        "timepris per ansatt",
+        "timepris per aktivitet",
+        "prosjektspesifikk sats",
+        "kostpris time",
+        "internkost",
+        "hourlycostpercentage",
+        "project specific rate",
+        "projectspecificrates",
+        "timesats ansatt",
+        "differensiert timepris"
+      ]
+    },
+    {
+      "tag": "project/subcontract",
+      "beskrivelse": "Underleverandører/underentrepriser på prosjektet med budsjett for honorar, utgifter, inntekt og netto.",
+      "nokkelord": [
+        "underleverandør",
+        "underentreprise",
+        "underentreprenør",
+        "ue",
+        "innleid",
+        "subcontract",
+        "sub-contract",
+        "leverandør prosjekt",
+        "budsjett underleverandør",
+        "innkjøp prosjekt",
+        "entreprise",
+        "underleverandor",
+        "underentreprenor",
+        "leverandor prosjekt",
+        "budsjett underleverandor",
+        "innkjop prosjekt",
+        "innleid arbeid",
+        "innleie",
+        "ue-kostnad"
+      ]
+    },
+    {
+      "tag": "project/settings",
+      "beskrivelse": "Selskapsinnstillinger for prosjektmodulen: nummerering, godkjenning av timer, fastpris-beregning, kontrollskjemakrav, kapasitetsplan m.m.",
+      "nokkelord": [
+        "prosjektinnstillinger",
+        "innstillinger prosjekt",
+        "oppsett prosjektmodul",
+        "godkjenne timer",
+        "automatisk prosjektnummer",
+        "fastprisberegning",
+        "fullføringsgrad",
+        "project settings",
+        "timeprismodell standard",
+        "lukke fakturerte prosjekter",
+        "viderefakturering standard",
+        "nho",
+        "fullforingsgrad",
+        "timegodkjenning",
+        "godkjenning timer",
+        "prosjektnummerering",
+        "nkode"
+      ]
+    },
+    {
+      "tag": "project/task",
+      "beskrivelse": "Utgått (deprecated) liste over oppgaver per prosjekt; bruk GET /task i stedet.",
+      "nokkelord": [
+        "prosjektoppgave",
+        "oppgaver prosjekt",
+        "project task",
+        "deprecated",
+        "utgått",
+        "gjøremål",
+        "task",
+        "utgatt",
+        "gjoremal"
+      ]
+    },
+    {
+      "tag": "project/template",
+      "beskrivelse": "Prosjektmaler med standardverdier (kategori, prosjektleder, timepriser, fastpris m.m.) som leses via id og brukes som utgangspunkt ved oppretting av nye prosjekter.",
+      "nokkelord": [
+        "prosjektmal",
+        "mal",
+        "template",
+        "project template",
+        "standardprosjekt",
+        "kopiere prosjekt",
+        "maloppsett"
+      ]
+    },
+    {
+      "tag": "task",
+      "beskrivelse": "Oppgaver (tasks) på tvers av prosjekter og kunder med status, prioritet, eier, datoer og budsjett-timer – kun lesing via API-et.",
+      "nokkelord": [
+        "oppgave",
+        "oppgaver",
+        "gjøremål",
+        "task",
+        "tasks",
+        "oppgaveliste",
+        "frister",
+        "ansvarlig",
+        "eier",
+        "status oppgave",
+        "prioritet",
+        "planlegging",
+        "arbeidsordre",
+        "todo",
+        "oppgaver per kunde",
+        "gjoremal",
+        "oppgavestatus",
+        "oppgaveeier",
+        "deadline",
+        "frist"
+      ]
+    },
+    {
+      "tag": "activity",
+      "beskrivelse": "Aktiviteter som timer føres på (generelle, generelle prosjektaktiviteter, prosjektspesifikke og oppgaver), inkl. fakturerbar og timesats.",
+      "nokkelord": [
+        "aktivitet",
+        "aktiviteter",
+        "timeaktivitet",
+        "fakturerbar",
+        "ikke fakturerbar",
+        "generell aktivitet",
+        "prosjektaktivitet",
+        "fraværsaktivitet",
+        "activity",
+        "activities",
+        "timeføring",
+        "timeregistrering",
+        "aktivitetsnummer",
+        "chargeable",
+        "timekode",
+        "arbeidstype",
+        "fravaersaktivitet",
+        "timeforing",
+        "fraværskode",
+        "fravaerskode",
+        "timepris aktivitet",
+        "aktivitetssats"
+      ]
+    },
+    {
+      "tag": "activity/category",
+      "beskrivelse": "Aktivitetskategorier (brukes blant annet til å gruppere og filtrere oppgaver).",
+      "nokkelord": [
+        "aktivitetskategori",
+        "aktivitetskategorier",
+        "kategori aktivitet",
+        "activity category",
+        "oppgavekategori",
+        "gruppering aktiviteter"
+      ]
+    }
+  ],
+  "oppgaver": [
+    {
+      "oppgave": "Søke opp prosjekter (åpne, lukkede, per kunde, prosjektleder eller avdeling)",
+      "nokkelord": [
+        "finn prosjekt",
+        "søk prosjekt",
+        "liste prosjekter",
+        "åpne prosjekter",
+        "aktive prosjekter",
+        "lukkede prosjekter",
+        "prosjekter for kunde",
+        "prosjektnummer",
+        "prosjektoversikt",
+        "prosjektliste",
+        "project search",
+        "prosjekt id",
+        "sok prosjekt",
+        "apne prosjekter",
+        "prosjekter for ansatt",
+        "mine prosjekter",
+        "prosjekter per prosjektleder",
+        "finne prosjektnummer"
+      ],
+      "kall": [
+        "GET /project",
+        "GET /project/{id}",
+        "GET /project/number/{number}",
+        "GET /customer"
+      ],
+      "fremgangsmate": "1) Har du prosjektnummeret: GET /project/number/{number}. Ellers GET /project med filtre: name (inneholder), number (eksakt), customerId (finn kunde-id via GET /customer?customerName=...), projectManagerId, departmentId, isClosed=false for åpne (legg til includeRecentlyClosed=true for å få med de som er lukket siste 3 mnd), isOffer=false for å utelate tilbud, isFixedPrice, employeeInProjectId (prosjekter en ansatt deltar i), customerAccountManagerId, externalAccountsNumber, startDateFrom/To og endDateFrom/To (To er eksklusiv). 2) Bruk fields=id,number,name,displayName,customer(id,name),projectManager(id),startDate,endDate,isClosed,isFixedPrice,mainProject(id) og count/from for paging. 3) Detaljer: GET /project/{id}. Unngå å skrive ut navn på prosjektleder (GDPR) – bruk initialer. Standard count er 1000 – sjekk fullResultSize og bla med from/count ved store klienter.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette nytt prosjekt for en kunde (timepris eller fastpris)",
+      "nokkelord": [
+        "opprett prosjekt",
+        "nytt prosjekt",
+        "lage prosjekt",
+        "registrere prosjekt",
+        "starte prosjekt",
+        "fastprisprosjekt",
+        "timeprisprosjekt",
+        "prosjekt på kunde",
+        "new project",
+        "create project",
+        "oppdrag",
+        "prosjekt pa kunde",
+        "prosjekttilbud",
+        "opprette tilbud",
+        "internprosjekt"
+      ],
+      "kall": [
+        "GET /customer",
+        "GET /employee",
+        "GET /project/category",
+        "GET /department",
+        "GET /project/settings",
+        "POST /project"
+      ],
+      "fremgangsmate": "1) Finn kunde-id (GET /customer?customerName=...&fields=id,name) og prosjektleder-id (GET /employee?assignableProjectManagers=true&fields=id – minimalt av hensyn til GDPR). 2) Valgfritt: kategori (GET /project/category), avdeling (GET /department). 3) POST /project med body (spec markerer ingen felt som påkrevd, men i praksis kreves name, projectManager og startDate) {name, projectManager:{id}, customer:{id}, startDate (yyyy-MM-dd), isFixedPrice:true/false, fixedprice (ved fastpris), isInternal, projectCategory:{id}, department:{id}, invoiceComment, reference}. number kan utelates – da genereres det automatisk (se autoGenerateProjectNumber i GET /project/settings). isOffer=true lager et tilbud i stedet for prosjekt. 4) Returnerer prosjekt med id – bruk denne videre til aktiviteter, timepriser og deltakere. Skrivende: bekreft med bruker først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Opprette delprosjekt (underprosjekt) under et hovedprosjekt",
+      "nokkelord": [
+        "delprosjekt",
+        "underprosjekt",
+        "hovedprosjekt",
+        "prosjekthierarki",
+        "subproject",
+        "mainproject",
+        "fase",
+        "etappe"
+      ],
+      "kall": [
+        "GET /project",
+        "POST /project"
+      ],
+      "fremgangsmate": "1) Finn hovedprosjektets id (GET /project?number=... eller name=...). 2) POST /project med mainProject:{id: <hovedprosjekt>}, name, projectManager:{id}, startDate, og ev. samme customer. 3) Delprosjekter kan senere summeres i rapporter, f.eks. GET /balanceSheet?projectId=...&includeSubProjects=true. Skrivende.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Endre prosjekt (prosjektleder, datoer, fastpris, fakturakommentar, klar til fakturering)",
+      "nokkelord": [
+        "endre prosjekt",
+        "oppdatere prosjekt",
+        "bytte prosjektleder",
+        "ny sluttdato",
+        "endre fastpris",
+        "klar til fakturering",
+        "fakturakommentar",
+        "prisloft",
+        "rabatt prosjekt",
+        "update project",
+        "forfall prosjekt",
+        "fakturamottaker prosjekt"
+      ],
+      "kall": [
+        "GET /project/{id}",
+        "PUT /project/{id}",
+        "PUT /project/list"
+      ],
+      "fremgangsmate": "1) GET /project/{id}?fields=id,version,name,... for å få gjeldende version. 2) PUT /project/{id} [BETA] med id, version og feltene som endres, f.eks. projectManager:{id}, endDate, fixedprice, isPriceCeiling/priceCeilingAmount, discountPercentage, markUpOrderLines, invoiceComment, isReadyForInvoicing=true, invoiceDueDate + invoiceDueDateType (DAYS|MONTHS|RECURRING_DAY_OF_MONTH), invoiceReceiverEmail. 3) Mange prosjekter samtidig: PUT /project/list med liste av prosjekter (hver med id+version). Feil version gir 409 – hent på nytt. Skrivende.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Avslutte (lukke) prosjekt eller gjenåpne det",
+      "nokkelord": [
+        "lukke prosjekt",
+        "avslutte prosjekt",
+        "stenge prosjekt",
+        "ferdigstille prosjekt",
+        "gjenåpne prosjekt",
+        "arkivere prosjekt",
+        "close project",
+        "isclosed",
+        "ferdig prosjekt",
+        "gjenapne prosjekt"
+      ],
+      "kall": [
+        "GET /project/{id}",
+        "PUT /project/{id}",
+        "GET /project/{id}/period/invoicingReserve",
+        "PUT /project/list"
+      ],
+      "fremgangsmate": "1) Sjekk først at alt er fakturert: GET /project/{id}/period/invoicingReserve?dateFrom=<prosjektstart>&dateTo=<dagen etter siste dag, dateTo er eksklusiv> – invoiceReserveTotalAmountCurrency bør være 0 (feltet finnes også read-only på GET /project/{id}). 2) GET /project/{id}?fields=id,version,isClosed. 3) PUT /project/{id} med id, version, isClosed=true (og ev. endDate). Gjenåpne med isClosed=false. Flere: PUT /project/list. Lukk heller enn å slette prosjekter som har timer/bilag. Skrivende.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slette prosjekt(er)",
+      "nokkelord": [
+        "slette prosjekt",
+        "fjerne prosjekt",
+        "delete project",
+        "slette flere prosjekter",
+        "rydde prosjekter",
+        "feilregistrert prosjekt"
+      ],
+      "kall": [
+        "DELETE /project/{id}",
+        "DELETE /project/list",
+        "DELETE /project"
+      ],
+      "fremgangsmate": "Én: DELETE /project/{id} [BETA]. Flere: DELETE /project/list?ids=1,2,3 [BETA] eller DELETE /project med body-liste av prosjekter. Sletting feiler typisk med valideringsfeil (422) hvis prosjektet har timer, bilag, ordre eller fakturaer – da bør prosjektet lukkes (isClosed=true) i stedet. Irreversibelt – krever eksplisitt bekreftelse fra bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Opprette mange prosjekter samtidig eller importere prosjekter fra fil (Excel/CSV)",
+      "nokkelord": [
+        "masseopprette prosjekter",
+        "importere prosjekter",
+        "prosjektimport",
+        "excel import",
+        "csv import",
+        "bulk prosjekt",
+        "flere prosjekter",
+        "migrering prosjekter",
+        "konvertering",
+        "import project"
+      ],
+      "kall": [
+        "POST /project/list",
+        "POST /project/import"
+      ],
+      "fremgangsmate": "JSON: POST /project/list [BETA] med en liste av Project-objekter (samme felt som POST /project). Fil: POST /project/import som multipart/form-data med feltet file, og query fileFormat=XLS|CSV (påkrevd), ev. encoding, delimiter og ignoreFirstRow=true når første rad er overskrift. Test gjerne på én rad først. Skrivende.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente og vedlikeholde prosjektkategorier",
+      "nokkelord": [
+        "prosjektkategori",
+        "ny kategori",
+        "endre kategori",
+        "kategorier prosjekt",
+        "prosjekttype",
+        "project category"
+      ],
+      "kall": [
+        "GET /project/category",
+        "GET /project/category/{id}",
+        "POST /project/category",
+        "PUT /project/category/{id}"
+      ],
+      "fremgangsmate": "Liste: GET /project/category (filtre id, name, number, description; fields=id,number,name). Ny: POST /project/category {name, number, description}. Endre: GET /project/category/{id} for version, deretter PUT /project/category/{id}. Kategorier brukes normalt bare når projectCategories=true i /project/settings. Ingen DELETE finnes i API-et. POST/PUT er skrivende.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Liste aktiviteter (fakturerbare, generelle, prosjektaktiviteter, fravær)",
+      "nokkelord": [
+        "aktiviteter",
+        "liste aktiviteter",
+        "timeaktiviteter",
+        "fakturerbare aktiviteter",
+        "ikke fakturerbare",
+        "fraværsaktiviteter",
+        "generelle aktiviteter",
+        "activity list",
+        "timekoder",
+        "aktivitetskategori",
+        "fravaersaktiviteter"
+      ],
+      "kall": [
+        "GET /activity",
+        "GET /activity/{id}",
+        "GET /activity/category/list",
+        "GET /activity/category/{id}"
+      ],
+      "fremgangsmate": "GET /activity med filtre name, number, isChargeable, isProjectActivity, isGeneral, isTask, isInactive=false, absence=true (fravær); fields=id,number,name,isChargeable,rate,isProjectActivity,isGeneral,isTask. Enkelt: GET /activity/{id}. Aktivitetskategorier: GET /activity/category/list eller /activity/category/{id} (brukes f.eks. som activityCategoryId på GET /task).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Opprette ny aktivitet (generell eller generell prosjektaktivitet)",
+      "nokkelord": [
+        "ny aktivitet",
+        "opprette aktivitet",
+        "lage timeaktivitet",
+        "fakturerbar aktivitet",
+        "ny timekode",
+        "create activity",
+        "generell prosjektaktivitet"
+      ],
+      "kall": [
+        "POST /activity",
+        "POST /activity/list"
+      ],
+      "fremgangsmate": "POST /activity med {name, number, activityType, isChargeable, rate, costPercentage, description}. activityType: GENERAL_ACTIVITY (generell, ikke prosjekt), PROJECT_GENERAL_ACTIVITY (kan brukes på alle prosjekter), TASK. PROJECT_SPECIFIC_ACTIVITY kan IKKE lages her – den lages via POST /project/projectActivity med en ny activity inni. Flere samtidig: POST /activity/list. Ingen PUT/DELETE for /activity i API-et – feilregistrerte aktiviteter må rettes i Tripletex-GUI. isProjectActivity/isGeneral/isTask er read-only og styres av activityType. Skrivende.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Knytte aktivitet til prosjekt med budsjett (prosjektaktivitet)",
+      "nokkelord": [
+        "knytte aktivitet til prosjekt",
+        "prosjektaktivitet",
+        "legg til aktivitet på prosjekt",
+        "budsjett timer aktivitet",
+        "budsjetthonorar",
+        "prosjektspesifikk aktivitet",
+        "fjern aktivitet fra prosjekt",
+        "lukke aktivitet",
+        "fase prosjekt",
+        "legg til aktivitet pa prosjekt"
+      ],
+      "kall": [
+        "GET /activity",
+        "POST /project/projectActivity",
+        "GET /project/projectActivity/{id}",
+        "DELETE /project/projectActivity/{id}",
+        "DELETE /project/projectActivity/list",
+        "GET /project/{id}",
+        "PUT /project/{id}"
+      ],
+      "fremgangsmate": "1) Finn aktivitet (GET /activity?isProjectActivity=true) – eller send en ny aktivitet inline. 2) POST /project/projectActivity {project:{id}, activity:{id} (eller activity:{name, activityType:'PROJECT_SPECIFIC_ACTIVITY', isChargeable}), startDate, endDate, budgetHours, budgetHourlyRateCurrency, budgetFeeCurrency}. 3) Se prosjektets aktiviteter: GET /project/{id}?fields=projectActivities(id,activity(id,name),budgetHours,isClosed). 4) Fjern: DELETE /project/projectActivity/{id} eller /list?ids=... (feiler normalt hvis timer er ført). Det finnes ingen PUT /project/projectActivity/{id}; endring av budsjett/isClosed på en eksisterende prosjektaktivitet må ev. gjøres via PUT /project/{id} med projectActivities (id+version) – test i sandbox først. Skrivende.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Finne hvilke prosjekter og aktiviteter en ansatt kan føre timer på en gitt dag",
+      "nokkelord": [
+        "hvilke prosjekter kan jeg føre timer på",
+        "timeføring",
+        "timeregistrering",
+        "føre timer",
+        "tilgjengelige aktiviteter",
+        "timeliste",
+        "for timesheet",
+        "prosjekter for timeføring",
+        "registrere timer prosjekt",
+        "hvilke prosjekter kan jeg fore timer pa",
+        "timeforing",
+        "fore timer",
+        "prosjekter for timeforing"
+      ],
+      "kall": [
+        "GET /project/>forTimeSheet",
+        "GET /activity/>forTimeSheet",
+        "GET /timesheet/entry/>recentProjects"
+      ],
+      "fremgangsmate": "1) GET /project/>forTimeSheet?date=yyyy-MM-dd (employeeId valgfri, standard er token-eier; includeProjectOffers=true tar med tilbud). 2) GET /activity/>forTimeSheet?projectId=<id>&date=... (projectId er påkrevd; filterExistingHours=true skjuler aktiviteter med timer allerede; query= for tekstsøk). 3) Nylig brukte prosjekter: GET /timesheet/entry/>recentProjects (employeeId valgfri). 4) Selve timeføringen skjer med POST /timesheet/entry i timer-gruppen (skrivende – bekreft først). Stier med '>' må ev. URL-kodes som %3E. Timeføring er personopplysning – bruk fields= minimalt.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Legge til eller fjerne prosjektdeltakere",
+      "nokkelord": [
+        "prosjektdeltaker",
+        "legg til ansatt på prosjekt",
+        "fjerne deltaker",
+        "prosjektteam",
+        "prosjektmedlemmer",
+        "tilgang til prosjekt",
+        "admin tilgang prosjekt",
+        "participant",
+        "kun deltakere kan føre timer",
+        "legg til ansatt pa prosjekt",
+        "kun deltakere kan fore timer"
+      ],
+      "kall": [
+        "GET /project/{id}",
+        "GET /employee",
+        "POST /project/participant",
+        "POST /project/participant/list",
+        "GET /project/participant/{id}",
+        "PUT /project/participant/{id}",
+        "DELETE /project/participant/list"
+      ],
+      "fremgangsmate": "1) Se deltakere: GET /project/{id}?fields=participants(id,employee(id),adminAccess) – hent ikke navn/e-post med mindre nødvendig (GDPR). 2) Finn ansatt-id via GET /employee?fields=id (minimalt). 3) Legg til: POST /project/participant {project:{id}, employee:{id}, adminAccess:false} eller POST /project/participant/list for flere [BETA]. 4) Endre admin-tilgang: GET /project/participant/{id} for version, PUT /project/participant/{id}. 5) Fjern: DELETE /project/participant/list?ids=<deltaker-ider> (ikke ansatt-ider; det finnes ingen DELETE /project/participant/{id}) Relevant når prosjektet har forParticipantsOnly=true. Skrivende.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sette eller endre timepriser på prosjekt (fast timepris, forhåndsdefinerte eller prosjektspesifikke)",
+      "nokkelord": [
+        "timepris prosjekt",
+        "sette timepris",
+        "endre timepris",
+        "ny timesats",
+        "prisjustering",
+        "fast timepris",
+        "honorarsats",
+        "timeprismodell",
+        "hourly rate",
+        "timepris fra dato",
+        "indeksregulering timepris"
+      ],
+      "kall": [
+        "GET /project/hourlyRates",
+        "GET /project/hourlyRates/{id}",
+        "POST /project/hourlyRates",
+        "POST /project/hourlyRates/list",
+        "PUT /project/hourlyRates/{id}",
+        "PUT /project/hourlyRates/list",
+        "PUT /project/hourlyRates/updateOrAddHourRates"
+      ],
+      "fremgangsmate": "1) Se eksisterende: GET /project/hourlyRates?projectId=<id>&fields=id,version,startDate,hourlyRateModel,fixedRate,showInProjectOrder (filter type=TYPE_FIXED_HOURLY_RATE osv., startDateFrom/To). 2) Ny sats fra dato: POST /project/hourlyRates {project:{id}, startDate, hourlyRateModel: TYPE_FIXED_HOURLY_RATE + fixedRate | TYPE_PREDEFINED_HOURLY_RATES (bruker aktivitets-/ansattsatser) | TYPE_PROJECT_SPECIFIC_HOURLY_RATES + projectSpecificRates[], showInProjectOrder}. 3) Endre: PUT /project/hourlyRates/{id} (med version) eller /list for flere. 4) Samme sats på mange prosjekter: PUT /project/hourlyRates/updateOrAddHourRates?ids=<prosjekt-ider> med HourlyRate-body {startDate, hourlyRateModel, fixedRate}. Skrivende.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Slette timepriser på prosjekt",
+      "nokkelord": [
+        "slette timepris",
+        "fjerne timesats",
+        "feil timepris",
+        "delete hourly rate",
+        "rydde timepriser"
+      ],
+      "kall": [
+        "DELETE /project/hourlyRates/{id}",
+        "DELETE /project/hourlyRates/list",
+        "DELETE /project/hourlyRates/deleteByProjectIds"
+      ],
+      "fremgangsmate": "Én: DELETE /project/hourlyRates/{id}. Flere: DELETE /project/hourlyRates/list?ids=<timepris-ider>. Per prosjekt: DELETE /project/hourlyRates/deleteByProjectIds?ids=<prosjekt-ider>&date=yyyy-MM-dd (begge påkrevd; spec dokumenterer ikke nøyaktig hvilke satser date avgrenser til, så list satsene før/etter med GET /project/hourlyRates?projectId=... og test i sandbox). Irreversibelt – bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Sette personlige/aktivitetsspesifikke timepriser og finne ansatte som mangler timepris",
+      "nokkelord": [
+        "timepris per ansatt",
+        "personlig timepris",
+        "timepris per aktivitet",
+        "mangler timepris",
+        "kostprosent",
+        "internkost timer",
+        "prosjektspesifikke timepriser",
+        "project specific rate",
+        "handlingsliste"
+      ],
+      "kall": [
+        "GET /project/{id}/actionList/employeesWithMissingHourlyRate",
+        "GET /project/hourlyRates",
+        "GET /project/hourlyRates/projectSpecificRates",
+        "GET /project/hourlyRates/projectSpecificRates/{id}",
+        "POST /project/hourlyRates/projectSpecificRates",
+        "POST /project/hourlyRates/projectSpecificRates/list",
+        "PUT /project/hourlyRates/projectSpecificRates/{id}",
+        "PUT /project/hourlyRates/projectSpecificRates/list",
+        "DELETE /project/hourlyRates/projectSpecificRates/{id}",
+        "DELETE /project/hourlyRates/projectSpecificRates/list"
+      ],
+      "fremgangsmate": "1) Hvem mangler sats: GET /project/{id}/actionList/employeesWithMissingHourlyRate (returnerer id, displayName, canSetHourlyRate – vis ikke navn videre, bruk «ansatt 1/2»). 2) Finn prosjektets timepris-id med modell TYPE_PROJECT_SPECIFIC_HOURLY_RATES: GET /project/hourlyRates?projectId=...&type=TYPE_PROJECT_SPECIFIC_HOURLY_RATES. 3) Se eksisterende: GET /project/hourlyRates/projectSpecificRates?projectHourlyRateId=...(&employeeId, activityId). 4) Opprett: POST /project/hourlyRates/projectSpecificRates {projectHourlyRate:{id}, employee:{id} og/eller activity:{id}, hourlyRate, hourlyCostPercentage} – /list for flere. 5) Endre med PUT (version), slett med DELETE /{id} eller /list?ids=. Timepris per ansatt kan være sensitiv – fields= minimalt. Skrivende.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Se handlingslisten (hva som mangler) for et prosjekt",
+      "nokkelord": [
+        "handlingsliste",
+        "hva mangler på prosjektet",
+        "oppfølging",
+        "action list",
+        "sjekkliste prosjekt",
+        "gjøremål prosjekt",
+        "hva mangler pa prosjektet",
+        "oppfolging",
+        "gjoremal prosjekt",
+        "mangler fastpris",
+        "mangler budsjett",
+        "mangler fakturaplan",
+        "prosjektkontroll"
+      ],
+      "kall": [
+        "GET /project/{id}/actionList",
+        "GET /project/{id}/actionList/employeesWithMissingHourlyRate"
+      ],
+      "fremgangsmate": "GET /project/{id}/actionList returnerer en liste med kodeverdier for hva som mangler: MISSING_FIXED_PRICE, MISSING_FIXED_HOURLY_RATE, EMPLOYEES_MISSING_HOURLY_RATE, EMPLOYEES_MISSING_HOURLY_COST, MISSING_PROJECT_SPECIFIC_RATES, MISSING_BUDGET, MISSING_INVOICE_PLAN. For EMPLOYEES_MISSING_HOURLY_RATE: GET /project/{id}/actionList/employeesWithMissingHourlyRate (id, displayName, canSetHourlyRate – vis ikke navn, bruk «ansatt 1/2»). Kun lesing. Gå så videre til timepris-/budsjett-oppgavene for å rette opp.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente prosjektregnskap: inntekter, kostnader og dekningsbidrag for en periode",
+      "nokkelord": [
+        "prosjektregnskap",
+        "prosjektøkonomi",
+        "lønnsomhet prosjekt",
+        "dekningsbidrag",
+        "db prosjekt",
+        "inntekt og kostnad",
+        "resultat per prosjekt",
+        "etterkalkyle",
+        "prosjektrapport",
+        "margin prosjekt",
+        "månedsstatus prosjekt",
+        "overall status",
+        "prosjektokonomi",
+        "lonnsomhet prosjekt",
+        "manedsstatus prosjekt"
+      ],
+      "kall": [
+        "GET /project/{id}/period/overallStatus",
+        "GET /project/{id}/period/monthlyStatus",
+        "GET /project/{id}"
+      ],
+      "fremgangsmate": "1) Totalt for periode: GET /project/{id}/period/overallStatus?dateFrom=yyyy-MM-dd&dateTo=yyyy-MM-dd (dateTo eksklusiv) → income, costs, totalFeeCurrency (honorar av timer), totalHourCostCurrency (internkost timer), totalTravelExpensesCurrency, totalTravelIncomeCurrency. DB = income − costs. 2) Per måned: GET /project/{id}/period/monthlyStatus – OBS avvikende datoregler: dateFrom rundes til første dag i måneden, dateTo rundes til siste dag i måneden og er INKLUSIV, og dateTo må være i samme år som dateFrom (del opp over årsskifte) → liste med income, costs, dateFrom, dateTo per måned. 3) GET /project/{id}?fields=contributionMarginPercent gir DB-% fra Tripletex. For tall fra hovedboka, se oppgaven om prosjektposteringer.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente posteringer, hovedbok og saldobalanse per prosjekt (prosjekt som dimensjon)",
+      "nokkelord": [
+        "posteringer prosjekt",
+        "hovedbok prosjekt",
+        "saldobalanse prosjekt",
+        "resultat per prosjekt",
+        "prosjektdimensjon",
+        "kostnader på prosjekt",
+        "bilag på prosjekt",
+        "prosjektregnskap hovedbok",
+        "inkludert delprosjekter",
+        "ledger project",
+        "kostnader pa prosjekt",
+        "bilag pa prosjekt"
+      ],
+      "kall": [
+        "GET /ledger/posting",
+        "GET /ledger",
+        "GET /balanceSheet",
+        "GET /travelExpense"
+      ],
+      "fremgangsmate": "1) Enkeltposteringer: GET /ledger/posting?dateFrom=...&dateTo=...&projectId=<id> (dateFrom/dateTo påkrevd, dateTo eksklusiv; fields=id,date,account(number,name),amount,description,voucher(number)). 2) Hovedbok gruppert på konto: GET /ledger?dateFrom&dateTo&projectId. 3) Saldobalanse/resultat per prosjekt: GET /balanceSheet?dateFrom&dateTo&projectId=<id>&includeSubProjects=true (eller projectIds=1,2,3), accountNumberFrom=3000&accountNumberTo=8999 for resultatkontoer. 4) Reiseregninger på prosjektet: GET /travelExpense?projectId=... (personopplysning – fields= minimalt).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Timelisterapport for prosjekt: fakturerbare, ikke fakturerbare og ikke godkjente timer",
+      "nokkelord": [
+        "timer på prosjekt",
+        "timeliste prosjekt",
+        "timerapport",
+        "fakturerbare timer",
+        "ikke fakturerbare timer",
+        "ikke godkjente timer",
+        "godkjent men ikke fakturert",
+        "registrerte timer",
+        "hourlist report",
+        "timeforbruk",
+        "medgåtte timer",
+        "timer pa prosjekt",
+        "medgatte timer"
+      ],
+      "kall": [
+        "GET /project/{id}/period/hourlistReport",
+        "GET /timesheet/entry"
+      ],
+      "fremgangsmate": "1) Sammendrag: GET /project/{id}/period/hourlistReport?dateFrom=...&dateTo=... (begge påkrevd, dateTo eksklusiv) → registeredHours, chargeableHours, nonChargeableHours, approvedButUnchargedHours, nonApprovedHours. 2) Detaljer ved behov: GET /timesheet/entry?projectId=<id>&dateFrom&dateTo&fields=date,hours,activity(name),chargeable (dateFrom/dateTo påkrevd). Timeføringer per ansatt er personopplysninger – aggreger, vis ikke navn.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente fakturareserve (opptjent, ikke fakturert) for ett eller mange prosjekter – f.eks. til periodisering ved månedsslutt",
+      "nokkelord": [
+        "fakturareserve",
+        "ufakturert",
+        "ikke fakturert",
+        "opptjent ikke fakturert",
+        "igangværende arbeid",
+        "varer i arbeid",
+        "wip",
+        "periodisering",
+        "periodisere inntekt",
+        "månedsavslutning",
+        "årsoppgjør",
+        "a konto",
+        "hva kan faktureres",
+        "fakturagrunnlag",
+        "invoicing reserve",
+        "igangvaerende arbeid",
+        "manedsavslutning",
+        "arsoppgjor"
+      ],
+      "kall": [
+        "GET /project/{id}/period/invoicingReserve",
+        "GET /project/batchPeriod/invoicingReserveByProjectIds",
+        "GET /project"
+      ],
+      "fremgangsmate": "Ett prosjekt: GET /project/{id}/period/invoicingReserve?dateFrom=...&dateTo=... → invoiceFeeReserveCurrency (timer), invoiceExtracostsReserveCurrency (utlegg/tillegg), periodOrderLinesIncomeCurrency, invoiceAkontoReserveAmountCurrency, invoiceReserveTotalAmountCurrency. Mange: hent åpne prosjekt-ider (GET /project?isClosed=false&fields=id) og kall GET /project/batchPeriod/invoicingReserveByProjectIds?ids=1,2,3&dateFrom=...&dateTo=... (alle tre påkrevd, maks 1000 ider; dateTo eksklusiv). Summen brukes som grunnlag for periodisering av opptjent inntekt (f.eks. konto 1530/3xxx) – selve bilaget føres via /ledger/voucher (hovedbok-gruppen).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Se hva som er fakturert og utestående på et prosjekt",
+      "nokkelord": [
+        "fakturert prosjekt",
+        "utestående prosjekt",
+        "betalt prosjekt",
+        "forfalt prosjekt",
+        "fakturaer på prosjekt",
+        "kundereskontro prosjekt",
+        "innbetalt",
+        "invoiced",
+        "utestaende prosjekt",
+        "fakturaer pa prosjekt",
+        "a konto prosjekt",
+        "akonto"
+      ],
+      "kall": [
+        "GET /project/{id}/period/invoiced",
+        "GET /ledger/posting",
+        "GET /project/{id}"
+      ],
+      "fremgangsmate": "GET /project/{id}/period/invoiced?dateFrom=...&dateTo=... (påkrevd) → sumAmount (fakturert), sumAmountPaid, sumAmountOutstanding, sumAmountDue, sumAmountDueOutstanding (forfalt ubetalt). For enkeltposter mot kundereskontro: GET /ledger/posting?projectId=<id>&dateFrom&dateTo&type=OUTGOING_INVOICE_CUSTOMER_POSTING. A konto og reserve: GET /project/{id}?fields=totalInvoicedOnAccountAmountAbsoluteCurrency,invoiceReserveTotalAmountCurrency.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Sjekke budsjettstatus (budsjett mot faktisk) for ett eller flere prosjekter",
+      "nokkelord": [
+        "budsjett prosjekt",
+        "budsjettstatus",
+        "budsjett mot faktisk",
+        "avvik budsjett",
+        "overskridelse",
+        "prognose prosjekt",
+        "resultatbudsjett prosjekt",
+        "budget status",
+        "kostnadsbudsjett",
+        "inntektsbudsjett"
+      ],
+      "kall": [
+        "GET /project/{id}/period/budgetStatus",
+        "GET /project/batchPeriod/budgetStatusByProjectIds",
+        "GET /resultbudget/project/{id}",
+        "GET /project/capacityPlan/budget"
+      ],
+      "fremgangsmate": "Ett prosjekt: GET /project/{id}/period/budgetStatus (tar ingen datoer, til tross for navnet) → totalTotalIncomeCurrency (faktisk), budgetTotalIncomeCurrency, budgetTotalCostCurrency. Mange: GET /project/batchPeriod/budgetStatusByProjectIds?ids=1,2,3 (maks 1000). Resultatbudsjett per konto: GET /resultbudget/project/{id}?year=YYYY (hovedbok-gruppen). Timer mot timebudsjett: GET /project/capacityPlan/budget (se kapasitetsplan-oppgaven).",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente kapasitetsplan: budsjetterte mot førte timer per aktivitet og ansatt",
+      "nokkelord": [
+        "kapasitetsplan",
+        "ressursplan",
+        "bemanning",
+        "planlagte timer",
+        "timebudsjett",
+        "belegg",
+        "timer mot budsjett",
+        "capacity plan",
+        "resource plan"
+      ],
+      "kall": [
+        "GET /project/capacityPlan/budget",
+        "GET /project/resourcePlanBudget"
+      ],
+      "fremgangsmate": "GET /project/capacityPlan/budget?projectId=<id>&periodStart=yyyy-MM-dd&periodEnd=yyyy-MM-dd&periodType=MONTH (periodStart, periodEnd og periodType HOUR|DAY|WEEK|MONTH er påkrevd; periodEnd eksklusiv) → activityEntries[] (activityId, activityName) med employeeEntries (budget, remaining, totalHours, totalAllocated, hourEntries) per aktivitet. GET /project/resourcePlanBudget er deprecated – bruk kun capacityPlan. Tomt svar kan bety at kapasitetsplanlegging ikke er i bruk (se capacityPlanning i GET /project/settings). Aggreger per aktivitet; vis ikke ansattnavn.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Registrere varer, materiell og utlegg på prosjekt for viderefakturering (prosjektordrelinjer)",
+      "nokkelord": [
+        "viderefakturering",
+        "utlegg prosjekt",
+        "materiell prosjekt",
+        "varer på prosjekt",
+        "prosjektordrelinje",
+        "påslag",
+        "tilleggsarbeid",
+        "fakturerbar kostnad",
+        "budsjettlinjer",
+        "legge til vare på prosjekt",
+        "project order line",
+        "varer pa prosjekt",
+        "paslag",
+        "legge til vare pa prosjekt"
+      ],
+      "kall": [
+        "GET /product",
+        "GET /project/orderline/orderLineTemplate",
+        "POST /project/orderline",
+        "POST /project/orderline/list",
+        "GET /project/orderline",
+        "GET /project/orderline/query",
+        "GET /project/orderline/{id}",
+        "PUT /project/orderline/{id}",
+        "DELETE /project/orderline/{id}"
+      ],
+      "fremgangsmate": "1) Finn produkt (GET /product?name=... eller productNumber). 2) Hent ferdig utfylt mal: GET /project/orderline/orderLineTemplate?projectId=...&productId=... (begge påkrevd) – gir riktig pris, mva-kode og påslag. 3) POST /project/orderline {project:{id}, product:{id}, date, count, unitCostCurrency, unitPriceExcludingVatCurrency, markup, discount, vatType:{id}, isChargeable:true, description} – bruk /list ved flere [BETA]. 4) Se linjer: GET /project/orderline?projectId=<id> (påkrevd; isBudget=true for budsjettlinjer – isBudget er read-only og kan ikke settes ved POST) eller GET /project/orderline/query?projectId&query=<tekst>. 5) Endre: PUT /project/orderline/{id} (version); slett: DELETE /project/orderline/{id}. Linjer som er fakturert (invoice satt) bør ikke endres. Skrivende.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Fakturere prosjekt (lage faktura på timer, fastpris, a konto eller utlegg)",
+      "nokkelord": [
+        "fakturere prosjekt",
+        "prosjektfaktura",
+        "faktura prosjekt",
+        "a konto faktura",
+        "delfaktura",
+        "fakturere timer",
+        "sluttfaktura",
+        "fastprisfaktura",
+        "fakturagrunnlag",
+        "invoice project",
+        "ehf prosjekt"
+      ],
+      "kall": [
+        "GET /project/{id}/period/invoicingReserve",
+        "GET /project/{id}/period/hourlistReport",
+        "GET /project/{id}",
+        "POST /order",
+        "PUT /order/{id}/:invoice"
+      ],
+      "fremgangsmate": "1) Finn grunnlag: GET /project/{id}/period/invoicingReserve og hourlistReport for perioden (dateFrom/dateTo påkrevd, dateTo eksklusiv). 2) GET /project/{id}?fields=id,customer(id),invoiceComment,invoiceDueDate,invoiceDueDateType,currency(id). 3) POST /order {customer:{id}, project:{id}, orderDate, deliveryDate, invoiceComment, orderLines:[{description, count, unitPriceExcludingVatCurrency, vatType:{id}}]}. 4) PUT /order/{id}/:invoice?invoiceDate=yyyy-MM-dd (påkrevd). sendToCustomer=false oppretter fakturaen uten å sende den – den er likevel en endelig, bokført faktura (ikke et utkast). Sending: sendType=EMAIL|EHF|AVTALEGIRO|EFAKTURA|VIPPS|PAPER|MANUAL. A konto: createOnAccount=WITH_VAT|WITHOUT_VAT + amountOnAccount (+ onAccountComment). API-et har ingen egen «fakturer prosjekt»-action som automatisk henter inn timer/prosjektordrelinjer – ordrelinjene må bygges selv. Skrivende og ev. sending til kunde – krever bekreftelse.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Flytte kostnad til riktig prosjekt på leverandørfaktura (endre prosjektdimensjon)",
+      "nokkelord": [
+        "endre prosjekt på faktura",
+        "feil prosjekt",
+        "flytte kostnad til prosjekt",
+        "omkontering prosjekt",
+        "prosjektdimensjon leverandørfaktura",
+        "change dimension",
+        "kostnadsføre på prosjekt",
+        "inngående faktura prosjekt",
+        "endre prosjekt pa faktura",
+        "prosjektdimensjon leverandorfaktura",
+        "kostnadsfore pa prosjekt",
+        "inngaende faktura prosjekt"
+      ],
+      "kall": [
+        "GET /supplierInvoice",
+        "PUT /supplierInvoice/{invoiceId}/:changeDimension",
+        "GET /project"
+      ],
+      "fremgangsmate": "1) Finn leverandørfakturaen: GET /supplierInvoice?invoiceDateFrom=...&invoiceDateTo=...(påkrevd)&invoiceNumber=...&fields=id,invoiceNumber,voucher(id,postings(id,account(number),amountGross)). 2) Finn prosjekt-id (GET /project?number=...). 3) PUT /supplierInvoice/{invoiceId}/:changeDimension?debitPostingIds=<ider>&dimension=PROJECT&dimensionId=<prosjekt-id> (alle påkrevd). Skrivende – bekreft først.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Registrere og følge opp underleverandører (underentrepriser) på prosjekt",
+      "nokkelord": [
+        "underleverandør",
+        "underentreprise",
+        "ue",
+        "underentreprenør",
+        "innleid",
+        "budsjett underleverandør",
+        "subcontract",
+        "leverandør på prosjekt",
+        "underleverandor",
+        "underentreprenor",
+        "budsjett underleverandor",
+        "leverandor pa prosjekt"
+      ],
+      "kall": [
+        "GET /supplier",
+        "GET /project/subcontract",
+        "GET /project/subcontract/query",
+        "GET /project/subcontract/{id}",
+        "POST /project/subcontract",
+        "PUT /project/subcontract/{id}",
+        "DELETE /project/subcontract/{id}"
+      ],
+      "fremgangsmate": "1) Finn leverandør-id: GET /supplier?organizationNumber=... 2) Liste: GET /project/subcontract?projectId=<id> (påkrevd), eller søk GET /project/subcontract/query?projectId&query=<tekst>. 3) Opprett: POST /project/subcontract {project:{id}, supplier:{id}, name, description, budgetFeeCurrency, budgetExpensesCurrency, budgetIncomeCurrency, budgetNetAmountCurrency}. 4) Endre: PUT /project/subcontract/{id} (med version); slett: DELETE /project/subcontract/{id}. Budsjettfeltene er mest relevante når budgetOnSubcontracts=true i /project/settings. Skrivende.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente kontrollskjema (egenkontroll/SJA) for prosjekt og kopiere verdier fra forrige skjema",
+      "nokkelord": [
+        "kontrollskjema",
+        "egenkontroll",
+        "sja",
+        "sikker jobbanalyse",
+        "sjekkliste",
+        "signert skjema",
+        "utfylt skjema",
+        "hms",
+        "ferdigmelding",
+        "kopiere skjema",
+        "control form"
+      ],
+      "kall": [
+        "GET /project/controlForm",
+        "GET /project/controlForm/{id}",
+        "GET /project/controlFormType",
+        "GET /project/controlFormType/{id}",
+        "PUT /project/dynamicControlForm/{id}/:copyFieldValuesFromLastEditedForm",
+        "GET /documentArchive/dynamicControlForm/{id}"
+      ],
+      "fremgangsmate": "1) Skjema på prosjekt: GET /project/controlForm?projectId=<id> (påkrevd) → title, comment, completed, signatureRequired, signed. Detalj: GET /project/controlForm/{id}. 2) Tilgjengelige skjematyper: GET /project/controlFormType (og /{id}) – kun id og name. 3) Forhåndsutfylle et dynamisk skjema: PUT /project/dynamicControlForm/{id}/:copyFieldValuesFromLastEditedForm (id = skjemaet det kopieres TIL) – kopierer kun inn i seksjoner som er tomme/standard og der malen har copyFieldValuesByDefault=true; signerte/fullførte skjema påvirkes ikke (skrivende). API-et har ikke noe søk etter dynamiske kontrollskjema, så id må være kjent. 4) Vedlegg til dynamisk skjema: GET /documentArchive/dynamicControlForm/{id}. [BETA] på controlForm-/controlFormType-endepunktene.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Lese eller endre prosjektinnstillinger for selskapet",
+      "nokkelord": [
+        "prosjektinnstillinger",
+        "oppsett prosjekt",
+        "godkjenning av timer",
+        "automatisk prosjektnummer",
+        "fastpris fullføringsgrad",
+        "standard timeprismodell",
+        "auto lukke fakturerte prosjekter",
+        "project settings",
+        "kapasitetsplanlegging på",
+        "kontrollskjema påkrevd",
+        "fastpris fullforingsgrad",
+        "kapasitetsplanlegging pa",
+        "kontrollskjema pakrevd"
+      ],
+      "kall": [
+        "GET /project/settings",
+        "PUT /project/settings"
+      ],
+      "fremgangsmate": "GET /project/settings (fields= for de feltene du trenger) viser bl.a. autoGenerateProjectNumber/autoGenerateStartingNumber, mustApproveRegisteredHours (og ...ForHourlyRateProjects/...ForFixedPriceProjects), approveHourLists, approveInvoices, fixedPriceProjectsFeeCalcMethod (FIXED_PRICE_PROJECTS_CALC_METHOD_INVOICED_FEE|..._PERCENT_COMPLETED), projectHourlyRateModel, projectTypeOfContract (PROJECT_FIXED_PRICE|PROJECT_HOUR_RATES), capacityPlanning, resourcePlanning, projectCategories, onlyProjectMembersCanRegisterInfo, onlyProjectActivitiesTimesheetRegistration, budgetOnSubcontracts, autoCloseInvoicedProjects, controlFormsRequiredForInvoicing/controlFormsRequiredForHourTracking. PUT /project/settings endrer for hele selskapet – hent først, send bare endrede felt, og bekreft med bruker.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Liste oppgaver (tasks) per prosjekt, kunde, ansvarlig eller status",
+      "nokkelord": [
+        "oppgaver",
+        "gjøremål",
+        "oppgaveliste",
+        "tasks",
+        "åpne oppgaver",
+        "frister",
+        "ansvarlig oppgave",
+        "oppgaver på prosjekt",
+        "oppgaver per kunde",
+        "prioritet",
+        "arbeidsordre",
+        "gjoremal",
+        "apne oppgaver",
+        "oppgaver pa prosjekt"
+      ],
+      "kall": [
+        "GET /task",
+        "GET /project/task",
+        "GET /activity/category/list"
+      ],
+      "fremgangsmate": "GET /task med filtre projectId, customerId, ownerId, participantId, createdById, departmentId, activityCategoryId (fra GET /activity/category/list), statusIds, startDate (fra og med)/endDate (til, eksklusiv), query (navn/nummer/beskrivelse). fields=id,name,statusName,priorityName,startDate,endDate,budgetHours,isClosed,project(id,name),customer(id,name). Alle felt på Task er read-only – API-et har ingen POST/PUT for oppgaver. GET /project/task?projectId= er deprecated – bruk /task.",
+      "skrivende": false
+    },
+    {
+      "oppgave": "Hente prosjektmal for å opprette nytt prosjekt med standardoppsett",
+      "nokkelord": [
+        "prosjektmal",
+        "mal",
+        "template",
+        "kopiere oppsett",
+        "standardprosjekt",
+        "nytt prosjekt fra mal"
+      ],
+      "kall": [
+        "GET /project/template/{id}",
+        "POST /project"
+      ],
+      "fremgangsmate": "GET /project/template/{id} gir malens felt (projectCategory, projectManager, department, isFixedPrice, fixedprice, markUpOrderLines, projectHourlyRates, forParticipantsOnly osv.). Det finnes ikke et søk-endepunkt for maler – id må være kjent. Bruk verdiene som utgangspunkt i body til POST /project (skrivende).",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Hente og laste opp dokumenter i prosjektets dokumentarkiv",
+      "nokkelord": [
+        "prosjektdokumenter",
+        "dokumentarkiv prosjekt",
+        "vedlegg prosjekt",
+        "kontrakt prosjekt",
+        "laste opp dokument",
+        "tegninger",
+        "fdv",
+        "document archive"
+      ],
+      "kall": [
+        "GET /documentArchive/project/{id}",
+        "POST /documentArchive/project/{id}"
+      ],
+      "fremgangsmate": "Liste: GET /documentArchive/project/{id}?periodDateFrom=...&periodDateTo=... (id = prosjekt-id; datoene er valgfrie, periodDateTo eksklusiv) [BETA]. Last opp: POST /documentArchive/project/{id} som multipart/form-data med feltet file [BETA]. Skrivende ved opplasting.",
+      "skrivende": true
+    },
+    {
+      "oppgave": "Føre bilag/postering med prosjekt som dimensjon (kostnad eller inntekt på prosjekt)",
+      "nokkelord": [
+        "bilag på prosjekt",
+        "bilag pa prosjekt",
+        "postere på prosjekt",
+        "postere pa prosjekt",
+        "kostnadsføre på prosjekt",
+        "kostnadsfore pa prosjekt",
+        "prosjektdimensjon",
+        "manuelt bilag prosjekt",
+        "periodisering prosjekt",
+        "omfordele kostnad prosjekt",
+        "føre på prosjekt",
+        "fore pa prosjekt",
+        "voucher project"
+      ],
+      "kall": [
+        "GET /project",
+        "POST /ledger/voucher"
+      ],
+      "fremgangsmate": "1) Finn prosjekt-id: GET /project?number=...&fields=id,number,name. 2) POST /ledger/voucher {date, description, postings:[{row:1, account:{id}, amountGross, amountGrossCurrency, project:{id}, vatType:{id}, description}, {row:2, motpost …}]} – prosjekt settes per postering (Posting.project), ikke på bilaget. Postingene må balansere (sum 0), og bare brutto-beløp brukes. Brukes f.eks. for periodisering av fakturareserve eller omfordeling av kostnader mellom prosjekter. Hovedbok-gruppen har detaljene for /ledger/voucher. Skrivende – bekreft klient og bilag først.",
+      "skrivende": true
+    }
+  ],
+  "fallgruver": [
+    "Mange prosjekt-endepunkter er [BETA]: PUT/DELETE /project/{id}, /project/list (POST/PUT/DELETE), DELETE /project, /project/orderline*, /project/participant*, /project/controlForm* og /project/controlFormType*. De kan endre seg og bør testes i sandbox før bruk i produksjon.",
+    "Prosjektmodulen må være aktiv i klientens abonnement. 403 betyr typisk manglende modul, manglende rettighet (f.eks. ikke prosjektleder/prosjektadministrator) eller at prosjektet har accessType NONE/READ for brukeren.",
+    "Stier med '>' (GET /project/>forTimeSheet, GET /activity/>forTimeSheet) må skrives nøyaktig; enkelte HTTP-klienter krever URL-koding av '>' som %3E. GET /activity/>forTimeSheet krever projectId.",
+    "Alle /project/{id}/period/*-kall unntatt budgetStatus krever dateFrom og dateTo (yyyy-MM-dd). For overallStatus, hourlistReport, invoiced og invoicingReserve er dateTo EKSKLUSIV (hele september: dateFrom=2026-09-01&dateTo=2026-10-01). UNNTAK monthlyStatus: dateFrom rundes ned til første dag i måneden, dateTo rundes opp til siste dag i måneden og er INKLUSIV, og dateTo må ligge i samme år som dateFrom. /period/budgetStatus tar ingen datoer.",
+    "GET /project/batchPeriod/invoicingReserveByProjectIds krever ids, dateFrom og dateTo; budgetStatusByProjectIds krever bare ids. Maks 1000 ider per kall.",
+    "GET /project/capacityPlan/budget krever periodStart, periodEnd (eksklusiv) og periodType (HOUR|DAY|WEEK|MONTH). GET /project/resourcePlanBudget og GET /project/task er deprecated – bruk henholdsvis /project/capacityPlan/budget og /task.",
+    "GET /task er kun lesing (alle Task-felt er read-only) – oppgaver kan ikke opprettes eller endres via API-et.",
+    "Aktiviteter: activityType styrer typen (GENERAL_ACTIVITY | PROJECT_GENERAL_ACTIVITY | PROJECT_SPECIFIC_ACTIVITY | TASK). PROJECT_SPECIFIC_ACTIVITY kan ikke lages via POST /activity – den må lages via POST /project/projectActivity. /activity har ingen PUT eller DELETE i API-et.",
+    "Påkrevde query-parametere: GET /project/orderline, GET /project/subcontract og GET /project/controlForm krever projectId; GET /project/orderline/orderLineTemplate krever projectId og productId; POST /project/import krever fileFormat (XLS|CSV); DELETE /project/hourlyRates/deleteByProjectIds krever ids og date.",
+    "Timepriser: hourlyRateModel avgjør hvilke felt som brukes – fixedRate bare ved TYPE_FIXED_HOURLY_RATE, projectSpecificRates bare ved TYPE_PROJECT_SPECIFIC_HOURLY_RATES; TYPE_PREDEFINED_HOURLY_RATES bruker aktivitetens/ansattes standardsatser. Ny sats fra en dato lages som ny ProjectHourlyRate med startDate, ikke ved å overskrive den gamle.",
+    "PUT bruker optimistisk låsing: send med gjeldende version (hent objektet med fields=id,version først); utdatert version gir 409 Conflict.",
+    "Prosjektnummer (number) genereres automatisk hvis det utelates og autoGenerateProjectNumber er på; ellers må det oppgis og være unikt. isOffer=true lager et tilbud, ikke et prosjekt – filtrer med isOffer=false når du lister prosjekter.",
+    "Prosjekter med timer, bilag, ordre eller fakturaer kan normalt ikke slettes – lukk dem med isClosed=true i stedet. GET /project med isClosed=false skjuler lukkede prosjekter; bruk includeRecentlyClosed=true for de som er lukket siste 3 måneder.",
+    "Det finnes ingen egen «fakturer prosjekt»-action: prosjektfakturering gjøres ved å lage ordre med project:{id} (POST /order) og fakturere med PUT /order/{id}/:invoice (invoiceDate påkrevd). Fakturareserve fra /period/invoicingReserve er grunnlaget, men linjene må bygges selv.",
+    "Fakturareserve (invoicingReserve) er opptjent, ikke fakturert inntekt – nyttig for periodisering/igangværende arbeid ved månedsslutt og årsoppgjør, men selve periodiseringsbilaget må føres i hovedboka (/ledger/voucher).",
+    "PUT /project/settings endrer innstillingene for hele selskapet – vær ekstra forsiktig og bekreft alltid.",
+    "PUT /project/dynamicControlForm/{id}/:copyFieldValuesFromLastEditedForm er en action (kolon-sti) som bare fyller tomme seksjoner der malen har copyFieldValuesByDefault=true; signerte eller fullførte skjema endres ikke.",
+    "GDPR: prosjektleder, deltakere, personlige timepriser (projectSpecificRates med employee), kapasitetsplan per ansatt og timeføringer er personopplysninger. Bruk fields= minimalt (f.eks. projectManager(id)), aggreger tall og vis initialer/«ansatt 1» i svar.",
+    "Alle skrivende kall (POST/PUT/DELETE og :action) krever at brukeren har bekreftet klient og handling først.",
+    "Listekall har standard count=1000 og from=0 – sjekk fullResultSize og bla med from/count; bruk alltid fields= for å begrense svaret.",
+    "Read-only felt som ikke kan settes via API: Task (alle felt), Activity.isProjectActivity/isGeneral/isTask (styres av activityType), ProjectOrderLine.isBudget, Project.contributionMarginPercent/invoiceReserveTotalAmountCurrency/invoicingPlan.",
+    "Manglende endepunkter: ingen PUT/DELETE på /activity, ingen DELETE på /project/category, ingen PUT på /project/projectActivity, ingen søk på /project/template (id må være kjent), ingen søk etter dynamiske kontrollskjema, og ingen POST/PUT på /task.",
+    "Liste-DELETE-kall (/project/list, /project/participant/list, /project/projectActivity/list, /project/hourlyRates/list, /project/hourlyRates/projectSpecificRates/list) tar ids som kommaseparert query-parameter med ID-ene til selve objektene (f.eks. deltaker-id, ikke ansatt-id). DELETE /project (uten /list) tar i stedet en body-liste av Project-objekter.",
+    "Prosjekt er også regnskapsdimensjon: posteringer/hovedbok/saldobalanse per prosjekt hentes med projectId på GET /ledger/posting, GET /ledger og GET /balanceSheet (dateFrom/dateTo påkrevd, dateTo eksklusiv; includeSubProjects=true på balanceSheet tar med delprosjekter). Ved POST /ledger/voucher settes prosjekt per postering (Posting.project)."
+  ]
+}

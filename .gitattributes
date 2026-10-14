@@ -1,0 +1,7 @@
+# Binærfiler skal aldri konverteres; tekst normaliseres til LF i repoet.
+*.png binary
+*.ttf binary
+*.py  text eol=lf
+*.js  text eol=lf
+*.json text eol=lf
+*.md  text
