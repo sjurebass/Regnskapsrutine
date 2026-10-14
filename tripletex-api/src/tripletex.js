@@ -15,7 +15,7 @@ let cache = null; // [{ id, name, organizationNumber, account }]
  * Selve HTTP-kallet. Standard er JSON-svar. Med `raw: true` returneres { status, contentType, buffer }
  * uten tolkning, slik at PDF og annet binært innhold kan lagres som det er.
  */
-export async function rawRequest(path, { companyId = 0, account = DEFAULT_ACCOUNT, method = 'GET', query, body, raw = false, accept } = {}) {
+export async function rawRequest(path, { companyId = 0, account = DEFAULT_ACCOUNT, method = 'GET', query, body, form, raw = false, accept } = {}) {
   const url = new URL(`${BASE_URL}${path}`);
   if (query) {
     for (const [k, v] of Object.entries(query)) if (v !== undefined) url.searchParams.set(k, v);
@@ -27,9 +27,10 @@ export async function rawRequest(path, { companyId = 0, account = DEFAULT_ACCOUN
       headers: {
         Authorization: await authorization(companyId, account),
         Accept: accept ?? (raw ? '*/*' : 'application/json'),
-        ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}),
+        ...(body !== undefined && !form ? { 'Content-Type': 'application/json' } : {}),
       },
-      body: body !== undefined ? JSON.stringify(body) : undefined,
+      // form (FormData) gir multipart; fetch setter Content-Type med boundary selv.
+      body: form ?? (body !== undefined ? JSON.stringify(body) : undefined),
     });
 
   let res = await send();

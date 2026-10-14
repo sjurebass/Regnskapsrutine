@@ -83,6 +83,7 @@ avstemming `/bank/reconciliation accountId=<konto-id> accountingPeriodId=<period
 3. Avstemmingsmodulen, 19xx med bevegelse (BALANCE-id fra `npm run -s modul -- perioder --client "<klient>" --aar ÅÅÅÅ --type BALANCE --json`, `accountId` fra
    `modul -- linjer --client "<klient>" --id <BALANCE-id> --konto 19`): `modul -- last-opp --client "<klient>" --id <BALANCE-id> --ref <accountId> --fil <fil> --bekreft`
    for PDF og kontoutskrift, så `modul -- sett-status --client "<klient>" --id <BALANCE-id> --konto <accountId> --status RECONCILED --dokumentert <saldo> --bekreft`.
+4. Kontoutskrift/PDF på selve bankavstemmingen: `npm run -s api -- PUT /bank/reconciliation/internal/attachment/<avstemmings-id>/upload accountId=<konto-id> startDate=ÅÅÅÅ-MM-01 --fil <pdf> --client "<klient>" --bekreft` (kontroll: `GET …/attachment/documents`, samme parametre).
 
 **Bare i Tripletex-UI:**
 1. Godkjenn forslagene under «Forslag» i bankavstemmingen.
@@ -90,7 +91,6 @@ avstemming `/bank/reconciliation accountId=<konto-id> accountingPeriodId=<period
 3. Manuell avstemming (uten bankfeed): før kontoutskriften som ett bankbilag per måned, datert siste dag, én linje per bankpost mot reskontro,
    gebyr (7770) eller renter (8050). Opprett avstemmingen med utgående saldo, lukk ved differanse 0. Uten kontoutskrift og saldo 0: avstem mot 0.
 4. 422 når en tidligere måned opprettes: en senere måned er allerede godkjent. Åpne den senere, avstem den tidlige, lukk den senere igjen.
-5. Vedlegg på selve bankavstemmingen: kontoutskrift og Tripletex' bankavstemmings-PDF.
 
 ## Svar
 

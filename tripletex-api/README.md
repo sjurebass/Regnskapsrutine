@@ -51,12 +51,13 @@ ikke parallelle kall).
 ### Generisk API
 
 ```bash
-npm run -s api -- <METODE> </sti> [nøkkel=verdi …] [body='<json>'] (--client <k> | --client <k> --client <k2> | --alle) [--sider] [--ut <fil>] [--bekreft]
+npm run -s api -- <METODE> </sti> [nøkkel=verdi …] [body='<json>'] (--client <k> | --client <k> --client <k2> | --alle) [--sider] [--ut <fil>] [--fil <fil>] [--bekreft]
 ```
 
 - GET: svaret som JSON, maskert. `--sider` henter alle sider (`{antall, values}`). Flere klienter / `--alle`: JSON-liste `[{klient, ok, data|feil}]`.
 - `--ut <fil>`: lagrer svaret til fil – binært for PDF og dokumentinnhold, ellers maskert JSON – og skriver bare sti og størrelse.
   Binære svar uten `--ut` skrives aldri ut.
+- `--fil <fil>`: sender filen som multipart (feltet `file`) på POST/PUT, f.eks. vedlegg på en bankavstemming. Krever `--bekreft` som andre skrivende kall.
 - POST/PUT/DELETE: uten `--bekreft` vises metode, sti, parametre og body (tørrkjøring), og ingenting sendes. Skrivende kall går bare mot én klient.
 - Bruk alltid `fields=` med bare feltene oppgaven trenger.
 

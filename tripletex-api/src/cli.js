@@ -8,12 +8,13 @@
 //   npm run -s api -- GET /ledger/voucher/<id>/pdf --client "Klient AS" --ut <fil.pdf>
 //   npm run -s api -- POST /sti body='{"..."}' --client "Klient AS"            (tørrkjøring – ingenting sendes)
 //   npm run -s api -- POST /sti body='{"..."}' --client "Klient AS" --bekreft  (bare etter ja fra brukeren)
+//   npm run -s api -- PUT /sti --fil <fil.pdf> --client "Klient AS" --bekreft   (filen som multipart, feltet «file»)
 //
 // Personopplysninger (fødselsnr., kontonr., e-post, telefon, navn/adresse på personer) og mønstre i fritekst maskeres i
 // all utskrift. --umaskert virker bare når miljøvariabelen TRIPLETEX_UMASKERT=1 er satt av brukeren selv.
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { basename, dirname, resolve } from 'node:path';
 import { inspectToken, authMode, accounts, tokenOf, BASE_URL, viaKonto } from './auth.js';
 import { clients, whoAmI, list, request } from './tripletex.js';
 import { maskert, redactText, isPersonalPath } from './privacy.js';
@@ -67,7 +68,7 @@ async function cmdApi() {
   const metode = (pos.length && !pos[0].startsWith('/') && !/^[A-Z]:\//i.test(pos[0]) ? pos.shift() : 'GET').toUpperCase();
   const sti = rettSti(pos.shift());
   if (!sti.startsWith('/') || !['GET', 'POST', 'PUT', 'DELETE'].includes(metode)) {
-    throw new Error('Bruk: npm run -s api -- [GET|POST|PUT|DELETE] /sti [nøkkel=verdi ...] [body=\'{...}\'] (--client "klient" | --alle) [--sider] [--ut <fil>] [--bekreft]');
+    throw new Error('Bruk: npm run -s api -- [GET|POST|PUT|DELETE] /sti [nøkkel=verdi ...] [body=\'{...}\'] (--client "klient" | --alle) [--sider] [--ut <fil>] [--fil <fil>] [--bekreft]');
   }
   const query = {};
   let body;
@@ -79,6 +80,15 @@ async function cmdApi() {
     else throw new Error(`Ukjent argument «${p}» (bruk nøkkel=verdi). Ingenting er gjort.`);
   }
 
+  // --fil <sti>: filen sendes som multipart (feltet «file»), f.eks. vedlegg. Bare POST/PUT, ikke sammen med body=.
+  let fil;
+  if (a.fil !== undefined) {
+    if (typeof a.fil !== 'string' || !existsSync(resolve(a.fil))) throw new Error(`--fil: fant ikke filen «${a.fil ?? ''}». Ingenting er gjort.`);
+    if (!['POST', 'PUT'].includes(metode)) throw new Error('--fil gjelder bare POST og PUT. Ingenting er gjort.');
+    if (body !== undefined) throw new Error('--fil og body= kan ikke brukes sammen. Ingenting er gjort.');
+    fil = resolve(a.fil);
+  }
+
   // Klienten(e) avgjøres før noe sendes; klientutvalg() stopper hvis --client mangler eller er tvetydig.
   const utvalg = await klientutvalg(a);
   const skriv = metode !== 'GET';
@@ -86,9 +96,16 @@ async function cmdApi() {
   if (skriv && !a.bekreft) {
     console.log(JSON.stringify({
       torrkjoring: true, klient: utvalg[0].name, metode, sti, parametre: query, body: maskert(body ?? null),
+      ...(fil ? { fil: basename(fil), byte: readFileSync(fil).length } : {}),
       resultat: 'Ingenting er sendt. Kjør på nytt med --bekreft når brukeren har sagt ja.',
     }, null, 2));
     return;
+  }
+  let form;
+  if (fil) {
+    form = new FormData();
+    const type = fil.toLowerCase().endsWith('.pdf') ? 'application/pdf' : 'application/octet-stream';
+    form.append('file', new Blob([readFileSync(fil)], { type }), basename(fil));
   }
   if (isPersonalPath(sti)) console.error('Merk: endepunktet inneholder personopplysninger – maskert i utskriften. Hent bare det oppgaven krever (fields=).');
   const vis = (x) => (a.umaskert ? x : maskert(x));
@@ -101,7 +118,7 @@ async function cmdApi() {
       const values = await list(sti, { companyId: c.id, query });
       return { json: { antall: values.length, values } };
     }
-    const r = await request(sti, { companyId: c.id, method: metode, query, body, raw: true });
+    const r = await request(sti, { companyId: c.id, method: metode, query, body, form, raw: true });
     if (!r.buffer.length) return { json: null };
     if (/json/i.test(r.contentType)) return { json: JSON.parse(r.buffer.toString('utf8')) };
     return { binaer: r.buffer, type: r.contentType };
