@@ -37,7 +37,7 @@ Undertittel: `klient | Org.nr. … | <under…> | Periode … | Utarbeidet … [
 | `bar` | bool | auto | Tving/skjul grønn seksjonslinje i Excel |
 | `sideskift` | bool | false | Ny PDF-side før seksjonen |
 | `tekst` | tekst | – | Avsnitt før tabellen |
-| `tabell` / `kontroller` / `sammendrag` | objekt | – | Høyst én per seksjon |
+| `tabell` / `kontroller` / `sammendrag` / `oppstilling` | objekt | – | Høyst én per seksjon |
 | `boks` | `{"type": "konkl"\|"varsel", "tekst": …}` | – | Grønn (konklusjon) eller oransje (varsel/tiltak) boks etter tabellen |
 | `punkter` | [tekst] | – | Nummerert liste |
 | `merknad` | tekst | – | Liten grå tekst til slutt (kilde, forbehold) |
@@ -105,6 +105,33 @@ for `AVVIK` når `forklart: true`) | Kommentar. `antall: true` gir heltallsforma
 
 `tell` gir `COUNTIF(<gruppe i kilden>, <gruppe i raden>)`, `summer` gir `SUMIF` over kildekolonnen. PDF viser de beregnede tallene.
 Flaggene `zebra`, `filter`, `frys`, `liten`, `uthev_avvik` virker som i `tabell`.
+
+## oppstilling (resultat og balanse)
+
+```
+{"kolonner": [{"id": "konto", "type": "heltall"}, {"id": "tekst", "tekst": "Linje"},
+              {"id": "na", "tekst": "Sep 2026", "type": "belop"}, {"id": "ifjor", "tekst": "Sep 2025", "type": "belop"},
+              {"id": "avvik", "tekst": "Avvik kr", "type": "belop", "avvik": ["na", "ifjor"]},
+              {"id": "pst", "tekst": "Avvik %", "type": "prosent", "avvik": ["na", "ifjor"]}, {"id": "status", "type": "status"}],
+ "linjer": [{"id": "inntekt", "gruppe": "Driftsinntekter", "sum": "Sum driftsinntekter", "rader": [{"konto": 3000, "tekst": "…", "na": 1, "ifjor": 2}]},
+            {"id": "driftsres", "resultat": "Driftsresultat", "ledd": ["inntekt", "-driftskost"]},
+            {"id": "kontroll", "resultat": "Kontroll", "ledd": ["eiendeler", "-ekgjeld"], "skal_vaere": 0}],
+ "frys": true}
+```
+
+- **Verdikolonner** er `belop`/`antall` uten `avvik`; de summeres. **Avvikskolonner** (`"avvik": [a, b]`) regnes per rad, også på sum- og
+  resultatlinjer: `belop`/`antall` = a − b, `prosent` = (a − b) / |b| × 100 (tom når b = 0). Andre kolonner (tekst, status) er data.
+- **Gruppe**: `gruppe` (fet overskrift), `rader` (kontolinjer med innrykk), `sum` (fet sumlinje = `SUM` over radene). Alle tre er valgfrie;
+  uten `sum` brukes `SUM` over radene direkte i resultatlinjene. `innrykk: false` fjerner innrykket, `luft` gir tom rad før i Excel.
+- **Resultatlinje**: `resultat` (etikett) og `ledd` – id-er til linjer over, `-id` trekkes fra. Gir formel som `=C11-C35`.
+  `skal_vaere` gir OK/AVVIK i første statuskolonne når alle verdikolonnene er lik verdien (`IF(AND(ABS(…)<0.005, …))`).
+- `celler` på en gruppe eller resultatlinje fyller tekst- og statuskolonner på sum-/resultatlinjen. Radene kan ikke sette verdier i avvikskolonner.
+- Fortegnet er presentasjonsfortegnet: specen får tallene slik de skal vises (inntekter og kostnader positive, egenkapital og gjeld positive).
+- Flagg: `liten`, `frys`, `zebra`, `uthev_avvik`. Excel: formler for summer, resultatlinjer og avvik; statusformat over hele oppstillingen.
+- Eksempel: `scripts/eksempler/regnskapsrapport.json` (resultat, balanse med kontroll, nøkkeltall, avvik og bro).
+
+Bro (waterfall) er en vanlig `tabell`: `ib.verdi` = start, rader = drivere i én `pluss`-kolonne, `lopende` = kumulativt, `ub.verdi` = slutt og
+`kontrollsum` med egen tekst («Broen går opp: … {ib} + drivere {pluss} = … {ub}»). Går ikke broen opp, blir boksen oransje.
 
 ## Status og farger
 

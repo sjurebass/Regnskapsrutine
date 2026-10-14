@@ -49,7 +49,10 @@ som kan leses som at filen er lagret.
 | Mva: 2740-notat, reskontrovurdering, betalingsinfo | `MVA_RAPPORT` | `ÅÅÅÅ-T<n>` | `Mva ÅÅÅÅ` | MVA-kontroll / MVA-innlevering |
 | Lønnsavstemming (Excel) | `LONN` | `ÅÅÅÅ-T<n>` (år: `ÅÅÅÅ`) | `Lønn ÅÅÅÅ` | Avstemming av AGA og forskuddstrekk / Årsavslutning lønn |
 | Perioderapport (PDF, bare når kunden vil ha fil) | `ANNET` | `ÅÅÅÅ-MM` | `Perioderapporter ÅÅÅÅ` | Ferdigstillelse perioderegnskap |
+| Regnskapsrapport (Excel/PDF) | `ANNET` | `ÅÅÅÅ-MM` / `ÅÅÅÅ-T<n>` / `ÅÅÅÅ` | `Perioderapporter ÅÅÅÅ` | Ferdigstillelse perioderegnskap (når den er åpen) |
+| Avviksanalyse med bro (Excel, byråintern – arkiveres rett etter opplasting) | `ANNET` | `ÅÅÅÅ-MM` / `ÅÅÅÅ-T<n>` / `ÅÅÅÅ` | `Perioderapporter ÅÅÅÅ` | – |
 | Årsoppgjør forberedelse – sjekkliste (Excel); årsoppgaver, lagerliste, kasseoppgjør 31.12 fra kunden | `ARSOPPGJOR` | `ÅÅÅÅ` | `Årsoppgjør ÅÅÅÅ` | Forberedelse |
+| Dokumentasjonsliste til revisor (Excel) | `ARSOPPGJOR` | `ÅÅÅÅ` | `Årsoppgjør ÅÅÅÅ` | – (fase oversendelse-revisor) |
 | Balanseavstemming 31.12 (Excel) og balansespesifikasjon (PDF) | `ARSOPPGJOR` | `ÅÅÅÅ` | `Årsoppgjør ÅÅÅÅ` | Balanseavstemming |
 | RF-1086 sjekkliste (Excel, pseudonymisert) | `ARSOPPGJOR` | `ÅÅÅÅ` | `Årsoppgjør ÅÅÅÅ` | RF-1086 |
 | Årsoppgjørskontroll (PDF) | `ARSOPPGJOR` | `ÅÅÅÅ` | `Årsoppgjør ÅÅÅÅ` | Skattemelding / Årsregnskap |

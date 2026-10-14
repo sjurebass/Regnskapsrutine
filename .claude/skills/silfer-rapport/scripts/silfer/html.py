@@ -28,7 +28,8 @@ td { padding: 2.5px 5px; border-bottom: 1px solid #D1D5DB; vertical-align: top; 
 CSS_TILLEGG = """td.merknad { color: #D4760A; background: #FFF8EC; font-weight: 600; text-align: center; } td.ikke { color: #6B7280; text-align: center; }
 th.c, td.c { text-align: center; } tr.avvikrad td { background: #FFF0F0; } ol.punkter { margin: 4px 0 6px 18px; padding: 0; } .merk + .merk { margin-top: 2px; }
 * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } thead { display: table-header-group; }
-tr, .konkl, .varsel { page-break-inside: avoid; } h2, h3 { page-break-after: avoid; }"""
+tr, .konkl, .varsel { page-break-inside: avoid; } h2, h3 { page-break-after: avoid; }
+td.inn { padding-left: 14px; } tr.sumlinje td { border-top: 1px solid #1B2E28; } tr.gruppe td { padding-top: 7px; border-bottom: none; }"""
 
 CSS = CSS_NOTAT + "\n" + CSS_TILLEGG
 
@@ -108,6 +109,8 @@ def _celle(k: dict, c: modell.Celle | None, fet: bool) -> str:
         tekst = f"<b>{tekst}</b>"
     if c.dempet:
         tekst = f'<span class="merk">{tekst}</span>'
+    if c.innrykk:
+        klasse = (klasse + " inn").strip()
     return f'<td class="{klasse}">{tekst}</td>' if klasse else f"<td>{tekst}</td>"
 
 
@@ -127,6 +130,8 @@ def tabell(t: modell.Tabell) -> str:
             continue
         celler = "".join(_celle(k, r.celler.get(k["id"]), r.fet) for k in kol)
         attr = ' class="avvikrad"' if t.uthev_avvik and r.art == "data" and modell.avvik_i(t, r) else ""
+        if t.kilde == "oppstilling" and r.art in ("sum", "resultat", "gruppe"):
+            attr = ' class="gruppe"' if r.art == "gruppe" else ' class="sumlinje"'
         rader.append(f"<tr{attr}>{celler}</tr>")
     klasse = ' class="liten"' if t.liten else ""
     return f"<table{klasse}><thead><tr>{hode}</tr></thead><tbody>\n" + "\n".join(rader) + "\n</tbody></table>"

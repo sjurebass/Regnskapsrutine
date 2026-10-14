@@ -46,6 +46,26 @@ Per motpart som har id og mer enn én post, bare blant postene som er åpne i da
   Feilet oppslaget: `Ukjent`.
 - Privatpersoner: «privatkunde n» (nummerert i rekkefølge), uten org.nr.
 
+## Avstemmingskategori og alder (`docs/avstemmingsmetodikk.md`)
+
+Reskontrokategorien over står uendret (den kommer fra kommandoen). I tillegg får hver post datert i året en avstemmingskategori og en
+aldersgruppe. Alder = `dagerForfalt` i `reskontro-vurdering.json` (S − forfall; 0 når ikke forfalt): 0–30, 31–60, 61–90, over 90 dager.
+
+| Reskontrokategori | Avstemmingskategori | Krever |
+|---|---|---|
+| `Betalt etter`, `Utlignet etter`, `Ikke forfalt`, `Forfalt 1–30 dager` | 1 Tidsforskjell | – |
+| `Kan utlignes` · `Småbeløp under 100 kr` | 2 Krever føring (utligning · avrundingskonto og utligning) | ja i chat |
+| `Ufordelt innbetaling/kreditnota` · `Betaling uten faktura` | 3 Må undersøkes til kunden har svart; deretter 2 (utlign eller ompostér) | kunden |
+| `Forfalt 31–90 dager – purring` · `Forfalt 31–90 dager uten betaling` | 3 Må undersøkes (purring, tvist, betalt fra annen konto) | regnskapsfører |
+| `Forfalt over 90 dager – tapsvurdering` · `Forfalt over 90 dager uten betaling` | 3 Må undersøkes (tap, avsetning, dublett) | oppdragsansvarlig |
+| `Uten motpart` (R9), motpart med Brreg-status annet enn `Aktiv` | 3 Må undersøkes | regnskapsfører |
+| Samlelinjen `Poster datert før <år>` | – (vurderes i årsoppgjøret) | – |
+
+- Eskalering per post: over V/2 → `regnskapsfører`, over V → `oppdragsansvarlig`, uansett rad over. Kjent avvik med samme beløp: KJENT.
+- Differanse etter oppstillingen (R1/R2) er uforklart til årsaken er funnet; avstemmingspostene er da postene på reskontrokontoen uten motpart
+  og utligninger på tvers av D.
+- Funn-format: Forslag begynner med kategori og alder, for eksempel `Kat. 3 · 61–90 · purring trinn 2`.
+
 ## Terskler og status (funn-formatet i `docs/skill-mal.md`)
 
 | ID | Kontroll | Utslag | Status |
@@ -62,5 +82,7 @@ Per motpart som har id og mer enn én post, bare blant postene som er åpne i da
 | R11 | Poster datert før året | én samlelinje | – (vurderes i årsoppgjøret) |
 | R12 | 1580 mot poster til tapsvurdering | 1580 lavere enn vurdert tap | forslag: avsetning |
 | R13 | Kontoutskrift: IB + fakturert − innbetalt = UB | differanse ≥ 1 kr | AVVIK – ingen PDF |
+| R14 | Avstemmingskategori og alder for hver åpen post i året | kategori 3 over V uten beslutning | AVVIK – stopp før RECONCILED og fullføring |
+| R15 | Trend mot forrige måned: antall og sum per aldersgruppe, kategori 3 | sum forfalt over 60 dager over V og økende, eller samme post i kategori 3 tre måneder på rad | AVVIK (prosessavvik: purrerutine, betalingsrutine) |
 
 Fakturanummer normaliseres før R6: store bokstaver, bare A–Z og 0–9, uten innledende nuller.

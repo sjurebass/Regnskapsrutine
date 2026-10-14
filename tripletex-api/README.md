@@ -68,6 +68,7 @@ npm run -s api -- <METODE> </sti> [nøkkel=verdi …] [body='<json>'] (--client 
 | `bankavstemming -- --til ÅÅÅÅ-MM [--fra ÅÅÅÅ-MM] (--client <k> \| --alle) [--ut <mappe>] [--excel]` | lese | `status.json` per konto (`kontoId`) og måned: avstemming (`avstemmingId`), lukket, åpen, bevegelse, UB, bankens sluttsaldo (`bankSaldo`) og `differanse`, `bank[]` umatchede bankposter (med `id` der kontoutskriften har den), `tx` umatchede posteringer, `forslag` ikke godkjente matcher; `<Klient>.data.json` (formatet `lag_spec.py` leser); oversikt `.md`. `--excel` kjører `.claude/skills/bankavstemming/scripts/lag_spec.py` |
 | `bilag -- hent --client <k> --til ÅÅÅÅ-MM [--fra ÅÅÅÅ-MM] [--ut <mappe>]` | lese | `forslag.json`, `bank.json` (med transaksjons-id), `historikk.tsv`, `leverandorer.tsv`, `docs/<id>.pdf + .txt` |
 | `bilag -- før --client <k> --plan <plan.json> [--bare <id,…>] [--bekreft]` | skrive | avansert bilag → vedlegg → bekreft vedlegg → lukk 2400 → bankmatch → slett mottakskopi; logg `<plan>.resultat.json` |
+| `bilag -- manuell --client <k> --plan <manuell.json> [--bare <ref,…>] [--vesentlighet <beløp>] [--bekreft]` | skrive | manuelt bilag (periodisering, avsetning, omføring): tørrkjøring viser linjer, sum debet/kredit og J1–J12 (PASS/FEIL/ADVARSEL/INFO, exit 1 ved FEIL); `--bekreft` fører bilag uten FEIL → tilbakelesing → vedlegg → reversering (`tilbakefor`); logg `<plan>.resultat.json` (ref → bilagsnummer, reversering, vedlegg, feil) |
 | `lonn -- hent --client <k> --aar ÅÅÅÅ --termin 1–6 [--a07 <a07.json>] [--ut <mappe>]` | lese | `<ut>/ledger.json` for `lonnsavstemming_a07.py` |
 | `lonn -- datoer (--client <k> \| --alle) --fra ÅÅÅÅ-MM --til ÅÅÅÅ-MM [--json]` | lese | `[{klient, maaned, dato, antall_slipper}]` |
 | `amelding -- status (--client <k> \| --alle) --maned ÅÅÅÅ-MM [--json]` | lese | per klient: gruppe (ikke sendt / venter / godkjent / avvist / endret etter innsending / kunne ikke leses), forklaring, påløpt og ubetalt trekk/AGA/finansskatt, termin |
@@ -85,9 +86,16 @@ npm run -s api -- <METODE> </sti> [nøkkel=verdi …] [body='<json>'] (--client 
 | `leverandor -- finn\|vis\|liste\|oppslag\|vurder\|importer\|oppdater … [--json]` | lese; `vurder`/`oppslag`/`importer`/`oppdater` skriver til `data/leverandorer.json` | felles leverandørindeks (Enhetsregisteret + byråets vurderinger) |
 | `status -- (--client <k> \| --alle) --maaned ÅÅÅÅ-MM [--json]` / `--aar ÅÅÅÅ` | lese | port per klient: bilagsmottak, ikke bokførte bilag, bank lukket per konto, reskontro 1500/2400 mot saldo, a-melding, observasjonskonti (1370/1960/7799), perioder lukket, mva for siste termin; `--aar` gir hele året |
 | `dokument -- --client <k> (--bilag <nr-år\|id> \| --faktura <id>) [--ut <mappe>]` | lese | `<ut>/<id>.pdf` + maskert `<id>.txt` |
+| `utvalg -- --client <k> --fra ÅÅÅÅ-MM-DD --til ÅÅÅÅ-MM-DD [--antall N] [--metode tilfeldig\|systematisk\|maalrettet] [--seed <tall>] [--konto 4000-7999[,…]] [--over <beløp>] [--risiko lav\|middels\|hoy] [--ut <mappe>] [--json]` | lese | `<ut>/utvalg.json`: populasjon (antall, sum, utelatt), metode, seed, antall og utvalget med begrunnelse per bilag (id, nummer-år, dato, beløp = sum debet, vedlegg, bilagstype, manuelt, maskert tekst, kontoer); sammendrag på konsollen. Samme seed og populasjon gir samme utvalg |
+| `regnskap -- --client <k> --periode ÅÅÅÅ-MM\|ÅÅÅÅ-T<n>\|ÅÅÅÅ [--hittil] [--sammenlign forrige,ifjor,budsjett] [--vesentlighet <beløp>] [--terskel-pst <tall>] [--bagatell <beløp>] [--ut <mappe>] [--json]` | lese | `<ut>/regnskap.json`: artsinndelt resultat og balanse (gruppe, konto, sum) med sammenligning, avvik kr og %, gunstig/ugunstig og flagg (V, pst, ny), nøkkeltall og kontroller; kompakt tabell på konsollen. Budsjett fra `/resultbudget/company`, ellers «ikke funnet» |
 
 Leverandørvurderinger: `--av agent` (standard) eller regnskapsførerens initialer (`--av AB`). En vurdering gjort av en regnskapsfører
 overskrives ikke av andre uten `--tving`.
+
+`utvalg` og `regnskap`: uten `--ut` skrives filen til `%TEMP%\rr\utvalg-<fra>_<til>` / `regnskap-<periode>[-hittil]`. `--json` uten `--ut`
+skriver JSON-en til stdout i stedet; med `--ut` blir det fil og sammendrag. JSON-formatene står i toppkommentaren i `src/utvalg.js` og `src/regnskap.js`.
+Teksten i `utvalg.json` er maskert, men siteres aldri i chat. `bilag manuell`: avdeling, prosjekt, kunde og leverandør er Tripletex-id-er; bare NOK;
+én leverandør per bilag (settes på alle linjene).
 
 ## Finne riktig kall
 
@@ -125,6 +133,10 @@ Før en Tripletex-oppgave som ingen kommando dekker – og alltid før du sier a
 - Til-datoer er eksklusive (`dateTo`, `/balanceSheet`, `/ledger/posting/openPost?date=`). `fullResultSize` er ikke et pålitelig totalantall –
   bla til en side gir færre enn `count` (`--sider` gjør det).
 - `/balanceSheet` kan utelate kontoer uten IB, bevegelse og UB – manglende konto betyr saldo 0.
+- `/balanceSheet`: resultatkontoene (3000–8999) nullstilles 1.1., så `balanceOut` er resultat hittil i året. Sum `balanceIn` 1000–2999 per 1.1. ≠ 0
+  betyr at fjorårets resultat ikke er disponert fullt ut.
+- Manuelle bilag (avansert bilag/hovedboksføring) har ingen bilagstype (`voucherType` tom); alle systemflyter har type.
+- `/asset` (anleggsregisteret) kan gi 403; avskrivninger fra registeret kjøres da i Tripletex-UI.
 - `/voucherInbox/inboxFiltered` og `/incomingInvoice` gir 403 med nøkkel, `/voucherInbox/sendToArchive` gir 500. `sendToLedger` er `true` som standard.
 - A-melding og pensjon bruker interne kall (`/salary/tskinternal/*`). `amelding send` er ikke testet med nøkkel og kan kreve ID-porten-innlogging;
   ha Tripletex-UI som reserve. Interne kall kan endres uten varsel – test lesende først.
@@ -164,7 +176,7 @@ Nye kall i spec må få oppgave og nøkkelord i `docs/indeks/`. Ingen kundenavn 
 | `src/valg.js` | felles valg: `--client`/`--alle`, standard utmappe, én klient om gangen |
 | `src/cli.js` | `api`, `token`, `connect` |
 | `src/klienter.js`, `src/status.js`, `src/dokument.js` | `klienter`, `status`, `dokument` |
-| `src/bankavstemming.js`, `src/bilag.js`, `src/lonn.js`, `src/amelding.js`, `src/pensjon.js`, `src/modul.js`, `src/leverandor.js`, `src/probe.js` | fagkommandoene |
+| `src/bankavstemming.js`, `src/bilag.js`, `src/lonn.js`, `src/amelding.js`, `src/pensjon.js`, `src/modul.js`, `src/leverandor.js`, `src/utvalg.js`, `src/regnskap.js`, `src/probe.js` | fagkommandoene |
 | `src/mva.js`, `src/mva/` | mva-kontrollen (`mva/kontroller/`), `mva status` (`mva/status.js`) og PDF-notatene (`mva/notater.js`) |
 | `finn.js`, `build-index.js`, `docs/` | endepunktindeksen |
 | `.env.example` | mal for `tripletex-api/.env` |

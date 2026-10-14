@@ -1,6 +1,6 @@
 ---
 name: "kundeinstruks"
-description: "Klientindeksen: leser og oppdaterer kundeinstruksen i Tally med fast mal (regnskapssystem, bank, mva, lønn, bilagsregler, reskontro og balanse, mangelliste, kjente avvik, årsoppgjør). Alle skills henter klientregler herfra. Ingen Tally-oppgave. Bruk ved «hva vet vi om <klient>», «hent kundeinstruks», «oppdater kundeinstruksen», «legg inn i kundeinstruksen at …», «husk for <klient> at …», «kjent avvik», «vesentlighetsgrense»."
+description: "Klientindeksen: leser og oppdaterer kundeinstruksen i Tally med fast mal (regnskapssystem, bank, mva, lønn, bilagsregler, periodiseringer, reskontro og balanse, mangelliste, kjente avvik, årsoppgjør). Alle skills henter klientregler herfra. Ingen Tally-oppgave. Bruk ved «hva vet vi om <klient>», «hent kundeinstruks», «oppdater kundeinstruksen», «legg inn i kundeinstruksen at …», «husk for <klient> at …», «kjent avvik», «vesentlighetsgrense»."
 ---
 
 # Kundeinstruks – klientindeksen
@@ -26,9 +26,7 @@ Dette er skillen. Malen i steg 2 bestemmer overskriftene de andre skillene leter
 3. Har klienten tjenester med egne instrukser, hent dem med `service_id` når oppgaven gjelder den tjenesten.
 4. Mange klienter: én `hent_instrukser` per klient, gjerne i parallelle agenter som bare returnerer seksjonene som trengs.
 
-### 2. Malen
-
-Bruk disse overskriftene i denne rekkefølgen.
+### 2. Malen (disse overskriftene, i denne rekkefølgen)
 
 ```
 # Kundeinstruks – <Kunde>
@@ -52,6 +50,9 @@ Ja/nei · lønnsdato · modell (direkte trekk eller skattetrekkskonto) · pensjo
 Valuta (NB-kurs + agio/disagio, eller bankbeløp uten agio) · mva-kode for utenlandske tjenester · faste leverandører og konto ·
 betalingsløsninger (Stripe, Dintero, Vipps, Wise) · hva som ikke skal føres før kunden sier fra · hvem kunden er i bilagsmottaket
 
+## Periodiseringer
+Faste periodiseringer, én per linje: post · konto · beløp per måned · fra–til · tilbakeføres ja/nei (f.eks. «Forsikring · 1700/7500 · 1 250 · 01.2026–12.2026 · nei»)
+
 ## Reskontro og balanse
 Purrerutine (hvem purrer, trinn) · inkasso (byrå, når) · tapsvurdering (når, hvem avgjør) · kontoer avstemt månedlig · kontoer avstemt bare årlig
 
@@ -66,7 +67,7 @@ Konto for manglende bilag (f.eks. 1370 eller 7799) · mottaker (rolle) · frist 
 Ting som bevisst venter til årsoppgjøret (aktivering, avsetninger, lager), og hva som ble gjort i fjor
 ```
 
-«Reskontro og balanse» er valgfri: den skrives første gang en skill får svar på det. Mangler den, er svaret «ikke avklart».
+«Periodiseringer» og «Reskontro og balanse» er valgfrie: de skrives første gang en skill får svar på det. Mangler de, er svaret «ikke avklart».
 
 | Seksjon | Brukes av |
 |---|---|
@@ -75,6 +76,7 @@ Ting som bevisst venter til årsoppgjøret (aktivering, avsetninger, lager), og 
 | Mva | `mva-kontroll`, `mva-innlevering`, `bilagsforing`, `bilagskontroll`, `leverandorindeks` |
 | Lønn | `lonnskjoring`, `a-melding`, `lonnsavstemming`, `balanseavstemming` (2600/2770/2940) |
 | Bilagsføringsregler | `bilagsforing`, `bilagskontroll` |
+| Periodiseringer | `periodisering` (faste poster hver måned), `periodeavslutning` (manglende faste kostnader) |
 | Reskontro og balanse | `reskontroavstemming` (purring, inkasso, tap), `balanseavstemming` (månedlig eller årlig), `periodeavslutning` |
 | Mangelliste | ingen felles skill; kontoen for manglende bilag brukes av `bankavstemming`, `bilagsforing` og `bilagskontroll` |
 | Kjente avvik | alle kontroller – samme beløp meldes som «kjent, uendret» |

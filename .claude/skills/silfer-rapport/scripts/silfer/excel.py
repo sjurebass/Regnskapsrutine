@@ -89,7 +89,7 @@ def seksjon(ws, rad: int, tekst: str, *, ncols: int = 1) -> None:
 
 
 def celle(ws, rad, kol, verdi, *, fet=False, farge=SVART, nf=None, just=None, ramme=True, str_=9,
-          ramme_farge=RAMME, fyll=None, wrap=False, kursiv=False):
+          ramme_farge=RAMME, fyll=None, wrap=False, kursiv=False, innrykk=0):
     c = ws.cell(row=rad, column=kol, value=verdi)
     if kursiv:
         c.font = Font(name="Arial", size=str_, bold=fet, italic=True, color=farge)
@@ -100,6 +100,8 @@ def celle(ws, rad, kol, verdi, *, fet=False, farge=SVART, nf=None, just=None, ra
         just = just or "right"
     if wrap:
         c.alignment = Alignment(vertical="center", horizontal=just, wrap_text=True)
+    elif innrykk:
+        c.alignment = Alignment(vertical="center", horizontal=just or "left", indent=innrykk)
     else:
         c.alignment = Alignment(vertical="center", horizontal=just)
     if ramme:
@@ -226,6 +228,23 @@ def _formel(oppskrift: tuple, r: int, p: _Plass, t: modell.Tabell, plasser: dict
         if art == "antall_avvik":
             c = L[oppskrift[1]]
             return f'=COUNTIF({c}{p.d0}:{c}{p.d1},"AVVIK")'
+        if art == "pst":
+            a, b = L[oppskrift[1]], L[oppskrift[2]]
+            return f'=IF({b}{r}=0,"",({a}{r}-{b}{r})/ABS({b}{r})*100)'
+        if art == "gsum":
+            c = L[oppskrift[1]]
+            return f"=SUM({c}{p.rad[oppskrift[2]]}:{c}{p.rad[oppskrift[3]]})"
+        if art == "ledd":
+            c = L[oppskrift[1]]
+            f = ""
+            for fortegn, ref in oppskrift[2]:
+                ledd = f"{c}{p.rad[ref[1]]}" if ref[0] == "rad" else f"SUM({c}{p.rad[ref[1]]}:{c}{p.rad[ref[2]]})"
+                f += ("-" if fortegn < 0 else ("+" if f else "")) + ledd
+            return "=" + f
+        if art == "lik_alle":
+            vilkaar = [f"ABS({L[k]}{r}-{_tall(oppskrift[2])})<0.005" for k in oppskrift[1]]
+            test = vilkaar[0] if len(vilkaar) == 1 else f"AND({','.join(vilkaar)})"
+            return f'=IF({test},"OK","AVVIK")'
     except KeyError:
         return None  # en kolonne formelen trenger vises ikke i Excel → skriv verdien
     raise ValueError(f"ukjent formel {oppskrift}")
@@ -311,7 +330,8 @@ def _skriv_tabell(ws, s: modell.Seksjon, p: _Plass, plasser: dict[str, _Plass]) 
             if typ == "dato":
                 verdi = til_dato(verdi)
             fet = (r.fet and typ != "dato") if (c_ is None or c_.fet is None) else c_.fet
-            farge = GRA if (c_ and c_.dempet) else (MORK if r.art in ("sum", "ub", "ib", "kontroll", "antall_avvik") else SVART)
+            farge = GRA if (c_ and c_.dempet) else (
+                MORK if r.art in ("sum", "ub", "ib", "kontroll", "antall_avvik", "gruppe", "resultat") else SVART)
             if r.art == "tom":
                 verdi, farge = None, GRA
             nf = NF.get(typ)
@@ -321,14 +341,18 @@ def _skriv_tabell(ws, s: modell.Seksjon, p: _Plass, plasser: dict[str, _Plass]) 
             if typ == "antall" and k["type"] != "antall":
                 just = "right"
             fyll = tema.AVVIK_FYLL if avvikrad and typ != "status" else (LYS if zebra else None)
-            c = celle(ws, rr, i, verdi, fet=fet or typ == "status", farge=farge, nf=nf, just=just, fyll=fyll)
+            c = celle(ws, rr, i, verdi, fet=fet or typ == "status", farge=farge, nf=nf, just=just, fyll=fyll,
+                      innrykk=c_.innrykk if c_ else 0)
             if typ == "tekst" and isinstance(verdi, str) and not (formel and verdi.startswith("=")):
                 c.data_type = "s"           # tekst som starter med = + - @ blir aldri formel
             if typ == "status" and k["type"] != "status":
                 status_omr.append(f"{get_column_letter(i)}{rr}")
     for k in status_kol:
         L = p.kol[k["id"]]
-        status_omr.append(f"{L}{p.d0}:{L}{p.d1}")
+        if t.kilde == "oppstilling":        # statuser også på sum- og resultatlinjer
+            status_omr.append(f"{L}{min(p.rad.values())}:{L}{max(p.rad.values())}")
+        else:
+            status_omr.append(f"{L}{p.d0}:{L}{p.d1}")
     return status_omr
 
 

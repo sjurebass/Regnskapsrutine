@@ -13,6 +13,10 @@ Formeloppskrifter (tupler, løses til cellereferanser i excel.py):
     ("kontroll_status", kol)           IF(ABS(kol)<0.005;"OK";"AVVIK")
     ("countif", av, gruppe) / ("sumif", av, gruppe, summer)   over tabellen i seksjonen «av»
     ("avvik", a, b) / ("kstatus", kol, toleranse, ellers) / ("antall_avvik", kol)
+    ("pst", a, b)                      IF(b=0;"";(a−b)/ABS(b)*100) i samme rad (oppstilling)
+    ("gsum", kol, i0, i1)              SUM over radene i0..i1 (indekser i Tabell.rader)
+    ("ledd", kol, [(±1, ref)])         ±celle i en sum-/resultatrad («rad», i) eller ±SUM over en gruppe («omr», i0, i1)
+    ("lik_alle", [kol], skal)          IF(AND(ABS(kol−skal)<0.005, …);"OK";"AVVIK")
 """
 
 from __future__ import annotations
@@ -32,11 +36,12 @@ class Celle:
     formel: tuple | None = None    # Excel-oppskrift
     fet: bool | None = None        # None = som raden
     dempet: bool = False           # grå tekst
+    innrykk: int = 0               # innrykk i etikettkolonnen (kontolinjer i en oppstilling)
 
 
 @dataclass
 class Rad:
-    art: str                       # ib | data | tom | sum | ub | kontroll | antall_avvik
+    art: str                       # ib | data | tom | sum | ub | kontroll | antall_avvik | gruppe | resultat
     celler: dict[str, Celle] = field(default_factory=dict)
     fet: bool = False
     vis: str = "begge"             # «excel»: bare i Excel
@@ -48,7 +53,7 @@ class Tabell:
     kolonner: list[dict]
     rader: list[Rad]
     etikett_kol: str
-    kilde: str = "tabell"          # tabell | kontroller | sammendrag
+    kilde: str = "tabell"          # tabell | kontroller | sammendrag | oppstilling
     lopende: dict | None = None
     av: str | None = None
     gruppe: str | None = None
@@ -261,6 +266,68 @@ def _sammendrag(sm: dict, kilder: dict[str, dict]) -> Tabell:
                   uthev_avvik=sm["uthev_avvik"])
 
 
+def _oppstilling(o: dict) -> Tabell:
+    """Grupper (overskrift, kontolinjer, sumlinje) og resultatlinjer (± tidligere linjer), med avvik per rad."""
+    kolonner = o["kolonner"]
+    et = o["etikett_kol"]
+    verdi = o["verdi"]
+    avvik = [k for k in kolonner if k.get("avvik")]
+    status_kol = next((k["id"] for k in kolonner if k["type"] == "status" and k["vis"] == "begge"), None)
+    rader: list[Rad] = []
+    total: dict[str, tuple] = {}      # linje-id → (formelreferanse | None, {kol: verdi})
+
+    def legg_avvik(celler: dict) -> None:
+        for k in avvik:
+            a, b = k["avvik"]
+            va = _n(celler[a].verdi) if a in celler else 0.0
+            vb = _n(celler[b].verdi) if b in celler else 0.0
+            if k["type"] == "prosent":
+                v = None if abs(vb) < EPS else round((va - vb) / abs(vb) * 100, 1)
+                celler[k["id"]] = Celle(v, formel=("pst", a, b))
+            else:
+                celler[k["id"]] = Celle(_rund(va - vb), formel=("avvik", a, b))
+
+    for l in o["linjer"]:
+        celler_ekstra = {k: Celle(v) for k, v in l["celler"].items() if v is not None}
+        if l["resultat"] is None:
+            if l["gruppe"]:
+                rader.append(Rad("gruppe", {et: Celle(l["gruppe"])}, fet=True, luft_for=l["luft"]))
+            i0 = len(rader)
+            for r in l["rader"]:
+                celler = {k: Celle(v) for k, v in r.items() if k != "_fet" and v is not None}
+                if l["innrykk"] and et in celler:
+                    celler[et].innrykk = 1
+                legg_avvik(celler)
+                rader.append(Rad("data", celler, fet=bool(r.get("_fet"))))
+            i1 = len(rader) - 1
+            summer = {kid: _rund(sum(_n(r.get(kid)) for r in l["rader"])) for kid in verdi}
+            if l["sum"]:
+                celler = {et: Celle(l["sum"]), **celler_ekstra}
+                for kid in verdi:
+                    celler[kid] = Celle(summer[kid], formel=("gsum", kid, i0, i1) if l["rader"] else None)
+                legg_avvik(celler)
+                rader.append(Rad("sum", celler, fet=True, luft_for=l["luft"] and not l["gruppe"]))
+                ref = ("rad", len(rader) - 1)
+            else:
+                ref = ("omr", i0, i1) if l["rader"] else None
+            total[l["id"]] = (ref, summer)
+            continue
+        verdier = {kid: _rund(sum(f * total[lid][1][kid] for f, lid in l["ledd"])) for kid in verdi}
+        refs = [(f, total[lid][0]) for f, lid in l["ledd"] if total[lid][0] is not None]
+        celler = {et: Celle(l["resultat"]), **celler_ekstra}
+        for kid in verdi:
+            celler[kid] = Celle(verdier[kid], formel=("ledd", kid, refs) if refs else None)
+        legg_avvik(celler)
+        if l["skal_vaere"] is not None and status_kol and status_kol not in celler:
+            ok = all(abs(verdier[kid] - l["skal_vaere"]) < EPS for kid in verdi)
+            celler[status_kol] = Celle("OK" if ok else "AVVIK", type="status",
+                                       formel=("lik_alle", verdi, l["skal_vaere"]))
+        rader.append(Rad("resultat", celler, fet=True, luft_for=l["luft"]))
+        total[l["id"]] = (("rad", len(rader) - 1), verdier)
+    return Tabell(kolonner, rader, et, kilde="oppstilling", liten=o["liten"], frys=o["frys"], zebra=o["zebra"],
+                  uthev_avvik=o["uthev_avvik"])
+
+
 def under_deler(dok: dict) -> list[str]:
     """Undertittelen: klient | Org.nr. … | <under …> | Periode … | Utarbeidet … [| Utarbeidet av …]."""
     deler = [dok["klient"]]
@@ -288,6 +355,8 @@ def los(spec: dict) -> list[Seksjon]:
             tabell = _kontroller(s["kontroller"])
         elif s["sammendrag"]:
             tabell = _sammendrag(s["sammendrag"], kilder)
+        elif s.get("oppstilling"):
+            tabell = _oppstilling(s["oppstilling"])
         if s["boks"]:
             bokser.append(Boks(s["boks"]["type"], s["boks"]["tekst"]))
         ut.append(Seksjon(s["id"], s["ark"], s["sideskift"], s["overskrift"], s["nivaa"], s["bar"], s["tekst"],

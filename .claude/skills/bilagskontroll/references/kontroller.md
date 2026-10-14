@@ -73,3 +73,32 @@ Ett bilag står én gang med alle grunnene. Sorter etter |mva-effekt|, så |bel�
 | `ok` | – | ingen linje |
 
 Har bilaget allerede et maskinelt funn, legges vurderingen til der. Bare en strengere konklusjon gir et eget funn.
+
+## Stikkprøve – tilfeldig utvalg og arbeidspapir
+
+Metode, månedstabellen for antall, bevisstandard og aggregering: `docs/stikkprover.md`. Utvalget trekkes med `utvalg` (seed = kontrolldatoen
+`ÅÅÅÅMMDD` hvis ikke annet er avtalt). Et bilag som også står på unntakslista, testes én gang med begge grunnene.
+
+| Trinn | ID | Testes | Data | Bestått når |
+|---|---|---|---|---|
+| T1 | U2 | Vedlegg eller EHF finnes og er salgs- eller kjøpsdokument (ikke proforma, ordrebekreftelse, purring) | `utvalg.json` (vedlegg), `dokument --bilag` | Gyldig dokument; formfeil → merknad |
+| T2 | U3 | Konto, mva-kode og beløp = dokumentet; mva regnet om (grunnlag × sats) | `/ledger/posting` (steg 2), dokumentet | Avvik < 1 kr |
+| T3 | U4 | Fakturadato og leveringsperiode i samme måned som bilagsdatoen | dokumentet, `utvalg.json` (dato) | Samme måned |
+| T4 | U5 | Leverandørfaktura godkjent med dato (bare når kundeinstruksen har godkjenningsflyt; ellers «–») | `/supplierInvoice/{id}` med `fields=approvalListElements(status,actionDate)` | Godkjent |
+| T5 | U6 | Matchet mot bank, eller åpen post i reskontro ved månedsslutt | `/ledger/posting` (`matched`), `/ledger/posting/openPost` | Ett av de to |
+
+Arket «Stikkprøve» i arbeidsboka er arbeidspapiret: kontroll-ID, formål, populasjon (antall og sum fra `utvalg.json`), metode og seed, utvalget
+(bilagsnr., dato, beløp, grunn), T1–T5 per bilag, Bestått/Avvik, avvikene med årsak, grad og tiltak, aggregeringen, konklusjon, utført av og
+gjennomgått av (initialer, «Gjennomgått av» står tomt til en annen signerer). Ingen bilagstekster.
+
+## Alvor → grad
+
+| Alvor | Grad (`docs/stikkprover.md`) |
+|---|---|
+| BLOKK med beløp eller mva-effekt ≥ V, eller samme funn som forrige måned | Vesentlig avvik – meldes oppdragsansvarlig (stopp i steg 6) |
+| BLOKK under V, FORKLAR | Avvik |
+| INFO, `ok_formmerknad` | Merknad |
+| STOPP, SPØR | `IKKE AVKLART` til det er avklart, så gradert |
+
+Feil i det tilfeldige utvalget projiseres mot månedens sum (aggregering). Samlet ≥ V gir vesentlig avvik selv om hvert funn er under V;
+samlet mellom V/2 og V: trekk et nytt tilfeldig utvalg ett trinn større (ny seed) før konklusjonen.

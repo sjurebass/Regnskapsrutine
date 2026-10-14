@@ -22,7 +22,9 @@
     "pensjon": "node --env-file=tripletex-api/.env tripletex-api/src/pensjon.js",
     "mva": "node --env-file=tripletex-api/.env tripletex-api/src/mva.js",
     "modul": "node --env-file=tripletex-api/.env tripletex-api/src/modul.js",
-    "leverandor": "node --env-file=tripletex-api/.env tripletex-api/src/leverandor.js"
+    "leverandor": "node --env-file=tripletex-api/.env tripletex-api/src/leverandor.js",
+    "utvalg": "node --env-file=tripletex-api/.env tripletex-api/src/utvalg.js",
+    "regnskap": "node --env-file=tripletex-api/.env tripletex-api/src/regnskap.js"
   },
   "engines": {
     "node": ">=20.6"

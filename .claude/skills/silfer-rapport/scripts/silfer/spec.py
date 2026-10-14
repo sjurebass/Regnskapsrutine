@@ -38,7 +38,7 @@ def last(sti_eller_dict) -> dict:
 
 _ARK_ULOVLIG = re.compile(r"[\[\]:*?/\\]")
 _TALLTYPER = ("belop", "antall", "heltall", "prosent")
-_INNHOLD = ("tabell", "kontroller", "sammendrag")
+_INNHOLD = ("tabell", "kontroller", "sammendrag", "oppstilling")
 
 
 class _Ctx:
@@ -345,6 +345,101 @@ def _sammendrag(s, sti, ctx: _Ctx) -> dict:
     return _flagg(s, sti, ny)
 
 
+def _oppstilling(o, sti, ctx: _Ctx) -> dict:
+    """Resultat- og balanseoppstilling: grupper med kontolinjer og sumlinje, og resultatlinjer (± andre linjer).
+
+    Verdikolonner (belop/antall uten «avvik») summeres per gruppe og i resultatlinjene. Kolonner med «avvik»: [a, b]
+    regnes per rad: belop/antall = a − b, prosent = (a − b) / |b| × 100 (tom når b = 0).
+    """
+    if not isinstance(o, dict):
+        raise SpecFeil(f"{sti}: skal være et objekt")
+    ukjent = set(o) - {"kolonner", "linjer", "etikett_kol", "liten", "frys", "zebra", "uthev_avvik"}
+    if ukjent:
+        raise SpecFeil(f"{sti}: ukjente felt {sorted(ukjent)}")
+    kolonner = _kolonner(o.get("kolonner"), f"{sti}.kolonner", ekstra=("avvik",))
+    kart = {k["id"]: k for k in kolonner}
+    for i, k in enumerate(kolonner):
+        if k["lopende"]:
+            raise SpecFeil(f"{sti}.kolonner[{i}].lopende: brukes ikke i oppstilling")
+        k["verdi"] = k["type"] in ("belop", "antall") and not k.get("avvik")
+    for i, k in enumerate(kolonner):
+        av = k.get("avvik")
+        if av is None:
+            continue
+        ks = f"{sti}.kolonner[{i}].avvik"
+        if not (isinstance(av, list) and len(av) == 2 and all(isinstance(x, str) for x in av)):
+            raise SpecFeil(f"{ks}: skal være [a, b] (to kolonne-id-er)")
+        for x in av:
+            if x not in kart or not kart[x]["verdi"]:
+                raise SpecFeil(f"{ks}: «{x}» er ikke en verdikolonne (belop/antall uten avvik)")
+        if k["type"] not in ("belop", "antall", "prosent"):
+            raise SpecFeil(f"{sti}.kolonner[{i}].type: avvikskolonner er belop, antall eller prosent")
+        k["avvik"] = list(av)
+    verdi = [k["id"] for k in kolonner if k["verdi"]]
+    if not verdi:
+        raise SpecFeil(f"{sti}.kolonner: minst én verdikolonne (belop/antall uten avvik)")
+    data_kol = [k for k in kolonner if not k.get("avvik")]
+    fri_kol = [k for k in kolonner if not k.get("avvik") and not k["verdi"]]
+    linjer = o.get("linjer")
+    if not isinstance(linjer, list) or not linjer:
+        raise SpecFeil(f"{sti}.linjer: skal være en ikke-tom liste")
+    ut, ider = [], set()
+    for i, l in enumerate(linjer):
+        ls = f"{sti}.linjer[{i}]"
+        if not isinstance(l, dict):
+            raise SpecFeil(f"{ls}: skal være et objekt")
+        ukjent = set(l) - {"id", "gruppe", "sum", "rader", "celler", "resultat", "ledd", "skal_vaere", "luft", "innrykk"}
+        if ukjent:
+            raise SpecFeil(f"{ls}: ukjente felt {sorted(ukjent)}")
+        lid = _str(l.get("id"), f"{ls}.id") or f"l{i + 1}"
+        if lid in ider:
+            raise SpecFeil(f"{ls}.id: «{lid}» brukt to ganger")
+        celler = {}
+        if l.get("celler") is not None:
+            if not isinstance(l["celler"], dict):
+                raise SpecFeil(f"{ls}.celler: skal være et objekt")
+            celler = _rader([l["celler"]], fri_kol, f"{ls}.celler", ctx, tillat=())[0]
+        ny = {"id": lid, "celler": celler, "gruppe": None, "sum": None, "rader": [], "resultat": None, "ledd": [],
+              "skal_vaere": None}
+        if l.get("resultat") is not None:
+            for felt in ("gruppe", "sum", "rader", "innrykk"):
+                if felt in l:
+                    raise SpecFeil(f"{ls}.{felt}: brukes ikke på en resultatlinje")
+            ny["resultat"] = ctx.mask(_str(l.get("resultat"), f"{ls}.resultat", paakrevd=True))
+            ledd = l.get("ledd")
+            if not isinstance(ledd, list) or not ledd:
+                raise SpecFeil(f"{ls}.ledd: skal være en ikke-tom liste med linje-id-er («id» eller «-id»)")
+            for j, x in enumerate(ledd):
+                if not isinstance(x, str) or not x.strip():
+                    raise SpecFeil(f"{ls}.ledd[{j}]: skal være en linje-id")
+                x = x.strip()
+                fortegn = -1 if x.startswith("-") else 1
+                ref = x.lstrip("+-").strip()
+                if ref not in ider:
+                    raise SpecFeil(f"{ls}.ledd[{j}]: «{ref}» er ikke en linje over denne")
+                ny["ledd"].append((fortegn, ref))
+            ny["skal_vaere"] = _tall(l.get("skal_vaere"), f"{ls}.skal_vaere")
+            ny["luft"] = _bool(l.get("luft"), f"{ls}.luft", False)
+        else:
+            if "ledd" in l or "skal_vaere" in l:
+                raise SpecFeil(f"{ls}: «ledd» og «skal_vaere» krever «resultat»")
+            ny["gruppe"] = ctx.mask(_str(l.get("gruppe"), f"{ls}.gruppe"))
+            ny["sum"] = ctx.mask(_str(l.get("sum"), f"{ls}.sum"))
+            ny["rader"] = _rader(l.get("rader"), data_kol, f"{ls}.rader", ctx)
+            if not (ny["gruppe"] or ny["sum"] or ny["rader"]):
+                raise SpecFeil(f"{ls}: tom gruppe (oppgi gruppe, sum eller rader)")
+            ny["luft"] = _bool(l.get("luft"), f"{ls}.luft", bool(ny["gruppe"]) and i > 0)
+            ny["innrykk"] = _bool(l.get("innrykk"), f"{ls}.innrykk", bool(ny["gruppe"] or ny["sum"]))
+        ider.add(lid)
+        ut.append(ny)
+    ny = {"kolonner": kolonner, "linjer": ut, "verdi": verdi,
+          "etikett_kol": _etikett_kol(kolonner, o.get("etikett_kol"), f"{sti}.etikett_kol")}
+    for f in ("liten", "frys", "zebra", "uthev_avvik"):
+        ny[f] = _bool(o.get(f), f"{sti}.{f}")
+    ny["filter"] = False
+    return ny
+
+
 def _dokument(d) -> dict:
     if not isinstance(d, dict):
         raise SpecFeil("dokument: mangler (objekt med hva, klient, periode …)")
@@ -431,13 +526,15 @@ def valider(spec: dict) -> dict:
               "tekst": ctx.mask(_str(s.get("tekst"), f"{ss}.tekst")), "boks": boks,
               "punkter": [ctx.mask(_str(p, f"{ss}.punkter[{j}]", paakrevd=True)) for j, p in enumerate(punkter)],
               "merknad": ctx.mask(_str(s.get("merknad"), f"{ss}.merknad")),
-              "tabell": None, "kontroller": None, "sammendrag": None}
+              "tabell": None, "kontroller": None, "sammendrag": None, "oppstilling": None}
         if s.get("tabell") is not None:
             ny["tabell"] = _tabell(s["tabell"], f"{ss}.tabell", ctx)
         elif s.get("kontroller") is not None:
             ny["kontroller"] = _kontroller(s["kontroller"], f"{ss}.kontroller", ctx)
         elif s.get("sammendrag") is not None:
             ny["sammendrag"] = _sammendrag(s["sammendrag"], f"{ss}.sammendrag", ctx)
+        elif s.get("oppstilling") is not None:
+            ny["oppstilling"] = _oppstilling(s["oppstilling"], f"{ss}.oppstilling", ctx)
         if not any(ny[k] for k in ("overskrift", "tekst", "boks", "punkter", "merknad", *_INNHOLD)):
             raise SpecFeil(f"{ss}: tom seksjon")
         ut.append(ny)

@@ -1,0 +1,175 @@
+{
+  "versjon": 1,
+  "_kommentar": "Fiktive tall. Viser oppstilling (resultat og balanse med gruppesummer, resultatlinjer og avvik som formler) og bro (løpende sum med kontrollsum).",
+  "dokument": {
+    "hva": "Regnskapsrapport",
+    "tittel": "Regnskapsrapport september 2026",
+    "klient": "Eksempel AS",
+    "orgnr": "123 456 789",
+    "periode": "2026-09",
+    "periode_tekst": "September 2026 (sammenlignet med september 2025)",
+    "utarbeidet": "14.10.2026",
+    "utarbeidet_av": "AB"
+  },
+  "seksjoner": [
+    {
+      "id": "resultat",
+      "ark": "Resultat",
+      "overskrift": "Resultatregnskap september 2026",
+      "oppstilling": {
+        "kolonner": [
+          {"id": "konto", "tekst": "Konto", "type": "heltall", "bredde": 8},
+          {"id": "tekst", "tekst": "Linje", "bredde": 34},
+          {"id": "na", "tekst": "Sep 2026", "type": "belop"},
+          {"id": "ifjor", "tekst": "Sep 2025", "type": "belop"},
+          {"id": "avvik", "tekst": "Avvik kr", "type": "belop", "avvik": ["na", "ifjor"]},
+          {"id": "pst", "tekst": "Avvik %", "type": "prosent", "avvik": ["na", "ifjor"]},
+          {"id": "status", "tekst": "Flagg", "type": "status", "bredde": 11}
+        ],
+        "linjer": [
+          {"id": "inntekt", "gruppe": "Driftsinntekter", "sum": "Sum driftsinntekter", "rader": [
+            {"konto": 3000, "tekst": "Salgsinntekt, avgiftspliktig", "na": 412500, "ifjor": 365000, "status": "AVVIK"},
+            {"konto": 3100, "tekst": "Salgsinntekt, avgiftsfri", "na": 18000, "ifjor": 22000}]},
+          {"id": "varekost", "gruppe": "Varekostnad", "sum": "Sum varekostnad", "rader": [
+            {"konto": 4000, "tekst": "Innkjøp av varer", "na": 168300, "ifjor": 142100, "status": "AVVIK"}]},
+          {"id": "lonn", "gruppe": "Lønnskostnad", "sum": "Sum lønnskostnad", "rader": [
+            {"konto": 5000, "tekst": "Lønn til ansatte", "na": 120000, "ifjor": 98000, "status": "AVVIK"},
+            {"konto": 5400, "tekst": "Arbeidsgiveravgift", "na": 18750, "ifjor": 15300},
+            {"konto": 5900, "tekst": "Annen personalkostnad", "na": 2400, "ifjor": 1900}]},
+          {"id": "avskr", "gruppe": "Avskrivning", "sum": "Sum avskrivning", "rader": [
+            {"konto": 6000, "tekst": "Avskrivning på driftsmidler", "na": 4200, "ifjor": 4200}]},
+          {"id": "annen", "gruppe": "Annen driftskostnad", "sum": "Sum annen driftskostnad", "rader": [
+            {"konto": 6300, "tekst": "Leie lokaler", "na": 22000, "ifjor": 21000},
+            {"konto": 6540, "tekst": "Inventar", "na": 0, "ifjor": 3500},
+            {"konto": 6700, "tekst": "Regnskap og revisjon", "na": 8500, "ifjor": 7900},
+            {"konto": 7140, "tekst": "Reisekostnad", "na": 6100, "ifjor": 1200, "status": "MERKNAD"},
+            {"konto": 7770, "tekst": "Bank- og kortgebyr", "na": 450, "ifjor": 380}]},
+          {"id": "driftskost", "resultat": "Sum driftskostnader", "ledd": ["varekost", "lonn", "avskr", "annen"], "luft": true},
+          {"id": "driftsres", "resultat": "Driftsresultat", "ledd": ["inntekt", "-driftskost"]},
+          {"id": "fininnt", "gruppe": "Finansinntekter", "rader": [
+            {"konto": 8040, "tekst": "Renteinntekt", "na": 320, "ifjor": 150}]},
+          {"id": "finkost", "gruppe": "Finanskostnader", "rader": [
+            {"konto": 8150, "tekst": "Rentekostnad", "na": 1800, "ifjor": 2100}]},
+          {"id": "netfin", "resultat": "Netto finansposter", "ledd": ["fininnt", "-finkost"], "luft": true},
+          {"id": "fskatt", "resultat": "Ordinært resultat før skattekostnad", "ledd": ["driftsres", "netfin"]},
+          {"id": "skatt", "sum": "Skattekostnad på ordinært resultat", "rader": []},
+          {"id": "aarsres", "resultat": "Periodens resultat", "ledd": ["fskatt", "-skatt"], "luft": true}
+        ],
+        "frys": true
+      },
+      "merknad": "Inntekter og kostnader vises med positivt fortegn. Skattekostnad føres i årsoppgjøret. Flagg: AVVIK = over V (5 000 kr), MERKNAD = over terskel-% og over V/2."
+    },
+    {
+      "id": "balanse",
+      "ark": "Balanse",
+      "sideskift": true,
+      "overskrift": "Balanse per 30.09.2026",
+      "oppstilling": {
+        "kolonner": [
+          {"id": "konto", "tekst": "Konto", "type": "heltall", "bredde": 8},
+          {"id": "tekst", "tekst": "Linje", "bredde": 40},
+          {"id": "na", "tekst": "30.09.2026", "type": "belop"},
+          {"id": "ifjor", "tekst": "30.09.2025", "type": "belop"},
+          {"id": "avvik", "tekst": "Endring kr", "type": "belop", "avvik": ["na", "ifjor"]},
+          {"id": "status", "tekst": "Kontroll", "type": "status", "bredde": 11}
+        ],
+        "linjer": [
+          {"id": "anlegg", "gruppe": "Anleggsmidler", "sum": "Sum anleggsmidler", "rader": [
+            {"konto": 1200, "tekst": "Maskiner og anlegg", "na": 96000, "ifjor": 146400}]},
+          {"id": "omlop", "gruppe": "Omløpsmidler", "sum": "Sum omløpsmidler", "rader": [
+            {"konto": 1500, "tekst": "Kundefordringer", "na": 210400, "ifjor": 180200},
+            {"konto": 1700, "tekst": "Forskuddsbetalt kostnad", "na": 12000, "ifjor": 10000},
+            {"konto": 1920, "tekst": "Bankinnskudd", "na": 286900, "ifjor": 198300}]},
+          {"id": "eiendeler", "resultat": "Sum eiendeler", "ledd": ["anlegg", "omlop"], "luft": true},
+          {"id": "ek", "gruppe": "Egenkapital", "sum": "Sum egenkapital", "rader": [
+            {"konto": 2000, "tekst": "Aksjekapital", "na": 30000, "ifjor": 30000},
+            {"konto": 2050, "tekst": "Annen egenkapital", "na": 245000, "ifjor": 198000},
+            {"tekst": "Udisponert resultat hittil i år", "na": 47300, "ifjor": 57900}]},
+          {"id": "gjeld", "gruppe": "Kortsiktig gjeld", "sum": "Sum kortsiktig gjeld", "rader": [
+            {"konto": 2400, "tekst": "Leverandørgjeld", "na": 132000, "ifjor": 120000},
+            {"konto": 2600, "tekst": "Skattetrekk", "na": 31000, "ifjor": 27000},
+            {"konto": 2740, "tekst": "Oppgjørskonto merverdiavgift", "na": 48000, "ifjor": 41000},
+            {"konto": 2770, "tekst": "Skyldig arbeidsgiveravgift", "na": 18000, "ifjor": 15000},
+            {"konto": 2940, "tekst": "Skyldige feriepenger", "na": 54000, "ifjor": 46000}]},
+          {"id": "ekgjeld", "resultat": "Sum egenkapital og gjeld", "ledd": ["ek", "gjeld"], "luft": true},
+          {"id": "kontroll", "resultat": "Kontroll: eiendeler − egenkapital og gjeld", "ledd": ["eiendeler", "-ekgjeld"], "skal_vaere": 0}
+        ]
+      },
+      "merknad": "Egenkapital og gjeld vises med positivt fortegn. Udisponert resultat hittil i år er summen av resultatkontoene 3000–8999; det overføres til egenkapitalen i årsoppgjøret."
+    },
+    {
+      "id": "nokkeltall",
+      "ark": "Nøkkeltall",
+      "overskrift": "Nøkkeltall",
+      "tabell": {
+        "kolonner": [
+          {"id": "navn", "tekst": "Nøkkeltall", "bredde": 26},
+          {"id": "formel", "tekst": "Beregning", "bredde": 44},
+          {"id": "na", "tekst": "Sep 2026", "type": "belop", "bredde": 11},
+          {"id": "ifjor", "tekst": "Sep 2025", "type": "belop", "bredde": 11},
+          {"id": "normal", "tekst": "Normalområde", "bredde": 16},
+          {"id": "status", "tekst": "Status", "type": "status", "bredde": 11}
+        ],
+        "rader": [
+          {"navn": "Bruttomargin (%)", "formel": "(driftsinntekter − varekostnad) / driftsinntekter", "na": 60.9, "ifjor": 63.3, "normal": "endring < 5 pp", "status": "OK"},
+          {"navn": "Driftsmargin (%)", "formel": "driftsresultat / driftsinntekter", "na": 18.5, "ifjor": 23.6, "normal": "endring < 5 pp", "status": "MERKNAD"},
+          {"navn": "Lønn i % av inntekt", "formel": "lønnskostnad (5000–5999) / driftsinntekter", "na": 32.8, "ifjor": 29.8, "normal": "endring < 5 pp", "status": "OK"},
+          {"navn": "Likviditetsgrad 1", "formel": "omløpsmidler / kortsiktig gjeld", "na": 1.80, "ifjor": 1.56, "normal": "≥ 1,0", "status": "OK"},
+          {"navn": "Egenkapitalandel (%)", "formel": "egenkapital / sum eiendeler", "na": 53.2, "ifjor": 53.4, "normal": "≥ 10 %", "status": "OK"}
+        ]
+      }
+    },
+    {
+      "id": "avvik",
+      "ark": "Avvik",
+      "overskrift": "Vesentlige avvik mot september 2025",
+      "tabell": {
+        "kolonner": [
+          {"id": "id", "tekst": "ID", "bredde": 6},
+          {"id": "konto", "tekst": "Konto", "type": "heltall", "bredde": 8},
+          {"id": "linje", "tekst": "Linje", "bredde": 24},
+          {"id": "avvik", "tekst": "Avvik kr", "type": "belop"},
+          {"id": "pst", "tekst": "Avvik %", "type": "prosent"},
+          {"id": "retning", "tekst": "Retning", "bredde": 11},
+          {"id": "status", "tekst": "Status", "type": "status", "bredde": 11},
+          {"id": "forslag", "tekst": "Foreslått oppfølging", "bredde": 46}
+        ],
+        "rader": [
+          {"id": "N2", "konto": 3000, "linje": "Salgsinntekt, avgiftspliktig", "avvik": 47500, "pst": 13.0, "retning": "gunstig", "status": "FORKLART", "forslag": "Volum: flere ordre enn i fjor; vedvarende. Ingen tiltak."},
+          {"id": "N2", "konto": 4000, "linje": "Innkjøp av varer", "avvik": 26200, "pst": 18.4, "retning": "ugunstig", "status": "FORKLART", "forslag": "Volum (+11 900) og innkjøpspris (+14 300); bruttomargin ned 2,4 pp. Følg med."},
+          {"id": "N2", "konto": 5000, "linje": "Lønn til ansatte", "avvik": 22000, "pst": 22.4, "retning": "ugunstig", "status": "AVVIK", "forslag": "Lønnsdrevet: ett årsverk mer enn i fjor. Avviksanalyse for å bekrefte."},
+          {"id": "N5", "konto": null, "linje": "Driftsmargin", "avvik": null, "pst": -5.1, "retning": "ugunstig", "status": "MERKNAD", "forslag": "Ned 5,1 pp, drevet av lønn og varekostnad. Følg med neste måned."}
+        ],
+        "uthev_avvik": true
+      }
+    },
+    {
+      "id": "bro",
+      "ark": "Bro",
+      "overskrift": "Bro: driftsresultat september 2025 → september 2026",
+      "tabell": {
+        "kolonner": [
+          {"id": "tekst", "tekst": "Driver", "bredde": 40},
+          {"id": "type", "tekst": "Type", "bredde": 16},
+          {"id": "belop", "tekst": "Beløp", "type": "belop"},
+          {"id": "kum", "tekst": "Kumulativt", "lopende": {"pluss": "belop"}}
+        ],
+        "ib": {"tekst": "Driftsresultat september 2025", "verdi": 91520},
+        "rader": [
+          {"tekst": "Salgsinntekt, høyere volum", "type": "volumdrevet", "belop": 43500},
+          {"tekst": "Varekostnad, volum og pris", "type": "volumdrevet", "belop": -26200},
+          {"tekst": "Lønn og arbeidsgiveravgift, ett årsverk mer", "type": "lønnsdrevet", "belop": -25950},
+          {"tekst": "Reisekostnad, kundebesøk", "type": "skjønnsmessig", "belop": -4900},
+          {"tekst": "Inventar kostnadsført i fjor", "type": "engangs", "belop": 3500},
+          {"tekst": "Øvrige linjer under V/2", "type": "diverse", "belop": -1670}
+        ],
+        "ub": {"tekst": "Driftsresultat september 2026", "verdi": 79800},
+        "kontrollsum": {
+          "tekst": "**Broen går opp:** september 2025 {ib} + drivere {pluss} = september 2026 {ub}.",
+          "tekst_avvik": "**Broen går ikke opp:** september 2025 {ib} + drivere {pluss} gir {beregnet}, men september 2026 er {ub} (differanse {diff})."
+        }
+      },
+      "merknad": "«Diverse» er 1 670 kr av et samlet avvik på 11 720 kr (14 %), under grensen på 20 %."
+    }
+  ]
+}

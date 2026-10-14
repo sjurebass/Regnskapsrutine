@@ -1,6 +1,6 @@
 ---
 name: "silfer-rapport"
-description: "Lager Silfer-Excel og Silfer-PDF for alle skills fra én spec.json: logo, byråets farger, tabeller med sum, løpende saldo, kontrollsum, statuskolonner og sidetall, med filnavn etter dokumentlagringsstandarden. Ingen Tally-oppgave. Bruk ved «lag Silfer-excel», «lag Silfer-pdf», «silfer-rapport», «rapport i byråets format», «eksporter tabellen til excel», «lag pdf av rapporten»."
+description: "Lager Silfer-Excel og Silfer-PDF for alle skills fra én spec.json: logo, byråets farger, tabeller med sum, løpende saldo, kontrollsum, resultat- og balanseoppstilling, statuskolonner og sidetall, med filnavn etter dokumentlagringsstandarden. Ingen Tally-oppgave. Bruk ved «lag Silfer-excel», «lag Silfer-pdf», «silfer-rapport», «rapport i byråets format», «eksporter tabellen til excel», «lag pdf av rapporten»."
 ---
 
 # Silfer-rapport
@@ -36,13 +36,14 @@ Skriv filen med Write-verktøyet eller Python (UTF-8). Minste form:
 
 - `dokument`: `hva` (filnavn og bunntekst), `tittel`, `klient`, `orgnr`, `under[]`, `periode` (`ÅÅÅÅ-MM` | `ÅÅÅÅ-T<n>` | `ÅÅÅÅ`),
   `periode_tekst`, `utarbeidet`, `utarbeidet_av` (initialer), `bunntekst`, `sidetall`, `personvern.redact`.
-- `seksjoner[]`: `ark` (Excel-fane), `overskrift`, `nivaa`, `tekst`, `sideskift`, én av `tabell` | `kontroller` | `sammendrag`,
+- `seksjoner[]`: `ark` (Excel-fane), `overskrift`, `nivaa`, `tekst`, `sideskift`, én av `tabell` | `kontroller` | `sammendrag` | `oppstilling`,
   `boks` (`konkl` grønn | `varsel` oransje), `punkter[]`, `merknad`.
 - Kolonnetyper: `tekst`, `heltall`, `dato`, `belop`, `antall`, `prosent`, `status`. `vis`: `begge` | `excel` | `pdf`.
 - Status er en lukket mengde: OK, AVVIK, FORKLART, PERIODISERT, FEIL, MANGLER, MERKNAD, KJENT, IKKE AKTUELT, IKKE AVKLART.
 - Avledede tall regnes ut av generatoren, aldri for hånd: `sum` (med `tell` og `skal_vaere` → OK/AVVIK), `lopende` (løpende saldo
   fra IB), `ib`/`ub`, `kontrollsum` (IB + pluss − minus = UB → «Kontrollert: …» i grønn boks, ellers avvik i oransje),
-  `sammendrag` (COUNTIF/SUMIF over en annen seksjon) og `kontroller` (A − B med toleranse og status).
+  `sammendrag` (COUNTIF/SUMIF over en annen seksjon), `kontroller` (A − B med toleranse og status) og `oppstilling` (grupper med
+  sumlinje, resultatlinjer som ± andre linjer, avvik kr og % per rad, kontrollinje med `skal_vaere`). En bro er en `tabell` med `lopende` og `kontrollsum`.
   Excel får formler, PDF får de samme tallene beregnet.
 - Fullt skjema: `references/spec.md`. Eksempler i `scripts/eksempler/`; `kontoutskrift_reskontro.json` er referanseutseendet.
 
@@ -93,7 +94,7 @@ Lever: `silfer-rapport` (spec.json → xlsx/pdf) + `docs/dokumentlagring.md` (ka
 
 ## Referanser
 
-- `references/spec.md` (skjema og regler) · `scripts/eksempler/` (fiktive: bankavstemming, kontoutskrift_reskontro, notat_2740, kontrollrapport).
+- `references/spec.md` (skjema og regler) · `scripts/eksempler/` (fiktive: bankavstemming, kontoutskrift_reskontro, notat_2740, kontrollrapport, regnskapsrapport).
 - `scripts/rapport.py`, `scripts/sjekk.py`, `scripts/silfer/` (tema, tekst, filer, spec, modell, excel, html, pdf, stil).
-- Brukes av `bankavstemming` (`scripts/lag_spec.py`) og `lonnsavstemming` (`silfer.stil`, kompat-skall som ikke skal endres).
+- Brukes av `bankavstemming` og `regnskapsrapport` (`scripts/lag_spec.py`) og `lonnsavstemming` (`silfer.stil`, kompat-skall som ikke skal endres).
 - Utviklerverktøy: `scripts/test_stil_kompat.py`, `scripts/sammenlign_stil.py` (regresjon ved endringer i stilen).

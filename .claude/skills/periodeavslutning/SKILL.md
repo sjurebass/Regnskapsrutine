@@ -1,23 +1,26 @@
 ---
 name: "periodeavslutning"
-description: "Ferdigstillelse av perioderegnskapet for en Tripletex-klient: sjekk at bilag, bank, reskontro, balanse, a-melding og mva for perioden er ferdige, rimelighet mot fjoråret og byråets terskler, manglende faste kostnader, hovedtall og utkast til månedsrapport i Tally, og perioden klar til låsing. Lukker Tally-oppgavene «Ferdigstillelse perioderegnskap» og «Lukking av regnskapsperiode». Bruk ved «periodeavslutning», «ferdigstill perioderegnskapet», «månedsavslutning for <klient>», «er <måned> klar til å lukkes», «lukk perioden», «månedsrapport», «perioderapport»."
+description: "Ferdigstillelse av perioderegnskapet for en Tripletex-klient: statustavle etter avhengighetsnivå (bilag, lønn, bank, reskontro, balanse, mva), port før låsing, rimelighet mot fjoråret og byråets terskler, hovedtall og utkast til månedsrapport i Tally, avslutningsnøkkeltall og retrospektiv. Lukker Tally-oppgavene «Ferdigstillelse perioderegnskap» og «Lukking av regnskapsperiode». Bruk ved «periodeavslutning», «ferdigstill perioderegnskapet», «månedsavslutning for <klient>», «er <måned> klar til å lukkes», «lukk perioden», «månedsrapport», «perioderapport», «hva blokkerer månedsavslutningen»."
 ---
 
 # Periodeavslutning
 
-Sjekkpunktet etter månedens kontroller: er alt ferdig for perioden, er tallene rimelige, og er perioden klar til å lukkes. Skillen avstemmer
-ikke selv; den leser resultatet fra `bankavstemming`, `reskontroavstemming`, `balanseavstemming`, `a-melding` og `mva-innlevering` og peker
-på det som mangler. Publisering av månedsrapporten, lukking i Tally og periodelås i Tripletex gjør regnskapsføreren.
+Sjekkpunktet etter månedens kontroller: hvor langt klienten har kommet etter avhengighetsnivåene i `references/lukkekalender.md`, hva som blokkerer,
+om tallene er rimelige, og om perioden er klar til å lukkes. Skillen avstemmer ikke selv; den leser resultatet fra nivå 1–3 (`bilagsforing`,
+`bankavstemming`, `reskontroavstemming`, `balanseavstemming`, `a-melding`, `mva-innlevering`) og peker på det som mangler. Resultat og balanse lages i
+`regnskapsrapport`, forklaring av avvik i `avviksanalyse`. Publisering av månedsrapporten, lukking i Tally og periodelås gjør regnskapsføreren.
 
 ## Når
 
-- Tally «Ferdigstillelse perioderegnskap» og «Lukking av regnskapsperiode» (uten frist), sist i måneden: bilag → bank → reskontro og balanse → mva og lønn.
-- Brukeren oppgir klient og periode `ÅÅÅÅ-MM`. «Alle» gir bare porttabellen fra steg 1, ikke rimelighet eller rapport.
+- Tally «Ferdigstillelse perioderegnskap» og «Lukking av regnskapsperiode» (uten frist): nivå 4–5, etter bilag, lønn og periodisering (nivå 1),
+  bank, reskontro og mva-kontroll (nivå 2), balanse, korrigeringer og mva-innlevering (nivå 3).
+- Brukeren oppgir klient og periode `ÅÅÅÅ-MM`. «Alle» gir statustavlen på tvers av klientene (steg 1), ikke rimelighet eller rapport.
+  Statustavlen kan kjøres når som helst i måneden for å se hva som er blokkert eller i fare.
 
 ## Kundeinstruks
 
-«Regnskapssystem og byrå» (V) · «Mva» (termin: er perioden terminslutt?) · «Lønn» · «Reskontro og balanse» · «Kjente avvik» (dempes i A1–A3) ·
-bransje (prosjekt, varelager, utleie) styrer P1–P4.
+«Regnskapssystem og byrå» (V) · «Mva» (termin: er perioden terminslutt?) · «Lønn» · «Periodiseringer» · «Reskontro og balanse» · «Kjente avvik»
+(dempes i A1–A3) · bransje (prosjekt, varelager, utleie) styrer P1–P4. Retrospektiven (steg 8) gir forslag til endringer i instruksen.
 
 ## Steg
 
@@ -25,57 +28,69 @@ Utkast – kalibreres mot første klient. Følg stegene, men si fra om noe ikke 
 
 D = første dag etter måneden (`dateTo` og `date` er eksklusive). Lesing: `npm run -s api -- GET <sti> <parametre> "fields=…" --client "<klient>"`.
 
-### 1. Port (kommando og Tally)
+### 1. Statustavle og port
 - `npm run -s status -- --client "<klient>" --maaned ÅÅÅÅ-MM --json` → bilagsmottak, ikke bokførte bilag i perioden, bank lukket per konto,
-  1500/2400 åpne poster mot UB, a-melding (gruppe), observasjonskonti, perioder lukket og mva for siste termin. «Alle»: `--alle` i stedet for `--client`.
+  1500/2400 åpne poster mot UB, a-melding (gruppe), observasjonskonti, perioder lukket og mva for siste termin.
 - `npm run -s amelding -- status --client "<klient>" --maned ÅÅÅÅ-MM --json` → ubetalt trekk og arbeidsgiveravgift med forfall den 15.
 - I terminmåneder: mva levert og betalt fra `status`; kvitteringen ligger i Tally `list_altinn_innboks` (2740 som i `mva-innlevering`).
-- Tally `list_tasks` (klient, åpne) → månedsoppgavene for perioden.
-- F1 bilagsmottak · F2 bank · F3 reskontro · F4 a-melding, trekk og mva · F5 observasjonskonti · F6 Tally-oppgaver · D4 forrige periode låst.
-  Detaljer i `references/kontroller.md`. Rødt punkt: pek på skillen som løser det, og stopp før steg 4.
+- Tally `list_tasks` (klient, `scope: all`) → månedsoppgavene for perioden med status og frist; `get_task` gir kommentarene på avstemmingsoppgavene (F7).
+- Statustavle: Nivå · Arbeid · Skill · Frist · Status (Ikke startet, Pågår, Ferdig, Blokkert, I fare) · Blokkert av · Neste steg, etter `references/lukkekalender.md`.
+- Port: F1–F7 og D4 med nivå i `references/kontroller.md`. Rødt punkt: Blokkert, pek på skillen som løser det, og stopp før steg 5.
+- «Alle»: `npm run -s status -- --alle --maaned ÅÅÅÅ-MM --json` og Tally `list_tasks` (`title`, `scope: overdue`, `group_by: klient`) → én linje per klient.
 
-### 2. Rimelighet (A1–A3)
+### 2. Blokkeringer
+For hver blokkering: hva, nivå, eier (kunden, regnskapsfører, oppdragsansvarlig, Tripletex-UI) og hva som løser den (`references/lukkekalender.md`).
+Kunden: mangelliste eller Missive-utkast etter ja. Tally: én kort kommentar med årsaken på oppgaven etter ja (`tally-gjoremal`); oppgaven fullføres ikke.
+
+### 3. Rimelighet (A1–A3, nivå 4)
 - Tally `hent_kontoavstemming` (klient, periode, bare flaggede) → kontoer over byråets terskler, med kundens beslutninger og kommentarer (A1).
 - Tally `kontoutvikling` (siste 12 måneder, sammenlignet med i fjor) → A2 (over 30 % og over V) og A3 (fast kostnad i minst 9 av 12 måneder, 0 nå).
-- Tally `hent_posteringer` for å forklare en flagget konto. Kjente avvik dempes; avvik under V vises ikke.
+- Kjente avvik dempes; avvik under V vises ikke. Forklaring av en flagget konto (bilag, motpart, pris og mengde): `avviksanalyse`.
+  Tally `hent_posteringer` holder for en rask titt.
 - P1–P4 bare når kundeinstruksen sier prosjekt, varelager eller utleie.
 
-### 3. Hovedtall (fra `/balanceSheet`)
-- `/balanceSheet dateFrom=<fra> dateTo=D accountNumberFrom=3000 accountNumberTo=8999 "fields=account(number,name),balanceChange"` for måneden
-  (`dateFrom` = ÅÅÅÅ-MM-01) og hittil i år (`dateFrom` = ÅÅÅÅ-01-01), og det samme for i fjor: driftsinntekter (3000–3999), driftsresultat
-  (3000–7999), resultat før skatt (3000–8299, uten 83xx). Inntekter har negativt fortegn.
-- `/balanceSheet dateFrom=ÅÅÅÅ-01-01 dateTo=D accountNumberFrom=1000 accountNumberTo=2999 "fields=account(number,name),balanceOut"`: bank (19xx),
-  1500, 2400, skyldig mva (2740), trekk og arbeidsgiveravgift (2600/2770), egenkapital med udisponert resultat (Σ 3000–8999 hittil i år).
+### 4. Hovedtall (nivå 4)
+- Resultat og balanse med sammenligning fra `regnskapsrapport`:
+  `npm run -s regnskap -- --client "<klient>" --periode ÅÅÅÅ-MM --hittil --sammenlign ifjor --json --ut <mappe>`.
+- Uten den: `/balanceSheet dateFrom=<fra> dateTo=D accountNumberFrom=3000 accountNumberTo=8999 "fields=account(number,name),balanceChange"` for måneden og
+  hittil i år, i år og i fjor (inntekter har negativt fortegn), og 1000–2999 med `balanceOut` for bank, 1500, 2400, 2740 og 2600/2770.
 - Nøkkeltall: omsetning for måneden og hittil mot i fjor, driftsresultat, likviditet, forfalte kundefordringer og forfalt leverandørgjeld
   (`/ledger/posting/openPost date=D` på 1500 og 2400 med `"fields=amount,termOfPayment"`, forfalt = `termOfPayment` før D).
 
-### 4. Utkast til månedsrapport (etter ja)
+### 5. Utkast til månedsrapport (etter ja, nivå 5)
 - Vis utkastet: tittel, kommentar på høyst fem setninger i kundens språk, nøkkeltall og anbefalinger. Ingen personopplysninger.
 - Etter ja: Tally `save_monthly_report_draft`. Claude publiserer aldri; regnskapsføreren publiserer i Tally.
 - Vil kunden ha fil: PDF `Perioderapport ÅÅÅÅ-MM <Klient>.pdf` via `silfer-rapport` (hovedtall, nøkkeltall, kommentar, avvik).
 
-### 5. Månedsavslutning i Tally
+### 6. Månedsavslutning i Tally (nivå 5)
 - Tally `close_month` (klient, periode) uten `confirmation_id` gir bare en forhåndsvisning. Vis den, og si at avslutningen er synlig for kunden og ikke kan angres.
 - Regnskapsføreren lukker måneden i Tally. Claude kaller ikke `close_month` igjen med `confirmation_id`.
 - Avviser Tally avslutningen (avsetningsbilag ville gått til Tripletex), si det og hvorfor.
 
-### 6. Periodelås i Tripletex
+### 7. Periodelås i Tripletex (nivå 5)
+**Stopp:** porten er grønn eller gul (F1–F7 og D4), alle bankmåneder er lukket, mva-meldingen er levert i terminmåneder, og ingen avstemming har åpent stopp (uforklart differanse, kategori 3 over V) – ellers anbefales ikke låsing: vis porttabellen med blokkeringene og hvem som løser dem.
 **Bare i Tripletex-UI:**
-1. Lås regnskapsperioden når alle bankmåneder er lukket og, i terminmåneder, mva-meldingen er levert. Låsing har ikke API.
+1. Lås regnskapsperioden. Låsing har ikke API.
 Kontroller etterpå med `npm run -s api -- GET /ledger/accountingPeriod startFrom=ÅÅÅÅ-MM-01 startTo=D "fields=number,start,end,isClosed" --client "<klient>"`
 at `isClosed` er satt, før «Lukking av regnskapsperiode» fullføres.
 
+### 8. Nøkkeltall og retrospektiv (etter lukking)
+- Avslutningsnøkkeltall: dager til lukket, føringer etter lukking, gjenåpnede perioder, uforklarte poster og forsinkede oppgaver, med kall og mål
+  i `references/lukkekalender.md`. Sammenlign med kommentaren fra forrige måneds lukking.
+- Retrospektiv: de fem spørsmålene i referansen, høyst fem linjer. Svar som gjelder klienten varig, blir forslag til kundeinstruksen (`kundeinstruks`, etter ja).
+
 ## Svar
 
-- Porttabell: Punkt · Status (OK, AVVIK, IKKE AVKLART) · Kilde · Gjenstår, én linje per F1–F6 og D4, med port (grønn/gul/rød).
+- Statustavle per nivå med port (grønn/gul/rød), og porttabell: Punkt · Nivå · Status (OK, AVVIK, IKKE AVKLART) · Kilde · Gjenstår for F1–F7 og D4.
 - Hovedtall på tre–fire linjer. Funn fra A1–A3 i funn-formatet (ID · Klient · Periode · Konto · Beløp · Status · Forslag · Krever), maks 10 linjer.
-- Nummerert ja-liste: lagre utkastet, månedsavslutning i Tally (regnskapsfører), periodelås i Tripletex-UI (regnskapsfører).
-- «Alle»: én linje per klient (Klient · Røde punkter · Neste skill).
+- Nummerert ja-liste: lagre utkastet, kommentarer på blokkerte oppgaver, månedsavslutning i Tally og periodelås i Tripletex-UI (regnskapsfører),
+  endringer i kundeinstruksen fra retrospektiven.
+- «Alle»: én linje per klient (Klient · Høyeste ferdige nivå · Blokkert/I fare · Neste skill), I fare først.
 
 ## Lever
 
 Lever: `silfer-rapport` (spec.json → pdf, bare når kunden vil ha fil) + `docs/dokumentlagring.md` (kategori `ANNET`, periode `ÅÅÅÅ-MM`, samling `Perioderapporter ÅÅÅÅ`, oppgave «Ferdigstillelse perioderegnskap»).
-Fullfør i Tally: se `tally-gjoremal`. «Ferdigstillelse perioderegnskap» fullføres når F1–F6 er OK eller forklart og utkastet til månedsrapport er lagret; «Lukking av regnskapsperiode» først når `/ledger/accountingPeriod` viser `isClosed` for perioden. Kommentaren inneholder periode, hovedtall, avvik fra A1–A3 og hva som er lukket.
+Fullfør i Tally: se `tally-gjoremal`. «Ferdigstillelse perioderegnskap» fullføres når F1–F7 er OK eller forklart og utkastet til månedsrapport er lagret; «Lukking av regnskapsperiode» først når `/ledger/accountingPeriod` viser `isClosed` for perioden. Kommentaren inneholder periode, hovedtall, avvik fra A1–A3, hva som er lukket og avslutningsnøkkeltallene.
 
 ## Fallgruver
 
@@ -83,10 +98,13 @@ Fullfør i Tally: se `tally-gjoremal`. «Ferdigstillelse perioderegnskap» fullf
 - `/ledger/accountingPeriod` er bare lesing. Tripletex-perioden låses i UI.
 - Tally `close_month` (kundens månedsavslutning) og periodelåsen i Tripletex (hindrer nye føringer) er to forskjellige ting. Begge gjøres av regnskapsføreren.
 - Et lagret utkast er ikke publisert. Publisering er et eget steg i Tally.
-- Det finnes ingen rapport-API: hovedtallene bygges fra `/balanceSheet`, og kontogruppene følger klientens kontoplan (sjekk 8xxx).
+- Balansefristen (16.) kommer før reskontrofristen (20.): en balanse som venter på reskontro, er Blokkert, ikke I fare.
+- `list_tasks` har frist og status, men ikke når oppgaven ble fullført; det står i `handlinger` i `get_task`.
 - Lukk aldri en periode med åpne bankmåneder eller ubehandlet bilagsmottak.
 
 ## Referanser
 
-- `references/kontroller.md`: F1–F6, D4, A1–A3, P1–P4. Katalog: `docs/kontrollkatalog.md`.
-- Naboskills: `bilagsforing`, `bilagskontroll`, `bankavstemming`, `reskontroavstemming`, `balanseavstemming`, `a-melding`, `mva-innlevering`.
+- `references/kontroller.md`: F1–F7, D4, A1–A3, P1–P4. `references/lukkekalender.md`: nivåer, kritisk vei, status, blokkeringer, nøkkeltall, retrospektiv.
+- Katalog: `docs/kontrollkatalog.md`. Metode: `docs/avstemmingsmetodikk.md`.
+- Naboskills: `bilagsforing`, `periodisering`, `bilagskontroll`, `bankavstemming`, `reskontroavstemming`, `balanseavstemming`, `a-melding`, `mva-innlevering`,
+  `regnskapsrapport`, `avviksanalyse`, `kundeinstruks`, `tally-gjoremal`.

@@ -23,3 +23,24 @@ attestering gjør oppdragsansvarlig. Tripletex leses med `npm run -s <kommando> 
 
 - Én forsinket rapportering i perioden er et funn, ikke en blokkering. Gjentatte forsinkelser eller forfalte kundetiltak gir rød konklusjon.
 - Statusen kommer fra verktøyene; Claude vurderer ikke kundetiltakene selv og endrer dem aldri.
+- K-funn og stikkprøvefunn får grad etter `docs/stikkprover.md`: merknad, avvik eller vesentlig avvik. K2 og K5 er nøkkelkontroller.
+
+## Stikkprøver (U-kontrollene)
+
+Metoden, tabellen for utvalgsstørrelse, arbeidspapiret og bevisstandarden står i `docs/stikkprover.md`. Her står hva som testes i oppdragskontrollen.
+
+| ID | Utvalg | Testtrinn per utvalgsenhet | Data (API) | Bestått når |
+|---|---|---|---|---|
+| U7 | Systematisk: 2–4 måneder (bank, reskontro, balanse, bilagskontroll) og 2–3 terminer (mva, trekk og AGA) etter risiko | Oppgaven fullført innen fristen · dokument i Tally eller modulen · saldo i dokumentet = hovedbok | Tally `list_tasks`, `list_documents`; `modul -- perioder`, `modul -- linjer`; `/balanceSheet` | Alle tre trinn; differanse < 1 kr |
+| U2 | Bilag: systematisk over perioden, antall etter tabellen (per bilag), pluss målrettet over V | Vedlegg eller EHF finnes og er salgs- eller kjøpsdokument | `utvalg`, `dokument --bilag` | Gyldig dokument; formfeil → merknad |
+| U3 | Samme | Konto, mva-kode og beløp = dokumentet; mva regnet om | `/ledger/voucher/{id}` med `fields=postings(account(number),vatType(number),amountGross)` | Avvik < 1 kr |
+| U4 | Samme, særlig «siste 3 dager» | Fakturadato og leveringsperiode i samme periode som bilagsdatoen | `utvalg.json` (dato), dokumentet | Samme måned; annen mva-termin og ≥ V → vesentlig |
+| U5 | Leverandørfakturaer i utvalget | Godkjent med dato før betaling (bare når kundeinstruksen har godkjenningsflyt) | `/supplierInvoice/{id}` med `fields=approvalListElements(status,actionDate),payments(date)` | Godkjent før betalingsdato |
+| U6 | Samme | Matchet mot bank, eller åpen post i reskontro på periodeslutt | `/ledger/posting` (`matched`), `/ledger/posting/openPost` | Ett av de to |
+| U10 | Målrettet: motparter med samme org.nr. som selskap der roller i Brreg eller aksjonærer har eierskap eller verv | Avtale eller vedtak finnes, markedsmessig pris, riktig konto (ikke drift for private kjøp) | Tally `lookup_brreg`, `run_quality_checks`; `/ledger/posting` med `supplier(organizationNumber)` | Dokumentert; lån til aksjonær følger asl. § 8-7 |
+| U9 | Kontroller med avvik i forrige gjennomgang | Samme testtrinn, nytt utvalg, ny seed, ett trinn større | forrige arbeidspapir, Tally `list_avvik` | Ingen avvik |
+| U1, U8 | Alle stikkprøvene | Arbeidspapir med populasjon, metode, seed og antall; avvik klassifisert og aggregert; vesentlige avvik meldt | arbeidspapiret | Komplett og meldt |
+
+- Bilagstekster brukes bare av agenten og vises ikke. Personer (aksjonærer, roller) omtales med rolle; ansatte som attestanter er «attestant 1/2».
+- Utvalgsenheter som ikke kan testes (dokument mangler i Tripletex), er avvik under U2, ikke «ikke testet».
+- Svaret i Tally per spørsmål får én setning per stikkprøve: «U2–U6: 30 bilag (systematisk, seed 20261020), 29 bestått, 1 merknad.»

@@ -3,7 +3,8 @@
 Utkast – kalibreres mot første klient. ID-ene står også i `docs/kontrollkatalog.md`. V er vesentlighetsgrensen fra kundeinstruksen,
 D er første dag etter perioden. Hvert funn rapporteres i funn-formatet (`docs/skill-mal.md`) med status OK, AVVIK, FORKLART, KJENT eller IKKE AVKLART.
 
-Rekkefølge: S9 først (stopper alt), så kontogruppene i den rekkefølgen balansen står, og til slutt S1 over alle kontoer.
+Rekkefølge: S9 først (stopper alt), så kontogruppene i den rekkefølgen balansen står, og til slutt S1 og S10–S12 over alle kontoer.
+Oppstilling, kategorier, alder og eskalering: `docs/avstemmingsmetodikk.md`.
 Stier er `npm run -s api -- GET <sti> …` (se steg 1 i SKILL.md); kommandoer er `npm run -s <kommando> -- …`.
 
 | ID | Kontroll | Utslag | Data (API) | Grunnlag |
@@ -17,6 +18,7 @@ Stier er `npm run -s api -- GET <sti> …` (se steg 1 i SKILL.md); kommandoer er
 | S8 | 1400–1499 varelager = telling per 31.12 (bare når kundeinstruksen sier varelager) | Mangler telling → kunden | `/balanceSheet`; lagerliste fra kunden | rskl. § 5-2 |
 | S3 | 1700–1799 og 2900–2999: hver post har bilag og gjelder fortsatt; forskudd kostnadsføres, avsetninger reverseres; ingen mva på periodiseringsbilag | Post eldre enn 12 måneder uten bevegelse → spørsmål | `/ledger/posting` | rskl. § 4-1 |
 | E1 | 13xx/15xx/29xx: saldo mot aksjonær har låneavtale og renter; konsernmellomværende = motpartens saldo | Debet mot personlig aksjonær → AVVIK (spør) | `/ledger/posting` | sktl. § 10-11 (4); asl. § 8-7 |
+| S13 | Mellomværende i konsern: fordring hos klienten = gjeld hos konsernselskapet (motsatt fortegn), og omvendt | Differanse ≥ 1 kr → AVVIK med kategori; motpart ikke klient og ingen saldobekreftelse → IKKE AVKLART | `/balanceSheet` hos begge klientene (begge navngitt av brukeren), saldobekreftelse via kunden | bokf.l. § 11; GRFS |
 | S5 | 2000–2099: bevegelse bare med protokoll (utbytte, kapitalendring); 2000 = aksjekapital; IB = fjorårets UB etter disponering | Avvik → AVVIK | `/balanceSheet` (i år og år − 1) | asl. §§ 3-1, 8-1 |
 | S7 | 2200–2299 = låneoppgave eller nedbetalingsplan (per 31.12); renter bokført | Avvik → AVVIK | `/balanceSheet`; årsoppgave fra kunden | bokf.l. § 11 |
 | S6 | 2500/1570: IB = fjorårets betalbare skatt; bevegelse = betalt forskudds- og restskatt; 0 etter betaling (per 31.12: ny avsetning) | Avvik → AVVIK | `/balanceSheet`, `/ledger/posting`, `/claimsAndPayments` (skattekontoen) | sktbetl. §§ 10-20, 10-21 |
@@ -27,10 +29,31 @@ Stier er `npm run -s api -- GET <sti> …` (se steg 1 i SKILL.md); kommandoer er
 | D2 | Konto for manglende bilag og andre observasjonskonti (typisk 1370, 7799) = 0 | ≠ 0 → forslag om ompostering | `status` (observasjonskonti), `/balanceSheet` | bokf.l. § 7 |
 | A5 | Sovende kontoer: UB ≠ 0 og ingen bevegelse på 12 måneder (unntatt egenkapital, langsiktig lån, depositum) | Liste → vurder, eller IGNORED etter ja | `/balanceSheet` (to perioder) | GRFS: avstemming av balanseposter |
 | S1 | Alle kontoer med UB over V har dokumentert saldo og kilde | Mangler kilde → IKKE AVKLART | alle over | GRFS: dokumentert avstemming; bokf.l. § 11 |
+| S10 | Oppstilling per konto: UB ± avstemmingsposter = dokumentert saldo | Uforklart differanse ≥ 1 kr → AVVIK, stopp før RECONCILED | alle over | bokf.l. § 11 |
+| S11 | Kategori og alder for hver avstemmingspost | Kategori 3 over V uten beslutning → stopp; over V/2 → regnskapsfører; over 90 dager → oppdragsansvarlig | alle over | GRFS: avstemming av balanseposter |
+| S12 | Trend mot forrige periode (fil i Tally, samling `Balanseavstemming ÅÅÅÅ`) | Sum avstemmingsposter per konto over V og økende, eller samme post tre perioder på rad → prosessavvik | forrige periodes Silfer-fil | GRFS: oppfølging av avstemmingsposter |
+
+Felt: `/asset` `"fields=name,dateOfAcquisition,acquisitionCost,account(number),balanceOut,depreciationAmount,saleDate"` ·
+`/claimsAndPayments` `"fields=claimType,claimGroup,amount,outstandingAmount,dueDate,periodDescription"`.
+
+## Avstemmingsposter per kontogruppe
+
+Alder regnes fra bilagsdatoen eller første periode posten var åpen, til S. Kjent avvik med samme beløp er KJENT uansett kategori.
+
+| Konto | 1 Tidsforskjell | 2 Krever føring | 3 Må undersøkes |
+|---|---|---|---|
+| 2740, 27xx | termin levert, betales ved forfall | oppgjørsbilag for terminen mangler | restsaldo etter betaling som ikke kan forklares |
+| 2600 / 2770 | a-meldt, forfaller den 15. | trekk eller AGA ført på feil konto | differanse mot a-melding etter betaling |
+| 2940 | – | avsetning ikke oppdatert for perioden (`periodisering`) | avvik > 1 % mot grunnlag × sats |
+| 1700–1799, 2900–2999 | periodisering som går av neste måned | periodisering eller reversering mangler (`periodisering`) | post eldre enn 12 måneder uten bevegelse (S3) |
+| 1200–1299 | tilgang etter D | avskrivning eller aktivering mangler | register ≠ UB uten forklaring |
+| Mellomregning, konsern | ført hos motparten etter S | ført bare hos den ene, feil konto | omtvistet beløp, ulik kurs, debet mot personlig aksjonær |
+| 1370, 7799 | – | ompostering når bilaget kommer | post uten bilag over 60 dager |
 
 ## Terskler
 
 - OK når differansen er under 1 kr. AVVIK over V gir rød port; AVVIK under V gir gul.
+- Enkeltpost over V/2 → `regnskapsfører`; over V → `oppdragsansvarlig`. Uforklart differanse av ethvert beløp over 1 kr stopper RECONCILED.
 - Kjent avvik i kundeinstruksen med samme beløp: KJENT. Nytt beløp: nytt funn.
 - Det kundeinstruksen sier venter til årsoppgjøret, flagges ikke i månedene, men tas med per 31.12.
 
@@ -40,4 +63,5 @@ Stier er `npm run -s api -- GET <sti> …` (se steg 1 i SKILL.md); kommandoer er
 - Linjene har ingen egen id; `accountId` er kontoens id hos klienten. Status: NOT_RECONCILED, RECONCILED, IGNORED (og CONTROLLED/REJECTED).
 - Kommandoer: `modul perioder|linjer|vedlegg` (lesing), `modul sett-status|last-opp|fullfor` (skriving med `--bekreft`). Kommentarer skrives i UI.
 - Automatisk: 2740 etter fullført mva-avstemming; 2600/2610/2770/2771 etter fullført lønnsavstemming. Aldri automatisk: 19xx, 2700–2739.
+- `referenceId` for vedlegg på balanselinjer er ikke verifisert (trolig `accountId`): sjekk med `modul -- vedlegg` at filen havnet på linjen.
 - Kommentar: én kort setning med årsaken, som en regnskapsfører skriver den. Vedlegg: kontoutskrift, låneoppgave, beregning.
