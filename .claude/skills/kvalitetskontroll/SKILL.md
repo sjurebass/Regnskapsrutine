@@ -36,8 +36,12 @@ Utkast – kalibreres mot første klient. Følg stegene, men si fra om noe ikke 
   Avstemming kundereskontro, Avstemming leverandørreskontro, Avstemming balansekontoer, A-melding, Avstemming av AGA og forskuddstrekk,
   MVA-kontroll, MVA-innlevering, Ferdigstillelse perioderegnskap.
 - Tally `list_deadlines` (forfalt), `list_avvik`, `list_documents` (avstemminger per periode) og `frister_fra_staten`.
-- Tripletex i ett `tripletex_run_script`: `get_bank_reconciliation_periods` (året), `get_accounting_period_status`, `get_voucher_inbox_count`,
-  `get_amelding_status` (siste måned) og `get_vat_registration_status`.
+- Tripletex, én kommando om gangen (bare lesing):
+  `npm run -s status -- --client "<klient>" --maaned <siste avsluttede måned> --aar ÅÅÅÅ --json`, ett kall per kalenderår i perioden →
+  bank lukket per måned, perioder lukket, bilagsmottak, ikke bokførte bilag, mva levert og betalt per termin.
+  `npm run -s amelding -- status --client "<klient>" --maned <siste måned> --json` (siste måned, ubetalt) og
+  `npm run -s amelding -- oversikt --client "<klient>" --ar ÅÅÅÅ --json` (alle måneder i året).
+  `npm run -s api -- GET /ledger/vatSettings "fields=vatRegistrationStatus" --client "<klient>"` → mva-registrering, holdes mot Brreg (K4).
 - K1 oppdragsavtale · K2 kundetiltak · K3 fullmakter · K4 Brreg · K5 rapportering i tide · K6 avstemminger dokumentert · K7 ajourhold ·
   K8 kundeinstruks · K9 åpne avvik · K10 oppdragsansvarlig og team. Utslag, data og grunnlag: `references/kontroller.md`.
 

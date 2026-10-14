@@ -22,16 +22,23 @@ manglende bilag, typisk 1370 eller 7799) · «Kjente avvik» · «Regnskapssyste
 
 ## Steg
 
+Alle kall med `--client "<klient>"`. `<mappe>` = kort arbeidsmappe (for eksempel `%TEMP%\rr\bilagskontroll-ÅÅÅÅ-MM`); D = første dag etter måneden.
+
 ### 1. Modus
-`get_vat_registration_status` og Enhetsregisteret (Tally `lookup_brreg` eller `lookup_company_in_brreg`) → registrert, ikke registrert eller uklar.
+`npm run -s api -- GET /ledger/vatSettings fields=vatRegistrationStatus` og Enhetsregisteret (Tally `lookup_brreg`) → registrert, ikke registrert eller uklar.
 Uklar (for eksempel VAT_APPLICANT i Tripletex og registrert i Brreg) stopper kontrollen til brukeren har avklart det.
 
-### 2. Data – ett `tripletex_run_script`
-- `search_ledger_postings` for måneden: 4000–7999, 1000–1999 og 2700–2799 (bilag-id og -nr., dato, konto, mva-kode, beløp, bruttobeløp, leverandør).
-- `search_supplier_invoices` fra måneden før, alle stadier: status, fakturanr., leverandør med org.nr., fakturadato, bilagsnr., kreditnota, vedlegg/EHF.
-- `get_voucher_inbox_count`; `search_voucher_types` (manuelle bilagstyper); `get_balance_sheet` UB for observasjonskontoene.
-- Leverandørene i måneden mot `data/leverandorer.json` og 12 måneders historikk på 2400 → ny eller ukjent leverandør.
-Behold bilagsnummer, konto, kode og beløp. Posteringstekst brukes bare i skriptet (signalordene i E2) og returneres ikke.
+### 2. Data (API)
+- Posteringer i måneden:
+  `npm run -s api -- GET /ledger/posting dateFrom=ÅÅÅÅ-MM-01 dateTo=<D> fields=id,date,description,account(number),vatType(number),amount,amountGross,invoiceNumber,supplier(id,organizationNumber),voucher(id,number,year,voucherType(id),attachment(id),ediDocument(id),reverseVoucher(id)) --sider --ut <mappe>/posteringer.json`
+- Leverandørfakturaer fra måneden før, alle stadier (bilagsnummer 0 = ikke bokført):
+  `npm run -s api -- GET /supplierInvoice invoiceDateFrom=<forrige mnd>-01 invoiceDateTo=<D> fields=id,invoiceNumber,invoiceDate,isCreditNote,amount,supplier(id,organizationNumber),voucher(id,number),originalInvoiceDocumentId --sider --ut <mappe>/fakturaer.json`
+- Ikke bokførte bilag: `npm run -s api -- GET "/ledger/voucher/>nonPosted" includeNonApproved=true dateFrom=ÅÅÅÅ-MM-01 dateTo=<D> fields=id,date`.
+- Samme mønster: `/voucherInbox/inboxCount` · `/ledger/voucherType` med `fields=id,name` (manuelle bilagstyper) · `/balanceSheet` med
+  `dateFrom=ÅÅÅÅ-01-01 dateTo=<D> fields=account(number),balanceOut` → UB for observasjonskontoene.
+- Leverandørene i måneden mot indeksen (`npm run -s leverandor -- finn <orgnr> --json`) og 12 måneders historikk på 2400 (`/ledger/posting` med
+  `accountNumberFrom=2400 accountNumberTo=2400 fields=supplier(id) --sider`) → ny eller ukjent leverandør.
+Behold bilagsnummer, konto, kode og beløp. Posteringstekst brukes bare i skriptet (signalordene i E2) og vises ikke.
 
 ### 3. Maskinelle kontroller
 Kjør tabellen i `references/kontroller.md`: D1, M5, M4, M7, M8, D3, R6, D5, D2, E2, D7, D6. Hvert funn får alvor (STOPP, BLOKK, SPØR, FORKLAR, INFO)
@@ -41,7 +48,8 @@ og gjelder ett bilag eller én samlelinje. Klient som ikke er registrert: kodeko
 1. Velg kandidatene etter `references/kontroller.md` (skjønnskontoer, utenlandsk eller ukjent leverandør uten vurdering, funn som krever skjønn).
    Sorter etter mva-effekt, så beløp. Resten telles som «utelatt».
 2. Agenten får `docs/fradragsregler-kort.md`, lista (bilagsnr., konto, kode, beløp, leverandør med org.nr. og vurdering fra `leverandorindeks`) og
-   lenker fra `get_voucher_document`. Finner ToolSearch et verktøy som leser bilagsdokumentet eller EHF-en, får agenten bruke det. Agenten skriver ingenting.
+   dokumentene: `npm run -s dokument -- --client "<klient>" --bilag <nr-år> --ut <mappe>/dok` (EHF og leverandørfaktura: `--faktura <id>`) gir PDF og
+   maskert `.txt`. Agenten leser `.txt` (skann: PDF-en med Read) og skriver ingenting.
 3. Svarkontrakt per bilag: `konklusjon` (verdiene i `docs/fradragsregler-kort.md`), sikkerhet, hjemmel og anbefalt korreksjon, uten sitater fra bilaget.
 4. Ingen agent når lista er tom.
 
@@ -52,12 +60,17 @@ Funn med samme nøkkel og beløp som i «Kjente avvik» → «kjent, uendret». 
 Konklusjonene blir funn etter tabellen i `references/kontroller.md`. Lista har fire deler: må rettes · spørsmål · følg opp · nummerert ja-liste.
 Svar som gjelder klienten varig (konto for en fast leverandør, mva-kode), tilbys lagret i kundeinstruksen.
 
-**Krever skriving utenfor MCP: Tripletex-UI (eller API-kobling):**
+**Skriving (etter ja):** kjøres først uten `--bekreft` (viser kallet).
+1. Reverser bilag som er bokført to ganger: `npm run -s api -- PUT "/ledger/voucher/<bilag-id>/:reverse" date=ÅÅÅÅ-MM-DD --client "<klient>" --bekreft`
+   (dato i åpen periode; lønnsbilag kan ikke reverseres).
+
+**Bare i Tripletex-UI:**
 1. Bytt mva-kode eller beløp på bilaget når perioden er åpen. Bank- og OCR-bilag gir 422: før et korrigeringsbilag med henvisning til originalen.
-2. Reverser bilag som er bokført to ganger. Feil periode: korrigeringsbilag i åpen periode.
+2. Feil periode: korrigeringsbilag i åpen periode.
 3. Avvis dokumenter i bilagsmottaket som er purring eller kopi av et bokført bilag.
 4. Ompostér fra observasjonskontoen når bilaget er kommet.
-5. Les på nytt når brukeren sier at det er gjort. Til da står punktet som «ikke gjort».
+
+Les på nytt (steg 2) når brukeren sier at det er gjort. Til da står punktet som «ikke gjort».
 
 ### 7. Til kunden
 Bilag som mangler og spørsmål bare kunden kan svare på, uten byråets vurderinger og hjemler → Missive-utkast etter ja, som punktliste.
@@ -77,7 +90,7 @@ Fullfør i Tally: se `tally-gjoremal`. «Kontroll av bilag» fullføres når bes
 
 ## Fallgruver
 
-- `search_ledger_postings` har ikke bilagsfilter. Grupper per bilag-id i skriptet; et leverandørbilag er 2400 kredit + kostnad uten banklinje.
+- `/ledger/posting` har ikke bilagsfilter. Grupper per `voucher.id` i skriptet; et leverandørbilag er 2400 kredit + kostnad uten banklinje. `dateTo` er eksklusiv.
 - Bilag som ikke er bokført (bilagsnummer 0 på leverandørfakturaen) ser ingen av posteringskontrollene. De telles under D6.
 - Samme leverandør kan ligge to ganger (skrivefeil, uten org.nr.). Dubletter matches på org.nr. via `leverandorindeks`, ikke bare Tripletex-id.
 - Fakturanummer normaliseres før sammenligning (store bokstaver, bare A–Z og 0–9, uten innledende nuller).

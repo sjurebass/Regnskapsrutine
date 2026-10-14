@@ -12,7 +12,7 @@ Når en klient har brukt en leverandør, slipper neste klient å vurdere den på
 
 - Når `bilagskontroll` eller `mva-kontroll` møter en ukjent eller utenlandsk leverandør, i `bilagsforing` når brukeren ber om det,
   og når brukeren spør om en leverandør.
-- Krever filsystemet (Claude Code med repoet åpent). Uten repoet: slå opp i Enhetsregisteret og si at vurderingen ikke er lagret.
+- Krever filsystemet (Claude Code med repoet åpent). Uten repoet: slå opp i Enhetsregisteret (Tally `lookup_brreg`) og si at vurderingen ikke er lagret.
 
 ## Kundeinstruks
 
@@ -22,19 +22,23 @@ Når en klient har brukt en leverandør, slipper neste klient å vurdere den på
 
 ### 1. Slå opp (før nettsøk)
 
-1. Søk med Grep i `data/leverandorer.json` på org.nr. eller kompaktnavn (delstreng). Treff i `aliaser` peker på nøkkelen.
-2. Ingen treff: slå opp i Enhetsregisteret med Tripletex-MCP-en `lookup_company_in_brreg` (org.nr. eller navn), eller
-   `https://data.brreg.no/enhetsregisteret/api/enheter/<orgnr>`.
+1. `npm run -s leverandor -- finn <orgnr|navn> --json` søker i indeksen (org.nr., kompaktnavn, aliaser og hash; ingen nettverkskall).
+   Hele posten: `npm run -s leverandor -- vis <orgnr|nøkkel|navn> --json`.
+2. Ingen treff, norsk org.nr.: `npm run -s leverandor -- oppslag <orgnr> [--alias "navn i Tripletex"] --json` henter fakta fra Enhetsregisteret og
+   legger dem i indeksen (bare fakta, ingen vurdering). Bare navn: Tally `lookup_brreg` først for å finne org.nr.
 3. Utenlandsk leverandør uten norsk org.nr.: sjekk om den er registrert i VOEC eller har norsk mva-nummer (da tar den norsk mva, og kode 86 skal ikke brukes).
+4. Oversikt: `npm run -s leverandor -- liste [--ukjente] [--utland] [--uten-mva] [--uvurdert] [--utdatert] --json`. Alle leverandører hos én klient
+   inn i indeksen (etter ja): `npm run -s leverandor -- importer --client "<klient>" --json`.
 
 ### 2. Vurder og lagre (etter ja)
 
 1. Vurder ut fra faktura, leverandørens nettside og regelverket (`docs/fradragsregler-kort.md`). Oppgi kilde.
 2. Vis brukeren posten som legges til eller endres.
-3. Ved ja: oppdater fila med Edit, eller med et lite Node-skript som leser, endrer og skriver hele JSON-en (behold `aliaser`-kartet i takt med postene,
-   og oppdater `oppdatert`). Skriv aldri navnet i klartekst for ENK eller personnavn; bruk hash eller la `navn` være `null`.
-4. Kontroller at fila fortsatt er gyldig JSON (`node -e "JSON.parse(require('fs').readFileSync('data/leverandorer.json','utf8'))"`).
-5. Endringer i fila er endringer i repoet: commit med en kort melding når brukeren vil.
+3. Ved ja (utenlandsk uten norsk org.nr.: legg til `--navn "…" --land <kode>`):
+   `npm run -s leverandor -- vurder <orgnr|nøkkel|navn> --omvendt <86–92|nei> --voec ja|nei --kostnadstype "…" --fradrag "…" --sats "…" --kilde "…" --sikkerhet høy|middels|lav --av agent --json`
+   Kommandoen holder `aliaser` og `oppdatert` i takt, lagrer ENK og personnavn bare som hash, og overskriver ikke en vurdering fra en
+   regnskapsfører (`--tving` brukes aldri av Claude). `--av` er `agent`, eller regnskapsførerens initialer når de selv har vurdert.
+4. Endringer i fila er endringer i repoet: commit med en kort melding når brukeren vil.
 
 ### 3. Formatet
 

@@ -21,13 +21,13 @@ gir bare Altinn-kvittering (steg 5). En måned uten lønn trenger likevel a-meld
 
 ## Steg
 
-### 1. Status for alle klienter (ett skript)
-Ett `tripletex_run_script` over klientene fra `search_client_companies`: `tlx.get_amelding_status({companyName, month})` i try/catch per klient.
-Behold bare status, kort `statusExplanation`, påløpt og ubetalt (`accrued`, `notPaid`) trekk, AGA og finansskatt, og `taxPeriodName`. Ingen ansattdata.
-Grupper:
-- **Ikke sendt** (`noAmeldingExists`, `ameldingExistsNotSent`, `nonReportedWageinfo`) – L4. Gjelder også måneder uten lønn (L7).
-- **Avvist** (`ameldingRejected`) eller **endret etter innsending** – ny melding trengs (L6).
-- **Sendt, venter på svar** fra Skatteetaten.
+### 1. Status for alle klienter
+`npm run -s amelding -- status --alle --maned ÅÅÅÅ-MM --json` (én klient: `--client "<klient>"`). Per klient: gruppe, kort forklaring, påløpt og
+ubetalt trekk, AGA og finansskatt, og terminnavnet. Ingen ansattdata. Hvilke måneder i året som mangler for én klient:
+`npm run -s amelding -- oversikt --client "<klient>" --ar ÅÅÅÅ --json`. Gruppene:
+- **Ikke sendt** – L4. Gjelder også måneder uten lønn (L7).
+- **Avvist** eller **endret etter innsending** – ny melding trengs (L6).
+- **Venter** på svar fra Skatteetaten.
 - **Godkjent / alt rapportert.**
 - **Kunne ikke leses** (feil, manglende lønnsmodul eller lønnsrolle) – egen gruppe, aldri «ikke sendt».
 
@@ -38,21 +38,30 @@ Tally `list_tasks` (oppgave «A-melding», åpne) mot gruppene:
 - Klient med lønn men uten oppgave → varsel.
 
 ### 3. Skyldig trekk og AGA (L2, L8)
-1. `notPaid` gjelder terminen (`taxPeriodName`, to måneder), med forfall den 15. i måneden etter terminen. Negativ `notPaid` = for mye innbetalt;
-   det motregnes eller kreves tilbake (forklares i `lonnsavstemming`).
+1. Ubetalt trekk og AGA fra steg 1 gjelder terminen (terminnavnet, to måneder), med forfall den 15. i måneden etter terminen. Negativt ubetalt =
+   for mye innbetalt; det motregnes eller kreves tilbake (forklares i `lonnsavstemming`).
 2. KID og forfall: Tally `hent_amelding_rapport` når A07 for terminen er bestilt (per innsendt a-melding), ellers Altinn-tilbakemeldingen (steg 5).
-3. Skattetrekkskonto-modell: `get_balance_sheet` 1950 ≥ 2600 (L8). Direkte modell: trekket betales på lønnsdato og 1950 er ubrukt.
+3. Skattetrekkskonto-modell: UB 1950 ≥ skyldig 2600 (L8). `npm run -s api -- GET /balanceSheet dateFrom=<månedsstart> dateTo=<dagen etter
+   månedsslutt> accountNumberFrom=1950 accountNumberTo=1950 fields=account(number),balanceOut --client "<klient>"`, og det samme for 2600.
+   Direkte modell: trekket betales på lønnsdato og 1950 er ubrukt.
 4. Betalingen opprettes av regnskapsføreren i Tripletex og godkjennes av kunden.
 
 ### 4. Send (per klient og måned, etter ja)
-1. Vis statusen fra steg 1 og hva som sendes: lønnsopplysninger og arbeidsforhold for måneden, og at et bilag for avrunding og AGA-korreksjon
-   kan bli laget (bilagsdato er siste dag i måneden med mindre brukeren sier noe annet).
-2. Etter eksplisitt ja for akkurat denne klienten og måneden: `send_amelding({companyName, month, confirm: true})`.
-3. Stopper verktøyet fordi meldingen ville tatt med historiske lønnskjøringer (kjørt i et annet system), spør om Tripletex skal rapportere dem.
-   Bare ved ja: kall på nytt med `includeHistoricalRuns: true`.
+1. Tørrkjør: `npm run -s amelding -- send --client "<klient>" --maned ÅÅÅÅ-MM`. Vis statusen og hva som sendes: lønnsopplysninger og arbeidsforhold
+   for måneden, og at et bilag for avrunding og AGA-korreksjon kan bli laget (bilagsdato er siste dag i måneden med mindre brukeren sier noe annet).
+2. **Skriving (etter ja):** etter eksplisitt ja for akkurat denne klienten og måneden:
+   `npm run -s amelding -- send --client "<klient>" --maned ÅÅÅÅ-MM [--bilagsdato ÅÅÅÅ-MM-DD] --bekreft`.
+3. Innsending via API-et er ikke testet før første bruk. Send første gang for én klient, les steg 1 for den klienten etterpå, og fortsett med neste
+   først når den er bekreftet sendt. Feiler kallet (403, ID-porten): «ikke gjort», og meldingen sendes i Tripletex-UI.
 4. Rapporter meldingsnummer, antall arbeidsforhold og om det ble laget bilag. Svaret fra Skatteetaten kommer senere (steg 5, eller steg 1 på nytt).
 5. Korrigert melding for en tidligere måned (rettet arbeidsforhold i `lonnskjoring`): samme flyt for den måneden. Bare arbeidsforhold
-   (`employmentInformationOnly: true`) når brukeren ber om akkurat det.
+   (`--kun-arbeidsforhold`) når brukeren ber om akkurat det.
+
+**Bare i Tripletex-UI:**
+1. Melding som skal ta med historiske lønnskjøringer (kjørt i et annet system): API-et har ikke det valget. Spør om Tripletex skal rapportere
+   dem; ved ja sender regnskapsføreren meldingen i Tripletex-UI.
+2. Innsending når kommandoen er stoppet (403, ID-porten).
+3. Betaling av trekk og AGA (opprettes av regnskapsføreren, godkjennes av kunden).
 
 ### 5. Altinn-tilbakemelding (L9)
 1. Tally `list_altinn_innboks` per klient (`sender: "Skatteetaten"`, `only_unread`) → tilbakemeldingen på a-meldingen for måneden.
@@ -72,11 +81,11 @@ Fullfør i Tally: se `tally-gjoremal`. «A-melding» fullføres per klient når 
 
 ## Fallgruver
 
-- Tripletex tidsavbrudd mens den venter på svar: utfallet er usikkert. Send aldri på nytt; les `get_amelding_status` og involver brukeren.
+- Tripletex tidsavbrudd mens den venter på svar: utfallet er usikkert. Send aldri på nytt; les `amelding status` for klienten og involver brukeren.
 - Feil fra Skatteetaten eller Altinn: ingenting er levert, og et nytt forsøk litt senere er greit.
-- Alt rapportert for måneden: verktøyet sender ingenting. Si at måneden er levert; ikke prøv andre argumenter.
-- `largeFileUploadInProgress: true`: meldingen leveres i bakgrunnen. Vent, ikke send på nytt.
-- `includeHistoricalRuns` og `employmentInformationOnly` settes aldri på eget initiativ.
+- Alt rapportert for måneden: kommandoen sender ingenting («ingenting sendt»). Si at måneden er levert; ikke prøv andre argumenter.
+- `largeFileUploadInProgress: true` i svaret: meldingen leveres i bakgrunnen. Vent, ikke send på nytt.
+- `--kun-arbeidsforhold` og `--bilagsdato` settes aldri på eget initiativ.
 - 403 på en klient betyr manglende lønnsrolle for brukeren, ikke at klienten er uten lønn.
 
 ## Referanser

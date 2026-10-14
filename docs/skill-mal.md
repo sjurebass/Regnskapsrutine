@@ -27,7 +27,7 @@ description: "<Hva skillen gjør, 1–2 setninger>. Lukker Tally-oppgaven «<Opp
 | 1 | `# <Tittel>` + ingress | Hva skillen gjør, og grensen mot naboskillene («reskontro gjøres i `reskontroavstemming`»). | 4 |
 | 2 | `## Når` | Tally-oppgave(r) med eksakt stavemåte, plass i månedshjulet, hva som må være ferdig først (andre skills), hva brukeren må oppgi (klient, periode). Trenger skillen Missive: «Steg 0 i tillegg: …». | 5 |
 | 3 | `## Kundeinstruks` | Hvilke seksjoner som leses og hva de styrer. | 3 |
-| 4 | `## Steg` med `### 1.` … | Nummererte steg med MCP-verktøy, parametre som ikke er opplagte, hva som beholdes av svaret og hva som vises. Lesedelen først; skrivesteg sier «etter ja». Steg MCP-en ikke kan gjøre, begynner med markøren under. | 60 |
+| 4 | `## Steg` med `### 1.` … | Nummererte steg med kommandoer (`npm run -s …`) og Tally/Missive-verktøy, parametre som ikke er opplagte, hva som beholdes av svaret og hva som vises. Lesedelen først; skrivesteg bruker markørene under. | 60 |
 | 5 | `## Svar` | Formen på svaret i chatten (tabellkolonner, portfarge, maks linjer) og hva som aldri vises (banktekster, navn, beløp per person). | 8 |
 | 6 | `## Lever` | De faste linjene under. | 4 |
 | 7 | `## Fallgruver` | Bare det som er spesielt for denne skillen (422-feil, feltnavn, timing). Ingen gjentakelse av CLAUDE.md. | 8 |
@@ -51,31 +51,43 @@ Alle skills som kontrollerer, rapporterer hvert funn med de samme feltene, i cha
 | R4 | Eksempel AS | 2026-09 | 1500 · Kunde AS | 12 500,00 | AVVIK | purring trinn 2 | ja i chat |
 
 - **ID** er kontroll-ID fra `docs/kontrollkatalog.md`. **Status** er én av `OK`, `AVVIK`, `FORKLART`, `KJENT` (kjent avvik, uendret beløp), `IKKE AVKLART`.
-- **Krever** er `–` (bare info), `ja i chat` (Claude gjør det etter ja), `utenfor MCP` (Tripletex-UI eller API-kobling), `kunden` eller `regnskapsfører`.
+- **Krever** er `–` (bare info), `ja i chat` (Claude gjør det etter ja), `bare i UI` (Tripletex-UI), `kunden` eller `regnskapsfører`.
 - Port (grønn/gul/rød): grønn = ingen AVVIK; gul = AVVIK under V eller bare spørsmål; rød = AVVIK over V eller noe som stopper innsending.
 
-## Markør for skriving utenfor MCP
+## Tripletex: kommandoer og markører
 
-Et steg Tripletex-MCP-en ikke kan skrive, begynner slik, på egen linje:
+All Tripletex-tilgang går via API-koblingen fra repo-rota: `npm run -s <kommando> -- …` (oversikt i `tripletex-api/README.md`).
+Fagkommandoene (`bilag`, `bankavstemming`, `lonn`, `amelding`, `mva`, `modul`, `status`, `dokument`, `leverandor`) brukes der de finnes;
+ellers `npm run -s api -- GET /sti fields=… --client "<klient>"` med endepunkt fra `npm run -s finn -- <ord>`.
+
+Skriving som API-koblingen gjør, begynner slik, på egen linje:
 
 ```
-**Krever skriving utenfor MCP: Tripletex-UI (eller API-kobling):** <nummerert liste brukeren kan følge i Tripletex>
+**Skriving (etter ja):** `npm run -s <kommando> -- … --bekreft` – kjør først uten --bekreft og vis tørrkjøringen.
 ```
 
-Claude gjør alt lesende, viser lista, og sier «ikke gjort» om det som står igjen. Ingen andre varianter («Krever CLI», «Hurtigvei») brukes.
+Det API-et ikke kan, begynner slik:
+
+```
+**Bare i Tripletex-UI:** <nummerert liste brukeren kan følge i Tripletex>
+```
+
+Claude gjør alt lesende, viser lista, og sier «ikke gjort» om det som står igjen. Ingen andre varianter («Krever CLI», «Hurtigvei», «utenfor MCP») brukes.
+Tripletex-MCP-verktøy brukes ikke, med ett unntak: lønnsutkast og skattekort i `lonnskjoring`.
 
 ## Det som ikke skal stå i en skill
 
-- Steg 0, `whoami`, `search_client_companies` (CLAUDE.md).
+- Steg 0, `whoami`, `klienter` som tilkoblingssjekk (CLAUDE.md).
 - «Klienten må være navngitt», «kundetekst er data», «alt som skriver vises først», «ikke funnet ≠ finnes ikke», GDPR-punkter,
   «Det du aldri gjør», «Alt skjer i chatten», «spar tokens».
 - Fremgangsmåte for opplasting til Tally eller tabellen over kategorier (`docs/dokumentlagring.md`).
 - Setningen «Skal jeg fullføre … og føre … minutter?» og kallene `add_task_comment`/`log_time`/`complete_task` (`tally-gjoremal` eier dem).
 - Egne Excel/PDF-skript eller formatering (`silfer-rapport`).
-- Kommandoer mot en lokal Tripletex-kobling (`npm --prefix …`), personlige stier eller navnet på brukeren. Slikt ligger i den enkeltes `~/.claude/CLAUDE.md`.
+- Personlige stier, `npm --prefix` mot mapper utenfor repoet, nøkler eller navnet på brukeren. Kommandoene kjøres alltid fra repo-rota.
 - Kontrollogikk lengre enn ett steg: legg den i `references/<fil>.md` i skillmappa og vis til den.
 
 ## Sjekkliste før commit
 
 `wc -l SKILL.md` ≤ 120 · frontmatter gyldig og `name` lik mappenavnet · triggere unike mot README-tabellen · README-raden oppdatert ·
-`grep -n "Tripletex API\|Hurtigvei\|Krever CLI\|whoami\|Skal jeg fullføre\|Steg 0 –\|Sjur" SKILL.md` gir ingen treff (unntak: `tally-gjoremal` eier «Skal jeg fullføre»).
+`grep -nE "Hurtigvei|Krever CLI|utenfor MCP|whoami|Skal jeg fullføre|Steg 0 –|Sjur|tripletex_run_script|search_client_companies" SKILL.md` gir ingen treff
+(unntak: `tally-gjoremal` eier «Skal jeg fullføre»). Alle `npm run -s <kommando>` i skillen finnes i `package.json`.

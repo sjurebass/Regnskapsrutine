@@ -1,15 +1,16 @@
 # Kategorier for åpne poster i reskontro
 
-Reglene er de samme som i byråets API-kobling, så MCP og API-kobling gir samme svar for samme dato. Endres de, endres begge.
+Reglene er de samme som i `npm run -s modul -- reskontro-vurdering --json`, så kommandoen og en gjennomgang av rådata fra
+`/ledger/posting/openPost` gir samme svar for samme dato. Endres de, endres begge.
 Etikettene brukes ordrett, med tankestrek (–), ikke bindestrek.
 
 ## Grunnlag
 
-- `S` = siste dag i perioden. `D` = S + 1 dag (eksklusiv dato i `search_open_postings`). Datoer i etikettene skrives dd.mm.åååå.
+- `S` = siste dag i perioden (`--dato` i `reskontro-vurdering`). `D` = S + 1 dag (eksklusiv `date` i `/ledger/posting/openPost`). Datoer i etikettene skrives dd.mm.åååå.
 - **Uttrekk 1:** åpne poster per D for 1500 og 2400, alle datoer. **Uttrekk 2:** åpne poster per i morgen, bare id → «åpen i dag».
 - **Krav:** på 1500 er en post et krav når beløpet er positivt; på 2400 når beløpet er negativt. Ellers er posten innbetaling, kreditnota eller betaling.
-- **Forfall:** postens forfallsdato; mangler den, posteringsdatoen. **Dager forfalt** = S − forfall i kalenderdager.
-  På 2400 kommer forfallet fra `search_supplier_invoices` (bilagsnummer → forfall); `search_open_postings` har forfall bare på kunderader.
+- **Forfall:** postens forfallsdato (`termOfPayment`, finnes på både kunde- og leverandørposter); mangler den, posteringsdatoen.
+  **Dager forfalt** = S − forfall i kalenderdager.
 - **Motpart:** kunden på 1500, leverandøren på 2400. Mangler motpart: «Uten motpart» (R9).
 
 ## Kategori – første regel som slår til

@@ -28,24 +28,25 @@ Fører dokumentene i bilagsmottaket som har motpost i en åpen bankpost, som nye
 
 ### 1. Hent (bare lesing)
 
-1. `hent_instrukser` (seksjonene over) og `get_voucher_inbox_count` for klienten.
-2. ToolSearch etter `list_voucher_inbox`, `read_voucher_document`, `register_supplier_invoice` og `post_supplier_invoice` i denne økten.
-   Leseverktøyene brukes når de finnes. Skriveverktøyene lager leverandørfaktura, ikke avansert bilag; bruk dem bare når brukeren sier det.
-3. Åpne bankposter: `get_unmatched_bank_transactions` per konto og måned i perioden (som i `bankavstemming`). Behold id, konto, dato, beløp og tekst.
-   Konto uten bankfeed: motposten er kontoutskriften brukeren har lagt ved.
-4. Dokumentene: `list_voucher_inbox` / `read_voucher_document`, ellers `get_voucher_document` (lenke). Brukeren åpner lenken, eller du leser
-   filen med Read når den er lastet ned. EHF hoppes over.
-5. Historikk: `search_ledger_postings` filtrert på leverandøren, 12 måneder bakover (konto, mva-kode, beskrivelse, valuta, siste bilag).
-6. Leverandører: `search_suppliers` på navn og org.nr. Mange finnes under et annet navn. Nye opprettes ikke uten ja.
+1. `hent_instrukser` (seksjonene over).
+2. `npm run -s bilag -- hent --client "<klient>" --til ÅÅÅÅ-MM [--fra ÅÅÅÅ-MM] --ut <mappe>` (`<mappe>` = kort arbeidsmappe, for eksempel
+   `%TEMP%\rr\bilag-ÅÅÅÅ-MM`). Utskriften gir antall i bilagsmottaket (EHF hoppet over), umatchede bankposter, dokumenter med beløpstreff
+   i bank, skannede dokumenter og kontoer uten bankfeed. Filene i `<mappe>`:
+   - `forslag.json`: per dokument `inbox` (id i mottaket), dato, fakturanr., beløp funnet i teksten og opptil fire bankposter med samme beløp.
+   - `bank.json`: åpne bankposter i perioden med id, konto, dato, beløp og maskert tekst.
+   - `historikk.tsv`: hvordan leverandører og tekster er ført de siste 12 månedene (lev-id, konto, mva-kode, antall, siste bilag).
+   - `leverandorer.tsv`: id, navn og org.nr. Mange finnes under et annet navn. Nye opprettes ikke uten ja.
+   - `docs/<id>.pdf` og maskert `docs/<id>.txt`. Skann (`"skann": true`) og bilder leses med Read.
+3. Konto uten bankfeed: motposten er kontoutskriften brukeren har lagt ved.
 
 ### 2. Les, match og foreslå
 
 1. **Les** hvert dokument én gang (tekst; skann og bilder med Read).
-2. **Motpost:** åpen bankpost med samme beløp, nærmest i dato. Valuta: beløp × kurs ± 3 %. Ellers en linje i den vedlagte kontoutskriften.
+2. **Motpost:** åpen bankpost i `bank.json` med samme beløp, nærmest i dato. Valuta: beløp × kurs ± 3 %. Ellers en linje i den vedlagte kontoutskriften.
    Kort trekkes ofte 1–3 dager etter kjøpet.
 3. **Uten motpost** (blir liggende): EHF, faktura med forfall frem i tid, forhåndsvisning, «upcoming», proforma, og dublett av et bokført bilag
    (samme leverandør, beløp og fakturanr.).
-4. **Konto og mva:** kundeinstruksen, deretter forrige føring av samme leverandør, deretter standardreglene under. Usikker: spør, ikke gjett.
+4. **Konto og mva:** kundeinstruksen, deretter forrige føring av samme leverandør (`historikk.tsv`), deretter standardreglene under. Usikker: spør, ikke gjett.
 
 | # | Dato | Leverandør | Beløp | Konto | Mva | Bank | Grunnlag |
 |---|---|---|---|---|---|---|---|
@@ -63,36 +64,52 @@ Under tabellen: dokumentene som blir liggende (én linje hver med grunn) og numm
 | Gebyr, renter, purregebyr · inkasso | 7770 / 8150, mva 0 · inkasso: hovedstol mot 2400, renter og gebyr 8150, øreavrunding 7740. |
 | Bank- eller korttrekk uten bilag | Konto for manglende bilag fra kundeinstruksen (typisk 1370 eller 7799). Kommer kvitteringen etter at måneden er lukket: før kostnad mot den kontoen, ikke reverser. |
 | Utstyr under 30 000 kr per enhet | Kostnadsføres. |
-| Kvittering og faktura for samme kjøp | Ett bilag; begge dokumentene lastes opp som vedlegg. |
+| Kvittering og faktura for samme kjøp | Ett bilag; begge dokumentene lastes opp som vedlegg (`flere` i planen). |
 
 ### 3. Før (etter ett samlet ja)
 
-**Krever skriving utenfor MCP: Tripletex-UI (eller API-kobling):** per dokument, i denne rekkefølgen:
-1. Hent dokumentet fra bilagsmottaket.
-2. Lag et nytt avansert bilag med dato, beskrivelse og linjene fra forslaget. Med leverandør: kostnad / 2400 og 2400 / bank, leverandøren på alle linjene.
-3. Last opp dokumentet som vedlegg på det avanserte bilaget, og bekreft at vedlegget ligger der.
-4. Lukk 2400-postene for leverandøren (sum 0).
-5. Match bankposten i bankavstemmingen (manuell match; går også når posteringen ligger i forrige måned). Motpost i kontoutskrift: ingen match.
-6. Slett kopien i bilagsmottaket **bare** når vedlegget er bekreftet på det førte bilaget. Er du i tvil, la kopien ligge og si det.
+1. Skriv `<mappe>/plan.json` (Write, UTF-8), én rad per dokument fra svaret på forslagstabellen; `docs/` fra steg 1 må ligge i samme mappe.
+   Felt: `inbox` (fra `forslag.json`) · `dato` (faktura- eller kjøpsdato) · `beskrivelse` · `bankkonto` og `belop` (bankbeløpet med fortegn, ut =
+   negativt) · `bankTx` (id fra `bank.json`; utelates ved kontoutskrift uten bankfeed) · valgfritt `leverandor` (id fra `leverandorer.tsv`: kostnad /
+   2400 og 2400 / bank i samme bilag) · `fakturanr` · `valuta` (linjene i fakturavaluta, kurs fra Tripletex på datoen, differansen til 8060/8160)
+   · `flere` (flere mottaks-id-er på samme bilag) · `linjer: [{konto, belop, mva}]` (brutto, sum = −`belop` i NOK; `mva` er Tripletex-koden, 0 = ingen).
+   ```json
+   [{ "inbox": 123, "dato": "2026-09-03", "beskrivelse": "Vercel – faktura 1234", "bankkonto": 1920, "belop": -347.08, "bankTx": 456,
+      "fakturanr": "1234", "linjer": [{ "konto": 6552, "belop": 347.08, "mva": 86 }] }]
+   ```
+2. Tørrkjøring: `npm run -s bilag -- før --client "<klient>" --plan <mappe>/plan.json` sjekker kontoer, mva-koder og sum og viser linjene
+   per dokument. Ingenting føres. Vis resultatet og be om ett samlet ja.
 
-Er det mange dokumenter: før det første, les det tilbake, og ta resten etterpå. Et steg som feiler, kan gjøres på nytt; ferdige steg hoppes over.
+**Skriving (etter ja):** `npm run -s bilag -- før --client "<klient>" --plan <mappe>/plan.json --bekreft` gjør per dokument, i denne rekkefølgen:
+1. Nytt avansert bilag med dato, beskrivelse og linjene fra planen. Med leverandør: leverandøren på alle linjene.
+2. Dokumentet lastes opp som vedlegg på det avanserte bilaget, og vedlegget bekreftes.
+3. 2400-postene for leverandøren lukkes (sum 0).
+4. Bankposten matches i bankavstemmingen (går også når posteringen ligger i forrige måned). Motpost i kontoutskrift: ingen match.
+5. Kopien i bilagsmottaket slettes **bare** når vedlegget er bekreftet på det førte bilaget.
+
+Er det mange dokumenter: før det første med `--bare <inbox>`, les tilbake i `<mappe>/plan.resultat.json` (bilagsnummer, vedlegg, matchet,
+lukket, slettet, feil), og ta resten etterpå. Et steg som feiler, kan kjøres på nytt; ferdige steg hoppes over.
+
+**Bare i Tripletex-UI:**
+1. Match bankposten manuelt når resultatet sier «ingen bankavstemming for måneden».
 
 ## Svar
 
-- Først forslagstabellen med det som blir liggende og spørsmålene. Ingenting føres før brukeren har svart.
+- Først forslagstabellen med det som blir liggende og spørsmålene. Ingenting føres før brukeren har svart og tørrkjøringen er godkjent.
 - Til slutt én tabell: dokument · bilagsnummer · vedlegg bekreftet · matchet · slettet fra mottaket, og hva som blir liggende med grunn.
 - Det som står igjen i UI-lista, sies som «ikke gjort».
 
 ## Lever
 
 Fullfør i Tally: se `tally-gjoremal`. «Bilagsbehandling» fullføres når alle dokumenter med bankmotpost i perioden er ført, matchet og ryddet fra mottaket. Kommentaren inneholder periode, antall førte bilag og hva som ligger igjen (EHF, ubetalte, uten motpost).
-Nedlastede dokumenter slettes fra scratch når jobben er ferdig.
+Arbeidsmappa med nedlastede dokumenter og `plan.json` slettes når jobben er ferdig.
 
 ## Fallgruver
 
 - Endre bilaget i mottaket gir 422, også beskrivelsen. Derfor lages alltid et nytt avansert bilag.
-- Vedlegg fra mottaket følger ikke med når bilaget lages. Dokumentet må lastes opp på nytt på det nye bilaget.
+- Vedlegg fra mottaket følger ikke med når bilaget lages. Dokumentet må lastes opp på nytt på det nye bilaget (`bilag før` gjør det).
 - Har én linje leverandør, må alle linjene ha den. Ellers gir Tripletex 422.
+- `bilag før` stopper for et dokument som ikke lenger ligger i mottaket, eller når linjene ikke summerer til bankbeløpet. Feilen står i `plan.resultat.json`.
 - Lukket bankavstemming eller lukket år: ikke match, ikke før. Si fra, ikke tving det.
 - Før aldri ut fra hva en bankpost «ser ut til» å være. Bankpost uten dokument hører til `bankavstemming` (fra kunden).
 

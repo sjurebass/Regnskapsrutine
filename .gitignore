@@ -31,3 +31,11 @@ node_modules/
 *.bak
 .DS_Store
 Thumbs.db
+
+# Tripletex API-koblingen: nøkler og utdata skal aldri i repoet
+tripletex-api/.env
+!tripletex-api/.env.example
+*.data.json
+status.json
+bankavstemming-*/
+bilag-*/

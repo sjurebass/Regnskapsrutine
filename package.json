@@ -1,0 +1,30 @@
+{
+  "name": "regnskapsrutine",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Skills og Tripletex API-kobling for regnskapsbyrået. Kjør kommandoene fra repo-rota: npm run -s <kommando> -- <argumenter>",
+  "scripts": {
+    "set-token": "node tripletex-api/src/set-token.js",
+    "token": "node tripletex-api/src/cli.js token",
+    "klienter": "node --env-file=tripletex-api/.env tripletex-api/src/klienter.js",
+    "connect": "node --env-file=tripletex-api/.env tripletex-api/src/cli.js connect",
+    "finn": "node tripletex-api/finn.js",
+    "bygg-indeks": "node tripletex-api/build-index.js",
+    "probe": "node --env-file=tripletex-api/.env tripletex-api/src/probe.js",
+    "api": "node --env-file=tripletex-api/.env tripletex-api/src/cli.js api",
+    "status": "node --env-file=tripletex-api/.env tripletex-api/src/status.js",
+    "dokument": "node --env-file=tripletex-api/.env tripletex-api/src/dokument.js",
+    "bankavstemming": "node --env-file=tripletex-api/.env tripletex-api/src/bankavstemming.js",
+    "bilag": "node --env-file=tripletex-api/.env tripletex-api/src/bilag.js",
+    "lonn": "node --env-file=tripletex-api/.env tripletex-api/src/lonn.js",
+    "amelding": "node --env-file=tripletex-api/.env tripletex-api/src/amelding.js",
+    "pensjon": "node --env-file=tripletex-api/.env tripletex-api/src/pensjon.js",
+    "mva": "node --env-file=tripletex-api/.env tripletex-api/src/mva.js",
+    "modul": "node --env-file=tripletex-api/.env tripletex-api/src/modul.js",
+    "leverandor": "node --env-file=tripletex-api/.env tripletex-api/src/leverandor.js"
+  },
+  "engines": {
+    "node": ">=20.6"
+  }
+}

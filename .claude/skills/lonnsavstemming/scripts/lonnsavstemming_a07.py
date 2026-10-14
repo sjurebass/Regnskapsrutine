@@ -4,7 +4,7 @@
 
 a07.json er svaret fra Tally `hent_amelding_rapport` (A07 fra Skatteetaten via
 Altinn, uten personopplysninger). ledger.json er regnskapssiden, hentet fra
-Tripletex med scripts/hent_tripletex.js. Formatene står i
+Tripletex med `npm run -s lonn -- hent`. Formatene står i
 references/kontrollogikk.md; utfylte eksempler ligger i
 scripts/a07_tally_eksempel.json og scripts/ledger_eksempel.json.
 

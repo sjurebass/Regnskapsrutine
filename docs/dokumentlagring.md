@@ -65,4 +65,4 @@ som kan leses som at filen er lagret.
 ## Tripletex i tillegg
 
 Noe dokumentasjon hører også hjemme i Tripletex: vedlegg på bilag, kontoutskrift på manuell bankavstemming, og vedlegg og kommentarer i
-avstemmingsmodulen. Det er skriving utenfor MCP: Tripletex-UI eller API-kobling (se markøren i skillene). Tally er arkivet; Tripletex får det regnskapet trenger.
+avstemmingsmodulen. Det gjør Claude med API-koblingen etter ja (`--bekreft`, se **Skriving (etter ja):** i skillene). Tally er arkivet; Tripletex får det regnskapet trenger.

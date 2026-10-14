@@ -11,7 +11,7 @@ avstemmer ikke selv; den leser status og peker videre. Kontroll av ferdig årsre
 ## Når
 
 - Tally «Forberedelse» (15.1). Leverer videre til «RF-1086» (29.1, `aksjonaerregister`) og «Balanseavstemming» (26.2, `balanseavstemming`).
-- Brukeren oppgir klient og regnskapsår (standard: fjoråret), eller «alle» for porteføljen (høyst 12 klienter per kjøring).
+- Brukeren oppgir klient og regnskapsår (standard: fjoråret), eller «alle» for porteføljen.
 - Steg 0 i tillegg: Missive (utkast til kunden).
 
 ## Kundeinstruks
@@ -27,12 +27,21 @@ Utkast – kalibreres mot første klient. Følg stegene, men si fra om noe ikke 
 - `get_arsoppgjor_status` (klient, år) → fasene (forberedelse, rf1086, balanseavstemming, skattemelding, arsregnskap …). Uten klient: hele porteføljen.
 - `arsoppgjor_frister` (år, klient) → frister. `get_client` → revisor og hovedkontakt (rolle, ikke navn).
 
-### 2. Året i Tripletex (ett skript per klient, ca. 15 kall)
-- `get_year_end_status` (året og året før) · `get_accounting_period_status` (tolv perioder) · `get_bank_reconciliation_periods` (alle måneder, differanse 0).
-- `search_open_postings` per 1.1 året etter for 1500/2400 (sum, og eldre poster enkeltvis) · `get_balance_sheet` 1000–8999 for hele året.
-- `search_ledger_postings`: 2700–2799 (seks oppgjørsbilag og betalinger), 1700–1799/2900–2999, 1200–1299 og 6000–6099, 1400–1499, 2200–2299,
-  mellomregning 13xx/15xx/29xx, 2000–2099, 2500/1570, 2940/2780/2785, observasjonskonti.
-- `get_amelding_status` (desember) · `get_voucher_inbox_count` · `search_supplier_invoices` ikke bokført, fakturadato til og med 31.12.
+### 2. Året i Tripletex (én klient om gangen, til fil)
+N = 1.1 året etter (`dateTo` og `date` er eksklusive). Lesing: `npm run -s api -- GET <sti> <parametre> "fields=…" --client "<klient>"`;
+posteringer med `--sider --ut %TEMP%\rr\aarsoppgjoer-ÅÅÅÅ\<navn>.json`. Bare sammendraget vises.
+- `npm run -s status -- --client "<klient>" --maaned ÅÅÅÅ-12 --aar ÅÅÅÅ --json` → tolv bankmåneder, seks terminer (levert, betalt), tolv perioder,
+  bilagsmottak, ikke bokførte bilag og observasjonskonti (AO1, AO3, D4, D6). Porteføljen: `--alle` i stedet for `--client`.
+- `npm run -s amelding -- oversikt --client "<klient>" --ar ÅÅÅÅ --json` → tolv a-meldinger (AO4).
+- `/balanceSheet dateFrom=ÅÅÅÅ-01-01 dateTo=N accountNumberFrom=1000 accountNumberTo=8999 includeActiveAccountsWithoutMovements=true`
+  `"fields=account(number,name),balanceIn,balanceChange,balanceOut"` → saldobalanse 31.12; samme for år − 1 på 2000–2099 og 2500/1570 (S5, S6).
+- `/ledger/annualAccount yearFrom=<år − 1> yearTo=<år + 1> "fields=year,start,end"` → regnskapsårene som finnes.
+- `/ledger/posting/openPost date=N accountNumberFrom=1500 accountNumberTo=1500` (og 2400) → sum, og eldre poster enkeltvis (AO2).
+- `/ledger/posting dateFrom=ÅÅÅÅ-01-01 dateTo=N "fields=date,amount,account(number),voucher(number,year),description"`: 2700–2799 (seks oppgjørsbilag
+  og betalinger), 1700–1799/2900–2999, 1200–1299 og 6000–6099, 1400–1499, 2200–2299, mellomregning 13xx/15xx/29xx, 2000–2099, 2500/1570, 2940/2780/2785.
+- `/asset "fields=name,dateOfAcquisition,acquisitionCost,account(number),balanceOut,depreciationAmount,saleDate"` og `/asset/balanceAccountsSum`
+  → anleggsregisteret mot 1200–1299 (A4).
+- `/claimsAndPayments year=ÅÅÅÅ "fields=claimType,claimGroup,amount,outstandingAmount,dueDate,periodDescription"` → skattekontoen: krav, betalt, renter (AO6).
 - Tally `list_altinn_innboks` (seks mva-kvitteringer, skatteoppgjør, forskuddsskatt) og `list_documents` (årsoppgave, kontoutskrift, lagerliste, protokoll).
 
 ### 3. Sjekkliste
@@ -45,7 +54,7 @@ Status per punkt: Ferdig · Mangler · Venter kunde · Ikke aktuelt. Det som har
 | AO3 | Seks terminer levert og betalt, 27xx = 0, mva-grunnlag rimelig mot omsetningen | `mva-innlevering`, `mva-kontroll` |
 | AO4 | Tolv a-meldinger, terminene avstemt, 2600/2770 = siste termin, 2940 | `a-melding`, `lonnsavstemming` |
 | AO5 | Periodiseringer 17xx/29xx dokumentert per 31.12 | `balanseavstemming` |
-| A4 | Anleggsmidler, årets avskrivninger, tilganger fra 30 000 kr aktivert | `balanseavstemming` |
+| A4 | Anleggsmidler: registeret = 12xx, årets avskrivninger, tilganger fra 30 000 kr aktivert | `balanseavstemming` |
 | P3 | Varelager: telling per 31.12 (bare når kundeinstruksen sier varelager) | kunden |
 | AO6 | Skattekonto: 2500/1570 mot forskudds- og restskatt | `balanseavstemming` |
 | S7 | Lån 2200–2299 mot årsoppgave | kunden, `balanseavstemming` |
@@ -85,10 +94,11 @@ Fullfør i Tally: se `tally-gjoremal`. «Forberedelse» fullføres når sjekklis
 
 ## Fallgruver
 
-- Anleggsregisteret og skattekontoen kan ikke leses i MCP-en. Bruk bilagene og brev i Altinn-innboksen, eller be kunden om tallene (A4, AO6).
-- Ett skript tåler 200 kall og 2 minutter. Med ca. 15 kall per klient: høyst 12 klienter per kjøring.
-- Mva-kvitteringen finnes bare i Altinn-innboksen i Tally; levert betyr kvittering, betalt betyr 2740 nullstilt.
-- `search_open_postings` med dato 1.1 året etter (eksklusiv) gir stillingen per 31.12.
+- `/claimsAndPayments` virker bare når klienten har Altinn-systembruker, og gir av og til 500 (prøv igjen). 403 eller tomt: brev i Altinn-innboksen eller kunden (AO6).
+- `/asset` har ingen dato: avstem registeret mot 12xx per 31.12 og forklar tilganger og avgang etter årsskiftet (A4).
+- Porteføljen leses én klient om gangen, aldri parallelt; store svar går til fil, og bare tabellen vises.
+- Levert betyr kvittering (`status` viser levert fra Tripletex, kvitteringen ligger i Altinn-innboksen i Tally); betalt betyr 2740 nullstilt.
+- `/ledger/posting/openPost` med `date` = 1.1 året etter (eksklusiv) gir stillingen per 31.12.
 - Periodelåsen i Tripletex settes i UI (`periodeavslutning`), ikke her.
 - Be aldri om dokumenter kunden allerede har levert: sjekk `list_documents` før lista lages.
 

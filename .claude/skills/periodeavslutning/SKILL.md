@@ -23,11 +23,13 @@ bransje (prosjekt, varelager, utleie) styrer P1–P4.
 
 Utkast – kalibreres mot første klient. Følg stegene, men si fra om noe ikke stemmer med det verktøyene gir.
 
-### 1. Port (ett skript og Tally)
-- Ett `tripletex_run_script`: `get_voucher_inbox_count`; `search_supplier_invoices` ikke bokført med fakturadato i perioden;
-  `get_bank_reconciliation_periods` (måneden: alle kontoer lukket, differanse 0); `search_open_postings` 1500/2400 mot `get_balance_sheet`;
-  `get_amelding_status` (måneden: sendt, godkjent, `notPaid`); `get_balance_sheet` observasjonskonti; `get_accounting_period_status` (året).
-- I terminmåneder: mva levert og betalt (kvittering i Tally `list_altinn_innboks`, 2740 som i `mva-innlevering`).
+D = første dag etter måneden (`dateTo` og `date` er eksklusive). Lesing: `npm run -s api -- GET <sti> <parametre> "fields=…" --client "<klient>"`.
+
+### 1. Port (kommando og Tally)
+- `npm run -s status -- --client "<klient>" --maaned ÅÅÅÅ-MM --json` → bilagsmottak, ikke bokførte bilag i perioden, bank lukket per konto,
+  1500/2400 åpne poster mot UB, a-melding (gruppe), observasjonskonti, perioder lukket og mva for siste termin. «Alle»: `--alle` i stedet for `--client`.
+- `npm run -s amelding -- status --client "<klient>" --maned ÅÅÅÅ-MM --json` → ubetalt trekk og arbeidsgiveravgift med forfall den 15.
+- I terminmåneder: mva levert og betalt fra `status`; kvitteringen ligger i Tally `list_altinn_innboks` (2740 som i `mva-innlevering`).
 - Tally `list_tasks` (klient, åpne) → månedsoppgavene for perioden.
 - F1 bilagsmottak · F2 bank · F3 reskontro · F4 a-melding, trekk og mva · F5 observasjonskonti · F6 Tally-oppgaver · D4 forrige periode låst.
   Detaljer i `references/kontroller.md`. Rødt punkt: pek på skillen som løser det, og stopp før steg 4.
@@ -38,10 +40,14 @@ Utkast – kalibreres mot første klient. Følg stegene, men si fra om noe ikke 
 - Tally `hent_posteringer` for å forklare en flagget konto. Kjente avvik dempes; avvik under V vises ikke.
 - P1–P4 bare når kundeinstruksen sier prosjekt, varelager eller utleie.
 
-### 3. Hovedtall
-- `fetch_report` (resultatrapport) for måneden og hittil i år: driftsinntekter, driftsresultat, resultat før skatt.
-- `get_balance_sheet`: bank, 1500, 2400, skyldig mva (2740), trekk og arbeidsgiveravgift (2600/2770), egenkapital med udisponert resultat.
-- Nøkkeltall: omsetning for måneden og hittil mot i fjor, driftsresultat, likviditet, forfalte kundefordringer og forfalt leverandørgjeld.
+### 3. Hovedtall (fra `/balanceSheet`)
+- `/balanceSheet dateFrom=<fra> dateTo=D accountNumberFrom=3000 accountNumberTo=8999 "fields=account(number,name),balanceChange"` for måneden
+  (`dateFrom` = ÅÅÅÅ-MM-01) og hittil i år (`dateFrom` = ÅÅÅÅ-01-01), og det samme for i fjor: driftsinntekter (3000–3999), driftsresultat
+  (3000–7999), resultat før skatt (3000–8299, uten 83xx). Inntekter har negativt fortegn.
+- `/balanceSheet dateFrom=ÅÅÅÅ-01-01 dateTo=D accountNumberFrom=1000 accountNumberTo=2999 "fields=account(number,name),balanceOut"`: bank (19xx),
+  1500, 2400, skyldig mva (2740), trekk og arbeidsgiveravgift (2600/2770), egenkapital med udisponert resultat (Σ 3000–8999 hittil i år).
+- Nøkkeltall: omsetning for måneden og hittil mot i fjor, driftsresultat, likviditet, forfalte kundefordringer og forfalt leverandørgjeld
+  (`/ledger/posting/openPost date=D` på 1500 og 2400 med `"fields=amount,termOfPayment"`, forfalt = `termOfPayment` før D).
 
 ### 4. Utkast til månedsrapport (etter ja)
 - Vis utkastet: tittel, kommentar på høyst fem setninger i kundens språk, nøkkeltall og anbefalinger. Ingen personopplysninger.
@@ -54,29 +60,30 @@ Utkast – kalibreres mot første klient. Følg stegene, men si fra om noe ikke 
 - Avviser Tally avslutningen (avsetningsbilag ville gått til Tripletex), si det og hvorfor.
 
 ### 6. Periodelås i Tripletex
-**Krever skriving utenfor MCP: Tripletex-UI (eller API-kobling):**
-1. Lås regnskapsperioden i Tripletex-UI når alle bankmåneder er lukket og, i terminmåneder, mva-meldingen er levert. Låsing har ikke API.
-Kontroller etterpå med `get_accounting_period_status` at perioden er lukket, før «Lukking av regnskapsperiode» fullføres.
+**Bare i Tripletex-UI:**
+1. Lås regnskapsperioden når alle bankmåneder er lukket og, i terminmåneder, mva-meldingen er levert. Låsing har ikke API.
+Kontroller etterpå med `npm run -s api -- GET /ledger/accountingPeriod startFrom=ÅÅÅÅ-MM-01 startTo=D "fields=number,start,end,isClosed" --client "<klient>"`
+at `isClosed` er satt, før «Lukking av regnskapsperiode» fullføres.
 
 ## Svar
 
 - Porttabell: Punkt · Status (OK, AVVIK, IKKE AVKLART) · Kilde · Gjenstår, én linje per F1–F6 og D4, med port (grønn/gul/rød).
 - Hovedtall på tre–fire linjer. Funn fra A1–A3 i funn-formatet (ID · Klient · Periode · Konto · Beløp · Status · Forslag · Krever), maks 10 linjer.
-- Nummerert ja-liste: lagre utkastet, månedsavslutning i Tally (regnskapsfører), periodelås i Tripletex (regnskapsfører).
+- Nummerert ja-liste: lagre utkastet, månedsavslutning i Tally (regnskapsfører), periodelås i Tripletex-UI (regnskapsfører).
 - «Alle»: én linje per klient (Klient · Røde punkter · Neste skill).
 
 ## Lever
 
 Lever: `silfer-rapport` (spec.json → pdf, bare når kunden vil ha fil) + `docs/dokumentlagring.md` (kategori `ANNET`, periode `ÅÅÅÅ-MM`, samling `Perioderapporter ÅÅÅÅ`, oppgave «Ferdigstillelse perioderegnskap»).
-Fullfør i Tally: se `tally-gjoremal`. «Ferdigstillelse perioderegnskap» fullføres når F1–F6 er OK eller forklart og utkastet til månedsrapport er lagret; «Lukking av regnskapsperiode» først når `get_accounting_period_status` viser perioden lukket. Kommentaren inneholder periode, hovedtall, avvik fra A1–A3 og hva som er lukket.
+Fullfør i Tally: se `tally-gjoremal`. «Ferdigstillelse perioderegnskap» fullføres når F1–F6 er OK eller forklart og utkastet til månedsrapport er lagret; «Lukking av regnskapsperiode» først når `/ledger/accountingPeriod` viser `isClosed` for perioden. Kommentaren inneholder periode, hovedtall, avvik fra A1–A3 og hva som er lukket.
 
 ## Fallgruver
 
 - `hent_kontoavstemming`, `kontoutvikling` og `hent_posteringer` dekker bare resultatkontoer og bare Tripletex-klienter.
-- `get_accounting_period_status` er bare lesing. Tripletex-perioden låses i UI.
+- `/ledger/accountingPeriod` er bare lesing. Tripletex-perioden låses i UI.
 - Tally `close_month` (kundens månedsavslutning) og periodelåsen i Tripletex (hindrer nye føringer) er to forskjellige ting. Begge gjøres av regnskapsføreren.
 - Et lagret utkast er ikke publisert. Publisering er et eget steg i Tally.
-- `search_open_postings` og `get_balance_sheet` har eksklusiv sluttdato: bruk første dag etter perioden.
+- Det finnes ingen rapport-API: hovedtallene bygges fra `/balanceSheet`, og kontogruppene følger klientens kontoplan (sjekk 8xxx).
 - Lukk aldri en periode med åpne bankmåneder eller ubehandlet bilagsmottak.
 
 ## Referanser

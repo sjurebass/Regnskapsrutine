@@ -6,7 +6,7 @@ description: "Aksjonærregisteroppgaven (RF-1086) for AS-klienter i Tripletex: a
 # Aksjonærregisteroppgaven (RF-1086)
 
 Forbereder RF-1086: aksjonærer og hendelser i året avstemt mot hovedboken, fjorårets oppgave og Brreg, med sjekkliste og verdiene
-regnskapsføreren legger inn. Tripletex har ikke aksjonærdata i API eller MCP. Levering i Altinn gjør regnskapsføreren, aldri Claude.
+regnskapsføreren legger inn. Aksjonærdata er ikke funnet i Tripletex-API-et. Levering i Altinn gjør regnskapsføreren, aldri Claude.
 
 ## Når
 
@@ -22,14 +22,17 @@ regnskapsføreren legger inn. Tripletex har ikke aksjonærdata i API eller MCP. 
 Utkast – kalibreres mot første klient. Følg stegene, men si fra om noe ikke stemmer med det verktøyene gir.
 
 ### 1. Selskap og frist
-- Tally `lookup_brreg` (org.nr.) → organisasjonsform, styreleder, daglig leder, revisor. Ikke AS eller ASA: `mark_task_not_applicable` etter ja (AR1).
-- Tripletex `lookup_company_in_brreg` → status (konkurs, avvikling, slettet).
+- Tally `lookup_brreg` (org.nr.) → organisasjonsform, status (konkurs, avvikling, slettet), styreleder, daglig leder, revisor.
+  Ikke AS eller ASA, eller slettet: `mark_task_not_applicable` etter ja (AR1).
 - Tally `get_arsoppgjor_status` (fase `rf1086`) og `arsoppgjor_frister` (år).
 
-### 2. Hovedboken (ett skript)
-- `search_ledger_postings` for året: 2000–2099 (aksjekapital, overkurs, egne aksjer 2030, annen egenkapital 2050), 2800/8920 (avsatt utbytte),
-  2920 (skyldig utbytte), 13xx/15xx/29xx mot aksjonær (lån) og renter på aksjonærlån.
-- `get_balance_sheet` 2000–2099 IB og UB · `get_year_end_status` (år − 1) → fjorårets egenkapital.
+### 2. Hovedboken (API)
+Alle kall med `--client "<klient>"`; år X = `dateFrom=X-01-01 dateTo=<X+1>-01-01` (`dateTo` er eksklusiv).
+- Bevegelser i året: `npm run -s api -- GET /ledger/posting dateFrom=X-01-01 dateTo=<X+1>-01-01 accountNumberFrom=2000 accountNumberTo=2099 fields=date,account(number),amount,voucher(number,year) --sider`
+  (aksjekapital, overkurs, egne aksjer 2030, annen egenkapital 2050); samme kall for 2800 og 8920 (avsatt utbytte), 2920 (skyldig utbytte),
+  13xx/15xx/29xx mot aksjonær (lån) og renter på aksjonærlån. Store svar til fil med `--ut`.
+- IB og UB: `npm run -s api -- GET /balanceSheet dateFrom=X-01-01 dateTo=<X+1>-01-01 accountNumberFrom=2000 accountNumberTo=2099 fields=account(number),balanceIn,balanceOut`.
+  IB er fjorårets egenkapital.
 
 ### 3. Fjorårets oppgave og Altinn
 - Tally `list_documents` (klient, kategori `ARSOPPGJOR`, søk «RF-1086» og «aksjonær») → fjorårets oppgave. Les den lokalt i scratch;

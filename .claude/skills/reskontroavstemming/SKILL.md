@@ -13,7 +13,7 @@ tas enkeltvis i `aarsoppgjoer-forberedelse`. `mva-kontroll` leser resultatet for
 
 - Tally-oppgavene «Avstemming kundereskontro» og «Avstemming leverandørreskontro» (den 20., for forrige måned) og «Gjennomgang kunde- og leverandørreskontro».
 - Ferdig først: «Bilagsbehandling» og «Bankavstamming» for måneden. Ellers blir «betalt etter» og forfalt feil.
-- Brukeren oppgir klient og periode `ÅÅÅÅ-MM` (standard forrige måned); D = første dag etter perioden. Kontoutskrift: motparten med nummer eller org.nr.
+- Brukeren oppgir klient og periode `ÅÅÅÅ-MM` (standard forrige måned); S = siste dag, D = første dag etter perioden. Kontoutskrift: motparten med nummer eller org.nr.
 - Steg 0 i tillegg: Missive (spørsmål til kunden).
 
 ## Kundeinstruks
@@ -23,24 +23,30 @@ tas enkeltvis i `aarsoppgjoer-forberedelse`. `mva-kontroll` leser resultatet for
 
 ## Steg
 
-### 1. Kontoer
-`get_accounting_settings` → reskontrokontoene (standard 1500 og 2400). Bare de avstemmes; andre 15xx/24xx med saldo blir én linje til `balanseavstemming`.
+Alle kall med `--client "<klient>"`. `<mappe>` = kort arbeidsmappe (for eksempel `%TEMP%\rr\reskontro-ÅÅÅÅ-MM`); store svar går dit med `--ut`.
 
-### 2. Data – ett `tripletex_run_script`
-- `get_balance_sheet` 1500–1599 og 2400–2499 fra 1.1 til D (eksklusiv) → UB per konto, og UB 1580.
-- `search_open_postings` per D for begge kontoene: id, dato, forfall, beløp, fakturanr., bilag, motpart (id, navn, org.nr., privatperson).
-- `search_open_postings` per i morgen, bare id → hvilke poster som fortsatt er åpne. `search_supplier_invoices` (fra 1.1) → forfall på 2400.
-- Første kjøring på en klient: ett representativt kall først for å se feltnavnene.
+### 1. Kontoer
+`npm run -s api -- GET /ledger/account ledgerType=CUSTOMER fields=number,name` (og `ledgerType=VENDOR`) → reskontrokontoene (standard 1500 og 2400).
+Bare de avstemmes; andre 15xx/24xx med saldo blir én linje til `balanseavstemming`.
+
+### 2. Data (API)
+- UB: `npm run -s api -- GET /balanceSheet dateFrom=ÅÅÅÅ-01-01 dateTo=<D> accountNumberFrom=1500 accountNumberTo=1599 fields=account(number),balanceOut`
+  (og 2400–2499) → UB per konto, og UB 1580.
+- Åpne poster med kategori (JSON-en til fil): `npm run -s modul -- reskontro-vurdering --client "<klient>" --dato <S> --json --ut <mappe> > <mappe>/vurdering.json`
+  → per konto og motpart: id, dato, forfall, beløp, fakturanr., bilag, motpart (id, navn, org.nr., privatperson), åpen i dag, kategori og
+  Brreg-status. Kommandoen lager også en Silfer-PDF i `<mappe>`.
+- Rådata ved behov (2400 tilsvarende; samme kall per i morgen med `fields=id` gir postene som fortsatt er åpne):
+  `npm run -s api -- GET /ledger/posting/openPost date=<D> accountNumberFrom=1500 accountNumberTo=1500 sorted=false fields=id,date,amount,invoiceNumber,termOfPayment,voucher(number,year),customer(id,name,organizationNumber,isPrivateIndividual),supplier(id,name,organizationNumber,isPrivateIndividual) --sider --ut <mappe>/1500.json`
 
 ### 3. Sum mot hovedbok (R1, R2, R9)
 Σ åpne poster per D mot UB. Differanse ≥ 1 kr → let etter poster på reskontrokontoen uten motpart (R9) og utligning på tvers av D.
 
 ### 4. Vurder hver åpen post (R3–R8, R10–R12)
-Kategoriser **nøyaktig etter `references/kategorier.md`** (rekkefølge, etiketter, nullgrupper, terskler). Kortversjon: betalt/utlignet etter → kan utlignes
-→ småbeløp → ufordelt innbetaling/kreditnota (1500) eller betaling uten faktura (2400) → ikke forfalt → 1–30 → 31–90 → over 90 dager.
-Poster datert før året er én samlelinje.
-- Brreg (Tally `lookup_brreg` eller `lookup_company_in_brreg`) bare for motparter med org.nr. som krever oppfølging.
-- `search_reminders` (fra 1.1) → purretrinn for kunder forfalt over 30 dager.
+Kategoriser **nøyaktig etter `references/kategorier.md`** (rekkefølge, etiketter, nullgrupper, terskler); `reskontro-vurdering` bruker de samme reglene.
+Kortversjon: betalt/utlignet etter → kan utlignes → småbeløp → ufordelt innbetaling/kreditnota (1500) eller betaling uten faktura (2400) → ikke forfalt
+→ 1–30 → 31–90 → over 90 dager. Poster datert før året er én samlelinje.
+- Brreg-status står i JSON-en for motparter med org.nr. som krever oppfølging; mangler den, Tally `lookup_brreg`.
+- Purretrinn for kunder forfalt over 30 dager: `npm run -s api -- GET /reminder dateFrom=ÅÅÅÅ-01-01 dateTo=<D> customerId=<id> fields=invoiceId,reminderDate,type`.
 - Feil fortegn per motpart (R3), dubletter blant åpne poster (R6) og 1580 mot postene til tapsvurdering (R12) etter tersklene i referansen.
 
 ### 5. Kjente avvik
@@ -53,16 +59,24 @@ Nøkkel `konto · motpart · beløp` fra kundeinstruksen → «kjent, uendret».
 4. Ompostering: innbetaling fra Skatteetaten på 2400 → riktig konto (for eksempel 2600). Dobbeltbetaling til leverandør → krav om tilbakebetaling.
 5. Spørsmål til kunden (ufordelte innbetalinger, betaling uten faktura) → Missive-utkast etter ja.
 
-**Krever skriving utenfor MCP: Tripletex-UI (eller API-kobling):**
-1. Utlign postene i reskontroen (finner ToolSearch et verktøy for å lukke poster, brukes det etter ja).
-2. Før tap, avsetning og omposteringer som bilag, alltid med dokumentasjon.
-3. Last opp arbeidsboka på linjene 1500 og 2400 i avstemmingsmodulen (BALANCE for måneden); sett dokumentert saldo og status etterpå.
+**Skriving (etter ja):** hver kommando kjøres først uten `--bekreft` (viser gruppene eller postene).
+1. Nullgrupper per motpart: `npm run -s modul -- utlign --client "<klient>" --konto 1500 --bekreft` (og `--konto 2400`). Én bestemt gruppe
+   (én konto, én motpart, sum 0, for eksempel etter føring av småbeløp): `npm run -s modul -- lukk --client "<klient>" --ids <id,id,…> --bekreft`.
+2. Avstemmingsmodulen, linjene 1500 og 2400 (BALANCE for måneden): id fra `modul -- perioder --client "<klient>" --aar ÅÅÅÅ --type BALANCE --json`,
+   `accountId` fra `modul -- linjer --client "<klient>" --id <BALANCE-id> --konto 15` (og `24`). Last opp arbeidsboka og sett dokumentert saldo og status:
+   `npm run -s modul -- last-opp --client "<klient>" --id <BALANCE-id> --ref <accountId> --fil <xlsx> --bekreft`
+   `npm run -s modul -- sett-status --client "<klient>" --id <BALANCE-id> --konto <accountId> --status RECONCILED --dokumentert <beløp> --bekreft`
+
+**Bare i Tripletex-UI:**
+1. Før småbeløp mot avrundingskontoen, tap, avsetning og omposteringer som bilag, alltid med dokumentasjon.
+2. Reskontrostatus «gjennomgått».
 
 ### 7. Kontoutskrift per motpart (R13)
 På forespørsel, og automatisk for kunder med poster forfalt over 30 dager. Mønster: `silfer-rapport/scripts/eksempler/kontoutskrift_reskontro.json`.
-1. IB og UB uavhengig av bevegelsene: `get_balance_sheet` med `customerIds` (leverandør: tilsvarende filter) fra 1.1 til D.
-2. Bevegelser: `search_ledger_postings` på kontoen for perioden, filtrert på motparten i skriptet (det finnes ikke kundefilter), sortert på dato.
-   Mangler raden kunden, lages ingen PDF: «krever API-kobling».
+1. IB og UB uavhengig av bevegelsene. Kunde: `npm run -s api -- GET /balanceSheet dateFrom=ÅÅÅÅ-01-01 dateTo=<D> accountNumberFrom=1500 accountNumberTo=1500 customerId=<id> fields=balanceIn,balanceOut`.
+   Leverandør (`/balanceSheet` har ikke leverandørfilter): Σ åpne poster (`/ledger/posting/openPost` på 2400 med `supplierId=<id>`) per 1.1 = IB og per D = UB.
+2. Bevegelser (leverandør: 2400 og `supplierId`), sortert på dato i skriptet:
+   `npm run -s api -- GET /ledger/posting dateFrom=ÅÅÅÅ-01-01 dateTo=<D> accountNumberFrom=1500 accountNumberTo=1500 customerId=<id> fields=date,voucher(number,year),description,amount,invoiceNumber,termOfPayment --sider --ut <mappe>/bevegelser.json`
 3. Bevegelser: Dato · Bilag · Tekst · Forfall · Fakturert · Innbetalt (leverandør: Betalt) · Saldo, fra «Inngående saldo» med løpende saldo til «Utgående saldo».
    Fakturarader (kreditnota negativ) er Fakturert, alle andre Innbetalt. Leverandør: fortegn snudd, så gjelden vises positiv.
 4. «Åpne poster per <siste dag>»: Dato · Forfall · Fakt.nr. · Tekst · Beløp, med «Sum åpne poster» lik utgående saldo.
@@ -73,7 +87,7 @@ På forespørsel, og automatisk for kunder med poster forfalt over 30 dager. Mø
 
 - Første linje: port · R1/R2-differanse · antall åpne poster og sum per konto.
 - Kategoritabell per konto (Kategori · Poster · Beløp), så motpartene som krever oppfølging i funn-formatet (høyst 5 per konto, størst først).
-- Nummerert ja-liste til slutt, og hva som ikke ble lest (for eksempel forfall på leverandørposter).
+- Nummerert ja-liste til slutt, og hva som ikke ble lest.
 - Firmanavn er greit; privatpersoner står som «privatkunde n». Ingen posteringstekster i chatten.
 
 ## Lever
@@ -84,13 +98,12 @@ Fullfør i Tally: se `tally-gjoremal`. «Avstemming kundereskontro» og «Avstem
 
 ## Fallgruver
 
-- `search_open_postings`: datoen er eksklusiv (bruk D, ikke siste dag). Forfall og dager forfalt finnes bare på kunderader.
-- `search_ledger_postings` har leverandørfilter, men ikke kundefilter, og radene kommer i bilagsrekkefølge. Filtrer og sorter i skriptet.
-- «Betalt etter» krever to uttrekk med samme kontoer: per D og per i morgen.
+- `openPost`: datoen er eksklusiv (bruk D, ikke siste dag). `reskontro-vurdering --dato` tar siste dag (S). Forfall er `termOfPayment` på posteringen.
+- `/ledger/posting` kommer i bilagsrekkefølge; sorter på dato i skriptet. `/balanceSheet` har kundefilter, men ikke leverandørfilter.
+- «Betalt etter» krever to uttrekk med samme kontoer: per D og per i morgen (`reskontro-vurdering` gjør begge).
 - Nullgrupper søkes bare blant poster som er åpne i dag; grupper på 3 eller flere bare når motparten har høyst 16 slike poster.
 - Konstatert tap er ikke det samme som konkurs. Tapsføring endrer mva og avgjøres av regnskapsfører.
 - Kontoutskrift til en privatperson lages bare når brukeren ber om den.
-- Reskontrostatus «gjennomgått» settes bare i Tripletex-UI.
 
 ## Referanser
 

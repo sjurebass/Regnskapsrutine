@@ -19,49 +19,39 @@ og lager en Silfer-Excel med åpne poster til kunden. Dokumenter i bilagsmottake
 
 ## Steg
 
-### 1. Hent status (ett skript)
+### 1. Hent status (én kommando, bare lesing)
 
-Finn klientene med `search_client_companies` (navngitt, eller alle) og les alle i ett `tripletex_run_script` (feltnavn: `tlx.help('<verktøy>')`).
-
-```js
-const KLIENTER = ['<navn 1>', '<navn 2>'], AAR = 2026, TIL = '2026-09';   // TIL = til og med
-const ut = {};
-for (const navn of KLIENTER) {
-  try {
-    const per = await tlx.get_bank_reconciliation_periods({ companyName: navn, year: AAR });
-    const kontoer = {};   // per konto og periode (ÅÅÅÅ-MM): status, bankBalance, ledgerBalance, difference – sjekk formen i første kall
-    // For hver konto og åpen måned til og med TIL:
-    //   const u = await tlx.get_unmatched_bank_transactions({ companyName: navn, accountNumber: '<konto>', date: '<ÅÅÅÅ-MM>-15' });
-    //   antall og sum for u.unmatched, u.unmatchedPostings og u.awaitingApproval; bare for u.unmatched: postedDate, amountCurrency, description
-    ut[navn] = kontoer;
-  } catch (e) { ut[navn] = { feil: e.message }; }
-}
-return ut;
-```
-
-Ett skript tåler 200 kall og 2 minutter; mange klienter deles i flere kjøringer. Rader som feiler på rate limit mangler: si det og kjør dem på nytt.
-Trengs mange enkeltlinjer vurdert, kan én lesende agent per klient gjøre steg 2 og returnere oversiktslinjen og `data.json`.
+`npm run -s bankavstemming -- --til ÅÅÅÅ-MM [--fra ÅÅÅÅ-MM] (--client "<klient>" | --alle) --ut <mappe>` (`--client` kan gjentas; `--fra` er
+januar samme år; `<mappe>` = kort arbeidsmappe, for eksempel `%TEMP%\rr\bank-ÅÅÅÅ-MM`).
+- `<mappe>/status.json`: per klient, konto og måned `avstemming` (type), `lukket`, `aapen`, `bev`, `ub`, bankens sluttsaldo og differanse,
+  `bank[]` (umatchede bankposter), `tx {antall, sum}` (umatchede posteringer i hovedboken) og `forslag {antall, sum}` (matchforslag som ikke er godkjent),
+  pluss `vurdering` (fra kunden / internt). `<mappe>/<Klient>.data.json` for klienter med noe fra kunden, og en oversikt `.md`.
+- Konsollen viser bare antall og summer; les `status.json` med et lite skript. Klienter som feiler, står med FEIL: si det og kjør dem på nytt med `--client`.
+Trengs mange enkeltlinjer vurdert, kan én lesende agent per klient gjøre steg 2 og returnere oversiktslinjen og eventuelle rettelser i `data.json`.
 
 ### 2. Klassifiser per konto og måned
 
 - **Bare bankside-poster går til kunden.** En linje som bare finnes på banksiden, mangler i regnskapet. Poster på Tripletex-siden er internt, ofte timing.
-- Umatchet er ikke manglende: sammenlign `unmatched` med `unmatchedPostings` og `awaitingApproval` (samme beløp og dato) før noe kalles en mangel.
-- `not_started` er ikke avstemt. En lukket periode kan ha umatchede linjer, og null differanse beviser ikke samsvar med kontoutskriften.
+- Umatchet er ikke manglende: sammenlign `bank[]` med `tx` og `forslag` (samme beløp og dato) før noe kalles en mangel. Linjene på hovedbokssiden:
+  `npm run -s api -- GET /ledger/posting accountId=<konto-id> dateFrom=ÅÅÅÅ-MM-01 dateTo=<neste mnd>-01 fields=id,date,amount,matched --client "<klient>"`.
+- `avstemming: null` med `aapen: true` er ikke startet, altså ikke avstemt. En lukket periode kan ha umatchede linjer, og null differanse
+  beviser ikke samsvar med kontoutskriften; sjekk bankens sluttsaldo mot `ub`.
 - Konto uten bankfeed (manuell avstemming, typisk Pareto, Cultura, Folio, sparekonto): det er kontoutskriften som mangler, ikke enkeltposter.
 
 | Funn | Hvor |
 |---|---|
-| Bankside-linje uten motpost i `unmatchedPostings` eller `awaitingApproval` | **Fra kunden** (mangler bilag) |
-| Linje med motpost i den andre listen · forslag i `awaitingApproval` | Internt: match · godkjenn forslaget |
+| Linje i `bank[]` uten motpost blant umatchede posteringer (`tx`) eller forslag (`forslag`) | **Fra kunden** (mangler bilag) |
+| Linje med motpost på den andre siden · `forslag.antall` > 0 | Internt: match · godkjenn forslaget |
 | Konto uten bankfeed, måned etter siste lukkede med bevegelse | **Fra kunden**: kontoutskrift |
-| Åpen måned uten umatchede linjer · konto med bevegelse og `not_started` | Internt: kan lukkes · avstemming ikke opprettet |
+| Åpen måned uten umatchede linjer · konto med bevegelse og `avstemming: null` | Internt: kan lukkes · avstemming ikke opprettet |
 | Skattetrekkskonto (typisk 1950), negativ saldo, statisk saldo, «Fylt på», bank- og kortgebyr | Internt |
 | Kjent avvik i kundeinstruksen med samme beløp | «Kjent, uendret» |
-| Dokumenter i bilagsmottaket (`get_voucher_inbox_count`) som kan høre til åpne linjer | Internt: `bilagsforing` først |
+| Dokumenter i bilagsmottaket (`npm run -s api -- GET /voucherInbox/inboxCount --client "<klient>"`) som kan høre til åpne linjer | Internt: `bilagsforing` først |
 
 ### 3. Excel til kunden
 
-For klienter med noe under «Fra kunden»: skriv `data.json` i scratch (Write-verktøyet, UTF-8) og kjør generatoren fra repo-rota.
+For klienter med noe under «Fra kunden» har steg 1 skrevet `<mappe>/<Klient>.data.json` (postene som `raw`, som skriptet renser).
+Rett den ved behov (Write, UTF-8). `--excel` i steg 1 kjører `lag_spec.py` for alle; `sjekk.py` kjøres likevel per fil. Formatet:
 
 ```json
 { "selskap": "<Klient AS>", "orgnr": "<org.nr.>", "aar": "2026", "periode": "Januar–September 2026", "kontoer": [
@@ -71,8 +61,8 @@ For klienter med noe under «Fra kunden»: skriv `data.json` i scratch (Write-ve
 ```
 
 ```
-uv run --with openpyxl --with pillow --with pypdf python .claude/skills/bankavstemming/scripts/lag_spec.py <scratch>/data.json --mappe <scratch> [--format xlsx,pdf]
-uv run --with openpyxl --with pypdf python .claude/skills/silfer-rapport/scripts/sjekk.py "<scratch>/Bankavstemming åpne poster ÅÅÅÅ-MM <Klient>.xlsx"
+uv run --with openpyxl --with pillow --with pypdf python .claude/skills/bankavstemming/scripts/lag_spec.py "<mappe>/<Klient>.data.json" --mappe <mappe> [--format xlsx,pdf]
+uv run --with openpyxl --with pypdf python .claude/skills/silfer-rapport/scripts/sjekk.py "<mappe>/Bankavstemming åpne poster ÅÅÅÅ-MM <Klient>.xlsx"
 ```
 
 - Filnavnet følger standarden: `Bankavstemming åpne poster ÅÅÅÅ-MM <Klient>.xlsx` (siste måned i perioden). `--format xlsx,pdf` gir samme liste som PDF.
@@ -83,15 +73,24 @@ uv run --with openpyxl --with pypdf python .claude/skills/silfer-rapport/scripts
 
 ### 4. Skriving i Tripletex (etter ja, per klient)
 
-**Krever skriving utenfor MCP: Tripletex-UI (eller API-kobling):**
-1. Match bankpost mot postering (manuell match). Det går også når posteringen ligger i forrige måned.
-2. Godkjenn forslagene under «Forslag» i bankavstemmingen.
-3. Lukk måneder med differanse 0. Les avstemmingen før og etter.
-4. Manuell avstemming (uten bankfeed): før kontoutskriften som ett bankbilag per måned, datert siste dag, én linje per bankpost mot reskontro,
+Id-er med `npm run -s api -- GET … --client "<klient>"`: konto `/ledger/account number=<konto> fields=id`, periode `/ledger/accountingPeriod startFrom=ÅÅÅÅ-MM-01 startTo=<neste mnd>-01 fields=id`,
+avstemming `/bank/reconciliation accountId=<konto-id> accountingPeriodId=<periode-id> fields=id,isClosed`.
+
+**Skriving (etter ja):**
+1. Match bankpost mot postering (også når posteringen ligger i forrige måned; avstemmingen må være åpen). Transaksjons-id fra `bank.json` (`bilag hent`),
+   posterings-id fra steg 2: `npm run -s api -- POST /bank/reconciliation/match body='{"bankReconciliation":{"id":<id>},"type":"MANUAL","transactions":[{"id":<tx>}],"postings":[{"id":<postering>}]}' --client "<klient>" --bekreft`
+2. Bankavstemmings-PDF (eksport, lesende): `npm run -s modul -- bankpdf --client "<klient>" --konto <19xx> --maaned ÅÅÅÅ-MM --ut <mappe>`.
+3. Avstemmingsmodulen, 19xx med bevegelse (BALANCE-id fra `npm run -s modul -- perioder --client "<klient>" --aar ÅÅÅÅ --type BALANCE --json`, `accountId` fra
+   `modul -- linjer --client "<klient>" --id <BALANCE-id> --konto 19`): `modul -- last-opp --client "<klient>" --id <BALANCE-id> --ref <accountId> --fil <fil> --bekreft`
+   for PDF og kontoutskrift, så `modul -- sett-status --client "<klient>" --id <BALANCE-id> --konto <accountId> --status RECONCILED --dokumentert <saldo> --bekreft`.
+
+**Bare i Tripletex-UI:**
+1. Godkjenn forslagene under «Forslag» i bankavstemmingen.
+2. Lukk måneder med differanse 0. Les avstemmingen før og etter (steg 1 på nytt).
+3. Manuell avstemming (uten bankfeed): før kontoutskriften som ett bankbilag per måned, datert siste dag, én linje per bankpost mot reskontro,
    gebyr (7770) eller renter (8050). Opprett avstemmingen med utgående saldo, lukk ved differanse 0. Uten kontoutskrift og saldo 0: avstem mot 0.
-5. 422 når en tidligere måned opprettes: en senere måned er allerede godkjent. Åpne den senere, avstem den tidlige, lukk den senere igjen.
-6. Vedlegg: kontoutskrift og Tripletex' bankavstemmings-PDF på bankavstemmingen.
-7. Avstemmingsmodulen: 19xx med bevegelse får bankavstemmings-PDF og kontoutskrift som vedlegg, så status «avstemt» (blir ikke automatisk).
+4. 422 når en tidligere måned opprettes: en senere måned er allerede godkjent. Åpne den senere, avstem den tidlige, lukk den senere igjen.
+5. Vedlegg på selve bankavstemmingen: kontoutskrift og Tripletex' bankavstemmings-PDF.
 
 ## Svar
 
@@ -111,8 +110,9 @@ Fullfør i Tally: se `tally-gjoremal`. «Bankavstamming» fullføres når alle m
 
 ## Fallgruver
 
-- Hovedbokssøk finner ikke åpne bankposter; hovedboken viser bare det som er bokført. Bruk `get_unmatched_bank_transactions`.
-- Fjern aldri identiske rader. Mange like beløp er ekte.
+- Hovedbokssøk finner ikke åpne bankposter; hovedboken viser bare det som er bokført. Bruk `bank[]` i `status.json` (eller `bank.json` fra `bilag hent`).
+- `accountId` i `/bank/*`-kall er kontoens interne id, ikke kontonummeret. `dateTo` er eksklusiv. Fjern aldri identiske rader; mange like beløp er ekte.
+- Status «avstemt» i avstemmingsmodulen blir ikke satt automatisk; `--dokumentert` er bankens sluttsaldo fra `status.json`.
 
 ## Referanser
 

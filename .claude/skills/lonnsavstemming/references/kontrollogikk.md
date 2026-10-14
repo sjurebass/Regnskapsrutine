@@ -19,8 +19,8 @@ og kontrollen per ansatt er fjernet: rapporten fra Tally har ingen personopplysn
 Kontrollene som bare bruker regnskapet (saldokontroll 2600, 1950, kostnadsført og kreditert AGA, UB 2770, feriepenger,
 pensjon hittil i år) er uendret fra versjonen som var verifisert mot tre ferdige avstemminger (17.09.2026).
 
-`scripts/hent_tripletex.js` (datauttrekket i `tripletex_run_script`) må kontrolleres mot ett ekte uttrekk første gang det
-brukes på en klient.
+Regnskapssiden hentes med `npm run -s lonn -- hent … --a07 a07.json --ut <mappe>` (API-koblingen), som er brukt på én ekte
+termin. Kontroller posteringene i ledger.json første gang kommandoen brukes på en ny klient.
 
 ### Verifiser selv etter endringer
 
@@ -117,7 +117,10 @@ Filnavn: `Lønnsavstemming <Klient> termin <n> <år>.xlsx`. Seks ark:
 
 ## ledger.json
 
-Regnskapssiden. Hentes fra Tripletex og lagres som JSON. Et utfylt eksempel ligger i `scripts/ledger_eksempel.json`.
+Regnskapssiden. `npm run -s lonn -- hent --client "<klient>" --aar ÅÅÅÅ --termin N --a07 <mappe>/a07.json --ut <mappe>` skriver
+`<mappe>/ledger.json` med alle felt unntatt `feriepenger_sats`, `forklart`, `merknader` og `kommentarer` (og `ytelse_konto`), som fylles inn
+for hånd. Kommandoen legger også ved `advarsler` (les dem først) og `kilde_a07`/`kilde_regnskap` (vises under «Kilder»).
+Et utfylt eksempel ligger i `scripts/ledger_eksempel.json`.
 
 | Felt | Forklaring |
 |---|---|
@@ -239,7 +242,7 @@ med negativ AGA. I regnskapet: 2770-debet / 5400-kredit (AGA) og 58xx/5000-kredi
 | Ytelse per konto avviker | feil `ytelse_konto`, eller tillegg ført utenfor lønnsbilag eller reiseregning |
 
 Sticos «for året» kan mangle terminer – saldobalansen i Tripletex er fasit hittil i år.
-`get_balance_sheet` utelater 2600 når IB, bevegelse og UB er 0 – bruk posteringene.
+Saldobalansen utelater 2600 når IB, bevegelse og UB er 0. `lonn hent` regner da fra posteringene med IB 0 og gir en advarsel – sjekk IB.
 
 ## Kjøring
 

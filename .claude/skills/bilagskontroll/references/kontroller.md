@@ -1,7 +1,7 @@
 # Bilagskontroll – kontroller, unntaksliste og konklusjoner
 
-Reglene er de samme som i byråets API-kobling (CLI-id i siste kolonne), så MCP og API-kobling gir samme svar. Endres de, endres begge.
-Alt gjelder posteringer i måneden. Funnene inneholder bilagsnummer, konto, kode og beløp – aldri tekst fra bilaget.
+Reglene er de samme som i `npm run -s mva` (CLI-id i siste kolonne), så bilagskontrollen og mva-kontrollen gir samme svar. Endres de, endres begge.
+Alt gjelder posteringer i måneden, lest med `api` (se SKILL.md steg 2). Funnene inneholder bilagsnummer, konto, kode og beløp – aldri tekst fra bilaget.
 
 ## Alvor, status og port
 
@@ -32,7 +32,7 @@ Kjente avvik med samme nøkkel og beløp får status KJENT og påvirker ikke por
 | R6 | Dublett: samme leverandør + normalisert fakturanr. + kreditnota ja/nei, bokført to ganger | alle | BLOKK | MD1 |
 | R6 | Dublett: ikke bokført bilag eller dokument i mottaket mot bokført (samme org.nr. + fakturanr., eller Tripletex' dublettmerke) | alle → unntakslista | FORKLAR | MD1 |
 | R6 | Nær-dublett: samme leverandør og beløp innen ±30 dager, ulikt fakturanr. | ≥ 1 000 kr → unntakslista | FORKLAR | – |
-| D5 | Manuelt bilag (bilagstype fra `search_voucher_types`) med beløp i hele tusen, eller manuelt bilag uten vedlegg | ≥ V → unntakslista | FORKLAR | – |
+| D5 | Manuelt bilag (bilagstype fra `/ledger/voucherType`) med beløp i hele tusen, eller manuelt bilag uten vedlegg | ≥ V → unntakslista | FORKLAR | – |
 | D2 | Observasjonskonto (1370, 7799, 1960 og kontoen i «Mangelliste») ≠ 0 ved månedsslutt | ≠ 0 → forslag ompostering | FORKLAR | – |
 | E2 | Signalord i teksten (julebord, gave, lunsj, hotell, leiebil, parkering, lading, privat, mobil, bredbånd) på 5900–5999, 6500–6599, 6800–6899, 7100–7199, 7300–7499, 7700–7799 | ≥ 500 kr → unntakslista | FORKLAR | – |
 | D7 | Ny eller ukjent leverandør: første bruk på 12 måneder, uten org.nr., ENK, utenlandsk uten vurdering, konkurs eller slettet i Brreg | per leverandør | INFO (FORKLAR ved fradrag) | – |
